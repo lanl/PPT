@@ -1,0 +1,511 @@
+The interconnect modules are located in separate directories; they are
+shown in the following. We also highlight the changes made to files:
+
+ppt.py :- this is the file to set up user's environment
+
+hardware/cluster.py :- an HPC cluster consists of a number of hosts (compute 
+	               nodes) connected by an interconnection network
+		       
+    class Cluster(object): # represents an entire HPC cluster
+          #variables#
+          hpcsim_dict: model parameters as a dictionary
+	  simian: the simian simulation engine (also hpcsim_dict['simian'])
+	  intercon: the interconnection network (also hpcsim_dict['intercon'])
+
+	  #public methods#
+    	  __init__(self, hpcsim_dict=None, **kargs)
+	  num_hosts(self)
+	  start_mpi(self, hostmap, main_process, *args)
+	  run(self)
+	  
+	  #private/test methods#
+	  get_intercon_typename(hpcsim_dict) @ const
+	  get_host_typename(hpcsim_dict) @ const
+	  sched_raw_xfer(self, t, src, dst, sz, blaze_trail=False)
+
+hardware/node.py :- an entity equipped with network interfaces
+
+    class Node(Entity): # represents an entity equipped with network interfaces
+          #variables#
+	  hpcsim_dict: model parameters as a dictionary
+          node_id: unique id (switches and hosts have different set of identifiers)
+	  interfaces: map from string name to interface object
+	  fast_queue: used for fast message delivery (hack for now)
+          arrival_semaphore: used for waking up receiver process
+	  
+	  #public methods#
+	  __init__(self, baseinfo, hpcsim_dict)
+	  __str__(self)
+	  get_now(self)
+	  
+	  #private methods#
+	  handle_packet_arrival(self, *args)
+
+hardware/nodes.py :- made the following changes
+	  1) all compute nodes are derived from Host (we use dynamic inheritance when MPIHost is needed)
+	  2) __init__ must have arguments: self, baseInfo, hpcsim_dict, *arg
+	  3) __init__ must invoke superclass's __init__ using: baseInfo, hpcsim_dict, *arg
+
+hardware/interconnect/intercon.py :- basic classes for an interconnection network
+
+    class Interconnect(object): # base class for all interconnect models
+          #variables#
+          nswitches: number of switch nodes of the interconnection network
+	  nhosts: number of compute nodes connected by the interconnection network
+
+	  #public methods#
+	  __init__(self, hpcsim_dict)
+	  num_switchs(self)
+	  num_hosts(self)
+	  network_diameter(self) # abstract
+	  network_diameter_time(self) # abstract
+	  calc_min_delay(hpcsim_dict) # static method, abtract
+	  
+    class Packet(object): # base class for messages sent between nodes
+          #variables#
+          srchost: id of the source host
+          dsthost: id of the destination host
+          type: message type (data or ack)
+          seqno: every message from a source to a destination has its sequence number
+          msglen: length of the message in bytes
+          ttl: time to live
+          prioritized: message priority is either set or unset
+          return_data: the data to be returned verbatim by ack
+          nonreturn_data: data transferred in only one way, not ack
+          sendtime: recorded for measuring end-to-end delay
+          path: a sequence of nodes traversed by the packet for blazing the trail
+          nexthop_name: next hop interface name
+          nexthop_id: next hop interface port number
+	  
+	  #public methods#
+    	  __init__(self, from_host, to_host, type, seqno, msglen, 
+	           return_data=None, nonreturn_data=None, ttl=-1,
+		   prio=False, blaze_trail=False)
+	  __str__(self)
+	  set_nexthop(self, nxtname, nxtid)
+	  get_nexthop(self)
+	  size(self)
+	  is_prioritized(self, thresh=0)
+	  set_sendtime(self, t)
+	  get_sendtime(self)
+	  add_to_path(self, rid)
+	  get_path(self)
+	  
+    class Outport(object): # outgoing portal of a network interface
+          #variables#
+          iface: the network interface this portal belongs to (or None if it's memory queue)
+          node: node of this output portal
+          port: the port number
+          peer_node_name: name of the node this port connects to
+          peer_node_id: id of the node this port connects to
+          peer_iface_name: name of the interface this port connects to
+          peer_iface_port: port number of the interface this port connects to
+          bdw: link bandwidth (in bits per second)
+          max_delay: max queuing delay to send a message (when buffer is full)
+          link_delay: link propagation delay (in seconds)
+          last_sent_time: time to complete sending of the previous message (in seconds)
+          stats: statistics kept in a dictionary, including:
+	  	 "sent_types", "sent_pkts", "dropped_bytes", "dropped_pkts"
+
+          #public methods#
+    	  __init__(self, iface, node, port, peer_node_name, peer_node_id, 
+	           peer_iface_name, peer_iface_port, bdw, bufsz, link_delay)
+	  get_qlen_in_bits(self)
+	  get_qdelay(self) # in seconds
+	  send_pkt(self, pkt)
+	  
+    class Inport(object): # incoming portal of a network interface
+          #variables#
+          iface: owner network interface (or None if fast queue)
+          port: the port number
+          node: node of this input portal
+          qlen: current queue length (in bytes)
+          queue: input queue implemented as a deque
+          stats: statistics, including "rcvd_bytes", "rcvd_pkts"
+
+	  #public methods#
+    	  __init__(self, iface, port, node)
+	  enqueue(self, pkt)
+	  dequeue(self)
+	  get_qlen_in_bytes(self)
+	  get_qlen_in_packets(self)
+	  is_empty(self)
+	  
+    class Interface(object): # network interface has ports for sending and receiving packets
+          #variables#
+          node: parrent node of the network interface
+          name: name of the interface
+          nports: number of (duplex) ports of the interface
+          inports: list of input ports
+          outports: list of output ports
+
+	  #public methods#
+    	  __init__(self, node, name, nports, peer_node_names, peer_node_ids, 
+                   peer_iface_names, peer_iface_ports, bdw, bufsz, link_delay)
+          __str__(self)
+	  get_num_ports(self)
+	  get_send_qlen_in_bytes(self, port)
+	  get_min_qdelay(self)
+	  send_pkt(self, pkt, port)
+	  drop_pkt(self, pkt, port)
+	  is_recv_empty(self, port)
+	  recv_pkt(self, port)
+	  deposit_pkt(self, port, pkt)
+	  get_now(self)
+	  
+	  stats_sent_pkts(self, port)
+	  stats_total_sent_pkts(self)
+	  stats_sent_bytes(self, port)
+	  stats_total_sent_bytes(self)
+	  stats_dropped_pkts(self, port)
+	  stats_total_dropped_pkts(self)
+	  stats_dropped_bytes(self, port)
+	  stats_total_dropped_bytes(self)
+	  stats_rcvd_pkts(self, port)
+	  stats_total_rcvd_pkts(self)
+	  stats_rcvd_bytes(self, port)
+	  stats_total_rcvd_bytes(self)
+
+    class Switch(Node): # base class for an interconnect switch
+          #variables#
+	  proc_delay: processing delay in seconds
+
+	  #public methods#
+          __init__(self, baseinfo, hpcsim_dict, proc_delay, *args)
+	  calc_route(self, pkt) # abstract
+	  forward_packet(self, proc, pkt)
+
+	  #regular functions#
+	  routing_process(self) # self is process
+	  
+    class Host(Node): # base class of a compute node attached to interconnect
+          #variables#
+	  intercon: the interconnection network
+	  mem_queue: for sending messages on the same host
+
+	  #public methods#
+    	  __init__(self, baseinfo, hpcsim_dict, *args)
+
+	  #private/test methods#
+	  notify_data_recv(self, pkt)
+	  notify_ack_recv(self, ack)
+	  test_raw_xfer(self, *args)
+
+	  #regular functions#
+	  receive_process(self) # self is process
+
+middleware/mpi.py :- a simple mpi model
+
+    #mpi functions#
+    mpi_comm_rank(mpi_comm)
+    mpi_comm_size(mpi_comm)
+    mpi_finalize(mpi_comm)
+    mpi_send(to_rank, data, sz, mpi_comm, type="default")
+    mpi_isend(to_rank, data, sz, mpi_comm, type="default")
+    mpi_recv(mpi_comm, from_rank=None, type=None)
+    mpi_irecv(mpi_comm, from_rank=None, type=None)
+    mpi_wait(req)
+    mpi_waitall(reqs)
+    mpi_test(req)
+    mpi_sendrecv(to_rank, data, sz, from_rank, mpi_comm,
+    		 send_type="default", recv_type="default")
+    mpi_reduce(root, data, mpi_comm, data_size=4, op="sum")
+    mpi_gather(root, data, mpi_comm, data_size=4)
+    mpi_allgather(data, mpi_comm, data_size=4)
+    mpi_bcast(root, data, mpi_comm, data_size=4)
+    mpi_scatter(root, data, mpi_comm, data_size=4)
+    mpi_barrier(mpi_comm)
+    mpi_allreduce(data, mpi_comm, data_size=4, op="sum")
+    mpi_alltoall(data, mpi_comm, data_size=4)
+    mpi_alltoallv(data, mpi_comm, data_sizes=None)
+    mpi_comm_split(mpi_comm, color, key)
+    mpi_comm_dup(mpi_comm)
+    mpi_comm_free(mpi_comm)
+    mpi_comm_group(mpi_comm)
+    mpi_group_size(mpi_group)
+    mpi_group_rank(mpi_group)
+    mpi_group_free(mpi_group)
+    mpi_group_incl(mpi_group, ranks)
+    mpi_group_excl(mpi_group, ranks)
+    mpi_comm_create(mpi_comm, mpi_group)
+    mpi_comm_create_group(mpi_comm, mpi_group, tag=None)
+    mpi_cart_create(mpi_comm, dims, periodic=None)
+    mpi_cart_coords(mpi_comm, rank)
+    mpi_cart_rank(mpi_comm, coords)
+    mpi_cart_shift(mpi_comm, shiftdim, disp)
+    mpi_wtime(mpi_comm)
+    mpi_ext_host(mpi_comm)
+    mpi_ext_sleep(time, mpi_comm)
+
+    #helper functions#
+    get_mpi_comm_ancestor(mpi_comm)
+    get_mpi_true_rank(mpi_comm, rank)
+    get_mpi_true_host(mpi_comm, rank)
+    alloc_new_mpi_comm(mpi_comm, new_comm)
+
+    class MPIHost(Host): # a compute node with MPI installed
+    	#data structures#
+	mpi_comm: communicator contains the communication context of a rank
+	  "host" : an instance of MPIHost or its derived class
+	  "mpiproc" : simian process (permanently) associated with this rank
+	  "hostmap" : map from rank to host id (or rank of parent communicator)
+	  "rank" : process rank
+	  "commid" : index to 'comms' (null=1, world=2, under mpi_world)
+	  "parent_comm" : communicators are organized as a tree (comm_world is root)
+	  "comms" : map from communicator id to instance
+	  "next_commid" : next unused communicator id
+
+        #variables#
+	mpi_resend_intv: mpiopt["resend_intv"]
+        mpi_resend_trials: mpiopt["resend_trials"]
+        mpi_minsz: mpiopt["min_pktsz"]
+        mpi_maxsz: mpiopt["max_pktsz"]
+        mpi_datahdr: mpiopt["data_overhead"]
+        mpi_ackhdr: mpiopt["ack_overhead"]
+        mpi_call_time: mpiopt["call_time"]
+        mpi_bufsz: mpiopt["max_injection"]*RTT*2
+
+ 	send_buffer: a deque for handing messages to send process
+	resend_key: the send sequence number
+	resend_buffer: stores unacknowledged messages (indexed by seqno)
+	recv_buffer: indexed by receiver's true rank
+	send_msgid: sequence number from rank to rank, for sending
+	recv_msgid: sequence number from rank to rank, for receiving
+	comm_world: mpi communicators indexed by rank
+
+	#public methods#
+	__init__(self, baseinfo, hpcsim_dict, *args)
+	create_mpi_proc(self, *args)
+	send_mpi_message(self, senditem, key)
+	resend_mpi_message(self, *args)
+	notify_ack_recv(self, ack)
+	check_recv_buffer(self, mpi_comm, to_rank, from_rank, type, proc, recvreq)
+	notify_data_recv(self, pkt)
+	
+	#regular function#
+	send_process(self)
+	kernel_main_function(self, user_main_function, mpi_comm_world, *arg)
+
+hardware/interconnect/torus.py :- a torus interconnect, including gemini
+
+    class TorusSwitch(Switch): # a switch node for torus interconnect
+          #variables#
+          torus: the torus interconnect
+	  coords: the coordiates of this switch
+	  route_method: the routing method
+
+	  #public methods#
+	  __init__(self, baseinfo, hpcsim_dict, proc_delay, *args)
+	  __str__(self)
+
+	  #private methods#
+	  calc_route(self, pkt)
+
+    class Torus(Interconnect): # a generic torus network
+          #variables#
+          dims: the dimension of the torus interconnect
+          dimh: the number of hosts attached to each torus switch
+          hostmap_h2sw: map from host to switch (None if default map)
+          hostmap_sw2h: map from switch to host (None if default map)
+          cm: coordinate multiplier (for calculating switch id and its coordiates)
+          switch_link_delay: link delay between two switches
+          host_link_delay: link delay between switch and its attached host
+
+	  #public methods#
+	  __init__(self, hpcsim, hpcsim_dict)
+	  network_diameter(self)
+	  network_diameter_time(self)
+	  coords_to_swid(self, c)
+	  swid_to_coords(self, swid)
+	  hid_to_coords(self, hid)
+	  coords_to_hid(self, c, p)
+	  neighbor_coords(self, c, dir)
+	  neighbor_swid(self, swid, dir)
+	  calc_min_delay(hpcsim_dict)
+
+    class Gemini(Torus): # cray's gemini is a 3D torus
+    	  __init__(self, hpcsim, hpcsim_dict)
+
+hardware/interconnect/crossbar.py :-  a hyperthetical crossbar interconnect
+
+    class CrossbarSwitch(Switch): # a switch node for crossbar interconnect
+          #variables#
+          crossbar: the crossbar interconnect
+
+	  #public methods#
+	  __init__(self, baseinfo, hpcsim_dict, proc_delay, *args)
+	  __str__(self)
+	  calc_route(self, pkt)
+
+    class Crossbar(Interconnect): # crossbar is made of one switch connecting all hosts
+          #variables#
+	  link_delay: link delay, for calculating the network diameter
+
+	  #public methods#
+    	  __init__(self, hpcsim, hpcsim_dict)
+	  network_diameter(self)
+	  network_diameter_time(self)
+	  calc_min_delay(hpcsim_dict)
+
+hardware/interconnect/__init__.py :- one file for all interconnect models
+
+# configuration for existing platforms
+hardware/interconnect/configs/__init__.py: for all python modules in this directory
+hardware/interconnect/configs/hopper_config.py :- configuration for hopper at NERSC
+hardware/interconnect/configs/cielo_config.py :- configuration for cielo at LANL
+hardware/interconnect/configs/gemini_mpiopt.py :- mpi configuration for cray's gemini network
+hardware/interconnect/configs/torus_anydim.py :- create torus of arbitrary dimensions
+hardware/interconnect/configs/aries_mpiopt.py :- mpi configuration for cray's Aries network
+hardware/interconnect/configs/dragonfly_config.py :- configuration for a simple dragonfly interconnect
+
+# examples to test mpi functions (like unit tests)
+apps/mpitest/helloworld.py :- use mpi as simple as possible
+apps/mpitest/allreduce.py :- to evaluate mpi_allreduce performance
+apps/mpitest/bandwidth_meter.py :- measure throughput between two ranks given the message size
+apps/mpitest/rawxfer.py :- show a couple of data transfers on hopper interconnect
+apps/mpitest/cannon.py :- cannon's algorithm for matrix multiplication
+apps/mpitest/getlat.py :- end-to-end latency test
+apps/mpitest/point2point.py :- test traffic (random and 1/2/3-d nearest neighbor)
+apps/mpitest/test_mpicalls.py :- test (almost) all mpi functions implemented
+apps/mpitest/test_group.py :- test mpi groups and subcommunicators
+apps/mpitest/test_split.py :- test mpi subcommunicators using mpi_comm_split
+
+
+
+hardware/interconnect/dragonfly.py :- a dragonfly interconnect, including aries
+hardware/interconnect/dragonfly_switch.py :- specialized switch for dragonfly interconnect
+hardware/interconnect/aries.py :- cray's aries is a dragonfly interconnect
+
+
+
+
+#
+# MODEL PARAMETERS:
+#
+# parameters required by simian:
+# - model_name: name of the model (required by simian)
+# - sim_time: end simulation time in seconds (required by simian; simulation starts at zero)
+# - use_mpi: whether mpi is activated (required by simian)
+#
+# default configuration can be reset:
+# - default_configs: contains default values (it's a python dictionary)
+#   - intercon_bandwidth: default link bandwidth in bits per second (1G bits-per-second)
+#   - intercon_bufsz: default buffer size in network interfaces in bytes (100M bytes)
+#   - intercon_link_delay: default link propagation delay in seconds (1e-6 seconds, 1 microsecond)
+#   - intercon_proc_delay: default nodal processing delay in seconds (0 seconds)
+#   - mem_bandwidth: default memory bandwidth for message passing via memory in bits per second (500 Gbps)
+#   - mem_bufsz: default buffer size for message passing via memory in bytes (16 GB)
+#   - mem_delay: default latency for message passing via memory in seconds (100 ns)
+#   - torus_route_method: default torus routing method is 'adaptive_dimension_order'
+#   - dragonfly_route_method: default dragon routing method is 'adaptive_routing'
+#   - mpi_resend_intv: default mpi retransmission interval (1e-3 seconds, 1 millisecond)
+#   - mpi_resend_trials: default number of mpi retransmissions (10)
+#   - mpi_min_pktsz: default min mpi message size (0 bytes)
+#   - mpi_max_pktsz: default max mpi message size (4K bytes)
+#   - mpi_call_time: default processing time for each mpi call (0 seconds)
+#   - mpi_data_overhead: default data header overhead for put/get (0 bytes)
+#   - mpi_ack_overhead: default ack header overhead for put/get (0 bytes)
+#   - mpi_getput_thresh: default upper size limit for using put (4K bytes)
+#   - mpi_max_injection: default max mpi message injection rate (1G bytes-per-second)
+#
+# debug print-out can be activated:
+# - debug_options: include the following names to turn on debug print-out:
+#   - hpcsim: high-level model configuration
+#   - intercon: basic interconnect configuration
+#   - host.connect: detailed host connectivity
+#   - switch.connect: detailed switch connectivity
+#   - crossbar: crossbar configuration    
+#   - torus: torus (gemini) configuration
+#   - dragonfly: dragonfly configuration
+#   - fattree: fattree configuration
+#   - host: host-level information for sending/receiving data
+#   - switch: detailed packet switching
+#   - interface: runtime queuing information
+#   - mpi: trace all mpi calls
+#
+# parameters for configuring the interconnect model:
+# - intercon_type: name of the interconnect type (crossbar, torus, gemini, fattree, dragonfly)
+#
+# different intercon type requires different parameters:
+#
+# - crossbar: required by the (hypothetical) crossbar switch interconnect
+#   - nhosts: number of hosts conneected by the crossbar switch
+#   - bdw: bandwidth for links between host and switch in bits per second
+#   - bufsz: network buffer size in bytes
+#   - link_delay: connection between host and switch in seconds
+#   - proc_delay: nodal processing delay in seconds in seconds
+#   - mem_bandwidth: memory bandwidth for message passing via memory in bits per second
+#   - mem_bufsz: buffer size for message passing via memory in bytes
+#   - mem_delay: latency for message passing via memory in seconds
+#
+# - torus: required by torus interconnect
+#   - dims: a tuple for the dimisions of the torus (required for 'generic' torus)
+#   - attached_hosts_per_switch: number of hosts attached to each switch (required for torus)
+#   - hostmap: a list containing host id to the switch coordinate (optional)
+#   - bdws: a tuple indicating the bandwidth of links in each dimension in bits per second
+#   - dups: a tuple indicating the number of parallel links in each dimension (default is all ones)
+#   - bdwh: bandwidth of the links connecting hosts in bits per second
+#   - bufsz: network buffer size in bytes
+#   - switch_link_delay: switch-switch link propagation delay in seconds
+#   - host_link_delay: switch-host link propagation delay in seconds
+#   - proc_delay: nodal processing delay in seconds
+#   - mem_bandwidth: memory bandwidth for message passing via memory in bits per second
+#   - mem_bufsz: buffer size for message passing via memory in bytes
+#   - mem_delay: latency for message passing via memory in seconds
+#   - route_method: options include the following:
+#     - deterministic_dimension_order: dimension-order routing with predetermined links within each dimension
+#     - hashed_dimension_order: dimension-order routing with flexibility in selecting links
+#     - adaptive_dimension_order (default): dimension-order routing but select lightly loaded links
+#
+# - torus: required by gemini interconnect
+#   - dimx, dimy, dimz: the x, y and z dimension (default is 1)
+#   - bdwx, bdwy, bdwz: bandwidth for links in each dimension in bits per second
+#   - the following parameters for torus interconnect are the same:
+#   - hostmap, bdwh, bufsz, link_delay, proc_delay, mem_bandwidth, mem_bufsz, mem_delay, route_method
+#   - the following parameters for torus interconnect are ignored:
+#     - dims (replaced by dimx, dimy, dimz)
+#     - attached_hosts_per_switch (always 2)
+#     - bdws (replaced by bdwx, bdwy, bdwz)
+#     - dups (always 2, 1, 2)
+#
+# - dragonfly: required by dragonfly interconnect
+#   - num_groups: number of groups (required for dragonfly)
+#   - num_switches_per_group: number of switches in each group  (required for dragonfly)
+#   - num_hosts_per_switch: number of hosts attached to each switch (required for dragonfly)
+#   - num_ports_per_host: number of parallel ports used to connect each host (required for dragonfly)
+#   - num_inter_links_per_switch: number of channels connecting other groups per switch (required by dragonfly)
+#   - inter_group_topology: options include "consecutive", "palmtree", and "circulant" (only consecutive implemented)
+#   - intra_group_topology: options include the following (some with additional attributes required):
+#     - "cascade": two dimensional, green links for switches within the same chassis and black links 
+#     		   (with three parallel links) between corresponding switches of different chasses
+#	- num_chassis_per_group: number of chassis within each group
+#     - "clique" : everyone connecting to everyone else (not implemented)
+#   - inter_group_bdw: bandwidth for links between switches of different groups in bits per second
+#   - inter_group_delay: link delay between switches of different groups in seconds
+#   - intra_group_bdw: bandwidth for links between switches inside a group in bits per second
+#   - intra_group_delay: link delay between switches inside a group in seconds
+#   - switch_host_bdw: bandwidth connecting hosts in bits per second
+#   - switch_host_delay: link propagation delay between switches and hosts in seconds
+#   - bufsz: network buffer size in bytes
+#   - route_method: options include the following:
+#     - minimal_routing: minimal number of hops within a group and at most one traversal between groups
+#     - valiant_routing: minimal routing used to a randomly selected intermediate group
+#     - adaptive_routing: use light-loaded one among a number of possible routes
+#
+# parameters for configuring the interconnect/host:
+# - intercon_type: name of the interconnect type (crossbar, torus, gemini, fattree, dragonfly)
+# - host_type: name of the host type (host, mpihost, ...)
+
+# - mpiopt: mpi options (all optional)
+#   - resend_intv: mpi send retransmission interval in seconds
+#   - resend_trials: max number of mpi retransmissions before giving up
+#   - min_pktsz: min mpi message size, in bytes (smaller ones will be padded)
+#   - max_pktsz: max mpi message size, in bytes (larger ones will be broken into pieces)
+#   - call_time: uniform processing time in seconds for each mpi call
+#   - put_data_overhead: additional bytes needed by put message header (put request)
+#   - get_data_overhead: additional bytes needed by get message header (get response)
+#   - put_ack_overhead: additional bytes needed by put ack header (put response)
+#   - get_ack_overhead: additional bytes needed by get ack header (get request)
+#   - putget_thresh: threshold (in bytes) between using put (small messages) or get (large messages)
+#   - max_injection: max mpi send rate in bytes-per-second (which determines the send window)
+

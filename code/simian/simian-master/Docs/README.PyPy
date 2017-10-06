@@ -1,0 +1,7 @@
+For using SimianPie with PyPy, you need to install PyPy - either precompiled binary or compiled from source.
+
+At present, mpi4py seems to be extremely slow with PyPy, about 10 times slower than
+on CPython. On a single rank without MPI, PyPy results in speed-ups of
+about 8-10 times compared to CPython.
+
+The CTypes version of SimianPie does not depend on mpi4py, and includes a wrapper for MPICH 3.1.4 for use with PyPy.

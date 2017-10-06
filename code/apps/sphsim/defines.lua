@@ -1,0 +1,1 @@
+-- Place global definitions here

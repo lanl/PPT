@@ -1,0 +1,334 @@
+===========================================================
+--Author: Nandakishore Santhi
+--Date: 23 November, 2014
+--Copyright: Open source, must acknowledge original author
+===========================================================
+
+Simian JIT-PDES
+===============
+
+DESCRIPTION:
+Simian is a Just-In-Time interpreted Parallel-Discrete-Event-Simulator
+written in plain Lua with some FFI bindings to MPI libraries.
+Simian implements a PDES which is by default locally JITed on each rank.
+Simian can also be run without JIT being enabled.
+Simian aims to have a very small core code base of about 500 lines.
+Simian also aims to have a clean, simple and portable user API.
+
+It has 4 types of associated objects:
+1. Entities which are special named classes with single inheritance
+2. Services which are named functions residing on entities
+3. Infos which are MPI messages for providing operating arguments to
+remote entity services. All MPI message objects are serialized using
+the efficient and portable MessagePack protocol. Infos may therefore
+be any Lua nil/number/string/table, which can be encoded and decoded
+using the MessagePack protocol.
+4. Processes which are any number of co-routine processes running on
+each entity. Processes can have child processes, and can be categorized
+into kinds. Processes can be killed individually or as a category.
+
+INSTALL:
+Only real dependency is LuaJIT (or plain Lua + FFI if not JITing) and
+a standard MPI implementation: either MPICH-v3.1.3 or OpenMPI-v1.6.5.
+
+LuaJIT:
+Download and install LuaJIT-2.1.0-alpha or Lua-5.2 + FFI. We will
+call the resulting executable luajit in what follows.
+
+MPI using MPICH:
+If MPICH-v3.1.3 shared library (libmpich.so or libmpich.dylib) is
+installed in the system, one can use that.
+Otherwise, download, compile and install MPICH-3 on OSX or Linux.
+Make sure that libmpich.so or libmpich.dylib is in the LD_LIBRARY_PATH
+or the directory from where Simian is launched using mpirun.
+
+MPI using OpenMPI:
+OpenMPI-v1.6.5 should also work. There is a severe bug in
+OpenMPI-v1.8.3 which sometimes returns wrong Get_count/Get_elements.
+If using OpenMPI, change the MPI.lua wrapper to select OMPI interface
+instead of MPICH as default MPI implementation.
+In this case, make sure that libmpi.so or libmpi.dylib is in the
+dynamic library search path.
+
+TO RUN EXAMPLE:
+/path/to/mpirun <mpirun options> /path/to/luajit <luajit options> hello.lua
+
+TODO:
+Implement FFI based Queues and Simian's internal scratch arrays for
+both efficiency and to allow maximum lowmem for LuaJIT allocator.
+
+KNOWN LIMITATIONS:
+Lowmem limit of 4GB when using JIT on pure Lua objects or ffi.new() and
+internal GC on x86-64 with RAM greater than 4GB. Pure Lua and LuaJIT's
+FFI objects explicitly managed by jemallac/tcmalloc-mmap to allocate
+high-memory by default are not affected on Linux.
+
+USER API:
+=========
+
+Simian:
+Engine read-only attributes:
+    engine.name
+    engine.startTime
+    engine.endTime
+    engine.minDelay
+    engine.now
+    engine.rank
+    engine.size
+    engine.out
+        Reference to the output file at Simian engine's MPI rank (if MPI not used, then at rank 0).
+
+    function engine:init(simName, startTime, endTime, minDelay, useMPI)
+        Initialize and return the simulation engine
+        If @useMPI is false (default), then Simian runs on a single rank
+        without using MPI
+        @minDelay should be a floating point number > 0, as Simian is a
+        conservative PDES.
+        @simName is the name used while creating entity log files.
+    function engine:exit()
+        Cleanup and exit the simulation engine
+    function engine:run()
+        Run the simulation
+    function engine:getBaseRank(name)
+        Get base rank for a named entity.
+        User may overload this with a custom placement function.
+    function engine:getOffsetRank(name, num)
+        Get offset rank for num-th named entity.
+        User may overload this with a custom placement function.
+    function engine:getEntity(name, num)
+        Returns a reference to the named local entity of given serial number.
+        If no such entity, or if entity is not local, returns nil.
+    function attachService(self, klass, name, fun)
+        Attaches a given service interface to a given entity class, @klass.
+        Service fun is attached to all the instances of class @klass at runtime.
+    function engine:addEntity(entityClass, num, ...)
+        Adds num-th entity of type entityClass to the engine.
+    function engine:schedService(time, eventName, data, rx, rxId)
+        @data can be any valid Lua nil/number/string/table
+
+Simian.Entity:
+Entity template factory:
+    function Entity(name, base)
+
+Entity template read-only attributes:
+    template.name
+    template._base
+        This is the base entity of this entity
+
+    function template.__call()
+        This is the instance factory class method
+
+    There are several other class member functions which are inherited
+    by the entity instances.
+
+Entity instance factory:
+    function template(out, engine, num, ...)
+        @... is passed on to entity:__init and base:__init
+
+Entity instance read-only attributes:
+    instance.out
+        Reference to the output file at instance's Simian engine.
+    instance.engine
+    instance.num
+
+    instance._procList
+        Hidden list of processes indexed by @name
+
+    instance._wakeProcess(name)
+        Hidden method for implicit timed wake up of named processes.
+        No arguments are passed back to the process. Also, does not
+        raise an error in case the process called @name is no longer
+        active (ie., it finished run and returned or was user-killed)
+
+    function instance:is_a(entity)
+        Returns true if instance inherits from entity
+    function instance:reqService(offset, eventName, data, rx, rxId)
+        Schedules an event to call
+        rx[rxId].eventName(data, instanceName, instanceId)
+        after offset simulated time steps
+    function attachService(self, name, fun)
+        Attaches a given service interface to a given entity instance.
+        It is attached only to the instance, not to the class.
+        We can attach services at runtime.
+    function instance:__init(...)
+        The instance constructor's initializer. Should explicitly call
+        base:__init(...) as needed.
+    function instance:startProcess(name, ...)
+        Instance public method for explicit start up of named processes with arguments
+    function instance:wakeProcess(name, ...)
+        Instance public method for explicit wake up of named processes with arguments
+    function instance:killProcess(name)
+        Instance public method for explicit killing of named processes
+        If @name is nil, then all entity related processes are killed
+    function instance:killProcessKind(kind)
+        Instance public method for explicit killing of all @kind processes
+    function instance:isProcess(name, kind)
+        Is the process @name of kind @kind?
+        Is the process of kind @kind?
+        @kind can be an arbitrary string
+    function instance:statusProcess(name)
+        Current status of the process @name.
+        Can be: "NonExistent"/"NotStarted"/"dead"/"running"/"suspended"
+    function instance:getProcess(name)
+        Returns a named process @name within this entity if it exists
+        or returns nil
+        NOTE: This is a potential reference leak at the hands of a user.
+        A reference to a process, if kept alive even after killing, does not let the GC
+        free associated memory. This can be easily avoided by the user by removing
+        (setting to nil or deleting) all its references after killing a process.
+    function instance:categorize(kind, name)
+        Categorizes a process @name as @kind on this entity only if @name process exists.
+    function instance:unCategorize(kind, name)
+        Un-categorizes a process @name as @kind on this entity only if @name process exists.
+    function instance:getCategoryNames()
+        Returns a list of active category names for this entity.
+    function instance:getProcessNames()
+        Returns a list of active process names for this entity.
+    function instance:userMethod(...)
+        Service interfaces and other user defined public methods for instances.
+
+Simian.Entity.Process:
+Process factory:
+    function entity:createProcess(name, fun, kind)
+        Creates a process of category @kind called @name using a Lua function @fun.
+        @kind could be nil.
+        This process is typically attached to the entity as a member.
+        @fun will be passed the process object as first argument when
+        first invoked or started using processObject(). @fun has the
+        signature:
+            function fun(process, ...)
+        @fun may call:
+            @process:sleep(x, ...)
+            @process:compute(x, ...)
+            @process:hibernate(...)
+        Once suspended, @process is explicitly woken up by:
+            @entity:wakeProcess(name, ...)
+            @process:wake(...)
+        Once suspended, @process is implicitly woken up at timeout by:
+            @entity:wakeProcess(name)
+
+Process instance read-only attributes:
+    process.entity
+        The entity of this process
+    process.parent
+        The parent-process of this process if such exists.
+        If directly attached to an entity, then this field is nil.
+    process.name
+        Name of the process
+    process.co
+        Raw Lua co-routine associated with this process
+
+    process._category
+        Hidden table of subprocess kinds for this process, each kind is a set of subprocess names
+    process._kindSet
+        Hidden set of subprocess kinds for this process as known on its entity
+
+    function process:is_a(kind)
+        Is the process of kind @kind?
+        @kind can be an arbitrary string
+
+    function process:status()
+        Current status of the process.
+        Can be: "NotStarted"/"dead"/"running"/"suspended"
+
+    function process:wake(...)
+        Explicitly wake a process
+        @... are passed to the LHS of corresponding app:hibernate()
+
+    function process:hibernate(...)
+        @... are passed to the LHS of corresponding
+            process(...)/process:wake(...)/entity:wakeProcess(name)
+
+    function process:sleep(x, ...)
+        @x is a timeout in simulated time
+        @... are passed to the LHS of corresponding
+            process(...)/process:wake(...)/entity:wakeProcess(name)
+            If implicitly woken after timeouts, @... are lost.
+
+    function process:spawn(name, fun, kind)
+        Creates an @kind child process @name if it does not already exist
+            Raises an error if a same name process already exists in the entity
+
+        @kind can be nil/an-arbitrary-string
+        The child-process is attached to the process which spawns.
+        If non-nil, then a @kind category is made on the entity if it does not exist.
+
+    function process:categorize(kind, name)
+        Categorizes a process @name as @kind on entity.
+
+    function process:unCategorize(kind, name)
+        Un-categorizes a process @name as @kind on entity.
+
+    function process:kill(name)
+        Kills itself if @name is nil, otherwise kills all the child processes if @name is "*".
+        Otherwise, kills the named child-process if it exists.
+        NOTE: All child processes are recursively killed when a parent process is killed.
+        When a parent process finishes running by a return statement,
+        the child processes if any continue running.
+
+    function process:getCategoryNames()
+        Returns a list of active category names for this process.
+
+    function process:getChildNames()
+        Returns a list of active child process names for this process.
+
+eventQ:
+    A priority queue of objects, which are prioritized in
+    increasing order as the @time attribute of items pushed/poped.
+
+    function eventQ.push(list, item)
+        @list is a Lua table with integer keys starting at 1 and no holes
+        @item is a Lua object with a member called @time
+    function eventQ.pop(list)
+        @list is a Lua table with integer keys starting at 1 and no holes
+
+hash:
+    function hash(str)
+        @str is hashed into an integer
+
+MPI:
+    MPI.comm
+        MPI COMM_WORLD datatype
+    MPI.status
+        MPI STATUS datatype
+    MPI.BYTE
+        MPI BYTE datatype
+    MPI.DOUBLE
+        MPI DOUBLE datatype
+    MPI.MIN
+        MPI MIN operation
+    MPI.SUM
+        MPI SUM operation
+    MPI.itemp
+        Temporary int[5] buffer for storing temporary MPI buffers
+    MPI.dtemp
+        Temporary double[5] buffer for storing temporary MPI buffers
+    MPI.CBUF_LEN
+        Length of @ctemp buffer in bytes for storing MPI recv messages
+    MPI.ctemp
+        Temporary char[CBUF_LEN] buffer for storing MPI recv messages
+
+    function MPI:init()
+        Initialize MPI
+    function MPI:finalize()
+        Finalize MPI
+    function MPI:rank()
+        Get current MPI rank
+    function MPI:size()
+        Get total number of MPI ranks
+    function MPI:iprobe(src, tag)
+        Non-blocking asynchronous Iprobe for messages from @src, @tag
+    function MPI:probe(src, tag)
+        Blocking synchronous Probe for messages from @src, @tag
+    function MPI:send(x, dst, tag)
+        Blocking Send @x to @dst, @tag
+    function MPI:recv(maxSize, src, tag)
+        Blocking Recv of maxSize bytes from @src, @tag
+    function MPI:getCount()
+        Blocking Get_count on receive bytes
+    function MPI:getElements()
+        Blocking Get_elements on receive bytes
+    function MPI:recvAnySize(src, tag)
+        Blocking Recv of unknown number of bytes from @src, @tag
+    function MPI:allreduce(partial, op)
+        Blocking Allreduce of @partial double operand using @op operation

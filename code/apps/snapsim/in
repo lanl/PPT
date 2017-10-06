@@ -1,0 +1,14 @@
+nx = 2                 # discretization units (aka cells) in x-dimension
+ny = 2                 # discretization units (aka cells) in y-dimension
+nz = 2                 # discretization units (aka cells) in z-dimension
+ichunk = 1             # number of cells per chunk in x direction
+jchunk = 1             # number of cells per chunk in y direction
+kchunk = 1             # number of cells per chunk in z direction
+nmom = 4               # anisotropic scattering order
+nang = 60              # number of discrete ordinates per octant
+ng = 12                # number of energy groups
+nsteps = 5             # number of time-steps to be simulated
+iitm = 2               # number of inner iterations before convergence
+oitm = 2               # number of outer iterations before convergence
+noct = 8               # number of octants
+ncor = 4               # number of starting corners

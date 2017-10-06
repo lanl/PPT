@@ -1,0 +1,71 @@
+allreduce.py 16 1 64
+hpcsim_dict['debug_options'] = set(['torus', 'hpcsim'])
+hpcsim_dict['default_configs']:
+  dragonfly_route_method = 'adaptive_routing'
+  intercon_bandwidth = 1000000000.0
+  intercon_bufsz = 100000000.0
+  intercon_link_delay = 1e-06
+  intercon_proc_delay = 0
+  mpi_ack_overhead = 0
+  mpi_call_time = 0
+  mpi_data_overhead = 0
+  mpi_max_injection = 1000000000.0
+  mpi_max_pktsz = 4096
+  mpi_min_pktsz = 0
+  mpi_resend_intv = 0.001
+  mpi_resend_trials = 10
+  torus_route_method = 'adaptive_dimension_order'
+hpcsim_dict['fattree']:
+  host_link_bdw = 1600000000.0
+  host_link_delay = 1.07e-06
+  num_levels = 3
+  num_ports_per_switch = 4
+  route_method = 'nearest_common_ancestor'
+  switch_link_down_bdw = 4750000000.0
+  switch_link_down_delay = 2.54e-06
+  switch_link_dups = 1
+  switch_link_up_bdw = 4750000000.0
+  switch_link_up_delay = 2.54e-06
+hpcsim_dict['host_type'] = 'Host'
+hpcsim_dict['intercon_type'] = 'Fattree'
+hpcsim_dict['load_libraries'] = set(['mpi'])
+hpcsim_dict['model_name'] = 'allreduce'
+hpcsim_dict['mpi_path'] = '/opt/local/lib/mpich-mp/libmpi.dylib'
+hpcsim_dict['mpiopt']:
+  ack_overhead = 3
+  data_overhead = 42
+  max_injection = 10200000000.0
+  max_pktsz = 8192
+  min_pktsz = 0
+  resend_intv = 0.1
+hpcsim_dict['sim_time'] = 1000000000.0
+hpcsim_dict['use_mpi'] = True
+hpcsim_dict['min_delay'] = 0.000001000 (calculated)
+fattree: num_ports_per_switch=4
+fattree: num_levels=3
+fattree: switch_link_dups=1
+fattree: switch_link_up_bdw=4750000000.000000 (bits per second)
+fattree: switch_link_down_bdw=4750000000.000000 (bits per second)
+fattree: switch_link_up_delay=0.000003 (seconds)
+fattree: switch_link_down_delay=0.000003 (seconds)
+fattree: host_link_bdw=1600000000.000000 (bits per second)
+fattree: host_link_delay=0.000001 (seconds)
+fattree: proc_delay=0.000000 (seconds)
+fatree: route_method=nearest_common_ancestor
+mpiopt: min_pktsz=0
+mpiopt: max_pktsz=8192
+mpiopt: data_overhead=42
+mpiopt: ack_overhead=3
+mpiopt: resend_intv=0.100000
+mpiopt: resend_trials=10
+mpiopt: call_time=0.000000
+mpiopt: max_injection=10200000000.000000
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: ON
+p=16 c=1 64 80611.105263 (nanosecs)
+SIMULATION COMPLETED IN: 0.107138 SECONDS
+SIMULATED EVENTS: 374
+EVENTS PER SECOND: 3490.8249174
+===========================================

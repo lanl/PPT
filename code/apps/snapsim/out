@@ -1,0 +1,51 @@
+
+SNAPSim run with Simian PDES Engine
+Version =  mpi-2016.06.02.1
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: OFF
+
+time_compute for sweeping chunk
+cycles =  0.0
+ialu  2370.5
+falu  19998.5 17628
+intvect  23838.5 38400 38400
+vector  36478.5 25280 25280
+inital_ram_pages, cycles= 36478.5 0.0
+l1_hit 0.983333333333 0 40898 0 694
+l2_hit 0.991666666667 0 688 0 6
+l3_hit 0.994444444444 0 5 0 1
+registers, cycles=  36718.5
+l1  48987.9
+l2  50019.9
+l3  50057.4
+l3 misses 50057.6840625
+memaccess cycles=  50057.6840625
+
+Core  0  done at time  0.0156847410063  after executing  752  chunks
+
+time_compute for outer source
+cycles =  0.0
+ialu  4524032.0
+falu  13572096.0 9048064
+inital_ram_pages, cycles= 13572096.0 0.0
+l1_hit 0.5 0 1143040 0 1143040
+l2_hit 0.75 0 857280 0 285760
+l3_hit 0.833333333333 0 238133 0 47627
+registers, cycles=  13572112.0
+l1  13915024.0
+l2  15200944.0
+l3  16986941.5
+l3 misses 17000336.5938
+memaccess cycles=  17000336.5938
+
+End results:
+============
+Total time (sec): 0.384529555932
+Time per inner loop (sec):  0.0156847410063
+Time for crossgroup scatter (sec):  0.00708347358073
+SIMULATION COMPLETED IN: 0.01 SECONDS
+SIMULATED EVENTS: 755
+EVENTS PER SECOND: 75500.0
+===========================================

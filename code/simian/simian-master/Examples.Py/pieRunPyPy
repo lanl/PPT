@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpirun -np 4 pypy --jit enable_opts=all --jit trace_limit=5000 --jit trace_eagerness=50 --jit function_threshold=10 --jit max_unroll_loops=3 $@

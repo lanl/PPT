@@ -1,0 +1,37 @@
+1.4.3:
+New facility to attach named services at run-time to Entity class and instance:
+	engine.attachService
+	entity.attachService
+
+1.4.4:
+Added attachService examples
+
+1.4.5:
+Bug fixes:
+	Fix process.py hibernate
+Added hibernation example, proc-hibernate.lua, proc-hibernate.py
+
+1.4.6:
+Output files are now created per rank and not per entity. This improves speed
+when there are too many entities. This is essentially a user transparent
+change. Adds attribute:
+	engine.out
+
+1.4.7:
+Fixed a minor bug in the "kill" function in process.py (thanks to Richard James Zamora)
+Removed LuaMessagePack from the Simian distribution, it can be copied/installed from
+3rd party git repository.
+Also removed Docs/README.LuaMessagePack
+Renamed Examples/ to Examples.Lua/
+Minor change in run, pieRun, pieRunPyPy scripts to remove absolute paths to
+cPython/pypy/luajit/mpirun etc.
+
+1.5:
+Added copyright notices for LANL
+Packaged for research licensing and open sourcing
+Added Simian.Edge for prototyping experimental event-loops
+Added SimianPie.CTypes for use with Python/PyPy CTypes
+Added optional absolute path attribute for Simian() in SimianPie to
+	specify location of libmpich.[dylib/so/dll]
+Added back MessagePack.lua, umsgpack.py and associated license files for
+	convenience

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+mpirun -np 4 luajit-2.1.0-alpha $@

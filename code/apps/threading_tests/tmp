@@ -1,0 +1,28 @@
+Cluster model = SingleCielo
+
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: OFF
+Starting computations of 768 tasks
+thread15 finished computations at time 0.000369150827474
+thread14 finished computations at time 0.000369669288411
+thread5 finished computations at time 0.000369732815104
+thread10 finished computations at time 0.00036978550651
+thread0 finished computations at time 0.000369838197917
+thread9 finished computations at time 0.000370459539714
+thread4 finished computations at time 0.000370532815104
+thread3 finished computations at time 0.000370626724609
+thread6 finished computations at time 0.000371251016927
+thread7 finished computations at time 0.000371417424479
+thread2 finished computations at time 0.000372050378906
+thread1 finished computations at time 0.000372208453125
+thread8 finished computations at time 0.00037283550651
+thread13 finished computations at time 0.000373007815104
+thread11 finished computations at time 0.000373627621745
+thread12 finished computations at time 0.000374417235026
+SIMULATION COMPLETED IN: 0.03 SECONDS
+SIMULATED EVENTS: 785
+EVENTS PER SECOND: 26166.6666667
+===========================================
+Computations finished at time 0.000374417235026
