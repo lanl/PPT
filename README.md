@@ -12,7 +12,7 @@ PPT is Unclassified and contains no Unclassified Controlled Nuclear Information.
 
 # Authors
 1. Gopinath (Nath) Chennupati (gchennupati@lanl.gov)
-2. Nanadakishore Santhi (nandu@lanl.gov)
+2. Nanadakishore Santhi (nsanthi@lanl.gov)
 3. Stephen Eidenbenz (eidenben@lanl.gov)
 4. Joe Zerr (rzerr@lanl.gov)
 5. Jason Liu (luix@cis.fiu.edu)
