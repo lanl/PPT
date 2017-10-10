@@ -14,9 +14,15 @@ PPT is Unclassified and contains no Unclassified Controlled Nuclear Information.
 1. Gopinath (Nath) Chennupati (gchennupati@lanl.gov)
 2. Nanadakishore Santhi (nsanthi@lanl.gov)
 3. Stephen Eidenbenz (eidenben@lanl.gov)
-4. Joe Zerr (rzerr@lanl.gov)
-5. Jason Liu (luix@cis.fiu.edu)
-6. A few more to be added soon.
+4. Robert Joseph (Joe) Zerr (rzerr@lanl.gov)
+5. Massimiliano (Max) Rosa (maxrosa@lanl.gov)
+6. Richard James Zamora (rjzamora@lanl.gov)
+7. Eun Jung (EJ) Park (ejpark@lanl.gov)
+8. Balasubramanya T (Balu) Nadiga (balu@lanl.gov)
+## Non-LANL Authors
+9. Jason Liu (luix@cis.fiu.edu)
+10. Kishwar Ahmed
+11. Mohammad Abu Obaida
 
 # Dependencies
 PPT depends on another LANL licensed open source software package named SIMIAN PDES located at https://github.com/pujyam/simian.
