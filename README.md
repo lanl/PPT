@@ -23,11 +23,13 @@ PPT depends on another LANL licensed open source software package named SIMIAN P
 **Simian** relies on python package _greenlet_
 _pip install greenlet_
 
-checkout the code using
+PPT installation is simple, just checkout the code as follows
 > git clone https://github.com/lanl/PPT.git
 
 # Usage
 Let's assume the PPT is cloned into your home directory (/home/user/PPT)
+
+####### Runnning PPT in Serial mode
 
 
 # Classification
