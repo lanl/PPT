@@ -1,3 +1,16 @@
+# Copyright (c) 2017, Los Alamos National Security, LLC
+# All rights reserved.
+# Copyright 2017. Los Alamos National Security, LLC. This software was produced under U.S. Government contract DE-AC52-06NA25396 for Los Alamos National Laboratory (LANL), which is operated by Los Alamos National Security, LLC for the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this software.  NEITHER THE GOVERNMENT NOR LOS ALAMOS NATIONAL SECURITY, LLC MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.  If software is modified to produce derivative works, such modified software should be clearly marked, so as not to confuse it with the version available from LANL.
+#
+# Additionally, redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+#  1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+#
+#  3. Neither the name of Los Alamos National Security, LLC, Los Alamos National Laboratory, LANL, the U.S. Government, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY LOS ALAMOS NATIONAL SECURITY, LLC AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL LOS ALAMOS NATIONAL SECURITY, LLC OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
 #
 # cluster.py :- an HPC cluster consists of a number of hosts (compute
 #               nodes) connected by an interconnection network
@@ -88,15 +101,15 @@ class Cluster(object):
         # default routing for torus is "adaptive dimension order" routing
         if "torus_route_method" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["torus_route_method"] = "adaptive_dimension_order"
-            
+
         # default routing for dragonfly is "minimal"
         if "dragonfly_route_method" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["dragonfly_route_method"] = "minimal"
-        
+
         # default routing for fat-tree is "multiple LID nearest common ancestor"
         if "fattree_route_method" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["fattree_route_method"] = "multiple_lid_nca"
-        
+
         # default mpi resend interval is 1e-3 seconds, i.e., 1 millisecond
         if "mpi_resend_intv" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_resend_intv"] = 1e-3
@@ -104,31 +117,31 @@ class Cluster(object):
         # default max number of mpi resend is 10
         if "mpi_resend_trials" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_resend_trials"] = 10
-            
+
         # default minimum mpi message size is 0 bytes (no padding)
         if "mpi_min_pktsz" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_min_pktsz"] = 0
-            
+
         # default maximum mpi message size is 4K bytes
         if "mpi_max_pktsz" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_max_pktsz"] = 4096
-            
+
         # default time for mpi calls (for asynchronous methods) is 0 seconds
         if "mpi_call_time" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_call_time"] = 0
-            
+
         # default header overhead for mpi data (put or get) is 0 bytes
         if "mpi_data_overhead" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_data_overhead"] = 0
-            
+
         # default header overhead for mpi ack message (put or get) is 0 bytes
         if "mpi_ack_overhead" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_ack_overhead"] = 0
 
-        # default threshold for PUT/GET (i.e., upper size limit for PUT) is 4K bytes 
+        # default threshold for PUT/GET (i.e., upper size limit for PUT) is 4K bytes
         if "mpi_putget_thresh" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_putget_thresh"] = 4096
-       
+
         # default maximum injection rate is 1G bytes-per-second
         if "mpi_max_injection" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_max_injection"] = 1e9
@@ -153,9 +166,9 @@ class Cluster(object):
         hpcsim_dict["min_delay"] = intercontype.calc_min_delay(hpcsim_dict)
 
         # instantiate (start) the simian engine
-        self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"], 
+        self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"],
                              hpcsim_dict["min_delay"], hpcsim_dict["use_mpi"], hpcsim_dict["mpi_path"])
-        
+
         # print out all model parameters if requested so
         if self.simian.rank==0:
             if self.simian.size > 1:
@@ -172,21 +185,21 @@ class Cluster(object):
                             # torus.hostmap (it's too long):
                             print("  hostmap: (provided)")
                         else:
-                            print("  %s = %r" % (kk, vv))                        
+                            print("  %s = %r" % (kk, vv))
                 else:
                     # for all else, simply print them
                     print("hpcsim_dict['%s'] = %r" % (k, v))
-            print("hpcsim_dict['min_delay'] = %.9f (calculated)" % hpcsim_dict["min_delay"]) 
+            print("hpcsim_dict['min_delay'] = %.9f (calculated)" % hpcsim_dict["min_delay"])
 
         #
         # USE THIS INSTEAD IF USING SimianPie
         #
         #if hpcsim_dict["use_mpi"]:
-        #    self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"], 
+        #    self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"],
         #                         hpcsim_dict["min_delay"], hpcsim_dict["use_mpi"],
         #                         hpcsim_dict["mpi_path"])
-        #else: 
-        #    self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"], 
+        #else:
+        #    self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"],
         #                         hpcsim_dict["min_delay"])
         #
         hpcsim_dict["simian"] = self.simian
@@ -211,7 +224,7 @@ class Cluster(object):
         function is mostly for testing purposes without engaging with
         the mpi calls.
         """
-         
+
         # we assume that the hosts are derived from the Host class,
         # which has test_raw_xfer already defined
         nodetype = self.get_host_typename(self.hpcsim_dict)
@@ -222,7 +235,7 @@ class Cluster(object):
             dict = { 'dest':dst, 'sz':sz, 'blaze':blaze_trail }
             self.simian.schedService(t, "test_raw_xfer", dict, "Host", src)
         else:
-            raise Exception("host src=%d or dst=%d out of range: total #hosts=%d)" % 
+            raise Exception("host src=%d or dst=%d out of range: total #hosts=%d)" %
                             (src, dst, self.intercon.num_hosts()))
 
     def start_mpi(self, hostmap, main_process, *args):
@@ -312,7 +325,7 @@ class Cluster(object):
         # schedule service on the list of hosts
         for idx in range(len(hostmap)):
             if 0 <= hostmap[idx] < self.intercon.num_hosts():
-                data = { 
+                data = {
                     "main_proc" : main_process,
                     "rank" : idx,
                     "hostmap" : hostmap,
@@ -321,10 +334,10 @@ class Cluster(object):
                 }
                 # simian ensures that the create_mpi_proc service is
                 # scheduled only on local entities
-                self.simian.schedService(self.simian.now, "create_mpi_proc", data, 
+                self.simian.schedService(self.simian.now, "create_mpi_proc", data,
                                          "Host", hostmap[idx])
             else:
-                raise Exception("mpi rank %d mapped to host %d out of range: total #hosts=%d)" % 
+                raise Exception("mpi rank %d mapped to host %d out of range: total #hosts=%d)" %
                                 (idx, hostmap[idx], self.intercon.num_hosts()))
 
     def run(self):
@@ -336,7 +349,7 @@ class Cluster(object):
     @staticmethod
     def get_intercon_typename(hpcsim_dict):
         """Returns the type name of the interconnect class string."""
-        
+
         if "intercon_type" not in hpcsim_dict:
             raise Exception("intercon_type must be specified")
         try:
@@ -348,7 +361,7 @@ class Cluster(object):
     @staticmethod
     def get_host_typename(hpcsim_dict):
         """Returns the type name of the host class string."""
-        
+
         if "host_type" not in hpcsim_dict:
             raise Exception("host_type must be specified")
 

@@ -1,20 +1,15 @@
-# Copyright (c) 2014. Los Alamos National Security, LLC. 
-
-# This material was produced under U.S. Government contract DE-AC52-06NA25396
-# for Los Alamos National Laboratory (LANL), which is operated by Los Alamos 
-# National Security, LLC for the U.S. Department of Energy. The U.S. Government 
-# has rights to use, reproduce, and distribute this software.  
-
-# NEITHER THE GOVERNMENT NOR LOS ALAMOS NATIONAL SECURITY, LLC MAKES ANY WARRANTY, 
-# EXPRESS OR IMPLIED, OR ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.  
-# If software is modified to produce derivative works, such modified software should
-# be clearly marked, so as not to confuse it with the version available from LANL.
-
-# Additionally, this library is free software; you can redistribute it and/or modify
-# it under the terms of the GNU Lesser General Public License v 2.1 as published by the 
-# Free Software Foundation. Accordingly, this library is distributed in the hope that 
-# it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of 
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See LICENSE.txt for more details.
+# Copyright (c) 2017, Los Alamos National Security, LLC
+# All rights reserved.
+# Copyright 2017. Los Alamos National Security, LLC. This software was produced under U.S. Government contract DE-AC52-06NA25396 for Los Alamos National Laboratory (LANL), which is operated by Los Alamos National Security, LLC for the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this software.  NEITHER THE GOVERNMENT NOR LOS ALAMOS NATIONAL SECURITY, LLC MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.  If software is modified to produce derivative works, such modified software should be clearly marked, so as not to confuse it with the version available from LANL.
+#
+# Additionally, redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+#  1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+#
+#  2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+#
+#  3. Neither the name of Los Alamos National Security, LLC, Los Alamos National Laboratory, LANL, the U.S. Government, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY LOS ALAMOS NATIONAL SECURITY, LLC AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL LOS ALAMOS NATIONAL SECURITY, LLC OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 """
 *********** Performance Prediction Toolkit PPT *********
@@ -29,8 +24,8 @@ Comments:
 
 import math
 from json.encoder import INFINITY
-	
-class Accelerator(object): 
+
+class Accelerator(object):
 	"""
 	A Simian resource that represents a hardware accelerator
 	"""
@@ -44,7 +39,7 @@ class Accelerator(object):
 		self.mem_capacity = [1,1]
 		self.ram_cycles = [0,1]
 		self.max_transfers=0
-		
+
 
 	class Warp(object):
 	 	"""
@@ -64,7 +59,7 @@ class Accelerator(object):
 	 		self.completions = []
 	 		self.syncing = False
 			self.max_dep = 0
-	 		
+
  		# Return whether the current warp is still active
  		def is_active(self):
  			return self.active
@@ -78,7 +73,7 @@ class Accelerator(object):
  				res = True
  				issued += 1
  			return res
- 		
+
  		def process_inst(self, cycles):
  			res = False
  			#print self.current_inst,"/",len(self.task_list)
@@ -96,7 +91,7 @@ class Accelerator(object):
 	 					if max_dep < self.completions[i]:
 	 						max_dep = self.completions[i]
 	 				if inst[0] == 'THREAD_SYNC':
-	 					max_dep = self.max_dep 
+	 					max_dep = self.max_dep
 	 				# Current instruction depends on a result not yet computed
 	 				if cycles < max_dep:
 	 					self.stalled = max_dep
@@ -109,7 +104,7 @@ class Accelerator(object):
 			 						self.gpu.mem_op.append(cycles+mem_time)
 				 					self.completions.append(cycles+mem_time)
 				 					if self.max_dep < self.completions[-1]:
-				 						self.max_dep = self.completions[-1] 
+				 						self.max_dep = self.completions[-1]
 				 					res = True
 				 					self.current_inst += 1
 						elif inst[0] == 'fALU':
@@ -124,7 +119,7 @@ class Accelerator(object):
 								self.completions.append(cycles+self.gpu.cycles_per_iALU)
 			 					if self.max_dep < self.completions[-1]:
 			 						self.max_dep = self.completions[-1]
-			 					res = True 
+			 					res = True
 			 					#print "[",str(cycles),"][",str(self.id),"] iALU"
 			 					self.current_inst += 1
 						elif inst[0] == 'dfALU':
@@ -132,7 +127,7 @@ class Accelerator(object):
 								self.completions.append(cycles+self.gpu.cycles_per_fALU)
 			 					if self.max_dep < self.completions[-1]:
 			 						self.max_dep = self.completions[-1]
-			 					res = True 
+			 					res = True
 			 					#print "[",str(cycles),"][",str(self.id),"] dfALU"
 			 					self.current_inst += 1
 						elif inst[0] == 'diALU':
@@ -140,7 +135,7 @@ class Accelerator(object):
 								self.completions.append(cycles+self.gpu.cycles_per_iALU)
 			 					if self.max_dep < self.completions[-1]:
 			 						self.max_dep = self.completions[-1]
-			 					res = True 
+			 					res = True
 			 					#print "[",str(cycles),"][",str(self.id),"] diALU"
 			 					self.current_inst += 1
 						elif inst[0] == 'SFU':
@@ -148,32 +143,32 @@ class Accelerator(object):
 								self.completions.append(cycles+self.gpu.cycles_per_spec_inst)
 			 					if self.max_dep < self.completions[-1]:
 			 						self.max_dep = self.completions[-1]
-			 					res = True 
+			 					res = True
 			 					self.current_inst += 1
 						elif inst[0] == 'L1_ACCESS':
 		 					self.completions.append(cycles+self.gpu.cache_cycles[0])
 		 					if self.max_dep < self.completions[-1]:
 		 						self.max_dep = self.completions[-1]
-		 					res = True 
+		 					res = True
 		 					self.current_inst += 1
 						elif inst[0] == 'L2_ACCESS':
 		 					self.completions.append(cycles+self.gpu.cache_cycles[1])
 		 					if self.max_dep < self.completions[-1]:
 		 						self.max_dep = self.completions[-1]
-		 					res = True 
+		 					res = True
 		 					self.current_inst += 1
 						elif inst[0] == 'THREAD_SYNC':
 		 					self.completions.append(0)
 							self.block.sync_cnter += 1
 							self.syncing = True
-		 					res = True 
+		 					res = True
 		 					self.current_inst += 1
 						################
 						else:
 							print 'Warning: unknown task list item', inst,' cannot be parsed, ignoring it'
 							self.current_inst += 1
 			return res
-		
+
 	class Block(object):
 		def __init__(self, gpu, id, nb_warps, task_list):
 			self.gpu = gpu
@@ -221,7 +216,7 @@ class Accelerator(object):
 					res = True
 					break
 			return res
-			
+
 		def request_DPU(self, cycles, delay):
 			res = False
 			for i in range(len(self.gpu.DP_units)):
@@ -252,7 +247,7 @@ class Accelerator(object):
 					#		break
 					#break
 			return res
-													
+
 	def mem_alloc(self, size):
 		"""
 		Allocate or deallocate memory on the GPU
@@ -261,8 +256,8 @@ class Accelerator(object):
 		if self.memory_use + size > self.memorysize:
 			print "Warning: unable to allocate memory on device ", str(self.id), " of node ", str(self.node.num), "."
 		else:
-			self.memory_use += size	
-			
+			self.memory_use += size
+
 	def transfer(self, size):
 		"""
 		Transfer size bytes between the CPU and the GPU
@@ -271,21 +266,21 @@ class Accelerator(object):
 		if size > self.memory_use:
 			print "Warning: attempting to transfer more bytes than allocated on device ", str(self.id), " of node ", str(self.node.num), "."
 		return size/ self.node.PCIe_bandwidth + self.node.PCIe_latency
-	
+
 	# Create nb_warps Warps for the current kernel
 	def spawn_blocks(self, nb_blocks, nb_warps_per_block, tasklist):
 	 	block_list = []
 	 	for i in range(nb_blocks):
 	 		block_list.append(Accelerator.Block(self, i, nb_warps_per_block, tasklist))
 	 	return block_list
-	 
+
 	# Return True if any warp in the list is still active
 	def has_active_blocks(self, block_list, cycles):
 	 	for block in block_list:
 	 		if block.is_active(cycles):
 	 			return True
 	 	return False
-	 
+
 	# Advance computations on all warps by one cycle
 	def step(self, block_list, cycles, stats):
 		warps_issued = 0
@@ -295,8 +290,8 @@ class Accelerator(object):
 	 		if block.is_active(cycles):
 	 			warps_issued+=block.step(warps_issued, cycles)
 	 	stats['IPC'] += warps_issued
-	
-	
+
+
 	def mem_op_time(self, cycles):
 		time = 0
 		ok = True
@@ -309,7 +304,7 @@ class Accelerator(object):
 	 	time = self.ram_cycles[0]+(float(max(len(self.mem_op)-self.mem_capacity[0], 0.))/float(self.mem_capacity[1]))*(self.ram_cycles[1]-self.ram_cycles[0])
 	 	#print("Estimated time for mem op is: "+str(time)+" op queue has "+str(len(self.mem_op))+" pending operations, capacity is at: "+str(min(1.,float(len(self.mem_op))/float(self.mem_capacity))*100))
 	 	return ok, time
-		
+
 	def kernel_call(self, tasklist, blocksize, gridsize, regcount, start):
 		"""
 		Compute the time spent to complete the given kernel
@@ -321,7 +316,7 @@ class Accelerator(object):
 		# Update values in SM_availability to avoid preemptive computations
 		for i in range(self.num_SM):
 			self.SM_availability[i] = max(self.SM_availability[i], actual_start)
-		# Number of warps in a block	
+		# Number of warps in a block
 		nb_warps_per_block = int((blocksize+self.warp_size-1)/self.warp_size)
 		nb_registers_per_block = blocksize*regcount
 		# Number of blocks that can run concurrently on a single SM
@@ -333,9 +328,9 @@ class Accelerator(object):
 		self.node.out.write("Allocated "+str(nb_blocks_per_sm)+" simultaneous blocks per SM for a total of "+str(nb_warps_per_sm)+" warps.\n")
 		# Total number of workloads for this kernel
 		nb_work_loads = int((nb_blocks_per_sm -1 + gridsize)/nb_blocks_per_sm)
-			
+
 		block_list = self.spawn_blocks(nb_blocks_per_sm, nb_warps_per_block, tasklist)
-		
+
 		cycles = 0.
 		# Scheduling a workload requires writing parameters from global mem to special registers
 		# Add latency for a memory load to the cycles
@@ -343,7 +338,7 @@ class Accelerator(object):
 		while self.has_active_blocks(block_list, cycles):
 			self.step(block_list, cycles, stats)
 			cycles+=1
-		
+
 		overlap = 0.
 		block_average = 0.
 		mem_write_delay = 0
@@ -354,7 +349,7 @@ class Accelerator(object):
 		overlap /= len(block_list)
 		block_average /= len(block_list)
 		overlap /= cycles
-			
+
 		workload_time = (cycles)*1/self.clockspeed
 		block_average = (block_average)*1/self.clockspeed
 		self.node.out.write("BLOCK AVERAGE = "+ str(block_average)+"\n")
@@ -365,25 +360,25 @@ class Accelerator(object):
 		self.node.out.write("Potential workload overlap: "+str(overlap*100)+"%.\n")
 		stats['IPC'] /= cycles
 		self.node.out.write("Overall IPC "+str(stats['IPC'])+".\n")
-		
+
 		nb_workload_per_SM = int((nb_work_loads+self.num_SM-1)/self.num_SM)
 		work_loads_left = nb_work_loads
 		actual_workload_time = 0.
-		
+
 		for i in range(nb_workload_per_SM):
 			if i==0:
 				actual_workload_time+=min(self.num_SM, work_loads_left)*workload_time
 			else:
 				actual_workload_time += min(self.num_SM, work_loads_left)*(workload_time-self.ram_cycles[0]*1/self.clockspeed)*(1-overlap)
 			work_loads_left -= self.num_SM
-			
+
 		actual_workload_time /= nb_work_loads
-			
+
 		self.node.out.write("Actual workload time: "+str(actual_workload_time)+" s.\n")
-		
+
 		rounded_nb_workloads = int(nb_work_loads/self.num_SM)*self.num_SM
 		remainder = nb_work_loads-rounded_nb_workloads
-		
+
 		last_job_end = 0.0
 		for i in range(nb_work_loads):
 			# Schedule current workload onto the most available SM
@@ -392,14 +387,14 @@ class Accelerator(object):
 			if i == nb_work_loads-1:
 				last_job_end = self.SM_availability[0]
 			self.SM_availability.sort()
-		
+
 		if remainder>0:
 			self.SM_availability[0] += block_average
 			last_job_end = self.SM_availability[0]
 			self.SM_availability.sort()
-		
+
 		time = last_job_end-start+mem_write_delay*1/self.clockspeed
-			
+
 		self.node.out.write("Total GPU computations took "+str(time)+" s.\n")
 		self.node.out.write("Maximum number of concurrent transfers: "+str(self.max_transfers)+"\n")
 
@@ -419,32 +414,32 @@ class K20X(Accelerator):
 		self.num_SP_per_SM      = 192				# Number of Single Precision cores per SM
 		self.num_SF_per_SM		= 32
 		self.num_DP_per_SM      = 64				# Number of Double Precision cores per SM
-		self.clockspeed         = 732*10**6			# Hertz 
+		self.clockspeed         = 732*10**6			# Hertz
 
 		self.cycles_per_iALU      = 10				# Integer ALU operation latency (3 for int/long ADD, int MUL and int FMAD, 6 for long MUL, no atomic long FMAD)
 		self.cycles_per_fALU      = 10				# Float ALU operation latency
 		self.cycles_per_spec_inst = 40				# Average latency for special instructions
-		
+
 		self.cache_levels 	= 2						# number of cache levels
 		self.cache_sizes 	= [64*10**3, 1.5*10**6] # list of cache sizes
 		self.cache_page_sizes	= [64, 1024] 		# list of page sizes for the different cache levels[bytes]
 		self.num_registers 	= 65536					# number of registers (single precision, holds an int) [4 bytes]
-		
+
 		self.cache_cycles 	= [30, 175]				# list of cache access cycles per level
 		self.ram_cycles 	= [230,1000]	#[270,400]			# number of cycles to load from main memory
 		self.mem_capacity	= [8,48]	#[6,48]
 		self.ram_page_size 	= 1024					# page size for main memory access [bytes]
 		self.memorysize		= 6*10**9				# Global memory size in Bytes
-		self.memory_use		= 0	
+		self.memory_use		= 0
 
 		self.warp_size		 	= 32				# Number of threads in a warp (similar to vector width)
 		self.max_num_block_per_SM 	= 16			# Max number of blocks queued on a single SM
 		self.max_num_threads_per_block 	= 1024		# Max number of (software) threads in a block
 		self.max_num_threads_per_SM	= 2048			# Max number of threads queued or active on a single SM
-													# Although 32 blocks can be allocated to a given SM, the 
+													# Although 32 blocks can be allocated to a given SM, the
 													# total number of threads cannot exceed 2048
 		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will 
+		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will
 													# be available for computations
 		self.num_load_store_units = 32
 		for i in range(self.num_SM):
@@ -454,7 +449,7 @@ class K20X(Accelerator):
 		for i in range(self.num_memory_ports):
 			self.mem_ports.append(0.)
 		self.nb_warp_schedulers = 4					# Number of warp schedulers available
-		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp			
+		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
 		for i in range(num_warps_SP_capabilities):
@@ -486,32 +481,32 @@ class K40(Accelerator):
 		self.num_SP_per_SM      = 192				# Number of Single Precision cores per SM
 		self.num_SF_per_SM		= 32
 		self.num_DP_per_SM      = 64				# Number of Double Precision cores per SM
-		self.clockspeed         = 745*10**6			# Hertz 
+		self.clockspeed         = 745*10**6			# Hertz
 
 		self.cycles_per_iALU      = 9				# Integer ALU operation latency (3 for int/long ADD, int MUL and int FMAD, 6 for long MUL, no atomic long FMAD)
 		self.cycles_per_fALU      = 9				# Float ALU operation latency
 		self.cycles_per_spec_inst = 18				# Average latency for special instructions
-		
+
 		self.cache_levels 	= 2						# number of cache levels
 		self.cache_sizes 	= [64*1024, 1.5*2**20]  # list of cache sizes
 		self.cache_page_sizes	= [64, 1024] 		# list of page sizes for the different cache levels[bytes]
 		self.num_registers 	= 65536					# number of registers (single precision, holds an int) [4 bytes]
-		
+
 		self.cache_cycles 	= [30, 175]				# list of cache access cycles per level
 		self.ram_cycles 	= [230,1000]	#[270,400]			# number of cycles to load from main memory
 		self.mem_capacity	= [10,40]	#[6,48]
 		self.ram_page_size 	= 1024					# page size for main memory access [bytes]
 		self.memorysize		= 12*2**30				# Global memory size in Bytes
-		self.memory_use		= 0	
+		self.memory_use		= 0
 
 		self.warp_size		 	= 32				# Number of threads in a warp (similar to vector width)
 		self.max_num_block_per_SM 	= 16			# Max number of blocks queued on a single SM
 		self.max_num_threads_per_block 	= 1024		# Max number of (software) threads in a block
 		self.max_num_threads_per_SM	= 2048			# Max number of threads queued or active on a single SM
-													# Although 32 blocks can be allocated to a given SM, the 
+													# Although 32 blocks can be allocated to a given SM, the
 													# total number of threads cannot exceed 2048
 		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will 
+		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will
 													# be available for computations
 		self.num_load_store_units = 32
 		for i in range(self.num_SM):
@@ -521,7 +516,7 @@ class K40(Accelerator):
 		#for i in range(self.num_memory_ports):
 		#	self.mem_ports.append(0.)
 		self.nb_warp_schedulers = 4					# Number of warp schedulers available
-		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp			
+		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
 		for i in range(num_warps_SP_capabilities):
@@ -538,7 +533,7 @@ class K40(Accelerator):
 		self.LS_units = []
 		for i in range(num_warps_LS_capabilities):
 			self.LS_units.append(0.)
-			
+
 class K6000(Accelerator):
 	"""
 	A SimX resource	 that represents a K20X accelerator
@@ -552,32 +547,32 @@ class K6000(Accelerator):
 		self.num_SP_per_SM      = 192				# Number of Single Precision cores per SM
 		self.num_SF_per_SM		= 32
 		self.num_DP_per_SM      = 64				# Number of Double Precision cores per SM
-		self.clockspeed         = 901.5*10**6		# Hertz 
+		self.clockspeed         = 901.5*10**6		# Hertz
 
 		self.cycles_per_iALU      = 9				# Integer ALU operation latency
 		self.cycles_per_fALU      = 9				# Float ALU operation latency
 		self.cycles_per_spec_inst = 18				# Average latency for special instructions
-		
+
 		self.cache_levels 	= 2						# number of cache levels
 		self.cache_sizes 	= [64*1024, 1.5*2**20]  # list of cache sizes
 		self.cache_page_sizes	= [64, 1024] 		# list of page sizes for the different cache levels[bytes]
 		self.num_registers 	= 65536					# number of registers (single precision, holds an int or a single) [4 bytes]
-		
+
 		self.cache_cycles 	= [30, 175]				# list of cache access cycles per level
 		self.ram_cycles 	= [230,1000]	#[270,400]			# number of cycles to load from main memory
 		self.mem_capacity	= [10,44]	#[6,48]
 		self.ram_page_size 	= 1024					# page size for main memory access [bytes]
 		self.memorysize		= 12*2**30				# Global memory size in Bytes
-		self.memory_use		= 0	
+		self.memory_use		= 0
 
 		self.warp_size		 	= 32				# Number of threads in a warp (similar to vector width)
 		self.max_num_block_per_SM 	= 16			# Max number of blocks queued on a single SM
 		self.max_num_threads_per_block 	= 1024		# Max number of (software) threads in a block
 		self.max_num_threads_per_SM	= 2048			# Max number of threads queued or active on a single SM
-													# Although 32 blocks can be allocated to a given SM, the 
+													# Although 32 blocks can be allocated to a given SM, the
 													# total number of threads cannot exceed 2048
 		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will 
+		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will
 													# be available for computations
 		self.num_load_store_units = 32
 		for i in range(self.num_SM):
@@ -587,7 +582,7 @@ class K6000(Accelerator):
 		for i in range(self.num_memory_ports):
 			self.mem_ports.append(0.)
 		self.nb_warp_schedulers = 4					# Number of warp schedulers available
-		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp			
+		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
 		for i in range(num_warps_SP_capabilities):
@@ -604,8 +599,8 @@ class K6000(Accelerator):
 		self.LS_units = []
 		for i in range(num_warps_LS_capabilities):
 			self.LS_units.append(0.)
-			
-			
+
+
 class M2090(Accelerator):
 	"""
 	A SimX resource	 that represents a K20X accelerator
@@ -619,32 +614,32 @@ class M2090(Accelerator):
 		self.num_SP_per_SM      = 32				# Number of Single Precision cores per SM
 		self.num_SF_per_SM		= 4
 		self.num_DP_per_SM      = 32				# Number of Double Precision cores per SM
-		self.clockspeed         = 650*10**6		# Hertz 
+		self.clockspeed         = 650*10**6		# Hertz
 
 		self.cycles_per_iALU      = 18				# Integer ALU operation latency
 		self.cycles_per_fALU      = 18				# Float ALU operation latency
 		self.cycles_per_spec_inst = 36				# Average latency for special instructions
-		
+
 		self.cache_levels 	= 2						# number of cache levels
 		self.cache_sizes 	= [64*1024, 1.5*2**20]  # list of cache sizes
 		self.cache_page_sizes	= [64, 1024] 		# list of page sizes for the different cache levels[bytes]
 		self.num_registers 	= 65536					# number of registers (single precision, holds an int or a single) [4 bytes]
-		
+
 		self.cache_cycles 	= [25, 175]				# list of cache access cycles per level
 		self.ram_cycles 	= [140,800]				# number of cycles to load from main memory
-		self.mem_capacity	= [4,12]	
+		self.mem_capacity	= [4,12]
 		self.ram_page_size 	= 1024					# page size for main memory access [bytes]
 		self.memorysize		= 6*2**30				# Global memory size in Bytes
-		self.memory_use		= 0	
+		self.memory_use		= 0
 
 		self.warp_size		 	= 32				# Number of threads in a warp (similar to vector width)
 		self.max_num_block_per_SM 	= 8				# Max number of blocks queued on a single SM
 		self.max_num_threads_per_block 	= 1024		# Max number of (software) threads in a block
 		self.max_num_threads_per_SM	= 1536			# Max number of threads queued or active on a single SM
-													# Although 32 blocks can be allocated to a given SM, the 
+													# Although 32 blocks can be allocated to a given SM, the
 													# total number of threads cannot exceed 2048
 		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will 
+		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will
 													# be available for computations
 		self.num_load_store_units = 16
 		for i in range(self.num_SM):
@@ -654,7 +649,7 @@ class M2090(Accelerator):
 		for i in range(self.num_memory_ports):
 			self.mem_ports.append(0.)
 		self.nb_warp_schedulers = 2					# Number of warp schedulers available
-		self.nb_ins_per_warp	= 1					# Number of instructions that can be issued simultaneously to a given warp			
+		self.nb_ins_per_warp	= 1					# Number of instructions that can be issued simultaneously to a given warp
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
 		for i in range(num_warps_SP_capabilities):
@@ -686,32 +681,32 @@ class Pascal(Accelerator):
 		self.num_SP_per_SM      = 256				# Number of Single Precision cores per SM
 		self.num_SF_per_SM		= 64
 		self.num_DP_per_SM      = 128				# Number of Double Precision cores per SM
-		self.clockspeed         = 900*10**6			# Hertz 
+		self.clockspeed         = 900*10**6			# Hertz
 
 		self.cycles_per_iALU      = 9				# Integer ALU operation latency (3 for int/long ADD, int MUL and int FMAD, 6 for long MUL, no atomic long FMAD)
 		self.cycles_per_fALU      = 9				# Float ALU operation latency
 		self.cycles_per_spec_inst = 18				# Average latency for special instructions
-		
+
 		self.cache_levels 	= 2						# number of cache levels
 		self.cache_sizes 	= [64*1024, 1.5*2**20]  # list of cache sizes
 		self.cache_page_sizes	= [64, 1024] 		# list of page sizes for the different cache levels[bytes]
 		self.num_registers 	= 65536					# number of registers (single precision, holds an int) [4 bytes]
-		
+
 		self.cache_cycles 	= [30, 175]				# list of cache access cycles per level
 		self.ram_cycles 	= [230,1000]	#[270,400]			# number of cycles to load from main memory
 		self.mem_capacity	= [30,120]	#[6,48]
 		self.ram_page_size 	= 1024					# page size for main memory access [bytes]
 		self.memorysize		= 24*2**30				# Global memory size in Bytes
-		self.memory_use		= 0	
+		self.memory_use		= 0
 
 		self.warp_size		 	= 32				# Number of threads in a warp (similar to vector width)
 		self.max_num_block_per_SM 	= 32			# Max number of blocks queued on a single SM
 		self.max_num_threads_per_block 	= 1024		# Max number of (software) threads in a block
 		self.max_num_threads_per_SM	= 2048			# Max number of threads queued or active on a single SM
-													# Although 32 blocks can be allocated to a given SM, the 
+													# Although 32 blocks can be allocated to a given SM, the
 													# total number of threads cannot exceed 2048
 		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will 
+		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will
 													# be available for computations
 		self.num_load_store_units = 64
 		for i in range(self.num_SM):
@@ -721,7 +716,7 @@ class Pascal(Accelerator):
 		#for i in range(self.num_memory_ports):
 		#	self.mem_ports.append(0.)
 		self.nb_warp_schedulers = 4					# Number of warp schedulers available
-		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp			
+		self.nb_ins_per_warp	= 2					# Number of instructions that can be issued simultaneously to a given warp
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
 		for i in range(num_warps_SP_capabilities):
@@ -737,8 +732,8 @@ class Pascal(Accelerator):
 		num_warps_LS_capabilities = int(self.num_load_store_units)
 		self.LS_units = []
 		for i in range(num_warps_LS_capabilities):
-			self.LS_units.append(0.)			
-	
+			self.LS_units.append(0.)
+
 
 class P100(Accelerator):
         """
@@ -788,7 +783,7 @@ class P100(Accelerator):
                 #for i in range(self.num_memory_ports):
                 #       self.mem_ports.append(0.)
                 self.nb_warp_schedulers = 4                                     # Number of warp schedulers available
-                self.nb_ins_per_warp    = 2                                     # Number of instructions that can be issued simultaneously to a given warp                     
+                self.nb_ins_per_warp    = 2                                     # Number of instructions that can be issued simultaneously to a given warp
                 self.SP_units = []
                 num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
                 for i in range(num_warps_SP_capabilities):
@@ -804,4 +799,4 @@ class P100(Accelerator):
                 num_warps_LS_capabilities = int(self.num_load_store_units)
                 self.LS_units = []
                 for i in range(num_warps_LS_capabilities):
-                        self.LS_units.append(0.)		
+                        self.LS_units.append(0.)

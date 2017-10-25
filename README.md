@@ -28,16 +28,26 @@ PPT installation is simple, just checkout the code as follows
 
 # Usage
 Let's assume the PPT is cloned into your home directory (/home/user/PPT)
+In the _code_ directory PPT is organized in three main layers:
 
-####### Runnning PPT in Serial mode
+1. **hardware** -- contains the models for various CPUs and GPUs, interconnects,
+2. **middleware** -- contains the models for MPI, OpenMP, etc.
+3. **apps** -- contains various examples. These examples are the stylized pseudo (mini) apps for various open sourced physics codes.
 
+####### Runnning PPT in _Serial mode_
+For example, we run SNAP simulator in serial with one of the PPT hardware models as follows:
+
+> cd ~/PPT/code/apps/snapsim
+
+> python snapsim-orig.py in >> out
+
+where, _in_ and _out_ in the above command are input and output files of SNAPsim.
 
 # Classification
 PPT is Unclassified and contains no Unclassified Controlled Nuclear Information. It abides with the following computer code from Los Alamos National Laboratory
 * Code Name: Performance Prediction Toolkit, C17098
 * Export Control Review Information: DOC-U.S. Department of Commerce, EAR99
 * B&R Code: YN0100000
-
 
 # License
 Copyright (c) 2017, Los Alamos National Security, LLC
