@@ -34,7 +34,7 @@ In the _code_ directory PPT is organized in three main layers:
 2. **middleware** -- contains the models for MPI, OpenMP, etc.
 3. **apps** -- contains various examples. These examples are the stylized pseudo (mini) apps for various open sourced physics codes.
 
-####### Runnning PPT in _Serial mode_
+###### Runnning PPT in _Serial mode_
 
 For example, we run SNAP simulator in serial with one of the PPT hardware models as follows:
 
