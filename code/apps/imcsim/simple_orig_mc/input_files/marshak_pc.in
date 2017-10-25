@@ -1,0 +1,32 @@
+# simple Marshak wave
+t_start 0.0
+t_stop 0.1
+dt_start 0.0001
+dt_mult 1.0
+dt_max 1.0
+Tm_initial 0.01
+Tr_initial 0.01
+photons 40000
+seed 14706
+use_tilt false
+output_frequency 1 
+
+print_verbose false
+print_mesh_info true
+
+
+x_start 0.0
+x_end 0.1
+n_x_cell 20
+
+source_cell 0
+T_source 1.0
+
+density 3.0
+CV 0.1
+opacity_A 0.0
+opacity_B 100.0
+opacity_C -3.0
+
+left_boundary  VACUUM
+right_boundary VACUUM

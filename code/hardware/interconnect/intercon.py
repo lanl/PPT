@@ -14,6 +14,7 @@ class Interconnect(object):
     #   nhosts: number of compute nodes connected by the interconnection network
 
     def __init__(self, hpcsim_dict):
+        self.hpcsim_dict = hpcsim_dict
         self.nswitches = 0
         self.nhosts = 0
 
@@ -81,7 +82,7 @@ class Packet(object):
         self.path = [] if blaze_trail else None
 
     def __str__(self):
-        return "%s[%d=>%d #%d sz=%d ttl=%d%s]" % \
+        return "%s[src=%d, dst=%d, seqno=%d, sz=%d, ttl=%d%s]" % \
             (self.type.upper(), self.srchost, self.dsthost, self.seqno,
              self.msglen, self.ttl, ' [*]' if self.prioritized else '')
 
@@ -144,6 +145,7 @@ class Outport(object):
         self.port = port
         self.peer_node_name = peer_node_name
         self.peer_node_id = peer_node_id
+        #print("node=%r, port=%r, peer-node=%r peer-id=%r" % (node, port, peer_node_name, peer_node_id))
         self.peer_iface_name = peer_iface_name
         self.peer_iface_port = peer_iface_port
         self.bdw = bdw
@@ -198,9 +200,16 @@ class Outport(object):
                       (current, self.node,
                        self.iface.name if self.iface is not None else "memory",
                        self.port, pkt, self.last_sent_time, self.get_qlen_in_bits()))
-            pkt.set_nexthop(self.peer_iface_name, self.peer_iface_port)
-            self.node.reqService(flush_time+self.link_delay, "handle_packet_arrival", dumps(pkt), 
+
+            if self.peer_node_id is None or self.peer_node_id >= 0:
+                pkt.set_nexthop(self.peer_iface_name, self.peer_iface_port)
+                self.node.reqService(flush_time+self.link_delay, "handle_packet_arrival", dumps(pkt), 
                                  self.peer_node_name, self.peer_node_id)
+            else:
+                # this is a hack for bypassing the interconnect
+                pkt.set_nexthop(self.peer_iface_name, self.peer_iface_port)
+                self.node.reqService(flush_time+self.link_delay, "handle_packet_arrival", dumps(pkt), 
+                                     "Host", pkt.dsthost) # directly!!
             self.stats["sent_bytes"] += pkt.size()
             self.stats["sent_pkts"] += 1
             '''
@@ -214,6 +223,8 @@ class Outport(object):
                 else:
                     pkt.nonreturn_data["num_hops"] += 1
             '''
+
+
 class Inport(object):
     """incoming portal of a network interface"""
 
@@ -560,7 +571,7 @@ class Host(Node):
                   (self, self.interfaces['r'], swid, swiface, swport))
 
         # configure memory bypass
-        self.mem_queue = Outport(None, 0, self, None, None, #"Host", self.node_id, 
+        self.mem_queue = Outport(None, 0, self, None, None, #peer_node_id=None; peer_node_id=None
                                  "r", 0, mthru, mbfsz, mdly)
 
         # the process is responsible for receiving packets

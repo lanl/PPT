@@ -1,12 +1,12 @@
 """
  CWBJSim, an application simulator of the CWBJ radiation transport method.
  
- Date: February 19, 2016 Max Rosa (MR)
+ Date: June 15, 2017 Max Rosa (MR)
 """
 # To run: python [CWBJSIM py file name]
 # Output: To screen and to cwbjsim-orig.0.out
 
-version = "orig-2016.06.06.1"
+version = "orig-2017.06.15.1"
 
 # May need to set environment variable PYTHONPATH
 # Add to the path .../[Simian], ..../[Simian]/SimianPie
@@ -18,12 +18,15 @@ version = "orig-2016.06.06.1"
 # Set up path  variables; PPT applications expect it in this fashion.
 import sys
 from sys import path
-path.append('../../simian/simian-master/SimianPie')
-path.append('../../hardware')
-path.append('../../hardware/interconnect')
-path.append('../../middleware/threading')
+#path.append('../../simian/simian-master/SimianPie')
+#path.append('../../hardware')
+#path.append('../../hardware/interconnect')
+#path.append('../../middleware/threading')
+#path.append('../../middleware/mpi') #MR: add
+path.append('../..')
+from ppt import *
 
-sys.dont_write_bytecode = True
+#sys.dont_write_bytecode = True #MR: comment out
 
 #import simian
 from simian import Simian 
@@ -87,8 +90,8 @@ def CWBJSim(this): #MR
   ny = 8          # discretization units (aka cells) in y-dimension >=0
   nz = 0          # discretization units (aka cells) in z-dimension >=0
                   #   set nz=0 for 2-D; set nz=ny=0 for 1-D
-  ichunk = 8      # number of cells per chunk in x direction >=1 <=nx
-  jchunk = 8      # number of cells per chunk in y direction >=1 <=ny
+  ichunk = 4      # number of cells per chunk in x direction >=1 <=nx
+  jchunk = 4      # number of cells per chunk in y direction >=1 <=ny
   kchunk = 1      # number of cells per chunk in z direction >=1 <=nz
   ng = 1          # number of energy groups
   ng_bndls = 1    # number of energy group bumdles #MR: add  

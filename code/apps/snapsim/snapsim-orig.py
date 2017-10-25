@@ -17,11 +17,11 @@ version = "orig-2015.11.20.1"
 
 # Set up path  variables; PPT applications expect it in this fashion.
 from sys import path
-path.append('../../simian/simian-master/SimianPie')
-path.append('../../hardware')
-path.append('../../hardware/interconnect')
+path.append('../..')
+from ppt import *
 
-sys.dont_write_bytecode = True
+from sys import dont_write_bytecode
+dont_write_bytecode = True
 
 #import simian
 from simian import Simian 

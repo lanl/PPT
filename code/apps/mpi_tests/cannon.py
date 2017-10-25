@@ -13,8 +13,8 @@ from ppt import *
 modeldict = {
     "model_name" : "cannon",
     "sim_time" : 1e9,
-    "use_mpi" : False,
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib",
+    "use_mpi" : True,
+    #"mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib",
     "intercon_type" : "Gemini",
     "torus" : configs.hopper_intercon,
     "host_type" : "Host",

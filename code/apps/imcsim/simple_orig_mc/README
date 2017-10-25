@@ -1,0 +1,3 @@
+This is the simple version of Alexs Monte Carlo application
+# compile with
+g++ -std=c++11 main.cpp KeyValueReader.cpp -o MAIN

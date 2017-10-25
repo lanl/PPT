@@ -424,12 +424,12 @@ hardware/interconnect/aries.py :- cray's aries is a dragonfly interconnect
 #   - mpi: trace all mpi calls
 #
 # parameters for configuring the interconnect model:
-# - intercon_type: name of the interconnect type (crossbar, torus, gemini, fattree, dragonfly)
+# - intercon_type: name of the interconnect type (crossbar, torus, gemini, fattree, dragonfly, bypass)
 #
 # different intercon type requires different parameters:
 #
 # - crossbar: required by the (hypothetical) crossbar switch interconnect
-#   - nhosts: number of hosts conneected by the crossbar switch
+#   - nhosts: number of hosts connected by the crossbar switch
 #   - bdw: bandwidth for links between host and switch in bits per second
 #   - bufsz: network buffer size in bytes
 #   - link_delay: connection between host and switch in seconds
@@ -487,10 +487,22 @@ hardware/interconnect/aries.py :- cray's aries is a dragonfly interconnect
 #   - switch_host_bdw: bandwidth connecting hosts in bits per second
 #   - switch_host_delay: link propagation delay between switches and hosts in seconds
 #   - bufsz: network buffer size in bytes
+#   - proc_delay: nodal processing delay in seconds
+#   - mem_bandwidth: memory bandwidth for message passing via memory in bits per second
+#   - mem_bufsz: buffer size for message passing via memory in bytes
+#   - mem_delay: latency for message passing via memory in seconds
 #   - route_method: options include the following:
 #     - minimal_routing: minimal number of hops within a group and at most one traversal between groups
 #     - valiant_routing: minimal routing used to a randomly selected intermediate group
 #     - adaptive_routing: use light-loaded one among a number of possible routes
+#
+# - bypass: required if the interconnect model is to be bypassed
+#   - nhosts: number of hosts of the cluster
+#   - bdw: bandwidth for links between hosts
+#   - link_delay: connection between host and switch in seconds
+#   - mem_bandwidth: memory bandwidth for message passing via memory in bits per second
+#   - mem_bufsz: buffer size for message passing via memory in bytes
+#   - mem_delay: latency for message passing via memory in seconds
 #
 # parameters for configuring the interconnect/host:
 # - intercon_type: name of the interconnect type (crossbar, torus, gemini, fattree, dragonfly)

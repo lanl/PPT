@@ -14,28 +14,13 @@
 #Copyright: Open source, must acknowledge original author
 #Purpose: PDES Engine in Python, mirroring a subset of the Simian JIT-PDES
 #  Simple example simulation scipt
-
-from sys import path
-path.append('../..')
-#from ppt import *
-
-path.append('../../simian/simian-master/SimianPie')
-path.append('../../hardware')
-path.append('../../hardware/interconnect')
-path.append('../../hardware/interconnect/configs')
-path.append('../../middleware/mpi')
-path.append('../../middleware/threading')
-
-
 from SimianPie.simian import Simian
 import random, math
 
 #Initialize Simian
-#simName, startTime, endTime, minDelay, useMPI = "HELLO", 0, 100000, 0.0001, True
-#simianEngine = Simian(simName, startTime, endTime, minDelay, useMPI, "/usr/lib/libmpich.so.12")
-simName, startTime, endTime, minDelay, useMPI = "HELLO", 0, 100000, 0.0001, False
-simianEngine = Simian(simName, startTime, endTime, minDelay, useMPI)
-#simianEngine = Simian(simName, startTime, endTime, minDelay, useMPI, "/ccs/opt/intel/impi/5.1.3.210/lib64/libmpi.so.12")
+simName, startTime, endTime, minDelay, useMPI = "HELLO", 0, 100000, 0.0001, True
+simianEngine = Simian(simName, startTime, endTime, minDelay, useMPI, "/usr/lib/libmpich.so.12")
+#simianEngine = Simian(simName, startTime, endTime, minDelay, useMPI)
 
 count = 4
 

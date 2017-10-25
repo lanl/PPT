@@ -1,0 +1,11 @@
+To install LuaJIT, git clone 2.1.alpha repository, then just change the PREFIX directory
+in the top Makefile and do "make install"
+
+Note that it is important to do
+"make install"
+Otherwise LuaJIT will run slower (but still about the same speed as cPython), as JITing
+will not get enabled, since LuaJIT's internal jit.* modules do not get resolved and
+loaded correctly.
+
+Also adjust the paths in "run" example in the Simian top directory to match the
+LuaJIT install path.

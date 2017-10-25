@@ -37,16 +37,15 @@ if len(sys.argv) != 4:
     print("Usage: allreduce.py total_ranks ranks_per_host data_size ")
     sys.exit(1)
 
-n = int(sys.argv[1])
-x = int(sys.argv[2]) 
-s = int(sys.argv[3])
+n = int(sys.argv[1]) # total number of mpi ranks (processes)
+x = int(sys.argv[2]) # number of mpi ranks to be mapped to each host
+s = int(sys.argv[3]) # size of data in bytes
 print("allreduce.py %d %d %d" % (n, x, s))
 
 modeldict = {
     "model_name" : "allreduce",
     "sim_time" : 1e9,
     "use_mpi" : True,
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib",
     "intercon_type" : "Gemini",
     "torus" : configs.hopper_intercon,
     "host_type" : "Host",
@@ -54,7 +53,15 @@ modeldict = {
     "mpiopt" : configs.gemini_mpiopt,
 }
 #cluster = Cluster(modeldict, debug_options={"mpi"})
-cluster = Cluster(modeldict)
+#cluster = Cluster(modeldict)
+
+# there will be ceiling(n/x) number of hosts that will run this
+# application (allreduce_app); if simian is run in parallel, we want
+# these hosts to be partitioned evenly among the LPs to achieve load
+# balance; the parameter 'partition_hosts' is an optional argument to
+# Cluster constructor for this purposes: it tells simian how the hosts
+# and switches in the cluster are expected to be mapped to the LPs
+cluster = Cluster(modeldict, partition_hosts=int((n+x-1)/x))
 
 total_hosts = cluster.num_hosts()
 cores_per_host = 24

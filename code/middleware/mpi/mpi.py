@@ -46,9 +46,11 @@ def mpi_send(to_rank, data, sz, mpi_comm, type="default"):
     if from_true_rank not in host.send_msgid:
         host.send_msgid[from_true_rank] = dict()
     if to_true_rank not in host.send_msgid[from_true_rank]:
-        host.send_msgid[from_true_rank][to_true_rank] = 0
-    msg_id = host.send_msgid[from_true_rank][to_true_rank]
-    host.send_msgid[from_true_rank][to_true_rank] += 1
+        host.send_msgid[from_true_rank][to_true_rank] = dict()
+    if type not in host.send_msgid[from_true_rank][to_true_rank]:
+        host.send_msgid[from_true_rank][to_true_rank][type] = 0
+    msg_id = host.send_msgid[from_true_rank][to_true_rank][type]
+    host.send_msgid[from_true_rank][to_true_rank][type] += 1
     to_host = get_mpi_true_host(mpi_comm, to_rank)
 
     # we may have to break data down to pieces according to the min
@@ -143,9 +145,13 @@ def mpi_isend(to_rank, data, sz, mpi_comm, type="default"):
     if from_true_rank not in host.send_msgid:
         host.send_msgid[from_true_rank] = dict()
     if to_true_rank not in host.send_msgid[from_true_rank]:
-        host.send_msgid[from_true_rank][to_true_rank] = 0
-    msg_id = host.send_msgid[from_true_rank][to_true_rank]
-    host.send_msgid[from_true_rank][to_true_rank] += 1
+        host.send_msgid[from_true_rank][to_true_rank] = dict()
+    if type not in host.send_msgid[from_true_rank][to_true_rank]:
+        host.send_msgid[from_true_rank][to_true_rank][type] = 0
+    msg_id = host.send_msgid[from_true_rank][to_true_rank][type]
+    host.send_msgid[from_true_rank][to_true_rank][type] += 1
+
+
     to_host = get_mpi_true_host(mpi_comm, to_rank)
 
     # we may have to break data down to pieces according to the min
@@ -900,7 +906,7 @@ def mpi_cart_shift(mpi_comm, shiftdim, disp):
     if 0 <= x < mpi_comm['cart']['dims'][shiftdim]:
         cc[shiftdim] = x
         dst = mpi_cart_rank(mpi_comm, cc)
-    elif mpi_comm['cart']['periodic']: 
+    elif mpi_comm['cart']['periodic'][shiftdim]: 
         x = x % mpi_comm['cart']['dims'][shiftdim]
         cc[shiftdim] = x
         dst = mpi_cart_rank(mpi_comm, cc)
@@ -912,7 +918,7 @@ def mpi_cart_shift(mpi_comm, shiftdim, disp):
     if 0 <= x < mpi_comm['cart']['dims'][shiftdim]:
         cc[shiftdim] = x
         src = mpi_cart_rank(mpi_comm, cc)
-    elif mpi_comm['cart']['periodic']: 
+    elif mpi_comm['cart']['periodic'][shiftdim]: 
         x = x % mpi_comm['cart']['dims'][shiftdim]
         cc[shiftdim] = x
         src = mpi_cart_rank(mpi_comm, cc)
@@ -1190,48 +1196,68 @@ class MPIHost(Host):
             self.recv_buffer[to_true_rank] = []
             self.recv_msgid[to_true_rank] = dict()
             recvitem = {
-                "from_rank" : from_rank,
+                "from_rank" : from_rank, # possibly None
                 "comm_id" : mpi_comm['commid'],
-                "type" : type,
+                "type" : type, # possibly None
             }
             if proc: 
                 recvitem["mpi_process"] = proc
             else: 
                 recvitem["mpi_request"] = recvreq
             self.recv_buffer[to_true_rank].append(recvitem)
-            #print("%d: check_recv_buffer: put %r in NEW buffer" % (to_true_rank, recvitem))
+            #print("%d: check_recv_buffer<1>: put %r in NEW buffer" % (to_true_rank, recvitem))
             return None
         else:
             # linear search is easy
-            #print("%d: try match: comm_id=%d, to_rank=%s, from_rank=%r, type=%s" % 
+            #print("%d: check_recv_buffer<2>: try match: comm_id=%d, to_rank=%s, from_rank=%r, type=%s" % \
             #      (to_true_rank, mpi_comm['commid'], to_rank, from_rank, type))
             for idx in range(len(self.recv_buffer[to_true_rank])):
                 recvitem = self.recv_buffer[to_true_rank][idx]
-                #print("%d: recvitem=%s" % (to_true_rank, recvitem))
+                #print("%d: check_recv_buffer<2>: recvitem=%s" % (to_true_rank, recvitem))
 
                 if recvitem['comm_id'] != mpi_comm['commid']: continue
 
-                if ("mpi_process" in recvitem or "mpi_request" in recvitem) and \
-                   (recvitem["from_rank"] is None or from_rank is None): # one of them is wildcard
-                    raise Exception("ERROR: multiple recv requests to rank %d (comm=%d) found" % 
-                                    (to_rank, mpi_comm['commid']))
+                # if this is a pending request
+                if "mpi_process" in recvitem or "mpi_request" in recvitem:
+                    # this is a stringent requirement which may cause
+                    # problems: one cannot have two outstanding receives
+                    # posted with wildcard from-rank and message-type
+                    if (recvitem["from_rank"] is None or from_rank is None) and \
+                       (recvitem["type"] is None or type is None):
+                        raise Exception("ERROR: multiple recv requests to rank %d (comm=%d) found" % 
+                                        (to_rank, mpi_comm['commid']))
+                    continue
 
                 if from_rank is not None:
                     f = get_mpi_true_rank(mpi_comm, from_rank)
                 else:
                     rc = self.comm_world[to_true_rank]['comms'][recvitem["comm_id"]]
                     f = get_mpi_true_rank(rc, recvitem["from_rank"])
-                if f is not None and f not in self.recv_msgid[to_true_rank]:
-                    self.recv_msgid[to_true_rank][f] = 0
-                #print("expect %d" % self.recv_msgid[to_true_rank][f])
+                assert f is not None
+
+                t = type
+                if type is None: t = recvitem["type"]
+                assert t is not None
+                
+                if f not in self.recv_msgid[to_true_rank]:
+                    self.recv_msgid[to_true_rank][f] = dict()
+                if t not in self.recv_msgid[to_true_rank][f]:
+                    self.recv_msgid[to_true_rank][f][t] = 0
+                #print("to_true_rank=%d, f=%d" % (to_true_rank, f))
+                #print("expect %d" % self.recv_msgid[to_true_rank][f][t])
 
                 # the match criteria:
                 # (1) the request has wildcard from_rank or rank is perfect match, and 
                 # (2) type is perfect match, or the reqeust has wildcard type and recv item is not reserved, and
                 # (3) the recv item must be the expected one in sequence
+                #print("%d: 1=%s,2=%s,3=%s,4=%s,5=%s,6=%s" % \
+                #      (to_true_rank, str(from_rank), str(recvitem["from_rank"]),
+                #       str(recvitem["type"]), str(type),
+                #       str(recvitem.get("msg_id")),
+                #       str(self.recv_msgid[to_true_rank][f][t])))
 		if (from_rank is None or recvitem["from_rank"] == from_rank) and \
                    (recvitem["type"] == type or type is None and recvitem["type"][:2] != "__") and \
-                   recvitem["msg_id"] == self.recv_msgid[to_true_rank][f]:
+                   ("msg_id" not in recvitem or recvitem["msg_id"] == self.recv_msgid[to_true_rank][f][t]):
                     # if there's a match, we simply go with the first
                     # match even though there might be multiple
                     # matches (say, messages from other ranks), even
@@ -1252,7 +1278,8 @@ class MPIHost(Host):
                         recvitem["mpi_process"] = proc
                     else:
                         recvitem["mpi_request"] = recvreq
-                    #print("%d: check_recv_buffer: found %r in buffer, wait for more pieces" % (to_true_rank, recvitem))
+                    #print("%d: check_recv_buffer<3>: found %r in buffer, wait for more pieces" % \
+                    #      (to_true_rank, recvitem))
                     return None
                 else:
                     # we got everything, return it to user
@@ -1260,19 +1287,22 @@ class MPIHost(Host):
                     from_rank = recvitem["from_rank"]
                     rc = self.comm_world[to_true_rank]['comms'][recvitem["comm_id"]]
                     from_true_rank = get_mpi_true_rank(rc, from_rank)
-                    if from_true_rank in self.recv_msgid[to_true_rank]:
-                        self.recv_msgid[to_true_rank][from_true_rank] += 1
+                    t = recvitem["type"]
+                    if from_true_rank not in self.recv_msgid[to_true_rank]:
+                        self.recv_msgid[to_true_rank][from_true_rank] = dict()
+                    if t in self.recv_msgid[to_true_rank][from_true_rank]:
+                        self.recv_msgid[to_true_rank][from_true_rank][t] += 1
                     else:
-                        self.recv_msgid[to_true_rank][from_true_rank] = 1
+                        self.recv_msgid[to_true_rank][from_true_rank][t] = 1
 
                     if recvreq:
                         #recvitem["mpi_request"] = recvreq
                         recvreq["status"] = "success"
                         recvreq["from_rank"] = from_rank
-                        recvreq["type"] = recvitem["type"]
+                        recvreq["type"] = t
                         recvreq["data"] = recvitem["data"]
                         recvreq["data_size"] = recvitem["data_size"]
-                    #print("%d: check_recv_buffer: found %r in buffer" % (to_true_rank, recvitem))
+                    #print("%d: check_recv_buffer<4>: found %r in buffer" % (to_true_rank, recvitem))
                     return recvitem
             else:
                 # there's no match exist, insert the request and
@@ -1287,7 +1317,7 @@ class MPIHost(Host):
                 else: 
                     recvitem["mpi_request"] = recvreq
                 self.recv_buffer[to_true_rank].append(recvitem)
-                #print("%d: check_recv_buffer: put req %r in buffer" % (to_true_rank, recvitem))
+                #print("%d: check_recv_buffer<5>: put req %r in buffer" % (to_true_rank, recvitem))
                 return None
 
     def notify_data_recv(self, pkt):
@@ -1317,13 +1347,15 @@ class MPIHost(Host):
 
         to_rank = pkt.nonreturn_data["to_rank"]
         to_true_rank = pkt.nonreturn_data["to_true_rank"]
+        t = pkt.nonreturn_data["type"]
         if to_true_rank not in self.recv_buffer:
             self.recv_buffer[to_true_rank] = []
             from_rank = pkt.nonreturn_data["from_rank"]
             rc = self.comm_world[to_true_rank]['comms'][pkt.nonreturn_data["comm_id"]]
             from_true_rank = get_mpi_true_rank(rc, from_rank)
             self.recv_msgid[to_true_rank] = dict()
-            self.recv_msgid[to_true_rank][from_true_rank] = 0
+            self.recv_msgid[to_true_rank][from_true_rank] = dict()
+            self.recv_msgid[to_true_rank][from_true_rank][t] = 0
             msg_id = pkt.nonreturn_data["msg_id"]
 
             # this message can only be the right one or the one from
@@ -1335,22 +1367,23 @@ class MPIHost(Host):
                 "from_rank" : from_rank,
                 "comm_id" : pkt.nonreturn_data["comm_id"],
                 "msg_id" : msg_id,
-                "type" : pkt.nonreturn_data["type"],
+                "type" : t,
                 "data_size" : pkt.nonreturn_data["data_size"],
                 "missing_pieces" : missing_pieces
             }
             # only piece #0 carries the data
             if piece == 0:
                 recvitem["data"] = pkt.nonreturn_data["data"]
-            #print("%d: notify_data_recv: put %r in NEW buffer" % (to_true_rank, recvitem))
+            #print("%d: notify_data_recv<1>: put %r in NEW buffer" % (to_true_rank, recvitem))
             self.recv_buffer[to_true_rank].append(recvitem)
 
         else:
             # linear search is easy
-            #print("%d: try match: pkt=%s" % (to_true_rank, pkt))
+            #print("%d: notify_data_recv<2>: try match: pkt=%s, type=%s" % \
+            #      (to_true_rank, pkt, t))
             for idx in range(len(self.recv_buffer[to_true_rank])):
                 recvitem = self.recv_buffer[to_true_rank][idx]
-                #print("%d: recvitem=%r" % (to_true_rank, recvitem))
+                #print("%d: notify_data_recv<2>: recvitem=%r" % (to_true_rank, recvitem))
                 # the match criteria:
                 # (0) same communicator, and
                 # (1) the request has wildcard from_rank or rank is perfect match, and 
@@ -1358,8 +1391,7 @@ class MPIHost(Host):
                 # (3) the recv item does not have msg id or it has the same msg id
                 if (recvitem["comm_id"] == pkt.nonreturn_data["comm_id"]) and \
                    (recvitem["from_rank"] is None or recvitem["from_rank"] == pkt.nonreturn_data["from_rank"]) and \
-                   (recvitem["type"] == pkt.nonreturn_data["type"] or \
-                    recvitem["type"] is None and pkt.nonreturn_data["type"][:2] != '__') and \
+                   (recvitem["type"] == t or recvitem["type"] is None and t[:2] != '__') and \
                    ("msg_id" not in recvitem or recvitem["msg_id"] == pkt.nonreturn_data["msg_id"]):
                     # there can be at most one match
                     break
@@ -1389,7 +1421,7 @@ class MPIHost(Host):
                     # the first arrival piece must fill in information
                     # except that only piece #0 has the data
                     recvitem["from_rank"] = pkt.nonreturn_data["from_rank"]
-                    recvitem["type"] = pkt.nonreturn_data["type"]
+                    recvitem["type"] = t
                     recvitem["data_size"] = pkt.nonreturn_data["data_size"]
                     if piece == 0:
                         recvitem["data"] = pkt.nonreturn_data["data"]
@@ -1401,20 +1433,30 @@ class MPIHost(Host):
                     from_rank = recvitem["from_rank"]
                     rc = self.comm_world[to_true_rank]['comms'][recvitem["comm_id"]]
                     from_true_rank = get_mpi_true_rank(rc, from_rank)
-                    #print("%d: notify_data_recv: found (full) %r in buffer" % (to_true_rank, recvitem))
+                    #print("%d: notify_data_recv<4>: found (full) %r in buffer" % (to_true_rank, recvitem))
                     if "mpi_process" in recvitem:
                         del self.recv_buffer[to_true_rank][idx]
-                        if from_true_rank in self.recv_msgid[to_true_rank]:
-                            self.recv_msgid[to_true_rank][from_true_rank] += 1
+                        if from_true_rank not in self.recv_msgid[to_true_rank]:
+                            self.recv_msgid[to_true_rank][from_true_rank] = dict()
+                        if t in self.recv_msgid[to_true_rank][from_true_rank]:
+                            self.recv_msgid[to_true_rank][from_true_rank][t] += 1
                         else:
-                            self.recv_msgid[to_true_rank][from_true_rank] = 1
+                            self.recv_msgid[to_true_rank][from_true_rank][t] = 1
+                        #print("%d: recv_msgid[%d][%d][%s]=%d" %
+                        #      (to_true_rank, to_true_rank, from_true_rank, t,
+                        #       self.recv_msgid[to_true_rank][from_true_rank][t]-1))
                         recvitem["mpi_process"].wake(recvitem)
                     elif "mpi_request" in recvitem:
                         del self.recv_buffer[to_true_rank][idx]
-                        if from_true_rank in self.recv_msgid[to_true_rank]:
-                            self.recv_msgid[to_true_rank][from_true_rank] += 1
+                        if from_true_rank not in self.recv_msgid[to_true_rank]: 
+                           self.recv_msgid[to_true_rank][from_true_rank] = dict()
+                        if t in self.recv_msgid[to_true_rank][from_true_rank]:
+                           self.recv_msgid[to_true_rank][from_true_rank][t] += 1
                         else:
-                            self.recv_msgid[to_true_rank][from_true_rank] = 1
+                            self.recv_msgid[to_true_rank][from_true_rank][t] = 1
+                        #print("%d: recv_msgid[%d][%d][%s]=%d" %
+                        #      (to_true_rank, to_true_rank, from_true_rank, t,
+                        #       self.recv_msgid[to_true_rank][from_true_rank][t]-1))
                         recvitem["mpi_request"]["status"] = "success"
                         recvitem["mpi_request"]["from_rank"] = from_rank
                         recvitem["mpi_request"]["type"] = recvitem["type"]
@@ -1432,8 +1474,10 @@ class MPIHost(Host):
                 from_true_rank = get_mpi_true_rank(rc, from_rank)
                 msg_id = pkt.nonreturn_data["msg_id"]
                 if from_true_rank not in self.recv_msgid[to_true_rank]:
-                    self.recv_msgid[to_true_rank][from_true_rank] = 0
-                if self.recv_msgid[to_true_rank][from_true_rank] <= msg_id:
+                    self.recv_msgid[to_true_rank][from_true_rank] = dict()
+                if t not in self.recv_msgid[to_true_rank][from_true_rank]:
+                    self.recv_msgid[to_true_rank][from_true_rank][t] = 0
+                if self.recv_msgid[to_true_rank][from_true_rank][t] <= msg_id:
                     missing_pieces = set(range(pkt.nonreturn_data["num_pieces"]))
                     piece = pkt.nonreturn_data["piece_idx"]
                     missing_pieces.remove(piece)
@@ -1441,14 +1485,14 @@ class MPIHost(Host):
                         "from_rank" : from_rank,
                         "comm_id" : pkt.nonreturn_data["comm_id"],
                         "msg_id" : msg_id,
-                        "type" : pkt.nonreturn_data["type"],
+                        "type" : t,
                         "data_size" : pkt.nonreturn_data["data_size"],
                         "missing_pieces" : missing_pieces
                     }
                     if piece == 0:
                         recvitem["data"] = pkt.nonreturn_data["data"]
                     self.recv_buffer[to_true_rank].append(recvitem)
-                    #print("%d: notify_data_recv: %r no match in buffer" % (to_true_rank, recvitem))
+                    #print("%d: notify_data_recv<5>: %r no match in buffer" % (to_true_rank, recvitem))
 
 def send_process(self):
     """A process for (reliably) sending mpi data upon user request."""

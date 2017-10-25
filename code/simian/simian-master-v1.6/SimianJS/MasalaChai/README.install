@@ -1,0 +1,9 @@
+(A) Compile and install mozjs as in README.libmozjs
+
+(B) Compile and install mpich version:
+./configure --prefix=/path/to/mpich/installation --enable-shared
+make -j12
+make install
+
+(C) Compile MasalaChai:
+SMJSDIR=/path/to/libmozjs/installation MPIDIR=/path/to/mpich/installation make

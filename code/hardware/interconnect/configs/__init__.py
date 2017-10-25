@@ -21,5 +21,9 @@ from dragonfly_config import *
 
 # Fat-tree
 from stampede_config import *
+from mustang_config import *
+from moonlight_config import *
+from grizzly_config import *
 from infiniband_mpiopt import *
+from omnipath_config import *
 #from summit_config import *

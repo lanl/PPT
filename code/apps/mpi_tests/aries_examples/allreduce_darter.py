@@ -46,7 +46,7 @@ modeldict = {
     "model_name" : "allreduce",
     "sim_time" : 1e9,
     "use_mpi" : True,
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib",
+    #"mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib",
     "intercon_type" : "Aries",
     "dragonfly" : configs.darter_intercon,
     "host_type" : "Host",

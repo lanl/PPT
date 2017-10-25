@@ -27,6 +27,11 @@ File: clusters.py
 Description: main library of cluster definitions.
 """
 
+# MR: add begin
+from sys import path
+path.append('../..')
+from ppt import *
+# MR: add end
 
 import nodes
 
@@ -38,8 +43,21 @@ class Cluster(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 100 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.Node, i, {})
+            #simianEngine.addEntity("Node", nodes.Node, i, {})
+            simianEngine.addEntity("Node", nodes.Node, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
 
 
 class Mustang(object):
@@ -48,8 +66,21 @@ class Mustang(object):
     """
     def __init__(self, simianEngine, n):
         self.num_nodes = n # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.AMDOpteron, i, {})
+            #simianEngine.addEntity("Node", nodes.AMDOpteron, i, {})
+            simianEngine.addEntity("Node", nodes.AMDOpteron, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = Mustang\n"
 
 
@@ -61,8 +92,21 @@ class HalfTrinity(object):
     """
     def __init__(self, simianEngine, n):
         self.num_nodes = n # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.KNLNode, i, {})
+            #simianEngine.addEntity("Node", nodes.KNLNode, i, {})
+            simianEngine.addEntity("Node", nodes.KNLNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = HalfTrinity\n"
 
 
@@ -73,8 +117,21 @@ class MiniTrinity(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 50 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.KNLNode, i, {})
+            #simianEngine.addEntity("Node", nodes.KNLNode, i, {})
+            simianEngine.addEntity("Node", nodes.KNLNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = MiniTrinity\n"
 
 
@@ -84,8 +141,21 @@ class SingleCielo(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 50 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.CieloNode, i, {})
+            #simianEngine.addEntity("Node", nodes.CieloNode, i, {})
+            simianEngine.addEntity("Node", nodes.CieloNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = SingleCielo\n"
 
 
@@ -95,8 +165,21 @@ class Moonlight(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 50 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.MLIntelNode, i, {})
+            #simianEngine.addEntity("Node", nodes.MLIntelNode, i, {}) # MR: comment out
+            simianEngine.addEntity("Node", nodes.MLIntelNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = Moonlight\n"
 
 
@@ -106,8 +189,21 @@ class SingleMBP(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 1 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.MBPNode, i, {})
+            #simianEngine.addEntity("Node", nodes.MBPNode, i, {})
+            simianEngine.addEntity("Node", nodes.MBPNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = SingleMBP\n"
 
 
@@ -117,8 +213,21 @@ class Titan(object):
     """
     def __init__(self, simianEngine):
         self.num_nodes = 5 #18688 # number of compute nodes
+        # MR: add begin
+        modeldict = { "model_name"    : "n01",
+                      "sim_time"      : 1000000,
+                      "use_mpi"       : False,
+                      "intercon_type" : "Bypass",
+                      "torus"         : configs.cielo_intercon,
+                      "host_type"     : "CieloNode",
+                      "load_libraries": set(["mpi"]),
+                      "mpiopt"        : configs.gemini_mpiopt,
+                      "debug_options" : []
+                    }
+        # MR: add end
         for i in xrange(self.num_nodes):
-            simianEngine.addEntity("Node", nodes.TTNNode, i, {})
+            #simianEngine.addEntity("Node", nodes.TTNNode, i, {})
+            simianEngine.addEntity("Node", nodes.TTNNode, i, modeldict, 1,1,1,1,1,1,1,1,1,1) # MR: add
         print "Cluster model = Titan\n"
 
 

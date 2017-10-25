@@ -3,6 +3,7 @@
 #               nodes) connected by an interconnection network
 #
 
+import os
 from simian import Simian
 from interconnect import *
 from nodes import *
@@ -132,8 +133,36 @@ class Cluster(object):
         if "mpi_max_injection" not in hpcsim_dict["default_configs"]:
             hpcsim_dict["default_configs"]["mpi_max_injection"] = 1e9
 
-        # 1.5 print out all model parameters if requested so
-        if "hpcsim" in hpcsim_dict["debug_options"]:
+        # 2. instantiate simian engine (with proper parameters)
+
+        # check necessary simian parameters are in place
+        if "model_name" not in hpcsim_dict:
+            raise Exception("model_name must be specified")
+        if "sim_time" not in hpcsim_dict:
+            raise Exception("sim_time must be specified.")
+        if "use_mpi" not in hpcsim_dict:
+            raise Exception("use_mpi must be specified.")
+
+        # if not explicitly specified, use environment variable
+        if "mpi_path" not in hpcsim_dict:
+            hpcsim_dict['mpi_path'] = os.environ.get('SIMIAN_MPILIB', '/usr/lib/libmpi.so')
+
+        # calculate min_delay from interconnect model (before it has
+        # been instantiated)
+        intercontype = self.get_intercon_typename(hpcsim_dict)
+        hpcsim_dict["min_delay"] = intercontype.calc_min_delay(hpcsim_dict)
+
+        # instantiate (start) the simian engine
+        self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"], 
+                             hpcsim_dict["min_delay"], hpcsim_dict["use_mpi"], hpcsim_dict["mpi_path"])
+        
+        # print out all model parameters if requested so
+        if self.simian.rank==0:
+            if self.simian.size > 1:
+                print("Performance Prediction Toolkit (PPT): running in parallel on %d ranks" % self.simian.size)
+            else:
+                print("Performance Prediction Toolkit (PPT): running sequentially")
+        if self.simian.rank==0 and "hpcsim" in hpcsim_dict["debug_options"]:
             for k, v in sorted(hpcsim_dict.iteritems()):
                 if type(v) is dict:
                     print("hpcsim_dict['%s']:"%k)
@@ -147,36 +176,8 @@ class Cluster(object):
                 else:
                     # for all else, simply print them
                     print("hpcsim_dict['%s'] = %r" % (k, v))
-
-        # 2. instantiate simian engine (with proper parameters)
-
-        # check necessary simian parameters are in place
-        if "model_name" not in hpcsim_dict:
-            raise Exception("model_name must be specified")
-        if "sim_time" not in hpcsim_dict:
-            raise Exception("sim_time must be specified.")
-        if "use_mpi" not in hpcsim_dict:
-            raise Exception("use_mpi must be specified.")
-        #
-        # ADD THIS IF USING SimianPie:
-        #
-        #elif hpcsim_dict["use_mpi"] and "mpi_path" not in hpcsim_dict:
-        #    raise Exception("mpi_path must be specified if use_mpi is true.")
-            
-        # calculate min_delay from interconnect model (before it has
-        # been instantiated)
-        intercontype = self.get_intercon_typename(hpcsim_dict)
-        hpcsim_dict["min_delay"] = intercontype.calc_min_delay(hpcsim_dict)
-
-        if "hpcsim" in hpcsim_dict["debug_options"]:
             print("hpcsim_dict['min_delay'] = %.9f (calculated)" % hpcsim_dict["min_delay"]) 
 
-        # instantiate (start) the simian engine
-        #
-        # USE THIS IF USING SimianPie.MPI4Py
-        #
-        self.simian = Simian(hpcsim_dict["model_name"], 0, hpcsim_dict["sim_time"], 
-                             hpcsim_dict["min_delay"], hpcsim_dict["use_mpi"], hpcsim_dict["mpi_path"])
         #
         # USE THIS INSTEAD IF USING SimianPie
         #
@@ -275,9 +276,27 @@ class Cluster(object):
             else:
                 mpiopt["get_ack_overhead"] = self.hpcsim_dict["default_configs"]["mpi_ack_overhead"]
 
+        if self.hpcsim_dict["intercon_type"] == 'Bypass':
+            # interconnect bypass is a hack, in which case there's no
+            # need to break mpi messages into smaller chunks, and
+            # there won't be losses and retransmissions; we ignore
+            # whatever settings for mpi
+            mpiopt["min_pktsz"] = 0
+            mpiopt["max_pktsz"] = 1e38 # big enough
+            mpiopt["put_data_overhead"] = 0
+            mpiopt["put_ack_overhead"] = 0
+            mpiopt["get_data_overhead"] = 0
+            mpiopt["get_ack_overhead"] = 0
+            mpiopt["putget_thresh"] = 1e38 # PUT only
+            mpiopt["resend_intv"] = 1e38 # no more retransmissions
+            mpiopt["resend_trials"] = 10 # no need actually
+            mpiopt["call_time"]  = 0
+            mpiopt["max_injection"] = 1e38 # no limit
+
         # output mpiopt if hpcsim/mpi debug flags are set
-        if "hpcsim" in self.hpcsim_dict["debug_options"] or \
-           "mpi" in self.hpcsim_dict["debug_options"]:
+        if self.simian.rank == 0 and \
+           ("hpcsim" in self.hpcsim_dict["debug_options"] or \
+            "mpi" in self.hpcsim_dict["debug_options"]):
             print("mpiopt: min_pktsz=%d" % mpiopt["min_pktsz"])
             print("mpiopt: max_pktsz=%d" % mpiopt["max_pktsz"])
             print("mpiopt: put_data_overhead=%d" % mpiopt["put_data_overhead"])

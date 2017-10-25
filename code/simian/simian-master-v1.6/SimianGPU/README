@@ -1,0 +1,2 @@
+This version of Simian is for running on NVidia GPGPUs. It has some CUDA dependencies.
+This version is not being actively maintained. However, it is being used by GPU application developers at LANL.

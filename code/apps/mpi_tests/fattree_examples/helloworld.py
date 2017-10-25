@@ -29,8 +29,6 @@ model_dict = {
     "model_name" : "helloworld", # name of the model
     "sim_time" : 1e6, # simulation time
     "use_mpi" : True, # whether using mpi for parallel
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib", # mpi library path needed for SimianPie
-                                                         # (rather than SiianPie.MPI4Py)
     
     # interconnection network parameters
     #"intercon_type" : "Crossbar",       # IMPORTANT: type is case sensitive
@@ -61,6 +59,6 @@ model_dict = {
 }
 
 cluster = Cluster(model_dict)
-hostmap = range(16) # 10 mpi processes on separate hosts
+hostmap = range(10) # 10 mpi processes on separate hosts
 cluster.start_mpi(hostmap, main, "hello world")
 cluster.run()

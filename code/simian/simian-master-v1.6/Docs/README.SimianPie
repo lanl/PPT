@@ -1,0 +1,27 @@
+===========================================================
+--Author: Nandakishore Santhi
+--Date: 23 November, 2014
+--Copyright: Open source, must acknowledge original author
+===========================================================
+
+SimianPie is the Python counterpart of Simian.
+SimianPie is not JITed unless one uses PyPy - but then the performance of PyPy
+is not yet on par with that of LuaJIT. Your mileage may therefore vary.
+
+The user API for Simian and SimianPie are very similar. There are just a few differences
+due to the nature of the two languages used. Take a look at README.Simian and the
+SimianPie code for more information.
+
+The examples in Example.Pie should help you get started.
+
+DEPENDENCIES:
+Following modules are needed for regular Python or PyPy appropriately installed using
+pip/easy_install/distutils/OSX-ports:
+
+(1) hashlib (included in CPython/Pypy distributions)
+(2) heapq (included in CPython/Pypy distributions)
+(3) greenlet (included in Pypy distribution)
+(4) mpi4py (optional, can alternatively use CTypes version with MPICH 3.1.4)
+
+This is unlike Simian (Lua version), which does not have additional dependencies other than
+lua-MessagePack, LuaJIT and a functioning MPICH/OpenMPI C library installation on the system.

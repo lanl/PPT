@@ -1,0 +1,99 @@
+Module: blackscholes/src/blackscholes.llvm
+Solution:
+N_CNDF:1:[label %0] = 3200 ( 0.13445943106853 )
+N_CNDF:2:[label %5] = 704 ( 0.029581074835077 )
+N_CNDF:3:[label %8] = 2496 ( 0.10487835623346 )
+N_CNDF:4:[label %9] = 3200 ( 0.13445943106853 )
+N_CNDF:5:[label %89] = 704 ( 0.029581074835077 )
+N_CNDF:6:[label %94] = 3200 ( 0.13445943106853 )
+N_BlkSchlsEqEuroNoDiv:1:[label %0] = 1600 ( 0.067229715534266 )
+N_BlkSchlsEqEuroNoDiv:2:[label %67] = 1392 ( 0.058489852514812 )
+N_BlkSchlsEqEuroNoDiv:3:[label %75] = 208 ( 0.0087398630194546 )
+N_BlkSchlsEqEuroNoDiv:4:[label %91] = 1600 ( 0.067229715534266 )
+N_main:1:[label %0] = 1 ( 4.2018572208916e-05 )
+N_main:2:[label %8] = 0 ( 0 )
+N_main:3:[label %13] = 1 ( 4.2018572208916e-05 )
+N_main:4:[label %28] = 0 ( 0 )
+N_main:5:[label %31] = 1 ( 4.2018572208916e-05 )
+N_main:6:[label %36] = 0 ( 0 )
+N_main:7:[label %41] = 1 ( 4.2018572208916e-05 )
+N_main:8:[label %45] = 0 ( 0 )
+N_main:9:[label %48] = 1 ( 4.2018572208916e-05 )
+N_main:10:[label %51] = 0 ( 0 )
+N_main:11:[label %53] = 1 ( 4.2018572208916e-05 )
+N_main:12:[label %64] = 17 ( 0.00071431572755158 )
+N_main:13:[label %68] = 16 ( 0.00067229715534266 )
+N_main:14:[label %118] = 0 ( 0 )
+N_main:15:[label %123] = 16 ( 0.00067229715534266 )
+N_main:16:[label %124] = 16 ( 0.00067229715534266 )
+N_main:17:[label %127] = 1 ( 4.2018572208916e-05 )
+N_main:18:[label %132] = 0 ( 0 )
+N_main:19:[label %135] = 1 ( 4.2018572208916e-05 )
+N_main:20:[label %178] = 17 ( 0.00071431572755158 )
+N_main:21:[label %182] = 16 ( 0.00067229715534266 )
+N_main:22:[label %246] = 16 ( 0.00067229715534266 )
+N_main:23:[label %249] = 1 ( 4.2018572208916e-05 )
+N_main:24:[label %260] = 0 ( 0 )
+N_main:25:[label %263] = 1 ( 4.2018572208916e-05 )
+N_main:26:[label %269] = 0 ( 0 )
+N_main:27:[label %274] = 1 ( 4.2018572208916e-05 )
+N_main:28:[label %275] = 17 ( 0.00071431572755158 )
+N_main:29:[label %279] = 16 ( 0.00067229715534266 )
+N_main:30:[label %290] = 0 ( 0 )
+N_main:31:[label %295] = 16 ( 0.00067229715534266 )
+N_main:32:[label %296] = 16 ( 0.00067229715534266 )
+N_main:33:[label %299] = 1 ( 4.2018572208916e-05 )
+N_main:34:[label %304] = 0 ( 0 )
+N_main:35:[label %307] = 1 ( 4.2018572208916e-05 )
+N_bs_thread:1:[label %0] = 1 ( 4.2018572208916e-05 )
+N_bs_thread:2:[label %15] = 101 ( 0.0042438757931006 )
+N_bs_thread:3:[label %18] = 100 ( 0.0042018572208916 )
+N_bs_thread:4:[label %20] = 1700 ( 0.071431572755158 )
+N_bs_thread:5:[label %24] = 1600 ( 0.067229715534266 )
+N_bs_thread:6:[label %61] = 1600 ( 0.067229715534266 )
+N_bs_thread:7:[label %64] = 100 ( 0.0042018572208916 )
+N_bs_thread:8:[label %65] = 100 ( 0.0042018572208916 )
+N_bs_thread:9:[label %68] = 1 ( 4.2018572208916e-05 )
+
+
+DYNAMIC OP COUNTS FOR THIS INSTANCE:
+add : 1753
+alloca:1:i32 : 91220
+and : 2
+bitcast:1:%struct.OptionData_* : 1
+bitcast:1:float* : 1
+bitcast:1:i32* : 1
+bitcast:1:i8* : 5
+br:cond : 9893
+br:uncond : 9104
+call : 4801
+fadd : 19200
+fcmp : 3200
+fdiv : 6400
+fmul : 57600
+fpext:1:float : 47536
+fptrunc:1:double : 42720
+fsub : 9824
+getelementptr : 11799
+icmp : 6709
+inttoptr:1:i64 : 2
+load:1:%struct.OptionData_** : 241
+load:1:%struct.__sFILE** : 38
+load:1:float* : 181120
+load:1:float** : 9702
+load:1:i32* : 23461
+load:1:i32** : 1617
+load:1:i8* : 16
+load:1:i8** : 6
+load:1:i8*** : 3
+mul : 7
+ptrtoint:1:float* : 1
+ptrtoint:1:i32* : 1
+ret:1:float : 4800
+ret:1:i32 : 2
+sdiv : 2
+select : 16
+sext:1:i32 : 11561
+sext:1:i8 : 16
+store : 133431
+unreachable : 0

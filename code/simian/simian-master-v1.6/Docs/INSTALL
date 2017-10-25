@@ -1,0 +1,13 @@
+1. External modules needed for Simian (Lua):
+Copy into Simian directory:
+    https://github.com/fperrad/lua-MessagePack/src/MessagePack.lua
+In addition, if using MPI, then install a working version of mpich or openmpi
+and make sure that the dynamic libraries are in system path where they can be found by libFFI.
+Finally put the Simian directory in the package.path of your Simian modeling script.
+
+2. External modules needed for SimianPie (Python):
+Install python-greenlet
+In addition, if using MPI, then install a working version of mpich or openmpi.
+Then install python-mpi4py (If using MPI through MPI4Py).
+Finally put the SimianPie directory in your PYTHONPATH or in the same directory
+as your Simian modeling script.

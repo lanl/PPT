@@ -13,6 +13,30 @@ import os
 # "multiple LID routing scheme for fat-tree-based InfiniBand networks" by
 # Xuan-Yi Lin, Yeh-Ching Chung, and Tai-Yi Huang. 
 
+# block decomposition for both hosts and switches
+def fattree_partition(entname, entid, nranks, fattree):
+    nh = fattree.hpcsim_dict.get('partition_hosts', fattree.nhosts)
+    if nh < nranks: chunk = 1.0
+    else: chunk = 1.0*nh/nranks
+    if entname == 'Switch':
+        m = fattree.num_ports_per_switch # must be a power of two
+        n = fattree.num_levels # not including host level
+        # n-level m-port fat-tree has:
+        # -> (m/2)**(n-1) switches at top level
+        # -> 2*(m/2)**(n-1) switches at middle levels (n-1 levels)
+        # -> 2*(m/2)**n hosts at bottom level
+        l0 = (m/2)**(n-1) # switches at 1st level; other level doubles the number
+        if entid < l0: # first level of switches
+            id = entid # relative id within the level
+            id *= m # convert to corresponding host id
+        else: # other than first level of switches
+            id = (entid-l0)%(2*l0) # relative id within the level
+            id *= m/2 # convert to corresponding host id
+    else: id = entid
+    r = int(id/chunk)%nranks
+    #print("%d entity %s[%d] mapped to rank %d/%d" % (entid, entname, entid, r, nranks))
+    return r
+
 class InfinibandSwitch(Switch):
     """A switch for the fat-tree interconnect."""
     
@@ -236,6 +260,8 @@ class InfinibandSwitch(Switch):
             
 class Fattree(Interconnect):
     def __init__(self, hpcsim, hpcsim_dict):
+        super(Fattree, self).__init__(hpcsim_dict)
+
         if "fattree" not in hpcsim_dict:
             raise Exception("'fattree' must be specified for fattree interconnect")
         
@@ -296,9 +322,10 @@ class Fattree(Interconnect):
         mem_delay = hpcsim_dict["fattree"].get("mem_delay", \
             hpcsim_dict["default_configs"]["mem_delay"])
         
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "fattree" in hpcsim_dict["debug_options"]: 
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "fattree" in hpcsim_dict["debug_options"]): 
             print("fattree: num_ports_per_switch=%d" % self.num_ports_per_switch)
             print("fattree: num_levels=%d" % self.num_levels)
             print("fattree: switch_link_dups=%d" % self.switch_link_dups)
@@ -312,7 +339,7 @@ class Fattree(Interconnect):
             print("fattree: mem_bandwidth=%f (bits per second)" % mem_bandwidth)
             print("fattree: mem_bufsz =%d (bytes)" % mem_bufsz)
             print("fattree: mem_delay=%f (seconds)" % mem_delay)
-            print("fatree: route_method=%s" % self.route_method)
+            print("fattree: route_method=%s" % self.route_method)
 
         # example self.switch_ids format:
         #   [str(level)+switch_label] = [switch_id, level_idx, [switch_label_list]]
@@ -339,6 +366,11 @@ class Fattree(Interconnect):
         # and w={0,1,...,(m/2)-1}^n-1 for l=0; w={0,1,...m-1}X{0,1,...,(m/2)-1}^n-2 otherwise 
         m = self.num_ports_per_switch
         n = self.num_levels
+
+        # compute the total number of switches and hosts
+        self.nhosts = 2*(m/2)**n
+        self.nswitches = (2*n-1)*(m/2)**(n-1)
+
         swid = 0 
         for level_idx in xrange(n):
             if level_idx == 0:
@@ -380,7 +412,8 @@ class Fattree(Interconnect):
             self.host_ids[host_id] = [hid, host_id_list]
             self.host_lists[hid] = host_id_list
             hid += 1
-        if "id_lists" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           "id_lists" in hpcsim_dict["debug_options"]:
             print("Switch IDs:")
             for idx in sorted(self.switch_ids.iterkeys()):
                 print("%s --> %r"%(idx, self.switch_ids[idx]))
@@ -393,7 +426,8 @@ class Fattree(Interconnect):
             swid = self.switch_ids[key][0]
             level_idx = self.switch_ids[key][1]
             sw_label_list = self.switch_ids[key][2]
-            simian.addEntity("Switch", InfinibandSwitch, swid, hpcsim_dict, self, level_idx, sw_label_list)
+            simian.addEntity("Switch", InfinibandSwitch, swid, hpcsim_dict, self, level_idx, sw_label_list,
+                             partition=fattree_partition, partition_arg=self)
         
         # initialize each host as entity
         for host_key in sorted(self.host_lists.iterkeys()):  # just to sort the keys in ascending order
@@ -412,7 +446,8 @@ class Fattree(Interconnect):
                     hpcsim_dict, self, swid, "h", 
                     h, self.host_link_bdw, self.bufsz,
                     self.host_link_delay,
-                    mem_bandwidth, mem_bufsz, mem_delay)
+                    mem_bandwidth, mem_bufsz, mem_delay,
+                    partition=fattree_partition, partition_arg=self)
             
             # create the groups and their members here
             for i in xrange(len(host_label)-1):
@@ -424,10 +459,7 @@ class Fattree(Interconnect):
                     alpha = len(x_list)
                     grp_members = self.find_gcpg_members(x_list, alpha)
                     self.grp_members_dict[x] = grp_members
-        # compute the total number of switches and hosts
-        self.nhosts = 2*(m/2)**n
-        self.nswitches = (2*n-1)*(m/2)**(n-1)
-    
+   
     def find_gcpg_members(self, x_list, alpha):
         """Returns all the processing nodes inside the grp gcpg(x_list, alpha)"""
         

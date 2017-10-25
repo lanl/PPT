@@ -61,7 +61,10 @@ class Entity(object):
                 "time": time, #Number
             }
 
-        recvRank = engine.getOffsetRank(rx, rxId)
+        if engine.partfct:
+            recvRank = engine.partfct(rx, rxId, engine.size, engine.partarg)
+        else:
+            recvRank = engine.getOffsetRank(rx, rxId)
 
         if recvRank == engine.rank: #Send to self
             heapq.heappush(engine.eventQueue, (time, e))

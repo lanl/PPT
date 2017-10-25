@@ -4,3 +4,4 @@ from torus import *
 from configs import *
 from dragonfly import *
 from fattree import *
+from bypass import *

@@ -36,7 +36,7 @@ def test_group(mpi_comm_world):
 modeldict = {
     "model_name" : "test_group",
     "sim_time" : 1e9,
-    "use_mpi" : True,
+    "use_mpi" : False,
     "intercon_type" : "Gemini",
     "torus" : configs.hopper_intercon,
     "host_type" : "Host",

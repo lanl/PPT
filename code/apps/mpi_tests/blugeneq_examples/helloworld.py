@@ -22,8 +22,6 @@ model_dict = {
     "model_name" : "helloworld", # name of the model
     "sim_time" : 1e6, # simulation time
     "use_mpi" : True, # whether using mpi for parallel
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib", # mpi library path needed for SimianPie
-                                                         # (rather than SiianPie.MPI4Py)
     
     # interconnection network parameters
     #"intercon_type" : "Crossbar",       # IMPORTANT: type is case sensitive

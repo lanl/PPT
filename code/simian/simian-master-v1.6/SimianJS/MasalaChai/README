@@ -1,0 +1,6 @@
+Author: Nandakishore Santhi
+Date: 23 May 2016 -
+
+MasalaChai is a derivative of the Mozilla Spidermonkey Javascript JIT compiler/interpreter.
+It adds several File I/O, print, MPI, Random number related native functions to the custom
+Javascript language environment, all under the name-space masala.*.*

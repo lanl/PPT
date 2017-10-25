@@ -1,0 +1,72 @@
+<prototype>
+  <common>
+    <method>IMC</method>
+    <t_start>0.0</t_start>
+    <t_stop>100.0</t_stop>
+    <dt_start>0.2</dt_start>
+    <t_mult>1.5</t_mult>
+    <dt_max>2.0</dt_max>
+    <photons>6000000000</photons>
+    <seed>14706</seed>
+    <tilt>FALSE</tilt>
+    <output_frequency>1</output_frequency>
+    <stratified_sampling>FALSE</stratified_sampling>
+    <dd_transport_type>PARTICLE_PASS</dd_transport_type>
+    <map_size>50000</map_size>
+    <batch_size>10000</batch_size>
+    <particle_message_size>1000</particle_message_size>
+  </common>
+
+  <debug_options>
+    <print_verbose>FALSE</print_verbose>
+    <print_mesh_info>FALSE</print_mesh_info>
+  </debug_options>
+
+  <simple_spatial>
+    <x_start>0.0</x_start>
+    <x_end> 1.0</x_end>
+    <n_x_cells>10</n_x_cells>
+
+    <y_start>0.0</y_start>
+    <y_end> 1.0</y_end>
+    <n_y_cells>10</n_y_cells>
+
+    <z_start>0.0</z_start>
+    <z_end>1.0</z_end>
+    <n_z_cells>10</n_z_cells>
+
+    <region_ID>12</region_ID>
+  </simple_spatial>
+
+
+  <boundary>
+    <bc_right>REFLECT</bc_right>
+    <bc_left>REFLECT</bc_left>
+
+    <bc_up>REFLECT</bc_up>
+    <bc_down>REFLECT</bc_down>
+
+    <bc_top>REFLECT</bc_top>
+    <bc_bottom>REFLECT</bc_bottom>
+  </boundary>
+
+  <source>
+    <source_element>0</source_element>
+    <T_source>0.0</T_source>
+  </source>
+
+  <regions>
+    <region>
+      <ID>12</ID>
+      <density>1.0</density>
+      <CV>1.0</CV>
+      <opacA>1.0</opacA>
+      <opacB>0.0</opacB>
+      <opacC>0.0</opacC>
+      <opacS>0.0</opacS>
+      <initial_T_e>1.0</initial_T_e>
+      <initial_T_r>1.0</initial_T_r>
+    </region>
+  </regions>
+
+</prototype>

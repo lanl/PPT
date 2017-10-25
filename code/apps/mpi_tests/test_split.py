@@ -35,7 +35,7 @@ n = int(sys.argv[1])
 modeldict = {
     "model_name" : "test_split",
     "sim_time" : 1e9,
-    "use_mpi" : True,
+    "use_mpi" : False,
     "intercon_type" : "Gemini",
     "torus" : configs.hopper_intercon,
     "host_type" : "Host",

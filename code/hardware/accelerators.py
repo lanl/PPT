@@ -738,4 +738,70 @@ class Pascal(Accelerator):
 		self.LS_units = []
 		for i in range(num_warps_LS_capabilities):
 			self.LS_units.append(0.)			
-			
+	
+
+class P100(Accelerator):
+        """
+        A SimX resource  that represents a P100 accelerator
+        """
+        def __init__(self, node, id):
+                super(P100, self).__init__(node, id)
+                #
+                #  PARAMETERS
+                #
+                self.num_SM             = 56                            # Number of streaming multiprocessors
+                self.num_SP_per_SM      = 64                           # Number of Single Precision cores per SM
+                self.num_SF_per_SM              = 16
+                self.num_DP_per_SM      = 32                           # Number of Double Precision cores per SM
+                self.clockspeed         = 1328*10**6                     # Hertz
+
+                self.cycles_per_iALU      = 9                           # Integer ALU operation latency (3 for int/long ADD, int MUL and int FMAD, 6 for long MUL, no atomic long FMAD)
+                self.cycles_per_fALU      = 9                           # Float ALU operation latency
+                self.cycles_per_spec_inst = 18                          # Average latency for special instructions
+
+                self.cache_levels       = 2                                             # number of cache levels
+                self.cache_sizes        = [64*1024, 4096*10**3]  # list of cache sizes
+                self.cache_page_sizes   = [64, 1024]            # list of page sizes for the different cache levels[bytes]
+                self.num_registers      = 65536                                 # number of registers (single precision, holds an int) [4 bytes]
+
+                self.cache_cycles       = [30, 175]                             # list of cache access cycles per level
+                self.ram_cycles         = [230,1000]    #[270,400]                      # number of cycles to load from main memory
+                self.mem_capacity       = [30,120]      #[6,48]
+                self.ram_page_size      = 1024                                  # page size for main memory access [bytes]
+                self.memorysize         = 15*2**30                              # Global memory size in Bytes
+                self.memory_use         = 0
+
+                self.warp_size                  = 32                            # Number of threads in a warp (similar to vector width)
+                self.max_num_block_per_SM       = 32                    # Max number of blocks queued on a single SM
+                self.max_num_threads_per_block  = 1024          # Max number of (software) threads in a block
+                self.max_num_threads_per_SM     = 2048                  # Max number of threads queued or active on a single SM
+                                                                                                        # Although 32 blocks can be allocated to a given SM, the
+                                                                                                        # total number of threads cannot exceed 2048
+                self.kernel_launch_overhead = 3.5*10**-6        # Overhead for launching a kernel on the GPU
+                self.SM_availability = []
+
+                self.num_load_store_units = 64
+                for i in range(self.num_SM):
+                        self.SM_availability.append(0.0)                # Initial value for SM_availability is 0, will be updated before use
+                #self.num_memory_ports = 24
+                #self.mem_ports = []
+                #for i in range(self.num_memory_ports):
+                #       self.mem_ports.append(0.)
+                self.nb_warp_schedulers = 4                                     # Number of warp schedulers available
+                self.nb_ins_per_warp    = 2                                     # Number of instructions that can be issued simultaneously to a given warp                     
+                self.SP_units = []
+                num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
+                for i in range(num_warps_SP_capabilities):
+                        self.SP_units.append(0.)
+                self.DP_units = []
+                num_warps_DP_capabilities = int(self.num_DP_per_SM/self.warp_size)
+                for i in range(num_warps_DP_capabilities):
+                        self.DP_units.append(0.)
+                self.SF_units = []
+                num_warps_SF_capabilities = int(self.num_SF_per_SM/self.warp_size)
+                for i in range(num_warps_SF_capabilities):
+                        self.SF_units.append(0.)
+                num_warps_LS_capabilities = int(self.num_load_store_units)
+                self.LS_units = []
+                for i in range(num_warps_LS_capabilities):
+                        self.LS_units.append(0.)		

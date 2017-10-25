@@ -4,6 +4,19 @@
 
 from intercon import *
 
+# block decomposition for both hosts and switches
+def torus_partition(entname, entid, nranks, torus):
+    # the user may specify that we partition up to a given number of
+    # hosts (that really run the user application)
+    nh = torus.hpcsim_dict.get('partition_hosts', torus.nhosts)
+    if nh < nranks: chunk = 1.0
+    else: chunk = 1.0*nh/nranks
+    if entname == 'Switch': id = entid*torus.dimh
+    else: id = entid
+    r = int(id/chunk)%nranks
+    #print("%d entity %s[%d] mapped to rank %d/%d" % (entid, entname, entid, r, nranks))
+    return r
+
 class TorusSwitch(Switch):
     """A switch node for the torus interconnect."""
 
@@ -152,8 +165,8 @@ class Torus(Interconnect):
         self.nswitches = 1
         for x in self.dims: self.nswitches *= x
         self.nhosts = self.nswitches*self.dimh
-        print("dimh: %d"%self.dimh)        
-        print("num of hosts: %d"%self.nhosts)        
+        #print("dimh: %d"%self.dimh)        
+        #print("num of hosts: %d"%self.nhosts)
         # a map can be used optionally to contain host to switch mapping 
         if "hostmap" in hpcsim_dict["torus"]:
             self.hostmap_h2sw = dict()
@@ -180,9 +193,10 @@ class Torus(Interconnect):
             self.hostmap_h2sw = None
             self.hostmap_sw2h = None
 
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "torus" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "torus" in hpcsim_dict["debug_options"]):
             print("%d-d torus interconnect: %r" % (len(self.dims), self.dims))
             print("torus: %d hosts attached to each switch" % self.dimh)
         
@@ -232,9 +246,10 @@ class Torus(Interconnect):
         mem_delay = hpcsim_dict["torus"].get("mem_delay", \
             hpcsim_dict["default_configs"]["mem_delay"])
 
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "torus" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "torus" in hpcsim_dict["debug_options"]):
             print("torus: dups=%r" % (dups,))
             print("torus: bdws=%r (bits per second)" % (bdws,))
             print("torus: bdwh=%f (bits per second)" % bdwh)
@@ -256,7 +271,8 @@ class Torus(Interconnect):
             #print("creating switch: id=%d coords=%r" % (s, allcoords[s]))
             simian.addEntity("Switch", TorusSwitch, s, hpcsim_dict, proc_delay, 
                              self, allcoords[s], dups, bdws, bdwh, bufsz, 
-                             self.switch_link_delay, self.host_link_delay, route_method)
+                             self.switch_link_delay, self.host_link_delay, route_method)#,
+                             #partition=torus_partition, partition_arg=self)
 
         # add hosts and entities
         for h in xrange(self.nhosts):
@@ -266,7 +282,9 @@ class Torus(Interconnect):
             simian.addEntity("Host", hpcsim.get_host_typename(hpcsim_dict), h,
                              hpcsim_dict, self, swid, 'h', p,
                              bdwh, bufsz, self.host_link_delay,
-                             mem_bandwidth, mem_bufsz, mem_delay)
+                             mem_bandwidth, mem_bufsz, mem_delay)#,
+                             #partition=torus_partition, partition_arg=self)
+
 
     def network_diameter(self):
         """Returns the network diameter in hops."""

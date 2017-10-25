@@ -1,0 +1,54 @@
+To install Spidermonkey 0.50a1
+(A) Easy method:
+Untar included mozjs-0.50a1.tbz2:
+tar xf mozjs-0.50a1.tbz2
+and run make:
+cd mozjs-0.50a1
+PYTHON=/opt/local/bin/python INSTALL_DIR=~/Work/JS/x86_64 MK_THRDS=12 make >& mk.log
+replacing relevant values for PYTHON, INSTALL_DIR, MK_THRDS
+
+(B) Latest mozjs (may need tweaks to MasalaChai sources):
+1. Fetch latest stand-alone mozjs source tree from either of these sources:
+
+(1) git clone --depth 1 https://github.com/servo/mozjs.git
+Keep only the inner mozjs subdirectory, this README and top Makefile
+(2) https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Releases
+
+Latest version on Github at the time of writing this README is mozjs_50a1. Following build instructions are for this version on OSX as a 64-bit user installation including js-ctypes support. If js-ctypes support is not desired, then there is no need to first build nspr.
+
+2. Compile nspr (required only if ctypes extension is desired)
+
+mkdir -p mozjs/mozjs/nsprpub/Temp
+cd mozjs/mozjs/nsprpub/Temp
+CC=/path/to/macports/gcc CXX=/path/to/macports/g++ ../configure --enable-64bit --prefix=${HOME}/Work/JS/x86_64
+make -j12
+make install
+
+3. Compile mozjs
+
+(I)
+On Darwin OSX, make changes to old-configure to allow use of gcc/g++:
+
+(i) gvim mozjs/mozjs/js/src/old-configure
+
+(ii)
+    #CXXFLAGS="$CXXFLAGS -fno-common -stdlib=libc++"
+    CXXFLAGS="$CXXFLAGS -fno-common"
+
+(iii)
+    IS_GCC=$($CC -v 2>&1 | grep gcc)
+    #if test -n "$IS_GCC"
+    #then
+    #  echo gcc is known to be broken on OS X, please use clang.
+    #  echo see http://developer.mozilla.org/en-US/docs/Developer_Guide/Build_Instructions/Mac_OS_X_Prerequisites
+    #  echo for more information.
+    #  exit 1
+    #fi
+    #;;
+
+(II)
+mkdir -p mozjs/mozjs/js/src/Build
+cd mozjs/mozjs/js/src/Build
+CC=/path/to/macports/gcc CXX=/path/to/macports/g++ PYTHON=/path/to/macports/python ../configure --enable-system-ffi --enable-ion --enable-jemalloc --enable-ctypes --with-nspr-cflags="-I${HOME}/Work/JS/x86_64/include/nspr" --with-nspr-libs="-L/Users/nsanthi/Work/JS/x86_64/lib -lnspr4 -lplds4 -lplc4" --prefix=${HOME}/Work/JS/x86_64
+make -j12
+make install

@@ -1,0 +1,126 @@
+<prototype>
+  <common>
+    <method>IMC</method>
+    <t_start>0.0</t_start>
+    <t_stop>0.1</t_stop>
+    <dt_start>0.01</dt_start>
+    <t_mult>1.0</t_mult>
+    <dt_max>1.0</dt_max>
+    <photons>10000</photons>
+    <seed>14706</seed>
+    <tilt>FALSE</tilt>
+    <output_frequency>1</output_frequency>
+    <stratified_sampling>FALSE</stratified_sampling>
+    <dd_transport_type>PARTICLE_PASS</dd_transport_type>
+    <map_size>50000</map_size>
+    <batch_size>10000</batch_size>
+    <particle_message_size>1000</particle_message_size>
+  </common>
+
+  <debug_options>
+    <print_verbose>FALSE</print_verbose>
+    <print_mesh_info>FALSE</print_mesh_info>
+  </debug_options>
+
+  <spatial>
+    <x_division>
+      <x_start>0.0</x_start>
+      <x_end> 4.0</x_end>
+      <n_x_cells>4</n_x_cells>
+    </x_division>
+
+    <x_division>
+      <x_start>4.0</x_start>
+      <x_end> 8.0</x_end>
+      <n_x_cells>2</n_x_cells>
+    </x_division>
+
+    <x_division>
+      <x_start>8.0</x_start>
+      <x_end> 10.0</x_end>
+      <n_x_cells>15</n_x_cells>
+    </x_division>
+
+    <y_division>
+      <y_start>0.0</y_start>
+      <y_end> 30.0</y_end>
+      <n_y_cells>10</n_y_cells>
+    </y_division>
+
+    <z_division>
+      <z_start>0.0</z_start>
+      <z_end>1.0</z_end>
+      <n_z_cells>1</n_z_cells>
+    </z_division>
+
+    <region_map>
+      <x_div_ID>0</x_div_ID>
+      <y_div_ID>0</x_div_ID>
+      <z_div_ID>0</x_div_ID>
+      <region_ID>230</region_ID>
+    </region_map>
+
+    <region_map>
+      <x_div_ID>1</x_div_ID>
+      <y_div_ID>0</x_div_ID>
+      <z_div_ID>0</x_div_ID>
+      <region_ID>177</region_ID>
+    </region_map>
+
+    <region_map>
+      <x_div_ID>2</x_div_ID>
+      <y_div_ID>0</x_div_ID>
+      <z_div_ID>0</x_div_ID>
+      <region_ID>11</region_ID>
+    </region_map>
+
+  </spatial>
+
+  <boundary>
+    <bc_right>REFLECT</bc_right>
+    <bc_left>REFLECT</bc_left>
+
+    <bc_up>VACUUM</bc_up>
+    <bc_down>VACUUM</bc_down>
+
+    <bc_top>REFLECT</bc_top>
+    <bc_bottom>VACUUM</bc_bottom>
+  </boundary>
+
+  <regions>
+    <region>
+      <ID>230</ID>
+      <density>1.0</density>
+      <CV>2.0</CV>
+      <opacA>3.0</opacA>
+      <opacB>1.5</opacB>
+      <opacC>0.1</opacC>
+      <opacS>5.0</opacS>
+      <initial_T_e>1.0</initial_T_e>
+      <initial_T_r>1.1</initial_T_r>
+    </region>
+    <region>
+      <ID>177</ID>
+      <density>5.0</density>
+      <CV>0.99</CV>
+      <opacA>101.0</opacA>
+      <opacB>10.5</opacB>
+      <opacC>0.3</opacC>
+      <opacS>0.01</opacS>
+      <initial_T_e>0.01</initial_T_e>
+      <initial_T_r>0.1</initial_T_r>
+    </region>
+    <region>
+      <ID>11</ID>
+      <density>100.0</density>
+      <CV>5.0</CV>
+      <opacA>0.001</opacA>
+      <opacB>0.01</opacB>
+      <opacC>4.8</opacC>
+      <opacS>100.0</opacS>
+      <initial_T_e>1.2</initial_T_e>
+      <initial_T_r>0.0</initial_T_r>
+    </region>
+  </regions>
+
+</prototype>

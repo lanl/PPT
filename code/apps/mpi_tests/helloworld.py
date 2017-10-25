@@ -1,9 +1,5 @@
 # helloworld.py :- use mpi as simple as possible
 
-# IMPORTANT: To make it to work, PATHONAPTH must be set to include
-# PPT's 'code' directory, where the 'ppt.py' file is located
-from sys import path
-path.append('../..')
 from ppt import *
 
 def main(mpi_comm_world, msg):
@@ -23,10 +19,7 @@ model_dict = {
     # specified when instantiating Cluster)
     "model_name" : "helloworld", # name of the model
     "sim_time" : 1e6, # simulation time
-    "use_mpi" : False, # whether using mpi for parallel
-#    "use_mpi" : True, # whether using mpi for parallel
-    "mpi_path" : "/opt/local/lib/mpich-mp/libmpi.dylib", # mpi library path needed for SimianPie
-                                                         # (rather than SiianPie.MPI4Py)
+    "use_mpi" : True, # whether using mpi for parallel
     
     # interconnection network parameters
     #"intercon_type" : "Crossbar",       # IMPORTANT: type is case sensitive

@@ -90,16 +90,20 @@ input_run(){
 
     # First run with p
     # Compile
-    gcc ${optimizations} -o ${benchmark} ${common_file} ${benchmark}.c ${include_headers} \
-	${what_to_collect} ${input_define} ${link_libs}
+    #gcc ${optimizations} -o ${benchmark} ${common_file} ${benchmark}.c ${include_headers} \
+	#${what_to_collect} ${input_define} ${link_libs}
+	
+    /home/gchennupati/Work/PPT/polybench/run_polybench_generic_2015_10_28/bf-clang -bf-every-bb -bf-reuse-dist ${optimizations} -o ${benchmark} ${common_file} ${benchmark}.c ${include_headers} \
+	${what_to_collect} ${input_define} ${link_libs} >& bb-${benchmark}.dat
 
     rawoutput="timing.out";
     if [ -f ${rawoutput} ]; then rm ${rawoutput}; fi;
 		        	        
-    for((i=1;i<=${variant};i++));
-    do
-	./${benchmark} >> ${rawoutput};
-    done
+    #for((i=1;i<=${variant};i++));
+    #do
+    #./${benchmark} >> ${rawoutput};
+    ./${benchmark} >& ${benchmark}_trace.dat
+    #done
 
     # Calculate mean, highest, lowest value among ${variant} numbers of run
     amean=`awk 'BEGIN{sum=0}{sum+=$1}END{printf("%.6f\n",sum/NR)}' ${rawoutput}`;

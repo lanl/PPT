@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#Modify the paths accordingly before running
+#SMJSDIR=~/Work/JS/x86_64 MPIDIR=~/Work/Simian/x86_64 make
+SMJSDIR=~/Work/JS/x86_64 MPIDIR=~/Work/JS/x86_64 make

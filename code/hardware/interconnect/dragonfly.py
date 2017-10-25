@@ -5,6 +5,19 @@
 from intercon import *
 import random
 
+# block decomposition for both hosts and switches
+def dragonfly_partition(entname, entid, nranks, dragonfly):
+    # the user may specify that we partition up to a given number of
+    # hosts (that really run the user application)
+    nh = dragonfly.hpcsim_dict.get('partition_hosts', dragonfly.nhosts)
+    if nh < nranks: chunk = 1.0
+    else: chunk = 1.0*nh/nranks
+    if entname == 'Switch': id = entid*dragonfly.num_hosts_per_switch
+    else: id = entid
+    r = int(id/chunk)%nranks
+    #print("%d entity %s[%d] mapped to rank %d/%d" % (entid, entname, entid, r, nranks))
+    return r
+
 class DragonflySwitch(Switch):
     """A switch for the dragonfly and aries interconnect."""
     
@@ -942,9 +955,10 @@ class Dragonfly(Interconnect):
         mem_delay = hpcsim_dict["dragonfly"].get("mem_delay", \
             hpcsim_dict["default_configs"]["mem_delay"])
 
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "dragonfly" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "dragonfly" in hpcsim_dict["debug_options"]):
             print("dragonfly: num_groups=%d" % self.num_groups)
             print("dragonfly: num_switches_per_group=%d" % self.num_switches_per_group)
             print("dragonfly: num_hosts_per_switch=%d" % self.num_hosts_per_switch)
@@ -991,7 +1005,8 @@ class Dragonfly(Interconnect):
         for g in xrange(self.num_groups):
             for a in xrange(self.num_switches_per_group):
                 # each switch is identified by a group id and switch id pair
-                simian.addEntity("Switch", DragonflySwitch, swid, hpcsim_dict, self, g, a)
+                simian.addEntity("Switch", DragonflySwitch, swid, hpcsim_dict, self, g, a,
+                                 partition=dragonfly_partition, partition_arg=self)
                 # add host as entities 
                 for h in xrange(self.num_hosts_per_switch):
                     p = self.hid_to_port(h)
@@ -999,7 +1014,8 @@ class Dragonfly(Interconnect):
                             hpcsim_dict, self, swid, 'h', 
                             p, self.switch_host_bdw, self.bufsz,
                             self.switch_host_delay,
-                            mem_bandwidth, mem_bufsz, mem_delay)
+                            mem_bandwidth, mem_bufsz, mem_delay,
+                            partition=dragonfly_partition, partition_arg=self)
                     hid += 1
                 swid += 1
         

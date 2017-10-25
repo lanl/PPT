@@ -1,0 +1,20 @@
+n_ent=320000      # number of entities
+s_ent=100       # avg number of events sent per entity
+q_avg=1         # avg number of events in the event queue per entity
+p_receive=0     # parameter to the geometric distribution for destination entity (0: uniform)
+p_send=0        # parameter to the geometric distribution for source entity (0: uniform)
+invert=False    # invert the send/receive distribution or not
+m_ent=1         # avg memory footprint per entity
+p_list=0        # parameter for geometric distribution of the list size
+ops_ent=100000  # avg operations per event
+ops_sigma=0     # stdev as a fraction of ops_ent
+cache_friendliness=0.5 # fraction of list elements to be accessed during operations
+init_seed=12357 # initial random seed
+time_bins=10    # number of bins for time and event reporting
+endTime=1000    # simulation end time
+minDelay=1      # min delay
+useMPI=True     # sequential or parallel simulation using mpi
+logName="$z"    # logging information
+
+echo "running benchmark exp2 for p=$p ranks"
+mpirun -np $p pypy $EXP_PATH/pypy-benchmark/pdes_lanl_benchmarkV8.py $n_ent $s_ent $q_avg $p_receive $p_send $invert $m_ent $p_list $ops_ent $ops_sigma $cache_friendliness $init_seed $time_bins $endTime $minDelay $useMPI $logName

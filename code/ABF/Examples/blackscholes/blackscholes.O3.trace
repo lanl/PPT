@@ -1,0 +1,2293 @@
+Module : blackscholes/src/blackscholes.O3.llvm
+	TargetTriple :
+		x86_64-apple-macosx10.11.0
+
+	Function <@ 0x7ff963406910> : CNDF : Definition : NonIntrinsic
+		ArgList :
+			InputX<@ 0x7ff963406a40>
+
+		BasicBlock <@ 0x7ff963406aa0> : label %0
+			Instruction <@ 0x7ff963500140> : (88, 22) : call
+				metadata : metadata !{float %InputX}<@ 0x7ff963406b30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352b770>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963500270> : (103, 9) : fcmp
+				float : InputX<@ 0x7ff963406a40>
+				float : float 0.000000e+00<@ 0x7ff9635001f0>
+			Instruction <@ 0x7ff963500448> : (103, 9) : br
+				i1 : i1 %1<@ 0x7ff963500270>
+				label : label %4<@ 0x7ff963500370>
+				label : label %2<@ 0x7ff9635002e0>
+
+		BasicBlock <@ 0x7ff9635002e0> : label %2
+			Instruction <@ 0x7ff963500550> : (104, 9) : fsub
+				float : float -0.000000e+00<@ 0x7ff9635004d0>
+				float : InputX<@ 0x7ff963406a40>
+			Instruction <@ 0x7ff963500660> : (88, 22) : call
+				metadata : metadata !{float %3}<@ 0x7ff9635005a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352b770>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963500890> : (90, 9) : call
+				metadata : metadata <badref><@ 0x7ff96353cde0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352b8b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963500948> : (106, 5) : br
+				label : label %4<@ 0x7ff963500370>
+
+		BasicBlock <@ 0x7ff963500370> : label %4
+			Instruction <@ 0x7ff963500a20> : (0, 0) : phi
+				i1 : i1 true<@ 0x7ff9635009a0>
+				i1 : i1 false<@ 0x7ff9635009e0>
+			Instruction <@ 0x7ff963500ad0> : (0, 0) : phi
+				float : float %3<@ 0x7ff963500550>
+				float : InputX<@ 0x7ff963406a40>
+			Instruction <@ 0x7ff963500d10> : (93, 12) : call
+				metadata : metadata !{float %.0}<@ 0x7ff963500b80>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bcb0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963500e30> : (112, 17) : fmul
+				float : .0<@ 0x7ff963500ad0>
+				float : float -5.000000e-01<@ 0x7ff963500db0>
+			Instruction <@ 0x7ff963500eb0> : (112, 17) : fmul
+				float : .0<@ 0x7ff963500ad0>
+				float : float %5<@ 0x7ff963500e30>
+			Instruction <@ 0x7ff963500f28> : (112, 17) : fpext
+				float : float %6<@ 0x7ff963500eb0>
+			Instruction <@ 0x7ff963501100> : (112, 17) : call
+				double : double %7<@ 0x7ff963500f28>
+				double (double)* : exp<@ 0x7ff963500fb0>
+			Instruction <@ 0x7ff963501238> : (112, 17) : fptrunc
+				double : double %8<@ 0x7ff963501100>
+			Instruction <@ 0x7ff9635013f0> : (95, 12) : call
+				metadata : metadata !{float %9}<@ 0x7ff9635012a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c0c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963501590> : (94, 12) : call
+				metadata : metadata !{float %9}<@ 0x7ff9635012a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bdf0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963501648> : (114, 5) : fpext
+				float : float %9<@ 0x7ff963501238>
+			Instruction <@ 0x7ff963501720> : (114, 5) : fmul
+				double : double %10<@ 0x7ff963501648>
+				double : double 0x3FD9884533D43651<@ 0x7ff9635016a0>
+			Instruction <@ 0x7ff963501798> : (114, 5) : fptrunc
+				double : double %11<@ 0x7ff963501720>
+			Instruction <@ 0x7ff9635018e0> : (94, 12) : call
+				metadata : metadata !{float %12}<@ 0x7ff963501800>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bdf0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963501998> : (116, 5) : fpext
+				float : .0<@ 0x7ff963500ad0>
+			Instruction <@ 0x7ff963501a70> : (116, 5) : fmul
+				double : double %13<@ 0x7ff963501998>
+				double : double 2.316419e-01<@ 0x7ff9635019f0>
+			Instruction <@ 0x7ff963501ae8> : (116, 5) : fptrunc
+				double : double %14<@ 0x7ff963501a70>
+			Instruction <@ 0x7ff963501cc0> : (96, 12) : call
+				metadata : metadata !{float %15}<@ 0x7ff963501b50>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c200>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963501de0> : (117, 5) : fadd
+				float : float %15<@ 0x7ff963501ae8>
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+			Instruction <@ 0x7ff963501ff0> : (96, 12) : call
+				metadata : metadata !{float %16}<@ 0x7ff963501f30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c200>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963502080> : (118, 5) : fdiv
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %16<@ 0x7ff963501de0>
+			Instruction <@ 0x7ff963502190> : (96, 12) : call
+				metadata : metadata !{float %17}<@ 0x7ff9635020d0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c200>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963502260> : (119, 5) : fmul
+				float : float %17<@ 0x7ff963502080>
+				float : float %17<@ 0x7ff963502080>
+			Instruction <@ 0x7ff963502420> : (97, 12) : call
+				metadata : metadata !{float %18}<@ 0x7ff9635022b0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c340>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635024f0> : (120, 5) : fmul
+				float : float %17<@ 0x7ff963502080>
+				float : float %18<@ 0x7ff963502260>
+			Instruction <@ 0x7ff9635026b0> : (97, 19) : call
+				metadata : metadata !{float %19}<@ 0x7ff963502540>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c480>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963502780> : (121, 5) : fmul
+				float : float %17<@ 0x7ff963502080>
+				float : float %19<@ 0x7ff9635024f0>
+			Instruction <@ 0x7ff963502940> : (98, 12) : call
+				metadata : metadata !{float %20}<@ 0x7ff9635027d0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c5c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963502a10> : (122, 5) : fmul
+				float : float %17<@ 0x7ff963502080>
+				float : float %20<@ 0x7ff963502780>
+			Instruction <@ 0x7ff963502bd0> : (98, 19) : call
+				metadata : metadata !{float %21}<@ 0x7ff963502a60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c700>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963502c88> : (124, 5) : fpext
+				float : float %17<@ 0x7ff963502080>
+			Instruction <@ 0x7ff963502d60> : (124, 5) : fmul
+				double : double %22<@ 0x7ff963502c88>
+				double : double 0x3FD470BF3A92F8EC<@ 0x7ff963502ce0>
+			Instruction <@ 0x7ff963502dd8> : (124, 5) : fptrunc
+				double : double %23<@ 0x7ff963502d60>
+			Instruction <@ 0x7ff963502fb0> : (99, 20) : call
+				metadata : metadata !{float %24}<@ 0x7ff963502e40>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c980>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963503068> : (125, 5) : fpext
+				float : float %18<@ 0x7ff963502260>
+			Instruction <@ 0x7ff963503140> : (125, 5) : fmul
+				double : double %25<@ 0x7ff963503068>
+				double : double 0xBFD6D1F0E5A8325B<@ 0x7ff9635030c0>
+			Instruction <@ 0x7ff9635031b8> : (125, 5) : fptrunc
+				double : double %26<@ 0x7ff963503140>
+			Instruction <@ 0x7ff963503390> : (100, 12) : call
+				metadata : metadata !{float %27}<@ 0x7ff963503220>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cac0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963503448> : (126, 5) : fpext
+				float : float %19<@ 0x7ff9635024f0>
+			Instruction <@ 0x7ff963503520> : (126, 5) : fmul
+				double : double %28<@ 0x7ff963503448>
+				double : double 0x3FFC80EF025F5E68<@ 0x7ff9635034a0>
+			Instruction <@ 0x7ff963503598> : (126, 5) : fptrunc
+				double : double %29<@ 0x7ff963503520>
+			Instruction <@ 0x7ff963503770> : (100, 22) : call
+				metadata : metadata !{float %30}<@ 0x7ff963503600>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cc00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963503840> : (127, 5) : fadd
+				float : float %27<@ 0x7ff9635031b8>
+				float : float %30<@ 0x7ff963503598>
+			Instruction <@ 0x7ff963503970> : (100, 12) : call
+				metadata : metadata !{float %31}<@ 0x7ff963503890>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cac0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963503a28> : (128, 5) : fpext
+				float : float %20<@ 0x7ff963502780>
+			Instruction <@ 0x7ff963501eb0> : (128, 5) : fmul
+				double : double %32<@ 0x7ff963503a28>
+				double : double 0xBFFD23DD4EF278D0<@ 0x7ff963501e30>
+			Instruction <@ 0x7ff963503c98> : (128, 5) : fptrunc
+				double : double %33<@ 0x7ff963501eb0>
+			Instruction <@ 0x7ff963503dc0> : (100, 22) : call
+				metadata : metadata !{float %34}<@ 0x7ff963503cf0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cc00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963503e90> : (129, 5) : fadd
+				float : float %31<@ 0x7ff963503840>
+				float : float %34<@ 0x7ff963503c98>
+			Instruction <@ 0x7ff963503fc0> : (100, 12) : call
+				metadata : metadata !{float %35}<@ 0x7ff963503ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cac0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963504078> : (130, 5) : fpext
+				float : float %21<@ 0x7ff963502a10>
+			Instruction <@ 0x7ff963504150> : (130, 5) : fmul
+				double : double %36<@ 0x7ff963504078>
+				double : double 0x3FF548CDD6F42943<@ 0x7ff9635040d0>
+			Instruction <@ 0x7ff9635041c8> : (130, 5) : fptrunc
+				double : double %37<@ 0x7ff963504150>
+			Instruction <@ 0x7ff963504310> : (100, 22) : call
+				metadata : metadata !{float %38}<@ 0x7ff963504230>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cc00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635043e0> : (131, 5) : fadd
+				float : float %35<@ 0x7ff963503e90>
+				float : float %38<@ 0x7ff9635041c8>
+			Instruction <@ 0x7ff963504510> : (100, 12) : call
+				metadata : metadata !{float %39}<@ 0x7ff963504430>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352cac0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635045e0> : (133, 5) : fadd
+				float : float %24<@ 0x7ff963502dd8>
+				float : float %39<@ 0x7ff9635043e0>
+			Instruction <@ 0x7ff963504710> : (99, 20) : call
+				metadata : metadata !{float %40}<@ 0x7ff963504630>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c980>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635047e0> : (134, 5) : fmul
+				float : float %12<@ 0x7ff963501798>
+				float : float %40<@ 0x7ff9635045e0>
+			Instruction <@ 0x7ff9635049a0> : (99, 12) : call
+				metadata : metadata !{float %41}<@ 0x7ff963504830>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c840>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963504a70> : (135, 5) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %41<@ 0x7ff9635047e0>
+			Instruction <@ 0x7ff963504ba0> : (99, 12) : call
+				metadata : metadata !{float %42}<@ 0x7ff963504ac0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352c840>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963504d40> : (92, 12) : call
+				metadata : metadata !{float %42}<@ 0x7ff963504ac0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bb70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963504f48> : (139, 9) : br
+				i1 : sign.0<@ 0x7ff963500a20>
+				label : label %45<@ 0x7ff963504e70>
+				label : label %43<@ 0x7ff963504de0>
+
+		BasicBlock <@ 0x7ff963504de0> : label %43
+			Instruction <@ 0x7ff963504fd0> : (140, 9) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %42<@ 0x7ff963504a70>
+			Instruction <@ 0x7ff9635050f0> : (92, 12) : call
+				metadata : metadata !{float %44}<@ 0x7ff963505020>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bb70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635051a8> : (141, 5) : br
+				label : label %45<@ 0x7ff963504e70>
+
+		BasicBlock <@ 0x7ff963504e70> : label %45
+			Instruction <@ 0x7ff963505200> : (0, 0) : phi
+				float : float %44<@ 0x7ff963504fd0>
+				float : float %42<@ 0x7ff963504a70>
+			Instruction <@ 0x7ff9635052c8> : (143, 5) : ret
+				float : OutputX.0<@ 0x7ff963505200>
+
+	Function <@ 0x7ff963500fb0> : exp : Declaration : NonIntrinsic
+		ArgList :
+			double %0<@ 0x7ff963503aa0>
+
+	Function <@ 0x7ff963503b20> : BlkSchlsEqEuroNoDiv : Definition : NonIntrinsic
+		ArgList :
+			sptprice<@ 0x7ff963505320>
+			strike<@ 0x7ff963505360>
+			rate<@ 0x7ff9635053a0>
+			volatility<@ 0x7ff9635053e0>
+			time<@ 0x7ff963505420>
+			otype<@ 0x7ff963505460>
+			timet<@ 0x7ff9635054a0>
+
+		BasicBlock <@ 0x7ff963505630> : label %0
+			Instruction <@ 0x7ff9635057c0> : (150, 36) : call
+				metadata : metadata !{float %sptprice}<@ 0x7ff963505680>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352d920>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635059c0> : (151, 36) : call
+				metadata : metadata !{float %strike}<@ 0x7ff963505860>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352bf30>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963505bc0> : (151, 51) : call
+				metadata : metadata !{float %rate}<@ 0x7ff963505a60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352dd70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963505dc0> : (151, 64) : call
+				metadata : metadata !{float %volatility}<@ 0x7ff963505c60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352deb0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963505fc0> : (152, 36) : call
+				metadata : metadata !{float %time}<@ 0x7ff963505e60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352dff0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635061c0> : (152, 46) : call
+				metadata : metadata !{i32 %otype}<@ 0x7ff963506060>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e130>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635063c0> : (152, 59) : call
+				metadata : metadata !{float %timet}<@ 0x7ff963506260>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e270>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963506560> : (157, 12) : call
+				metadata : metadata !{float %sptprice}<@ 0x7ff963505680>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e4f0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963506700> : (158, 12) : call
+				metadata : metadata !{float %strike}<@ 0x7ff963505860>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e630>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635068a0> : (159, 12) : call
+				metadata : metadata !{float %rate}<@ 0x7ff963505a60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e770>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963506a40> : (160, 12) : call
+				metadata : metadata !{float %volatility}<@ 0x7ff963505c60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e8b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963506be0> : (161, 12) : call
+				metadata : metadata !{float %time}<@ 0x7ff963505e60>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e9f0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963506de0> : (184, 17) : call
+				float : time<@ 0x7ff963505420>
+				float (float)* : sqrtf<@ 0x7ff963506c90>
+			Instruction <@ 0x7ff963507010> : (162, 12) : call
+				metadata : metadata !{float %1}<@ 0x7ff963506e90>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352eb30>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635070e0> : (186, 17) : fdiv
+				float : sptprice<@ 0x7ff963505320>
+				float : strike<@ 0x7ff963505360>
+			Instruction <@ 0x7ff963507148> : (186, 17) : fpext
+				float : float %2<@ 0x7ff9635070e0>
+			Instruction <@ 0x7ff963507330> : (186, 17) : call
+				double : double %3<@ 0x7ff963507148>
+				double (double)* : log<@ 0x7ff9635071c0>
+			Instruction <@ 0x7ff963507428> : (186, 17) : fptrunc
+				double : double %4<@ 0x7ff963507330>
+			Instruction <@ 0x7ff963507600> : (164, 12) : call
+				metadata : metadata !{float %5}<@ 0x7ff963507490>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352ec70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635077a0> : (165, 12) : call
+				metadata : metadata !{float %5}<@ 0x7ff963507490>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352edb0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963507870> : (191, 5) : fmul
+				float : volatility<@ 0x7ff9635053e0>
+				float : volatility<@ 0x7ff9635053e0>
+			Instruction <@ 0x7ff963507a30> : (168, 12) : call
+				metadata : metadata !{float %6}<@ 0x7ff9635078c0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f170>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963507b50> : (192, 5) : fmul
+				float : float %6<@ 0x7ff963507870>
+				float : float 5.000000e-01<@ 0x7ff963507ad0>
+			Instruction <@ 0x7ff963507c80> : (168, 12) : call
+				metadata : metadata !{float %7}<@ 0x7ff963507ba0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f170>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963507d50> : (194, 5) : fadd
+				float : float %7<@ 0x7ff963507b50>
+				float : rate<@ 0x7ff9635053a0>
+			Instruction <@ 0x7ff963507f50> : (166, 12) : call
+				metadata : metadata !{float %8}<@ 0x7ff963507e20>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352eef0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508020> : (195, 5) : fmul
+				float : float %8<@ 0x7ff963507d50>
+				float : time<@ 0x7ff963505420>
+			Instruction <@ 0x7ff963508150> : (166, 12) : call
+				metadata : metadata !{float %9}<@ 0x7ff963508070>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352eef0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508220> : (196, 5) : fadd
+				float : float %9<@ 0x7ff963508020>
+				float : float %5<@ 0x7ff963507428>
+			Instruction <@ 0x7ff963508350> : (166, 12) : call
+				metadata : metadata !{float %10}<@ 0x7ff963508270>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352eef0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508420> : (198, 5) : fmul
+				float : float %1<@ 0x7ff963506de0>
+				float : volatility<@ 0x7ff9635053e0>
+			Instruction <@ 0x7ff9635085e0> : (169, 12) : call
+				metadata : metadata !{float %11}<@ 0x7ff963508470>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f2b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635086b0> : (199, 5) : fdiv
+				float : float %10<@ 0x7ff963508220>
+				float : float %11<@ 0x7ff963508420>
+			Instruction <@ 0x7ff9635087e0> : (166, 12) : call
+				metadata : metadata !{float %12}<@ 0x7ff963508700>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352eef0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635088b0> : (200, 5) : fsub
+				float : float %12<@ 0x7ff9635086b0>
+				float : float %11<@ 0x7ff963508420>
+			Instruction <@ 0x7ff963508a70> : (167, 12) : call
+				metadata : metadata !{float %13}<@ 0x7ff963508900>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f030>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508c10> : (170, 12) : call
+				metadata : metadata !{float %12}<@ 0x7ff963508700>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f3f0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508db0> : (171, 12) : call
+				metadata : metadata !{float %13}<@ 0x7ff963508900>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f530>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963508f60> : (88, 22) : call
+				metadata : metadata !{float %12}<@ 0x7ff963508700>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963540b80>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963509030> : (103, 9) : fcmp
+				float : float %12<@ 0x7ff9635086b0>
+				float : float 0.000000e+00<@ 0x7ff9635001f0>
+			Instruction <@ 0x7ff9635091e8> : (103, 9) : br
+				i1 : i1 %14<@ 0x7ff963509030>
+				label : label %17<@ 0x7ff963509110>
+				label : label %15<@ 0x7ff963509080>
+
+		BasicBlock <@ 0x7ff963509080> : label %15
+			Instruction <@ 0x7ff963509270> : (104, 9) : fsub
+				float : float -0.000000e+00<@ 0x7ff9635004d0>
+				float : float %12<@ 0x7ff9635086b0>
+			Instruction <@ 0x7ff963509480> : (88, 22) : call
+				metadata : metadata !{float %16}<@ 0x7ff9635093c0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963540b80>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635095d0> : (90, 9) : call
+				metadata : metadata <badref><@ 0x7ff96353cde0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963509688> : (106, 5) : br
+				label : label %17<@ 0x7ff963509110>
+
+		BasicBlock <@ 0x7ff963509110> : label %17
+			Instruction <@ 0x7ff9635096e0> : (205, 14) : phi
+				i1 : i1 true<@ 0x7ff9635009a0>
+				i1 : i1 false<@ 0x7ff9635009e0>
+			Instruction <@ 0x7ff963509790> : (205, 14) : phi
+				float : float %16<@ 0x7ff963509270>
+				float : float %12<@ 0x7ff9635086b0>
+			Instruction <@ 0x7ff9635099d0> : (93, 12) : call
+				metadata : metadata !{float %.0.i}<@ 0x7ff963509870>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635412c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963509aa0> : (112, 17) : fmul
+				float : .0.i<@ 0x7ff963509790>
+				float : float -5.000000e-01<@ 0x7ff963500db0>
+			Instruction <@ 0x7ff963509b20> : (112, 17) : fmul
+				float : .0.i<@ 0x7ff963509790>
+				float : float %18<@ 0x7ff963509aa0>
+			Instruction <@ 0x7ff963509b88> : (112, 17) : fpext
+				float : float %19<@ 0x7ff963509b20>
+			Instruction <@ 0x7ff963509c30> : (112, 17) : call
+				double : double %20<@ 0x7ff963509b88>
+				double (double)* : exp<@ 0x7ff963500fb0>
+			Instruction <@ 0x7ff963509ce8> : (112, 17) : fptrunc
+				double : double %21<@ 0x7ff963509c30>
+			Instruction <@ 0x7ff963509ef0> : (95, 12) : call
+				metadata : metadata !{float %22}<@ 0x7ff963509d50>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541580>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350a0a0> : (94, 12) : call
+				metadata : metadata !{float %22}<@ 0x7ff963509d50>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541780>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350a158> : (114, 5) : fpext
+				float : float %22<@ 0x7ff963509ce8>
+			Instruction <@ 0x7ff96350a1e0> : (114, 5) : fmul
+				double : double %23<@ 0x7ff96350a158>
+				double : double 0x3FD9884533D43651<@ 0x7ff9635016a0>
+			Instruction <@ 0x7ff96350a248> : (114, 5) : fptrunc
+				double : double %24<@ 0x7ff96350a1e0>
+			Instruction <@ 0x7ff96350a3b0> : (94, 12) : call
+				metadata : metadata !{float %25}<@ 0x7ff96350a2a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541780>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350a468> : (116, 5) : fpext
+				float : .0.i<@ 0x7ff963509790>
+			Instruction <@ 0x7ff96350a4f0> : (116, 5) : fmul
+				double : double %26<@ 0x7ff96350a468>
+				double : double 2.316419e-01<@ 0x7ff9635019f0>
+			Instruction <@ 0x7ff96350a558> : (116, 5) : fptrunc
+				double : double %27<@ 0x7ff96350a4f0>
+			Instruction <@ 0x7ff96350a750> : (96, 12) : call
+				metadata : metadata !{float %28}<@ 0x7ff96350a5b0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541b00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350a820> : (117, 5) : fadd
+				float : float %28<@ 0x7ff96350a558>
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+			Instruction <@ 0x7ff96350a960> : (96, 12) : call
+				metadata : metadata !{float %29}<@ 0x7ff96350a870>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541b00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350aa30> : (118, 5) : fdiv
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %29<@ 0x7ff96350a820>
+			Instruction <@ 0x7ff96350ab70> : (96, 12) : call
+				metadata : metadata !{float %30}<@ 0x7ff96350aa80>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541b00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350ac40> : (119, 5) : fmul
+				float : float %30<@ 0x7ff96350aa30>
+				float : float %30<@ 0x7ff96350aa30>
+			Instruction <@ 0x7ff96350ae10> : (97, 12) : call
+				metadata : metadata !{float %31}<@ 0x7ff96350ac90>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963541f40>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350aee0> : (120, 5) : fmul
+				float : float %30<@ 0x7ff96350aa30>
+				float : float %31<@ 0x7ff96350ac40>
+			Instruction <@ 0x7ff96350b1b0> : (97, 19) : call
+				metadata : metadata !{float %32}<@ 0x7ff9635092c0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542200>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350b280> : (121, 5) : fmul
+				float : float %30<@ 0x7ff96350aa30>
+				float : float %32<@ 0x7ff96350aee0>
+			Instruction <@ 0x7ff96350b450> : (98, 12) : call
+				metadata : metadata !{float %33}<@ 0x7ff96350b2d0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635424c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350b520> : (122, 5) : fmul
+				float : float %30<@ 0x7ff96350aa30>
+				float : float %33<@ 0x7ff96350b280>
+			Instruction <@ 0x7ff96350b6f0> : (98, 19) : call
+				metadata : metadata !{float %34}<@ 0x7ff96350b570>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542780>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350b7a8> : (124, 5) : fpext
+				float : float %30<@ 0x7ff96350aa30>
+			Instruction <@ 0x7ff96350b830> : (124, 5) : fmul
+				double : double %35<@ 0x7ff96350b7a8>
+				double : double 0x3FD470BF3A92F8EC<@ 0x7ff963502ce0>
+			Instruction <@ 0x7ff96350b898> : (124, 5) : fptrunc
+				double : double %36<@ 0x7ff96350b830>
+			Instruction <@ 0x7ff96350ba90> : (99, 20) : call
+				metadata : metadata !{float %37}<@ 0x7ff96350b8f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542a40>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350bb48> : (125, 5) : fpext
+				float : float %31<@ 0x7ff96350ac40>
+			Instruction <@ 0x7ff96350bbd0> : (125, 5) : fmul
+				double : double %38<@ 0x7ff96350bb48>
+				double : double 0xBFD6D1F0E5A8325B<@ 0x7ff9635030c0>
+			Instruction <@ 0x7ff96350bc38> : (125, 5) : fptrunc
+				double : double %39<@ 0x7ff96350bbd0>
+			Instruction <@ 0x7ff96350be30> : (100, 12) : call
+				metadata : metadata !{float %40}<@ 0x7ff96350bc90>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542d00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350bee8> : (126, 5) : fpext
+				float : float %32<@ 0x7ff96350aee0>
+			Instruction <@ 0x7ff96350bf70> : (126, 5) : fmul
+				double : double %41<@ 0x7ff96350bee8>
+				double : double 0x3FFC80EF025F5E68<@ 0x7ff9635034a0>
+			Instruction <@ 0x7ff96350bfd8> : (126, 5) : fptrunc
+				double : double %42<@ 0x7ff96350bf70>
+			Instruction <@ 0x7ff96350c1d0> : (100, 22) : call
+				metadata : metadata !{float %43}<@ 0x7ff96350c030>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542fc0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350c2a0> : (127, 5) : fadd
+				float : float %40<@ 0x7ff96350bc38>
+				float : float %43<@ 0x7ff96350bfd8>
+			Instruction <@ 0x7ff96350c3e0> : (100, 12) : call
+				metadata : metadata !{float %44}<@ 0x7ff96350c2f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542d00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350c498> : (128, 5) : fpext
+				float : float %33<@ 0x7ff96350b280>
+			Instruction <@ 0x7ff96350c520> : (128, 5) : fmul
+				double : double %45<@ 0x7ff96350c498>
+				double : double 0xBFFD23DD4EF278D0<@ 0x7ff963501e30>
+			Instruction <@ 0x7ff96350c588> : (128, 5) : fptrunc
+				double : double %46<@ 0x7ff96350c520>
+			Instruction <@ 0x7ff96350c6f0> : (100, 22) : call
+				metadata : metadata !{float %47}<@ 0x7ff96350c5e0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542fc0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350c7c0> : (129, 5) : fadd
+				float : float %44<@ 0x7ff96350c2a0>
+				float : float %47<@ 0x7ff96350c588>
+			Instruction <@ 0x7ff96350c900> : (100, 12) : call
+				metadata : metadata !{float %48}<@ 0x7ff96350c810>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542d00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350c9b8> : (130, 5) : fpext
+				float : float %34<@ 0x7ff96350b520>
+			Instruction <@ 0x7ff96350ca40> : (130, 5) : fmul
+				double : double %49<@ 0x7ff96350c9b8>
+				double : double 0x3FF548CDD6F42943<@ 0x7ff9635040d0>
+			Instruction <@ 0x7ff96350caa8> : (130, 5) : fptrunc
+				double : double %50<@ 0x7ff96350ca40>
+			Instruction <@ 0x7ff96350cc10> : (100, 22) : call
+				metadata : metadata !{float %51}<@ 0x7ff96350cb00>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542fc0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350cce0> : (131, 5) : fadd
+				float : float %48<@ 0x7ff96350c7c0>
+				float : float %51<@ 0x7ff96350caa8>
+			Instruction <@ 0x7ff96350ce20> : (100, 12) : call
+				metadata : metadata !{float %52}<@ 0x7ff96350cd30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542d00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350cef0> : (133, 5) : fadd
+				float : float %37<@ 0x7ff96350b898>
+				float : float %52<@ 0x7ff96350cce0>
+			Instruction <@ 0x7ff96350d030> : (99, 20) : call
+				metadata : metadata !{float %53}<@ 0x7ff96350cf40>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963542a40>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350d100> : (134, 5) : fmul
+				float : float %25<@ 0x7ff96350a248>
+				float : float %53<@ 0x7ff96350cef0>
+			Instruction <@ 0x7ff96350d2d0> : (99, 12) : call
+				metadata : metadata !{float %54}<@ 0x7ff96350d150>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963543700>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350d3a0> : (135, 5) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %54<@ 0x7ff96350d100>
+			Instruction <@ 0x7ff96350d4e0> : (99, 12) : call
+				metadata : metadata !{float %55}<@ 0x7ff96350d3f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963543700>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350d690> : (92, 12) : call
+				metadata : metadata !{float %55}<@ 0x7ff96350d3f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635439c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350d8a8> : (139, 9) : br
+				i1 : sign.0.i<@ 0x7ff9635096e0>
+				label : CNDF.exit<@ 0x7ff96350d7c0>
+				label : label %56<@ 0x7ff96350d730>
+
+		BasicBlock <@ 0x7ff96350d730> : label %56
+			Instruction <@ 0x7ff96350d930> : (140, 9) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %55<@ 0x7ff96350d3a0>
+			Instruction <@ 0x7ff96350da80> : (92, 12) : call
+				metadata : metadata !{float %57}<@ 0x7ff96350d990>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635439c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350db38> : (141, 5) : br
+				label : CNDF.exit<@ 0x7ff96350d7c0>
+
+		BasicBlock <@ 0x7ff96350d7c0> : CNDF.exit
+			Instruction <@ 0x7ff96350db90> : (205, 14) : phi
+				float : float %57<@ 0x7ff96350d930>
+				float : float %55<@ 0x7ff96350d3a0>
+			Instruction <@ 0x7ff96350dd70> : (173, 12) : call
+				metadata : metadata !{float %OutputX.0.i}<@ 0x7ff96350dbf0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f7b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350df20> : (88, 22) : call
+				metadata : metadata !{float %13}<@ 0x7ff963508900>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963543ec0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350dff0> : (103, 9) : fcmp
+				float : float %13<@ 0x7ff9635088b0>
+				float : float 0.000000e+00<@ 0x7ff9635001f0>
+			Instruction <@ 0x7ff96350e1a8> : (103, 9) : br
+				i1 : i1 %58<@ 0x7ff96350dff0>
+				label : label %61<@ 0x7ff96350e0d0>
+				label : label %59<@ 0x7ff96350e040>
+
+		BasicBlock <@ 0x7ff96350e040> : label %59
+			Instruction <@ 0x7ff96350e230> : (104, 9) : fsub
+				float : float -0.000000e+00<@ 0x7ff9635004d0>
+				float : float %13<@ 0x7ff9635088b0>
+			Instruction <@ 0x7ff96350e370> : (88, 22) : call
+				metadata : metadata !{float %60}<@ 0x7ff96350e280>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963543ec0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350e500> : (90, 9) : call
+				metadata : metadata <badref><@ 0x7ff96353cde0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544300>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350e5b8> : (106, 5) : br
+				label : label %61<@ 0x7ff96350e0d0>
+
+		BasicBlock <@ 0x7ff96350e0d0> : label %61
+			Instruction <@ 0x7ff96350e610> : (206, 14) : phi
+				i1 : i1 true<@ 0x7ff9635009a0>
+				i1 : i1 false<@ 0x7ff9635009e0>
+			Instruction <@ 0x7ff96350e6e0> : (206, 14) : phi
+				float : float %60<@ 0x7ff96350e230>
+				float : float %13<@ 0x7ff9635088b0>
+			Instruction <@ 0x7ff96350ea80> : (93, 12) : call
+				metadata : metadata !{float %.0.i2}<@ 0x7ff96350e940>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635445c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350eb10> : (112, 17) : fmul
+				float : .0.i2<@ 0x7ff96350e6e0>
+				float : float -5.000000e-01<@ 0x7ff963500db0>
+			Instruction <@ 0x7ff96350eb90> : (112, 17) : fmul
+				float : .0.i2<@ 0x7ff96350e6e0>
+				float : float %62<@ 0x7ff96350eb10>
+			Instruction <@ 0x7ff963505558> : (112, 17) : fpext
+				float : float %63<@ 0x7ff96350eb90>
+			Instruction <@ 0x7ff96350af80> : (112, 17) : call
+				double : double %64<@ 0x7ff963505558>
+				double (double)* : exp<@ 0x7ff963500fb0>
+			Instruction <@ 0x7ff96350b038> : (112, 17) : fptrunc
+				double : double %65<@ 0x7ff96350af80>
+			Instruction <@ 0x7ff96350ecf0> : (95, 12) : call
+				metadata : metadata !{float %66}<@ 0x7ff96350b0a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544880>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350eea0> : (94, 12) : call
+				metadata : metadata !{float %66}<@ 0x7ff96350b0a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544a80>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350ef58> : (114, 5) : fpext
+				float : float %66<@ 0x7ff96350b038>
+			Instruction <@ 0x7ff96350efe0> : (114, 5) : fmul
+				double : double %67<@ 0x7ff96350ef58>
+				double : double 0x3FD9884533D43651<@ 0x7ff9635016a0>
+			Instruction <@ 0x7ff96350f048> : (114, 5) : fptrunc
+				double : double %68<@ 0x7ff96350efe0>
+			Instruction <@ 0x7ff96350f1b0> : (94, 12) : call
+				metadata : metadata !{float %69}<@ 0x7ff96350f0a0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544a80>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350f268> : (116, 5) : fpext
+				float : .0.i2<@ 0x7ff96350e6e0>
+			Instruction <@ 0x7ff96350f2f0> : (116, 5) : fmul
+				double : double %70<@ 0x7ff96350f268>
+				double : double 2.316419e-01<@ 0x7ff9635019f0>
+			Instruction <@ 0x7ff96350f358> : (116, 5) : fptrunc
+				double : double %71<@ 0x7ff96350f2f0>
+			Instruction <@ 0x7ff96350f550> : (96, 12) : call
+				metadata : metadata !{float %72}<@ 0x7ff96350f3b0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544e00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350f620> : (117, 5) : fadd
+				float : float %72<@ 0x7ff96350f358>
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+			Instruction <@ 0x7ff96350f760> : (96, 12) : call
+				metadata : metadata !{float %73}<@ 0x7ff96350f670>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544e00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350f830> : (118, 5) : fdiv
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %73<@ 0x7ff96350f620>
+			Instruction <@ 0x7ff96350f970> : (96, 12) : call
+				metadata : metadata !{float %74}<@ 0x7ff96350f880>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963544e00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350fa40> : (119, 5) : fmul
+				float : float %74<@ 0x7ff96350f830>
+				float : float %74<@ 0x7ff96350f830>
+			Instruction <@ 0x7ff96350fc10> : (97, 12) : call
+				metadata : metadata !{float %75}<@ 0x7ff96350fa90>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963545240>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350fce0> : (120, 5) : fmul
+				float : float %74<@ 0x7ff96350f830>
+				float : float %75<@ 0x7ff96350fa40>
+			Instruction <@ 0x7ff96350feb0> : (97, 19) : call
+				metadata : metadata !{float %76}<@ 0x7ff96350fd30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963545500>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96350ff80> : (121, 5) : fmul
+				float : float %74<@ 0x7ff96350f830>
+				float : float %76<@ 0x7ff96350fce0>
+			Instruction <@ 0x7ff963510150> : (98, 12) : call
+				metadata : metadata !{float %77}<@ 0x7ff96350ffd0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635457c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963510220> : (122, 5) : fmul
+				float : float %74<@ 0x7ff96350f830>
+				float : float %77<@ 0x7ff96350ff80>
+			Instruction <@ 0x7ff9635103f0> : (98, 19) : call
+				metadata : metadata !{float %78}<@ 0x7ff963510270>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963545a80>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635104a8> : (124, 5) : fpext
+				float : float %74<@ 0x7ff96350f830>
+			Instruction <@ 0x7ff963510530> : (124, 5) : fmul
+				double : double %79<@ 0x7ff9635104a8>
+				double : double 0x3FD470BF3A92F8EC<@ 0x7ff963502ce0>
+			Instruction <@ 0x7ff963510598> : (124, 5) : fptrunc
+				double : double %80<@ 0x7ff963510530>
+			Instruction <@ 0x7ff963510790> : (99, 20) : call
+				metadata : metadata !{float %81}<@ 0x7ff9635105f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963545d40>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963510848> : (125, 5) : fpext
+				float : float %75<@ 0x7ff96350fa40>
+			Instruction <@ 0x7ff9635108d0> : (125, 5) : fmul
+				double : double %82<@ 0x7ff963510848>
+				double : double 0xBFD6D1F0E5A8325B<@ 0x7ff9635030c0>
+			Instruction <@ 0x7ff963510938> : (125, 5) : fptrunc
+				double : double %83<@ 0x7ff9635108d0>
+			Instruction <@ 0x7ff963510b30> : (100, 12) : call
+				metadata : metadata !{float %84}<@ 0x7ff963510990>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963510be8> : (126, 5) : fpext
+				float : float %76<@ 0x7ff96350fce0>
+			Instruction <@ 0x7ff963510c70> : (126, 5) : fmul
+				double : double %85<@ 0x7ff963510be8>
+				double : double 0x3FFC80EF025F5E68<@ 0x7ff9635034a0>
+			Instruction <@ 0x7ff963510cd8> : (126, 5) : fptrunc
+				double : double %86<@ 0x7ff963510c70>
+			Instruction <@ 0x7ff963510ed0> : (100, 22) : call
+				metadata : metadata !{float %87}<@ 0x7ff963510d30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635462c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963510fa0> : (127, 5) : fadd
+				float : float %84<@ 0x7ff963510938>
+				float : float %87<@ 0x7ff963510cd8>
+			Instruction <@ 0x7ff9635110e0> : (100, 12) : call
+				metadata : metadata !{float %88}<@ 0x7ff963510ff0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963511198> : (128, 5) : fpext
+				float : float %77<@ 0x7ff96350ff80>
+			Instruction <@ 0x7ff963511220> : (128, 5) : fmul
+				double : double %89<@ 0x7ff963511198>
+				double : double 0xBFFD23DD4EF278D0<@ 0x7ff963501e30>
+			Instruction <@ 0x7ff963511288> : (128, 5) : fptrunc
+				double : double %90<@ 0x7ff963511220>
+			Instruction <@ 0x7ff9635113f0> : (100, 22) : call
+				metadata : metadata !{float %91}<@ 0x7ff9635112e0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635462c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635114c0> : (129, 5) : fadd
+				float : float %88<@ 0x7ff963510fa0>
+				float : float %91<@ 0x7ff963511288>
+			Instruction <@ 0x7ff963511600> : (100, 12) : call
+				metadata : metadata !{float %92}<@ 0x7ff963511510>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635116b8> : (130, 5) : fpext
+				float : float %78<@ 0x7ff963510220>
+			Instruction <@ 0x7ff963511740> : (130, 5) : fmul
+				double : double %93<@ 0x7ff9635116b8>
+				double : double 0x3FF548CDD6F42943<@ 0x7ff9635040d0>
+			Instruction <@ 0x7ff9635117a8> : (130, 5) : fptrunc
+				double : double %94<@ 0x7ff963511740>
+			Instruction <@ 0x7ff963511910> : (100, 22) : call
+				metadata : metadata !{float %95}<@ 0x7ff963511800>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635462c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635119e0> : (131, 5) : fadd
+				float : float %92<@ 0x7ff9635114c0>
+				float : float %95<@ 0x7ff9635117a8>
+			Instruction <@ 0x7ff963511b20> : (100, 12) : call
+				metadata : metadata !{float %96}<@ 0x7ff963511a30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963511bf0> : (133, 5) : fadd
+				float : float %81<@ 0x7ff963510598>
+				float : float %96<@ 0x7ff9635119e0>
+			Instruction <@ 0x7ff963511d30> : (99, 20) : call
+				metadata : metadata !{float %97}<@ 0x7ff963511c40>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963545d40>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963511e00> : (134, 5) : fmul
+				float : float %69<@ 0x7ff96350f048>
+				float : float %97<@ 0x7ff963511bf0>
+			Instruction <@ 0x7ff963511fd0> : (99, 12) : call
+				metadata : metadata !{float %98}<@ 0x7ff963511e50>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546a00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635120a0> : (135, 5) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %98<@ 0x7ff963511e00>
+			Instruction <@ 0x7ff9635121e0> : (99, 12) : call
+				metadata : metadata !{float %99}<@ 0x7ff9635120f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546a00>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963512390> : (92, 12) : call
+				metadata : metadata !{float %99}<@ 0x7ff9635120f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546cc0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635125a8> : (139, 9) : br
+				i1 : sign.0.i1<@ 0x7ff96350e610>
+				label : CNDF.exit4<@ 0x7ff9635124c0>
+				label : label %100<@ 0x7ff963512430>
+
+		BasicBlock <@ 0x7ff963512430> : label %100
+			Instruction <@ 0x7ff963512630> : (140, 9) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : float %99<@ 0x7ff9635120a0>
+			Instruction <@ 0x7ff963512780> : (92, 12) : call
+				metadata : metadata !{float %101}<@ 0x7ff963512690>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963546cc0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963512838> : (141, 5) : br
+				label : CNDF.exit4<@ 0x7ff9635124c0>
+
+		BasicBlock <@ 0x7ff9635124c0> : CNDF.exit4
+			Instruction <@ 0x7ff963512890> : (206, 14) : phi
+				float : float %101<@ 0x7ff963512630>
+				float : float %99<@ 0x7ff9635120a0>
+			Instruction <@ 0x7ff963512a70> : (174, 12) : call
+				metadata : metadata !{float %OutputX.0.i3}<@ 0x7ff9635128f0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f8f0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963512b28> : (208, 5) : fpext
+				float : strike<@ 0x7ff963505360>
+			Instruction <@ 0x7ff963512bb0> : (208, 31) : fmul
+				float : rate<@ 0x7ff9635053a0>
+				float : time<@ 0x7ff963505420>
+			Instruction <@ 0x7ff963512c40> : (208, 31) : fsub
+				float : float -0.000000e+00<@ 0x7ff9635004d0>
+				float : float %103<@ 0x7ff963512bb0>
+			Instruction <@ 0x7ff963512cb8> : (208, 31) : fpext
+				float : float %104<@ 0x7ff963512c40>
+			Instruction <@ 0x7ff963512d70> : (208, 31) : call
+				double : double %105<@ 0x7ff963512cb8>
+				double (double)* : exp<@ 0x7ff963500fb0>
+			Instruction <@ 0x7ff963512e40> : (208, 31) : fmul
+				double : double %102<@ 0x7ff963512b28>
+				double : double %106<@ 0x7ff963512d70>
+			Instruction <@ 0x7ff963512ea8> : (208, 31) : fptrunc
+				double : double %107<@ 0x7ff963512e40>
+			Instruction <@ 0x7ff963513090> : (172, 12) : call
+				metadata : metadata !{float %108}<@ 0x7ff963512f00>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352f670>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963513160> : (209, 9) : icmp
+				i32 : otype<@ 0x7ff963505460>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963513318> : (209, 9) : br
+				i1 : i1 %109<@ 0x7ff963513160>
+				label : label %114<@ 0x7ff963513240>
+				label : label %110<@ 0x7ff9635131b0>
+
+		BasicBlock <@ 0x7ff9635131b0> : label %110
+			Instruction <@ 0x7ff9635133b0> : (210, 9) : fmul
+				float : OutputX.0.i<@ 0x7ff96350db90>
+				float : sptprice<@ 0x7ff963505320>
+			Instruction <@ 0x7ff963513430> : (210, 9) : fmul
+				float : OutputX.0.i3<@ 0x7ff963512890>
+				float : float %108<@ 0x7ff963512ea8>
+			Instruction <@ 0x7ff9635134b0> : (210, 9) : fsub
+				float : float %111<@ 0x7ff9635133b0>
+				float : float %112<@ 0x7ff963513430>
+			Instruction <@ 0x7ff963513660> : (154, 12) : call
+				metadata : metadata !{float %113}<@ 0x7ff963513510>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e3b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635137a8> : (211, 5) : br
+				label : label %120<@ 0x7ff963513700>
+
+		BasicBlock <@ 0x7ff963513240> : label %114
+			Instruction <@ 0x7ff963513830> : (212, 9) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : OutputX.0.i<@ 0x7ff96350db90>
+			Instruction <@ 0x7ff9635139c0> : (175, 12) : call
+				metadata : metadata !{float %115}<@ 0x7ff963513880>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352da60>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963513a90> : (213, 9) : fsub
+				float : float 1.000000e+00<@ 0x7ff963501d60>
+				float : OutputX.0.i3<@ 0x7ff963512890>
+			Instruction <@ 0x7ff963513c50> : (176, 12) : call
+				metadata : metadata !{float %116}<@ 0x7ff963513ae0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352dba0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963513d20> : (214, 9) : fmul
+				float : float %116<@ 0x7ff963513a90>
+				float : float %108<@ 0x7ff963512ea8>
+			Instruction <@ 0x7ff963513da0> : (214, 9) : fmul
+				float : float %115<@ 0x7ff963513830>
+				float : sptprice<@ 0x7ff963505320>
+			Instruction <@ 0x7ff963513e30> : (214, 9) : fsub
+				float : float %117<@ 0x7ff963513d20>
+				float : float %118<@ 0x7ff963513da0>
+			Instruction <@ 0x7ff963513f70> : (154, 12) : call
+				metadata : metadata !{float %119}<@ 0x7ff963513e90>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96352e3b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963514028> : (0, 0) : br
+				label : label %120<@ 0x7ff963513700>
+
+		BasicBlock <@ 0x7ff963513700> : label %120
+			Instruction <@ 0x7ff963514080> : (0, 0) : phi
+				float : float %113<@ 0x7ff9635134b0>
+				float : float %119<@ 0x7ff963513e30>
+			Instruction <@ 0x7ff963514148> : (217, 5) : ret
+				float : OptionPrice.0<@ 0x7ff963514080>
+
+	Function <@ 0x7ff9635071c0> : log : Declaration : NonIntrinsic
+		ArgList :
+			double %0<@ 0x7ff9635141d0>
+
+	Function <@ 0x7ff963514260> : bs_thread : Definition : NonIntrinsic
+		ArgList :
+			tid_ptr<@ 0x7ff963514390>
+
+		BasicBlock <@ 0x7ff9635144c0> : label %0
+			Instruction <@ 0x7ff963514690> : (276, 21) : call
+				metadata : metadata !{i8* %tid_ptr}<@ 0x7ff963514550>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635301d0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963514748> : (281, 5) : bitcast
+				i8* : tid_ptr<@ 0x7ff963514390>
+			Instruction <@ 0x7ff9635147c8> : (281, 5) : load
+				i32* : i32* %1<@ 0x7ff963514748>
+			Instruction <@ 0x7ff9635149b0> : (281, 9) : call
+				metadata : metadata !{i32 %2}<@ 0x7ff963514840>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530810>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963514a68> : (282, 5) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff963514ad8> : (282, 5) : load
+				i32* : nThreads<@ 0x7ff9634049f8>
+			Instruction <@ 0x7ff963514bc0> : (282, 5) : sdiv
+				i32 : i32 %3<@ 0x7ff963514a68>
+				i32 : i32 %4<@ 0x7ff963514ad8>
+			Instruction <@ 0x7ff963514c40> : (282, 5) : mul
+				i32 : i32 %5<@ 0x7ff963514bc0>
+				i32 : i32 %2<@ 0x7ff9635147c8>
+			Instruction <@ 0x7ff963514e10> : (282, 9) : call
+				metadata : metadata !{i32 %6}<@ 0x7ff963514ca0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530950>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963514ee0> : (283, 5) : add
+				i32 : i32 %6<@ 0x7ff963514c40>
+				i32 : i32 %5<@ 0x7ff963514bc0>
+			Instruction <@ 0x7ff9635150a0> : (283, 9) : call
+				metadata : metadata !{i32 %7}<@ 0x7ff963514f30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530a90>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635152d0> : (278, 12) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530450>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635153a0> : (290, 14) : icmp
+				i32 : i32 %5<@ 0x7ff963514bc0>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963515488> : (295, 21) : load
+				float** : sptprice<@ 0x7ff963404ad8>
+			Instruction <@ 0x7ff963515518> : (295, 21) : load
+				float** : strike<@ 0x7ff963404b88>
+			Instruction <@ 0x7ff963515588> : (295, 21) : load
+				float** : rate<@ 0x7ff963404c38>
+			Instruction <@ 0x7ff9635155f8> : (295, 21) : load
+				float** : volatility<@ 0x7ff963404ce8>
+			Instruction <@ 0x7ff963515688> : (295, 21) : load
+				float** : otime<@ 0x7ff963404d98>
+			Instruction <@ 0x7ff963515718> : (295, 21) : load
+				i32** : otype<@ 0x7ff963404e78>
+			Instruction <@ 0x7ff9635157a8> : (298, 13) : load
+				float** : prices<@ 0x7ff963404f28>
+			Instruction <@ 0x7ff9635159f8> : (0, 0) : br
+				i1 : i1 %8<@ 0x7ff9635153a0>
+				label : vector.body.preheader<@ 0x7ff9635158e0>
+				label : .split.us<@ 0x7ff963515820>
+
+		BasicBlock <@ 0x7ff9635158e0> : vector.body.preheader
+			Instruction <@ 0x7ff963515ab8> : (285, 27) : br
+				label : vector.body<@ 0x7ff963515960>
+
+		BasicBlock <@ 0x7ff963515960> : vector.body
+			Instruction <@ 0x7ff963515ba8> : (0, 0) : br
+				label : .us-lcssa.us<@ 0x7ff963515a50>
+
+		BasicBlock <@ 0x7ff963515820> : .split.us
+			Instruction <@ 0x7ff963515c18> : (0, 0) : sext
+				i32 : i32 %6<@ 0x7ff963514c40>
+			Instruction <@ 0x7ff963515df8> : (285, 10) : br
+				label : .lr.ph.us<@ 0x7ff963515890>
+
+		BasicBlock <@ 0x7ff963515e60> : label %17
+			Instruction <@ 0x7ff963515f60> : (285, 27) : add
+				i32 : j.02.us<@ 0x7ff963516430>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff9635160b0> : (278, 12) : call
+				metadata : metadata !{i32 %18}<@ 0x7ff963515fb0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530450>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635161c0> : (285, 10) : icmp
+				i32 : j.02.us<@ 0x7ff963516430>
+				i32 : i32 99<@ 0x7ff963516150>
+			Instruction <@ 0x7ff963516328> : (285, 10) : br
+				i1 : exitcond3<@ 0x7ff9635161c0>
+				label : .lr.ph.us<@ 0x7ff963515890>
+				label : .us-lcssa.us.loopexit<@ 0x7ff963516210>
+
+		BasicBlock <@ 0x7ff963516390> : label %19
+			Instruction <@ 0x7ff963516490> : (0, 0) : phi
+				i64 : i64 %16<@ 0x7ff963515c18>
+				i64 : indvars.iv.next<@ 0x7ff963517270>
+			Instruction <@ 0x7ff963516590> : (295, 21) : getelementptr
+				float* : float* %9<@ 0x7ff963515488>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516608> : (295, 21) : load
+				float* : float* %20<@ 0x7ff963516590>
+			Instruction <@ 0x7ff9635166c0> : (295, 21) : getelementptr
+				float* : float* %10<@ 0x7ff963515518>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516728> : (295, 21) : load
+				float* : float* %22<@ 0x7ff9635166c0>
+			Instruction <@ 0x7ff9635167e0> : (295, 21) : getelementptr
+				float* : float* %11<@ 0x7ff963515588>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516848> : (295, 21) : load
+				float* : float* %24<@ 0x7ff9635167e0>
+			Instruction <@ 0x7ff963516900> : (295, 21) : getelementptr
+				float* : float* %12<@ 0x7ff9635155f8>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516968> : (295, 21) : load
+				float* : float* %26<@ 0x7ff963516900>
+			Instruction <@ 0x7ff963516a20> : (295, 21) : getelementptr
+				float* : float* %13<@ 0x7ff963515688>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516a88> : (295, 21) : load
+				float* : float* %28<@ 0x7ff963516a20>
+			Instruction <@ 0x7ff963516b40> : (295, 21) : getelementptr
+				i32* : i32* %14<@ 0x7ff963515718>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff963516ba8> : (295, 21) : load
+				i32* : i32* %30<@ 0x7ff963516b40>
+			Instruction <@ 0x7ff963516d90> : (295, 21) : call
+				float : float %21<@ 0x7ff963516608>
+				float : float %23<@ 0x7ff963516728>
+				float : float %25<@ 0x7ff963516848>
+				float : float %27<@ 0x7ff963516968>
+				float : float %29<@ 0x7ff963516a88>
+				i32 : i32 %31<@ 0x7ff963516ba8>
+				float : float undef<@ 0x7ff963516c30>
+				float (float, float, float, float, float, i32, float)* : BlkSchlsEqEuroNoDiv<@ 0x7ff963503b20>
+			Instruction <@ 0x7ff963517050> : (279, 12) : call
+				metadata : metadata !{float %32}<@ 0x7ff963515c70>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963530590>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963517120> : (298, 13) : getelementptr
+				float* : float* %15<@ 0x7ff9635157a8>
+				i64 : indvars.iv<@ 0x7ff963516490>
+			Instruction <@ 0x7ff9635171a0> : (298, 13) : store
+				float : float %32<@ 0x7ff963516d90>
+				float* : float* %33<@ 0x7ff963517120>
+			Instruction <@ 0x7ff963517270> : (290, 14) : add
+				i64 : indvars.iv<@ 0x7ff963516490>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff9635172d8> : (290, 14) : trunc
+				i64 : indvars.iv.next<@ 0x7ff963517270>
+			Instruction <@ 0x7ff963517360> : (290, 14) : icmp
+				i32 : i32 %34<@ 0x7ff9635172d8>
+				i32 : i32 %7<@ 0x7ff963514ee0>
+			Instruction <@ 0x7ff9635173f8> : (290, 14) : br
+				i1 : i1 %35<@ 0x7ff963517360>
+				label : label %17<@ 0x7ff963515e60>
+				label : label %19<@ 0x7ff963516390>
+
+		BasicBlock <@ 0x7ff963515890> : .lr.ph.us
+			Instruction <@ 0x7ff963516430> : (0, 0) : phi
+				i32 : i32 0<@ 0x7ff9634047f0>
+				i32 : i32 %18<@ 0x7ff963515f60>
+			Instruction <@ 0x7ff963517468> : (290, 14) : br
+				label : label %19<@ 0x7ff963516390>
+
+		BasicBlock <@ 0x7ff963516210> : .us-lcssa.us.loopexit
+			Instruction <@ 0x7ff9635174d8> : (0, 0) : br
+				label : .us-lcssa.us<@ 0x7ff963515a50>
+
+		BasicBlock <@ 0x7ff963515a50> : .us-lcssa.us
+			Instruction <@ 0x7ff963517548> : (311, 5) : ret
+				i32 : i32 0<@ 0x7ff9634047f0>
+
+	Function <@ 0x7ff963516df0> : main : Definition : NonIntrinsic
+		ArgList :
+			argc<@ 0x7ff963516e90>
+			argv<@ 0x7ff963516ed0>
+
+		BasicBlock <@ 0x7ff9635175e0> : label %0
+			Instruction <@ 0x7ff963517780> : (315, 15) : call
+				metadata : metadata !{i32 %argc}<@ 0x7ff963517670>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635317e0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963517980> : (315, 28) : call
+				metadata : metadata !{i8** %argv}<@ 0x7ff963517820>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963531920>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963517ca0> : (330, 9) : call
+				i8* : i8* getelementptr inbounds ([23 x i8]* @str, i64 0, i64 0)<@ 0x7ff963517aa8>
+				i32 (i8*)* : puts<@ 0x7ff963517b80>
+			Instruction <@ 0x7ff963517f10> : (331, 2) : call
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7ff963517d60>
+				i32 (%struct.__sFILE*)* : fflush<@ 0x7ff963517da0>
+			Instruction <@ 0x7ff963518030> : (337, 8) : icmp
+				i32 : argc<@ 0x7ff963516e90>
+				i32 : i32 4<@ 0x7ff963517fc0>
+			Instruction <@ 0x7ff963518208> : (337, 8) : br
+				i1 : i1 %2<@ 0x7ff963518030>
+				label : label %3<@ 0x7ff963518130>
+				label : label %6<@ 0x7ff9635180a0>
+
+		BasicBlock <@ 0x7ff963518130> : label %3
+			Instruction <@ 0x7ff963518278> : (339, 17) : load
+				i8** : argv<@ 0x7ff963516ed0>
+			Instruction <@ 0x7ff963518598> : (339, 17) : call
+				i8* : i8* getelementptr inbounds ([48 x i8]* @.str1, i64 0, i64 0)<@ 0x7ff963518388>
+				i8* : i8* %4<@ 0x7ff963518278>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff9635187c0> : (340, 17) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963518860> : (340, 17) : unreachable
+
+		BasicBlock <@ 0x7ff9635180a0> : label %6
+			Instruction <@ 0x7ff9635188f0> : (342, 16) : getelementptr
+				i8** : argv<@ 0x7ff963516ed0>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff963518968> : (342, 16) : load
+				i8** : i8** %7<@ 0x7ff9635188f0>
+			Instruction <@ 0x7ff963518b90> : (342, 16) : call
+				i8* : i8* %8<@ 0x7ff963518968>
+				i32 (i8*)* : atoi<@ 0x7ff963518a70>
+			Instruction <@ 0x7ff963518c60> : (342, 16) : store
+				i32 : i32 %9<@ 0x7ff963518b90>
+				i32* : nThreads<@ 0x7ff9634049f8>
+			Instruction <@ 0x7ff963518d40> : (343, 5) : getelementptr
+				i8** : argv<@ 0x7ff963516ed0>
+				i64 : i64 2<@ 0x7ff963518cd0>
+			Instruction <@ 0x7ff963518da8> : (343, 5) : load
+				i8** : i8** %10<@ 0x7ff963518d40>
+			Instruction <@ 0x7ff963518fa0> : (343, 11) : call
+				metadata : metadata !{i8* %11}<@ 0x7ff963518e20>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539140>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635190b0> : (344, 5) : getelementptr
+				i8** : argv<@ 0x7ff963516ed0>
+				i64 : i64 3<@ 0x7ff963519040>
+			Instruction <@ 0x7ff963519118> : (344, 5) : load
+				i8** : i8** %12<@ 0x7ff9635190b0>
+			Instruction <@ 0x7ff963519300> : (344, 11) : call
+				metadata : metadata !{i8* %13}<@ 0x7ff963519180>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539280>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963519668> : (347, 12) : call
+				i8* : i8* %11<@ 0x7ff963518da8>
+				i8* : i8* getelementptr inbounds ([2 x i8]* @.str2, i64 0, i64 0)<@ 0x7ff963519428>
+				%struct.__sFILE* (i8*, i8*)* : _fopen<@ 0x7ff963519500>
+			Instruction <@ 0x7ff963519870> : (317, 11) : call
+				metadata : metadata !{%struct.__sFILE* %14}<@ 0x7ff963519700>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963531a60>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963519940> : (348, 8) : icmp
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7ff963517d60>
+			Instruction <@ 0x7ff963519af8> : (348, 8) : br
+				i1 : i1 %15<@ 0x7ff963519940>
+				label : label %18<@ 0x7ff963519a20>
+				label : label %16<@ 0x7ff963519990>
+
+		BasicBlock <@ 0x7ff963519990> : label %16
+			Instruction <@ 0x7ff963519d48> : (349, 7) : call
+				i8* : i8* getelementptr inbounds ([34 x i8]* @.str3, i64 0, i64 0)<@ 0x7ff963518a38>
+				i8* : i8* %11<@ 0x7ff963518da8>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff963519de0> : (350, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963519e80> : (350, 7) : unreachable
+
+		BasicBlock <@ 0x7ff963519a20> : label %18
+			Instruction <@ 0x7ff96351a1a0> : (352, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				i8* : i8* getelementptr inbounds ([3 x i8]* @.str4, i64 0, i64 0)<@ 0x7ff963519f98>
+				i32* : numOptions<@ 0x7ff963404868>
+				i32 (%struct.__sFILE*, i8*, ...)* : fscanf<@ 0x7ff96351a050>
+			Instruction <@ 0x7ff96351a3b0> : (322, 9) : call
+				metadata : metadata !{i32 %19}<@ 0x7ff96351a240>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96351a480> : (353, 8) : icmp
+				i32 : i32 %19<@ 0x7ff96351a1a0>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff96351a638> : (353, 8) : br
+				i1 : i1 %20<@ 0x7ff96351a480>
+				label : label %21<@ 0x7ff96351a560>
+				label : label %24<@ 0x7ff96351a4d0>
+
+		BasicBlock <@ 0x7ff96351a560> : label %21
+			Instruction <@ 0x7ff96351a838> : (354, 7) : call
+				i8* : i8* getelementptr inbounds ([39 x i8]* @.str5, i64 0, i64 0)<@ 0x7ff96351a738>
+				i8* : i8* %11<@ 0x7ff963518da8>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff96351aa00> : (355, 7) : call
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff96351aae0> : (356, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff96351ab80> : (356, 7) : unreachable
+
+		BasicBlock <@ 0x7ff96351a4d0> : label %24
+			Instruction <@ 0x7ff96351abf8> : (358, 8) : load
+				i32* : nThreads<@ 0x7ff9634049f8>
+			Instruction <@ 0x7ff96351ac98> : (358, 8) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff96351ad20> : (358, 8) : icmp
+				i32 : i32 %25<@ 0x7ff96351abf8>
+				i32 : i32 %26<@ 0x7ff96351ac98>
+			Instruction <@ 0x7ff96351aed8> : (358, 8) : br
+				i1 : i1 %27<@ 0x7ff96351ad20>
+				label : label %30<@ 0x7ff96351ae00>
+				label : label %28<@ 0x7ff96351ad70>
+
+		BasicBlock <@ 0x7ff96351ad70> : label %28
+			Instruction <@ 0x7ff96351b0c0> : (359, 7) : call
+				i8* : i8* getelementptr inbounds ([81 x i8]* @str18, i64 0, i64 0)<@ 0x7ff96351afd8>
+				i32 (i8*)* : puts<@ 0x7ff963517b80>
+			Instruction <@ 0x7ff96351b138> : (360, 7) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff96351b1e0> : (360, 7) : store
+				i32 : i32 %29<@ 0x7ff96351b138>
+				i32* : nThreads<@ 0x7ff9634049f8>
+			Instruction <@ 0x7ff96351b268> : (361, 5) : br
+				label : label %30<@ 0x7ff96351ae00>
+
+		BasicBlock <@ 0x7ff96351ae00> : label %30
+			Instruction <@ 0x7ff96351b2c0> : (0, 0) : phi
+				i32 : i32 %29<@ 0x7ff96351b138>
+				i32 : i32 %26<@ 0x7ff96351ac98>
+			Instruction <@ 0x7ff96351b370> : (364, 8) : phi
+				i32 : i32 %29<@ 0x7ff96351b138>
+				i32 : i32 %25<@ 0x7ff96351abf8>
+			Instruction <@ 0x7ff963519b80> : (364, 8) : icmp
+				i32 : i32 %32<@ 0x7ff96351b370>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff96351b6f8> : (364, 8) : br
+				i1 : i1 %33<@ 0x7ff963519b80>
+				label : label %34<@ 0x7ff96351b620>
+				label : label %35<@ 0x7ff963519be0>
+
+		BasicBlock <@ 0x7ff96351b620> : label %34
+			Instruction <@ 0x7ff96351b8e0> : (365, 9) : call
+				i8* : i8* getelementptr inbounds ([45 x i8]* @str17, i64 0, i64 0)<@ 0x7ff96351b7f8>
+				i32 (i8*)* : puts<@ 0x7ff963517b80>
+			Instruction <@ 0x7ff96351b970> : (366, 9) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff96351ba10> : (366, 9) : unreachable
+
+		BasicBlock <@ 0x7ff963519be0> : label %35
+			Instruction <@ 0x7ff96351ba88> : (371, 25) : sext
+				i32 : i32 %31<@ 0x7ff96351b2c0>
+			Instruction <@ 0x7ff96351bb20> : (371, 25) : mul
+				i64 : i64 %36<@ 0x7ff96351ba88>
+				i64 : i64 36<@ 0x7ff96351ae50>
+			Instruction <@ 0x7ff96351bd10> : (371, 25) : call
+				i64 : i64 %37<@ 0x7ff96351bb20>
+				i8* (i64)* : malloc<@ 0x7ff96351bba0>
+			Instruction <@ 0x7ff96351bdc8> : (371, 25) : bitcast
+				i8* : i8* %38<@ 0x7ff96351bd10>
+			Instruction <@ 0x7ff96351be60> : (371, 25) : store
+				%struct.OptionData_* : %struct.OptionData_* %39<@ 0x7ff96351bdc8>
+				%struct.OptionData_** : data<@ 0x7ff963405868>
+			Instruction <@ 0x7ff96351bf10> : (372, 23) : shl
+				i64 : i64 %36<@ 0x7ff96351ba88>
+				i64 : i64 2<@ 0x7ff963518cd0>
+			Instruction <@ 0x7ff96351bfb0> : (372, 23) : call
+				i64 : i64 %40<@ 0x7ff96351bf10>
+				i8* (i64)* : malloc<@ 0x7ff96351bba0>
+			Instruction <@ 0x7ff96351c068> : (372, 23) : bitcast
+				i8* : i8* %41<@ 0x7ff96351bfb0>
+			Instruction <@ 0x7ff96351c100> : (372, 23) : store
+				float* : float* %42<@ 0x7ff96351c068>
+				float** : prices<@ 0x7ff963404f28>
+			Instruction <@ 0x7ff96351c2a0> : (319, 9) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963538940>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96351c370> : (373, 11) : icmp
+				i32 : i32 %31<@ 0x7ff96351b2c0>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff96351c578> : (373, 11) : br
+				i1 : i1 %43<@ 0x7ff96351c370>
+				label : ._crit_edge14<@ 0x7ff96351c490>
+				label : .lr.ph13.preheader<@ 0x7ff96351c3c0>
+
+		BasicBlock <@ 0x7ff96351c3c0> : .lr.ph13.preheader
+			Instruction <@ 0x7ff96351c668> : (375, 14) : br
+				label : .lr.ph13<@ 0x7ff96351c440>
+
+		BasicBlock <@ 0x7ff96351c6d0> : label %44
+			Instruction <@ 0x7ff96351c778> : (373, 11) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff96351c898> : (373, 11) : trunc
+				i64 : indvars.iv.next19<@ 0x7ff96351db20>
+			Instruction <@ 0x7ff96351c920> : (373, 11) : icmp
+				i32 : i32 %46<@ 0x7ff96351c898>
+				i32 : i32 %45<@ 0x7ff96351c778>
+			Instruction <@ 0x7ff96351cb58> : (373, 11) : br
+				i1 : i1 %47<@ 0x7ff96351c920>
+				label : ._crit_edge14.loopexit<@ 0x7ff96351ca40>
+				label : ._crit_edge20<@ 0x7ff96351c980>
+
+		BasicBlock <@ 0x7ff96351c980> : ._crit_edge20
+			Instruction <@ 0x7ff96351cbd8> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7ff963405868>
+			Instruction <@ 0x7ff96351cc78> : (373, 11) : br
+				label : .lr.ph13<@ 0x7ff96351c440>
+
+		BasicBlock <@ 0x7ff96351c440> : .lr.ph13
+			Instruction <@ 0x7ff96351ccd0> : (0, 0) : phi
+				%struct.OptionData_* : .pre<@ 0x7ff96351cbd8>
+				%struct.OptionData_* : %struct.OptionData_* %39<@ 0x7ff96351bdc8>
+			Instruction <@ 0x7ff96351cd30> : (0, 0) : phi
+				i64 : indvars.iv.next19<@ 0x7ff96351db20>
+				i64 : i64 0<@ 0x7ff963406af0>
+			Instruction <@ 0x7ff96351ce28> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff96351cec8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff96351cfb8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 2<@ 0x7ff96351cf30>
+			Instruction <@ 0x7ff96351d0a8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 3<@ 0x7ff96351d020>
+			Instruction <@ 0x7ff96351d158> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 4<@ 0x7ff963517fc0>
+			Instruction <@ 0x7ff96351d248> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 5<@ 0x7ff96351d1c0>
+			Instruction <@ 0x7ff96351d338> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 6<@ 0x7ff96351d2b0>
+			Instruction <@ 0x7ff96351d428> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 7<@ 0x7ff96351d3a0>
+			Instruction <@ 0x7ff96351d518> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %48<@ 0x7ff96351ccd0>
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i32 : i32 8<@ 0x7ff96351d490>
+			Instruction <@ 0x7ff96351d8c0> : (375, 14) : call
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				i8* : i8* getelementptr inbounds ([27 x i8]* @.str8, i64 0, i64 0)<@ 0x7ff96351d638>
+				float* : float* %49<@ 0x7ff96351ce28>
+				float* : float* %50<@ 0x7ff96351cec8>
+				float* : float* %51<@ 0x7ff96351cfb8>
+				float* : float* %52<@ 0x7ff96351d0a8>
+				float* : float* %53<@ 0x7ff96351d158>
+				float* : float* %54<@ 0x7ff96351d248>
+				i8* : i8* %55<@ 0x7ff96351d338>
+				float* : float* %56<@ 0x7ff96351d428>
+				float* : float* %57<@ 0x7ff96351d518>
+				i32 (%struct.__sFILE*, i8*, ...)* : fscanf<@ 0x7ff96351a050>
+			Instruction <@ 0x7ff96351d990> : (322, 9) : call
+				metadata : metadata !{i32 %58}<@ 0x7ff96351d710>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96351daa0> : (376, 12) : icmp
+				i32 : i32 %58<@ 0x7ff96351d8c0>
+				i32 : i32 9<@ 0x7ff96351da30>
+			Instruction <@ 0x7ff96351db20> : (373, 11) : add
+				i64 : indvars.iv18<@ 0x7ff96351cd30>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff96351dd48> : (376, 12) : br
+				i1 : i1 %59<@ 0x7ff96351daa0>
+				label : label %60<@ 0x7ff96351c830>
+				label : label %44<@ 0x7ff96351c6d0>
+
+		BasicBlock <@ 0x7ff96351c830> : label %60
+			Instruction <@ 0x7ff963516f78> : (377, 11) : call
+				i8* : i8* getelementptr inbounds ([39 x i8]* @.str5, i64 0, i64 0)<@ 0x7ff96351a738>
+				i8* : i8* %11<@ 0x7ff963518da8>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff96351ddd0> : (378, 11) : call
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff96351dec0> : (379, 11) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff96351df60> : (379, 11) : unreachable
+
+		BasicBlock <@ 0x7ff96351ca40> : ._crit_edge14.loopexit
+			Instruction <@ 0x7ff96351dfd8> : (0, 0) : br
+				label : ._crit_edge14<@ 0x7ff96351c490>
+
+		BasicBlock <@ 0x7ff96351c490> : ._crit_edge14
+			Instruction <@ 0x7ff96351e060> : (382, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %14<@ 0x7ff963519668>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff96351e180> : (322, 9) : call
+				metadata : metadata !{i32 %63}<@ 0x7ff96351e0c0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96351e250> : (383, 8) : icmp
+				i32 : i32 %63<@ 0x7ff96351e060>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff96351b588> : (383, 8) : br
+				i1 : i1 %64<@ 0x7ff96351e250>
+				label : label %65<@ 0x7ff96351b4b0>
+				label : label %67<@ 0x7ff96351b420>
+
+		BasicBlock <@ 0x7ff96351b4b0> : label %65
+			Instruction <@ 0x7ff96351e408> : (384, 7) : call
+				i8* : i8* getelementptr inbounds ([35 x i8]* @.str9, i64 0, i64 0)<@ 0x7ff96351e308>
+				i8* : i8* %11<@ 0x7ff963518da8>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff96351e4d0> : (385, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff96351e570> : (385, 7) : unreachable
+
+		BasicBlock <@ 0x7ff96351b420> : label %67
+			Instruction <@ 0x7ff96351e5d8> : (391, 5) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff96351e7b8> : (391, 5) : call
+				i8* : i8* getelementptr inbounds ([20 x i8]* @.str10, i64 0, i64 0)<@ 0x7ff96351e698>
+				i32 : i32 %68<@ 0x7ff96351e5d8>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff96351e9c8> : (392, 5) : call
+				i8* : i8* getelementptr inbounds ([17 x i8]* @.str11, i64 0, i64 0)<@ 0x7ff96351e8a8>
+				i32 : i32 100<@ 0x7ff96351b470>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff96351ea88> : (397, 25) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff96351eb30> : (397, 25) : mul
+				i32 : i32 %71<@ 0x7ff96351ea88>
+				i32 : i32 5<@ 0x7ff96351d1c0>
+			Instruction <@ 0x7ff96351eb98> : (397, 25) : sext
+				i32 : i32 %72<@ 0x7ff96351eb30>
+			Instruction <@ 0x7ff96351ec20> : (397, 25) : shl
+				i64 : i64 %73<@ 0x7ff96351eb98>
+				i64 : i64 2<@ 0x7ff963518cd0>
+			Instruction <@ 0x7ff96351ecf0> : (397, 25) : add
+				i64 : i64 %74<@ 0x7ff96351ec20>
+				i64 : i64 256<@ 0x7ff96351ec80>
+			Instruction <@ 0x7ff96351eda0> : (397, 25) : call
+				i64 : i64 %75<@ 0x7ff96351ecf0>
+				i8* (i64)* : malloc<@ 0x7ff96351bba0>
+			Instruction <@ 0x7ff96351ee58> : (398, 5) : ptrtoint
+				i8* : i8* %76<@ 0x7ff96351eda0>
+			Instruction <@ 0x7ff96351eef0> : (398, 5) : add
+				i64 : i64 %77<@ 0x7ff96351ee58>
+				i64 : i64 256<@ 0x7ff96351ec80>
+			Instruction <@ 0x7ff96351efc0> : (398, 5) : and
+				i64 : i64 %78<@ 0x7ff96351eef0>
+				i64 : i64 -64<@ 0x7ff96351ef50>
+			Instruction <@ 0x7ff96351f038> : (398, 5) : inttoptr
+				i64 : i64 %79<@ 0x7ff96351efc0>
+			Instruction <@ 0x7ff96351f0d0> : (398, 5) : store
+				float* : float* %80<@ 0x7ff96351f038>
+				float** : sptprice<@ 0x7ff963404ad8>
+			Instruction <@ 0x7ff96351f168> : (399, 5) : sext
+				i32 : i32 %71<@ 0x7ff96351ea88>
+			Instruction <@ 0x7ff96351f1f0> : (399, 5) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : i64 %81<@ 0x7ff96351f168>
+			Instruction <@ 0x7ff96351f280> : (399, 5) : store
+				float* : float* %82<@ 0x7ff96351f1f0>
+				float** : strike<@ 0x7ff963404b88>
+			Instruction <@ 0x7ff96351f330> : (400, 5) : shl
+				i64 : i64 %81<@ 0x7ff96351f168>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff96351f3d0> : (400, 5) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum<@ 0x7ff96351f330>
+			Instruction <@ 0x7ff96351f460> : (400, 5) : store
+				float* : float* %83<@ 0x7ff96351f3d0>
+				float** : rate<@ 0x7ff963404c38>
+			Instruction <@ 0x7ff96351f510> : (401, 5) : mul
+				i64 : i64 %81<@ 0x7ff96351f168>
+				i64 : i64 3<@ 0x7ff963519040>
+			Instruction <@ 0x7ff96351f5b0> : (401, 5) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum1<@ 0x7ff96351f510>
+			Instruction <@ 0x7ff96351f640> : (401, 5) : store
+				float* : float* %84<@ 0x7ff96351f5b0>
+				float** : volatility<@ 0x7ff963404ce8>
+			Instruction <@ 0x7ff96351f6f0> : (402, 5) : shl
+				i64 : i64 %81<@ 0x7ff96351f168>
+				i64 : i64 2<@ 0x7ff963518cd0>
+			Instruction <@ 0x7ff96351f790> : (402, 5) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum2<@ 0x7ff96351f6f0>
+			Instruction <@ 0x7ff96351f820> : (402, 5) : store
+				float* : float* %85<@ 0x7ff96351f790>
+				float** : otime<@ 0x7ff963404d98>
+			Instruction <@ 0x7ff96351f8d0> : (404, 23) : shl
+				i64 : i64 %81<@ 0x7ff96351f168>
+				i64 : i64 2<@ 0x7ff963518cd0>
+			Instruction <@ 0x7ff96351f950> : (404, 23) : add
+				i64 : i64 %86<@ 0x7ff96351f8d0>
+				i64 : i64 256<@ 0x7ff96351ec80>
+			Instruction <@ 0x7ff96351fa00> : (404, 23) : call
+				i64 : i64 %87<@ 0x7ff96351f950>
+				i8* (i64)* : malloc<@ 0x7ff96351bba0>
+			Instruction <@ 0x7ff96351fab8> : (405, 5) : ptrtoint
+				i8* : i8* %88<@ 0x7ff96351fa00>
+			Instruction <@ 0x7ff96351fb50> : (405, 5) : add
+				i64 : i64 %89<@ 0x7ff96351fab8>
+				i64 : i64 256<@ 0x7ff96351ec80>
+			Instruction <@ 0x7ff96351fbe0> : (405, 5) : and
+				i64 : i64 %90<@ 0x7ff96351fb50>
+				i64 : i64 -64<@ 0x7ff96351ef50>
+			Instruction <@ 0x7ff96351fc58> : (405, 5) : inttoptr
+				i64 : i64 %91<@ 0x7ff96351fbe0>
+			Instruction <@ 0x7ff96351fcf0> : (405, 5) : store
+				i32* : i32* %92<@ 0x7ff96351fc58>
+				i32** : otype<@ 0x7ff963404e78>
+			Instruction <@ 0x7ff96351fe90> : (318, 9) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963538800>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff96351ff60> : (407, 10) : icmp
+				i32 : i32 %71<@ 0x7ff96351ea88>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963520158> : (407, 10) : br
+				i1 : i1 %93<@ 0x7ff96351ff60>
+				label : ._crit_edge10<@ 0x7ff963520050>
+				label : .lr.ph9<@ 0x7ff96351ffb0>
+
+		BasicBlock <@ 0x7ff96351ffb0> : .lr.ph9
+			Instruction <@ 0x7ff9635201d8> : (408, 9) : load
+				%struct.OptionData_** : data<@ 0x7ff963405868>
+			Instruction <@ 0x7ff9635202b8> : (407, 10) : br
+				label : label %95<@ 0x7ff963520000>
+
+		BasicBlock <@ 0x7ff963520000> : label %95
+			Instruction <@ 0x7ff963520390> : (0, 0) : phi
+				i64 : i64 0<@ 0x7ff963406af0>
+				i64 : indvars.iv.next17<@ 0x7ff963521750>
+			Instruction <@ 0x7ff9635204a8> : (408, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 6<@ 0x7ff96351d2b0>
+			Instruction <@ 0x7ff963520528> : (408, 9) : load
+				i8* : i8* %96<@ 0x7ff9635204a8>
+			Instruction <@ 0x7ff963520620> : (408, 9) : icmp
+				i8 : i8 %97<@ 0x7ff963520528>
+				i8 : i8 80<@ 0x7ff9635205b0>
+			Instruction <@ 0x7ff963520688> : (408, 9) : zext
+				i1 : i1 %98<@ 0x7ff963520620>
+			Instruction <@ 0x7ff963520720> : (408, 9) : getelementptr
+				i32* : i32* %92<@ 0x7ff96351fc58>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff9635207b0> : (408, 9) : store
+				i32 : i32 %99<@ 0x7ff963520688>
+				i32* : i32* %100<@ 0x7ff963520720>
+			Instruction <@ 0x7ff963520878> : (409, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff9635208e8> : (409, 9) : load
+				float* : float* %101<@ 0x7ff963520878>
+			Instruction <@ 0x7ff9635209a0> : (409, 9) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff963520a20> : (409, 9) : store
+				float : float %102<@ 0x7ff9635208e8>
+				float* : float* %103<@ 0x7ff9635209a0>
+			Instruction <@ 0x7ff963520ae8> : (410, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff963520b58> : (410, 9) : load
+				float* : float* %104<@ 0x7ff963520ae8>
+			Instruction <@ 0x7ff963520c10> : (410, 9) : add
+				i64 : i64 %81<@ 0x7ff96351f168>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff963520cb0> : (410, 9) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum21<@ 0x7ff963520c10>
+			Instruction <@ 0x7ff963520d40> : (410, 9) : store
+				float : float %105<@ 0x7ff963520b58>
+				float* : float* %106<@ 0x7ff963520cb0>
+			Instruction <@ 0x7ff963520e08> : (411, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 2<@ 0x7ff96351cf30>
+			Instruction <@ 0x7ff963520e78> : (411, 9) : load
+				float* : float* %107<@ 0x7ff963520e08>
+			Instruction <@ 0x7ff963520f30> : (411, 9) : add
+				i64 : .sum<@ 0x7ff96351f330>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff963520fd0> : (411, 9) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum22<@ 0x7ff963520f30>
+			Instruction <@ 0x7ff963521060> : (411, 9) : store
+				float : float %108<@ 0x7ff963520e78>
+				float* : float* %109<@ 0x7ff963520fd0>
+			Instruction <@ 0x7ff963521128> : (412, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 4<@ 0x7ff963517fc0>
+			Instruction <@ 0x7ff963521198> : (412, 9) : load
+				float* : float* %110<@ 0x7ff963521128>
+			Instruction <@ 0x7ff963521250> : (412, 9) : add
+				i64 : .sum1<@ 0x7ff96351f510>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff9635212f0> : (412, 9) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum23<@ 0x7ff963521250>
+			Instruction <@ 0x7ff963521380> : (412, 9) : store
+				float : float %111<@ 0x7ff963521198>
+				float* : float* %112<@ 0x7ff9635212f0>
+			Instruction <@ 0x7ff963521448> : (413, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %94<@ 0x7ff9635201d8>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i32 : i32 5<@ 0x7ff96351d1c0>
+			Instruction <@ 0x7ff9635214b8> : (413, 9) : load
+				float* : float* %113<@ 0x7ff963521448>
+			Instruction <@ 0x7ff963521570> : (413, 9) : add
+				i64 : .sum2<@ 0x7ff96351f6f0>
+				i64 : indvars.iv16<@ 0x7ff963520390>
+			Instruction <@ 0x7ff963521610> : (413, 9) : getelementptr
+				float* : float* %80<@ 0x7ff96351f038>
+				i64 : .sum24<@ 0x7ff963521570>
+			Instruction <@ 0x7ff9635216a0> : (413, 9) : store
+				float : float %114<@ 0x7ff9635214b8>
+				float* : float* %115<@ 0x7ff963521610>
+			Instruction <@ 0x7ff963521750> : (407, 10) : add
+				i64 : indvars.iv16<@ 0x7ff963520390>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff9635217b8> : (407, 10) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff963521828> : (407, 10) : trunc
+				i64 : indvars.iv.next17<@ 0x7ff963521750>
+			Instruction <@ 0x7ff9635218b0> : (407, 10) : icmp
+				i32 : i32 %117<@ 0x7ff963521828>
+				i32 : i32 %116<@ 0x7ff9635217b8>
+			Instruction <@ 0x7ff96351dc08> : (407, 10) : br
+				i1 : i1 %118<@ 0x7ff9635218b0>
+				label : ._crit_edge10.loopexit<@ 0x7ff963520340>
+				label : label %95<@ 0x7ff963520000>
+
+		BasicBlock <@ 0x7ff963520340> : ._crit_edge10.loopexit
+			Instruction <@ 0x7ff96351dc70> : (0, 0) : phi
+				i32 : i32 %116<@ 0x7ff9635217b8>
+			Instruction <@ 0x7ff963521c78> : (0, 0) : br
+				label : ._crit_edge10<@ 0x7ff963520050>
+
+		BasicBlock <@ 0x7ff963520050> : ._crit_edge10
+			Instruction <@ 0x7ff963521cd0> : (0, 0) : phi
+				i32 : i32 %71<@ 0x7ff96351ea88>
+				i32 : .lcssa26<@ 0x7ff96351dc70>
+			Instruction <@ 0x7ff963521d48> : (416, 5) : sext
+				i32 : .lcssa<@ 0x7ff963521cd0>
+			Instruction <@ 0x7ff963521e10> : (416, 5) : mul
+				i64 : i64 %119<@ 0x7ff963521d48>
+				i64 : i64 40<@ 0x7ff963521da0>
+			Instruction <@ 0x7ff963522028> : (416, 5) : call
+				i8* : i8* getelementptr inbounds ([19 x i8]* @.str12, i64 0, i64 0)<@ 0x7ff963521f08>
+				i64 : i64 %120<@ 0x7ff963521e10>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff9635221a0> : (462, 9) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff9635393c0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635223e0> : (276, 21) : call
+				metadata : metadata <badref><@ 0x7ff96354e490>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354e4f0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963522590> : (281, 9) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354e7b0>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963522648> : (282, 5) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff9635226b8> : (282, 5) : load
+				i32* : nThreads<@ 0x7ff9634049f8>
+			Instruction <@ 0x7ff963522760> : (282, 5) : sdiv
+				i32 : i32 %122<@ 0x7ff963522648>
+				i32 : i32 %123<@ 0x7ff9635226b8>
+			Instruction <@ 0x7ff9635228f0> : (282, 9) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354ea70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963522b00> : (283, 9) : call
+				metadata : metadata !{i32 %124}<@ 0x7ff963522990>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354ec70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963522cb0> : (278, 12) : call
+				metadata : metadata <badref><@ 0x7ff963511ee0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354ee70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963522d80> : (290, 14) : icmp
+				i32 : i32 %124<@ 0x7ff963522760>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963522de8> : (295, 21) : load
+				float** : sptprice<@ 0x7ff963404ad8>
+			Instruction <@ 0x7ff963522e78> : (295, 21) : load
+				float** : strike<@ 0x7ff963404b88>
+			Instruction <@ 0x7ff963522f08> : (295, 21) : load
+				float** : rate<@ 0x7ff963404c38>
+			Instruction <@ 0x7ff963522f98> : (295, 21) : load
+				float** : volatility<@ 0x7ff963404ce8>
+			Instruction <@ 0x7ff963523028> : (295, 21) : load
+				float** : otime<@ 0x7ff963404d98>
+			Instruction <@ 0x7ff9635230b8> : (295, 21) : load
+				i32** : otype<@ 0x7ff963404e78>
+			Instruction <@ 0x7ff963523148> : (298, 13) : load
+				float** : prices<@ 0x7ff963404f28>
+			Instruction <@ 0x7ff963523398> : (463, 5) : br
+				i1 : i1 %125<@ 0x7ff963522d80>
+				label : bs_thread.exit<@ 0x7ff963523290>
+				label : .lr.ph.us.i.preheader<@ 0x7ff9635231c0>
+
+		BasicBlock <@ 0x7ff9635231c0> : .lr.ph.us.i.preheader
+			Instruction <@ 0x7ff963523460> : (290, 14) : add
+				i32 : i32 %124<@ 0x7ff963522760>
+				i32 : i32 -1<@ 0x7ff9635233f0>
+			Instruction <@ 0x7ff963523538> : (290, 14) : br
+				label : .lr.ph.us.i<@ 0x7ff963523240>
+
+		BasicBlock <@ 0x7ff9635235a0> : label %134
+			Instruction <@ 0x7ff9635236d0> : (285, 27) : add
+				i32 : j.02.us.i<@ 0x7ff963524ac0>
+				i32 : i32 1<@ 0x7ff963515ef0>
+			Instruction <@ 0x7ff963523840> : (278, 12) : call
+				metadata : metadata !{i32 %135}<@ 0x7ff963523730>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354ee70>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963523910> : (285, 10) : icmp
+				i32 : j.02.us.i<@ 0x7ff963524ac0>
+				i32 : i32 99<@ 0x7ff963516150>
+			Instruction <@ 0x7ff963523ac8> : (285, 10) : br
+				i1 : exitcond3.i<@ 0x7ff963523910>
+				label : .lr.ph.us.i<@ 0x7ff963523240>
+				label : bs_thread.exit.loopexit<@ 0x7ff963523990>
+
+		BasicBlock <@ 0x7ff963523b30> : label %136
+			Instruction <@ 0x7ff963523c10> : (463, 5) : phi
+				i64 : i64 0<@ 0x7ff963406af0>
+				i64 : indvars.iv.next.i<@ 0x7ff9635248c0>
+			Instruction <@ 0x7ff963523d20> : (295, 21) : getelementptr
+				float* : float* %126<@ 0x7ff963522de8>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963523d98> : (295, 21) : load
+				float* : float* %137<@ 0x7ff963523d20>
+			Instruction <@ 0x7ff963523e50> : (295, 21) : getelementptr
+				float* : float* %127<@ 0x7ff963522e78>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963523eb8> : (295, 21) : load
+				float* : float* %139<@ 0x7ff963523e50>
+			Instruction <@ 0x7ff963523f70> : (295, 21) : getelementptr
+				float* : float* %128<@ 0x7ff963522f08>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963523fd8> : (295, 21) : load
+				float* : float* %141<@ 0x7ff963523f70>
+			Instruction <@ 0x7ff963524090> : (295, 21) : getelementptr
+				float* : float* %129<@ 0x7ff963522f98>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff9635240f8> : (295, 21) : load
+				float* : float* %143<@ 0x7ff963524090>
+			Instruction <@ 0x7ff9635241b0> : (295, 21) : getelementptr
+				float* : float* %130<@ 0x7ff963523028>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963524218> : (295, 21) : load
+				float* : float* %145<@ 0x7ff9635241b0>
+			Instruction <@ 0x7ff9635242d0> : (295, 21) : getelementptr
+				i32* : i32* %131<@ 0x7ff9635230b8>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963524338> : (295, 21) : load
+				i32* : i32* %147<@ 0x7ff9635242d0>
+			Instruction <@ 0x7ff963524500> : (295, 21) : call
+				float : float %138<@ 0x7ff963523d98>
+				float : float %140<@ 0x7ff963523eb8>
+				float : float %142<@ 0x7ff963523fd8>
+				float : float %144<@ 0x7ff9635240f8>
+				float : float %146<@ 0x7ff963524218>
+				i32 : i32 %148<@ 0x7ff963524338>
+				float : float undef<@ 0x7ff963516c30>
+				float (float, float, float, float, float, i32, float)* : BlkSchlsEqEuroNoDiv<@ 0x7ff963503b20>
+			Instruction <@ 0x7ff9635246d0> : (279, 12) : call
+				metadata : metadata !{float %149}<@ 0x7ff963524560>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff96354f430>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff9635247a0> : (298, 13) : getelementptr
+				float* : float* %132<@ 0x7ff963523148>
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff963524820> : (298, 13) : store
+				float : float %149<@ 0x7ff963524500>
+				float* : float* %150<@ 0x7ff9635247a0>
+			Instruction <@ 0x7ff9635248c0> : (290, 14) : add
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff963524928> : (290, 14) : trunc
+				i64 : indvars.iv.i<@ 0x7ff963523c10>
+			Instruction <@ 0x7ff9635249b0> : (290, 14) : icmp
+				i32 : lftr.wideiv<@ 0x7ff963524928>
+				i32 : i32 %133<@ 0x7ff963523460>
+			Instruction <@ 0x7ff963524a68> : (290, 14) : br
+				i1 : exitcond<@ 0x7ff9635249b0>
+				label : label %136<@ 0x7ff963523b30>
+				label : label %134<@ 0x7ff9635235a0>
+
+		BasicBlock <@ 0x7ff963523240> : .lr.ph.us.i
+			Instruction <@ 0x7ff963524ac0> : (463, 5) : phi
+				i32 : i32 %135<@ 0x7ff9635236d0>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963524b38> : (290, 14) : br
+				label : label %136<@ 0x7ff963523b30>
+
+		BasicBlock <@ 0x7ff963523990> : bs_thread.exit.loopexit
+			Instruction <@ 0x7ff963523638> : (0, 0) : br
+				label : bs_thread.exit<@ 0x7ff963523290>
+
+		BasicBlock <@ 0x7ff963523290> : bs_thread.exit
+			Instruction <@ 0x7ff963524cd8> : (473, 12) : call
+				i8* : i8* %13<@ 0x7ff963519118>
+				i8* : i8* getelementptr inbounds ([2 x i8]* @.str13, i64 0, i64 0)<@ 0x7ff963524bd8>
+				%struct.__sFILE* (i8*, i8*)* : _fopen<@ 0x7ff963519500>
+			Instruction <@ 0x7ff963524df0> : (317, 11) : call
+				metadata : metadata !{%struct.__sFILE* %151}<@ 0x7ff963524d30>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963531a60>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963524e80> : (474, 8) : icmp
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7ff963517d60>
+			Instruction <@ 0x7ff963525038> : (474, 8) : br
+				i1 : i1 %152<@ 0x7ff963524e80>
+				label : label %155<@ 0x7ff963524f60>
+				label : label %153<@ 0x7ff963524ed0>
+
+		BasicBlock <@ 0x7ff963524ed0> : label %153
+			Instruction <@ 0x7ff963525118> : (475, 7) : call
+				i8* : i8* getelementptr inbounds ([34 x i8]* @.str3, i64 0, i64 0)<@ 0x7ff963518a38>
+				i8* : i8* %13<@ 0x7ff963519118>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff9635251a0> : (476, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963525240> : (476, 7) : unreachable
+
+		BasicBlock <@ 0x7ff963524f60> : label %155
+			Instruction <@ 0x7ff9635252a8> : (478, 10) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff9635255e0> : (478, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				i8* : i8* getelementptr inbounds ([4 x i8]* @.str14, i64 0, i64 0)<@ 0x7ff963525388>
+				i32 : i32 %156<@ 0x7ff9635252a8>
+				i32 (%struct.__sFILE*, i8*, ...)* : fprintf<@ 0x7ff963525460>
+			Instruction <@ 0x7ff963525760> : (322, 9) : call
+				metadata : metadata !{i32 %157}<@ 0x7ff963525680>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963525830> : (479, 8) : icmp
+				i32 : i32 %157<@ 0x7ff9635255e0>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff9635259f8> : (479, 8) : br
+				i1 : i1 %158<@ 0x7ff963525830>
+				label : .preheader<@ 0x7ff963525910>
+				label : label %161<@ 0x7ff963525880>
+
+		BasicBlock <@ 0x7ff963525910> : .preheader
+			Instruction <@ 0x7ff963525a68> : (484, 9) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff963525b20> : (484, 9) : icmp
+				i32 : i32 %159<@ 0x7ff963525a68>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963525cf8> : (484, 9) : br
+				i1 : i1 %160<@ 0x7ff963525b20>
+				label : ._crit_edge<@ 0x7ff963525bf0>
+				label : .lr.ph.preheader<@ 0x7ff963525960>
+
+		BasicBlock <@ 0x7ff963525960> : .lr.ph.preheader
+			Instruction <@ 0x7ff963525de8> : (485, 12) : br
+				label : .lr.ph<@ 0x7ff963525ba0>
+
+		BasicBlock <@ 0x7ff963525880> : label %161
+			Instruction <@ 0x7ff963526008> : (480, 7) : call
+				i8* : i8* getelementptr inbounds ([38 x i8]* @.str15, i64 0, i64 0)<@ 0x7ff963525f08>
+				i8* : i8* %13<@ 0x7ff963519118>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff963526090> : (481, 7) : call
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff963526170> : (482, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963526210> : (482, 7) : unreachable
+
+		BasicBlock <@ 0x7ff963526270> : label %164
+			Instruction <@ 0x7ff963526318> : (484, 9) : load
+				i32* : numOptions<@ 0x7ff963404868>
+			Instruction <@ 0x7ff963526428> : (484, 9) : trunc
+				i64 : indvars.iv.next<@ 0x7ff963526dd0>
+			Instruction <@ 0x7ff9635264b0> : (484, 9) : icmp
+				i32 : i32 %166<@ 0x7ff963526428>
+				i32 : i32 %165<@ 0x7ff963526318>
+			Instruction <@ 0x7ff963526628> : (484, 9) : br
+				i1 : i1 %167<@ 0x7ff9635264b0>
+				label : ._crit_edge.loopexit<@ 0x7ff963526510>
+				label : .lr.ph<@ 0x7ff963525ba0>
+
+		BasicBlock <@ 0x7ff963525ba0> : .lr.ph
+			Instruction <@ 0x7ff963526690> : (0, 0) : phi
+				i64 : indvars.iv.next<@ 0x7ff963526dd0>
+				i64 : i64 0<@ 0x7ff963406af0>
+			Instruction <@ 0x7ff963526728> : (485, 12) : load
+				float** : prices<@ 0x7ff963404f28>
+			Instruction <@ 0x7ff9635267e0> : (485, 12) : getelementptr
+				float* : float* %168<@ 0x7ff963526728>
+				i64 : indvars.iv<@ 0x7ff963526690>
+			Instruction <@ 0x7ff963526848> : (485, 12) : load
+				float* : float* %169<@ 0x7ff9635267e0>
+			Instruction <@ 0x7ff9635268e8> : (485, 12) : fpext
+				float : float %170<@ 0x7ff963526848>
+			Instruction <@ 0x7ff963526b30> : (485, 12) : call
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				i8* : i8* getelementptr inbounds ([7 x i8]* @.str16, i64 0, i64 0)<@ 0x7ff9635269f8>
+				double : double %171<@ 0x7ff9635268e8>
+				i32 (%struct.__sFILE*, i8*, ...)* : fprintf<@ 0x7ff963525460>
+			Instruction <@ 0x7ff963526c80> : (322, 9) : call
+				metadata : metadata !{i32 %172}<@ 0x7ff963526ba0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963526d50> : (486, 10) : icmp
+				i32 : i32 %172<@ 0x7ff963526b30>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963526dd0> : (484, 9) : add
+				i64 : indvars.iv<@ 0x7ff963526690>
+				i64 : i64 1<@ 0x7ff963517200>
+			Instruction <@ 0x7ff963526e78> : (486, 10) : br
+				i1 : i1 %173<@ 0x7ff963526d50>
+				label : label %164<@ 0x7ff963526270>
+				label : label %174<@ 0x7ff9635263c0>
+
+		BasicBlock <@ 0x7ff9635263c0> : label %174
+			Instruction <@ 0x7ff963526f78> : (487, 9) : call
+				i8* : i8* getelementptr inbounds ([38 x i8]* @.str15, i64 0, i64 0)<@ 0x7ff963525f08>
+				i8* : i8* %13<@ 0x7ff963519118>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff963527000> : (488, 9) : call
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff9635270d0> : (489, 9) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963527170> : (489, 9) : unreachable
+
+		BasicBlock <@ 0x7ff963526510> : ._crit_edge.loopexit
+			Instruction <@ 0x7ff9635271d8> : (0, 0) : br
+				label : ._crit_edge<@ 0x7ff963525bf0>
+
+		BasicBlock <@ 0x7ff963525bf0> : ._crit_edge
+			Instruction <@ 0x7ff963527260> : (492, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %151<@ 0x7ff963524cd8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7ff96351a890>
+			Instruction <@ 0x7ff963527380> : (322, 9) : call
+				metadata : metadata !{i32 %177}<@ 0x7ff9635272c0>
+				i64 : i64 0<@ 0x7ff963406af0>
+				metadata : metadata <badref><@ 0x7ff963539000>
+				void (metadata, i64, metadata)* : llvm.dbg.value<@ 0x7ff963406d50>
+			Instruction <@ 0x7ff963527450> : (493, 8) : icmp
+				i32 : i32 %177<@ 0x7ff963527260>
+				i32 : i32 0<@ 0x7ff9634047f0>
+			Instruction <@ 0x7ff963527608> : (493, 8) : br
+				i1 : i1 %178<@ 0x7ff963527450>
+				label : label %179<@ 0x7ff963527530>
+				label : label %181<@ 0x7ff9635274a0>
+
+		BasicBlock <@ 0x7ff963527530> : label %179
+			Instruction <@ 0x7ff9635276f8> : (494, 7) : call
+				i8* : i8* getelementptr inbounds ([35 x i8]* @.str9, i64 0, i64 0)<@ 0x7ff96351e308>
+				i8* : i8* %13<@ 0x7ff963519118>
+				i32 (i8*, ...)* : printf<@ 0x7ff963518460>
+			Instruction <@ 0x7ff963527780> : (495, 7) : call
+				i32 : i32 1<@ 0x7ff963515ef0>
+				void (i32)* : exit<@ 0x7ff963518650>
+			Instruction <@ 0x7ff963527820> : (495, 7) : unreachable
+
+		BasicBlock <@ 0x7ff9635274a0> : label %181
+			Instruction <@ 0x7ff963527888> : (501, 5) : load
+				%struct.OptionData_** : data<@ 0x7ff963405868>
+			Instruction <@ 0x7ff963527918> : (501, 5) : bitcast
+				%struct.OptionData_* : %struct.OptionData_* %182<@ 0x7ff963527888>
+			Instruction <@ 0x7ff963527ac0> : (501, 5) : call
+				i8* : i8* %183<@ 0x7ff963527918>
+				void (i8*)* : free<@ 0x7ff963527970>
+			Instruction <@ 0x7ff963527b78> : (502, 5) : load
+				float** : prices<@ 0x7ff963404f28>
+			Instruction <@ 0x7ff963527c08> : (502, 5) : bitcast
+				float* : float* %184<@ 0x7ff963527b78>
+			Instruction <@ 0x7ff963527ca0> : (502, 5) : call
+				i8* : i8* %185<@ 0x7ff963527c08>
+				void (i8*)* : free<@ 0x7ff963527970>
+			Instruction <@ 0x7ff963527d58> : (508, 5) : ret
+				i32 : i32 0<@ 0x7ff9634047f0>
+
+	Function <@ 0x7ff963518460> : printf : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7ff963527e30>
+
+	Function <@ 0x7ff963517da0> : fflush : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7ff963527ec0>
+
+	Function <@ 0x7ff963518650> : exit : Declaration : NonIntrinsic
+		ArgList :
+			i32 %0<@ 0x7ff963527f00>
+
+	Function <@ 0x7ff963518a70> : atoi : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7ff963527f40>
+
+	Function <@ 0x7ff963519500> : _fopen : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7ff963527f80>
+			i8* %1<@ 0x7ff963527fc0>
+
+	Function <@ 0x7ff96351a050> : fscanf : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7ff963528040>
+			i8* %1<@ 0x7ff963528080>
+
+	Function <@ 0x7ff96351a890> : fclose : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7ff9635280c0>
+
+	Function <@ 0x7ff96351bba0> : malloc : Declaration : NonIntrinsic
+		ArgList :
+			i64 %0<@ 0x7ff963528170>
+
+	Function <@ 0x7ff963525460> : fprintf : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7ff9635281b0>
+			i8* %1<@ 0x7ff9635281f0>
+
+	Function <@ 0x7ff963527970> : free : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7ff963528230>
+
+	Function <@ 0x7ff963406d50> : llvm.dbg.value : Declaration : Intrinsic
+		ArgList :
+			metadata %0<@ 0x7ff9635282b0>
+			i64 %1<@ 0x7ff9635282f0>
+			metadata %2<@ 0x7ff963528330>
+
+	Function <@ 0x7ff963506c90> : sqrtf : Declaration : NonIntrinsic
+		ArgList :
+			float %0<@ 0x7ff9635000a0>
+
+	Function <@ 0x7ff963517b80> : puts : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7ff963528370>

@@ -4,9 +4,9 @@
 #Copyright 2015. Los Alamos National Security, LLC. This software was produced under U.S. Government contract DE-AC52-06NA25396 for Los Alamos National Laboratory (LANL), which is operated by Los Alamos National Security, LLC for the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this software.  NEITHER THE GOVERNMENT NOR LOS ALAMOS NATIONAL SECURITY, LLC MAKES ANY WARRANTY, EXPRESS OR IMPLIED, OR ASSUMES ANY LIABILITY FOR THE USE OF THIS SOFTWARE.  If software is modified to produce derivative works, such modified software should be clearly marked, so as not to confuse it with the version available from LANL.
 #
 #Additionally, redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-#	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
-#	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
-#	Neither the name of Los Alamos National Security, LLC, Los Alamos National Laboratory, LANL, the U.S. Government, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
+#	Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+#	Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+#	Neither the name of Los Alamos National Security, LLC, Los Alamos National Laboratory, LANL, the U.S. Government, nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 #THIS SOFTWARE IS PROVIDED BY LOS ALAMOS NATIONAL SECURITY, LLC AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL LOS ALAMOS NATIONAL SECURITY, LLC OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #Author: Nandakishore Santhi
@@ -95,8 +95,9 @@ class Simian(object):
             self.out.write("MPI: OFF\n\n")
 
     def exit(self):
-        self.out.close()
-        del self.out
+        self.running = False
+        #self.out.close()
+        #del self.out
 
     def run(self): #Run the simulation
         startTime = timeLib.clock()
@@ -164,7 +165,10 @@ class Simian(object):
         if time > self.endTime: #No need to push this event
             return
 
-        recvRank = self.getOffsetRank(rx, rxId)
+        if self.partfct:
+            recvRank = self.partfct(rx, rxId, self.size, self.partarg)
+        else:
+            recvRank = self.getOffsetRank(rx, rxId)
 
         if recvRank == self.rank:
             e = {
@@ -199,7 +203,7 @@ class Simian(object):
         #Attaches a service at runtime to an entity klass type
         setattr(klass, name, fun)
 
-    def addEntity(self, name, entityClass, num, *args):
+    def addEntity(self, name, entityClass, num, *args, **kargs):
         #Purpose: Add an entity to the entity-list if Simian is idle
         #This function takes a pointer to a class from which the entities can
         #be constructed, a name, and a number for the instance.
@@ -209,9 +213,18 @@ class Simian(object):
             self.entities[name] = {} #To hold entities of this "name"
         entity = self.entities[name]
 
-        self.baseRanks[name] = self.getBaseRank(name) #Register base-ranks
-        computedRank = self.getOffsetRank(name, num)
+        if 'partition' in kargs:
+            self.partfct = kargs['partition']
+            self.partarg = kargs.get('partition_arg')
+        else:
+            self.partfct = None
+            self.partarg = None
+            self.baseRanks[name] = self.getBaseRank(name) #Register base-ranks
 
+        if self.partfct:
+            computedRank = self.partfct(name, num, self.size, self.partarg)
+        else:
+            computedRank = self.getOffsetRank(name, num)
         if computedRank == self.rank: #This entity resides on this engine
             #Output log file for this Entity
             self.out.write(name + "[" + str(num) + "]: Running on rank " + str(computedRank) + "\n")

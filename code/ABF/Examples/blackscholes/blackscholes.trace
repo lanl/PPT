@@ -1,0 +1,2296 @@
+Module : blackscholes.llvm
+	TargetTriple :
+		x86_64-apple-macosx10.11.0
+
+	Function <@ 0x7f9178406870> : CNDF : Definition : NonIntrinsic
+		ArgList :
+			InputX<@ 0x7f91784069a0>
+
+		BasicBlock <@ 0x7f9178406a00> : label %0
+			Instruction <@ 0x7f9178406aa8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406b18> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406ba8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406c38> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406cc8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406d58> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406de8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406e78> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406f08> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178406f98> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178407028> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f91784070b8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178407148> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178407368> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f91784073f8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f91784074a0> : (0, 0) : store
+				float : InputX<@ 0x7f91784069a0>
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178407748> : (88, 22) : call
+				metadata : metadata !{float* %1}<@ 0x7f91784074f0>
+				metadata : metadata <badref><@ 0x7f9178434d10>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178407928> : (90, 9) : call
+				metadata : metadata !{i32* %sign}<@ 0x7f91784077e0>
+				metadata : metadata <badref><@ 0x7f9178434e90>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178407b08> : (92, 12) : call
+				metadata : metadata !{float* %OutputX}<@ 0x7f91784079c0>
+				metadata : metadata <badref><@ 0x7f91784350d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178407ce8> : (93, 12) : call
+				metadata : metadata !{float* %xInput}<@ 0x7f9178407ba0>
+				metadata : metadata <badref><@ 0x7f91784352d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178407ec8> : (94, 12) : call
+				metadata : metadata !{float* %xNPrimeofX}<@ 0x7f9178407d80>
+				metadata : metadata <badref><@ 0x7f91784354d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784080a8> : (95, 12) : call
+				metadata : metadata !{float* %expValues}<@ 0x7f9178407f60>
+				metadata : metadata <badref><@ 0x7f91784356d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408288> : (96, 12) : call
+				metadata : metadata !{float* %xK2}<@ 0x7f9178408140>
+				metadata : metadata <badref><@ 0x7f91784358d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408468> : (97, 12) : call
+				metadata : metadata !{float* %xK2_2}<@ 0x7f9178408320>
+				metadata : metadata <badref><@ 0x7f9178435ad0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408648> : (97, 19) : call
+				metadata : metadata !{float* %xK2_3}<@ 0x7f9178408500>
+				metadata : metadata <badref><@ 0x7f9178403e60>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408828> : (98, 12) : call
+				metadata : metadata !{float* %xK2_4}<@ 0x7f91784086e0>
+				metadata : metadata <badref><@ 0x7f9178435cd0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408a08> : (98, 19) : call
+				metadata : metadata !{float* %xK2_5}<@ 0x7f91784088c0>
+				metadata : metadata <badref><@ 0x7f9178435ed0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408be8> : (99, 12) : call
+				metadata : metadata !{float* %xLocal}<@ 0x7f9178408aa0>
+				metadata : metadata <badref><@ 0x7f91784360d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408dc8> : (99, 20) : call
+				metadata : metadata !{float* %xLocal_1}<@ 0x7f9178408c80>
+				metadata : metadata <badref><@ 0x7f91784362d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178408fa8> : (100, 12) : call
+				metadata : metadata !{float* %xLocal_2}<@ 0x7f9178408e60>
+				metadata : metadata <badref><@ 0x7f91784364d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178409188> : (100, 22) : call
+				metadata : metadata !{float* %xLocal_3}<@ 0x7f9178409040>
+				metadata : metadata <badref><@ 0x7f9178433620>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178409238> : (103, 9) : load
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f91784092c8> : (103, 9) : fpext
+				float : float %2<@ 0x7f9178409238>
+			Instruction <@ 0x7f91784093a0> : (103, 9) : fcmp
+				double : double %3<@ 0x7f91784092c8>
+				double : double 0.000000e+00<@ 0x7f9178409320>
+			Instruction <@ 0x7f91784095a8> : (103, 9) : br
+				i1 : i1 %4<@ 0x7f91784093a0>
+				label : label %8<@ 0x7f91784094d0>
+				label : label %5<@ 0x7f9178409440>
+
+		BasicBlock <@ 0x7f9178409440> : label %5
+			Instruction <@ 0x7f9178409628> : (104, 9) : load
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178409700> : (104, 9) : fsub
+				float : float -0.000000e+00<@ 0x7f9178409680>
+				float : float %6<@ 0x7f9178409628>
+			Instruction <@ 0x7f9178409780> : (104, 9) : store
+				float : float %7<@ 0x7f9178409700>
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178409810> : (105, 9) : store
+				i32 : i32 1<@ 0x7f9178406a50>
+				i32* : sign<@ 0x7f9178406b18>
+			Instruction <@ 0x7f91784098d8> : (106, 5) : br
+				label : label %9<@ 0x7f9178409870>
+
+		BasicBlock <@ 0x7f91784094d0> : label %8
+			Instruction <@ 0x7f91784099f0> : (107, 9) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : sign<@ 0x7f9178406b18>
+			Instruction <@ 0x7f9178409a58> : (0, 0) : br
+				label : label %9<@ 0x7f9178409870>
+
+		BasicBlock <@ 0x7f9178409870> : label %9
+			Instruction <@ 0x7f9178409ac8> : (109, 5) : load
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178409b50> : (109, 5) : store
+				float : float %10<@ 0x7f9178409ac8>
+				float* : xInput<@ 0x7f9178406c38>
+			Instruction <@ 0x7f9178409bb8> : (112, 17) : load
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178409c90> : (112, 17) : fmul
+				float : float -5.000000e-01<@ 0x7f9178409c10>
+				float : float %11<@ 0x7f9178409bb8>
+			Instruction <@ 0x7f9178409cf8> : (112, 17) : load
+				float* : float* %1<@ 0x7f9178406aa8>
+			Instruction <@ 0x7f9178409d80> : (112, 17) : fmul
+				float : float %12<@ 0x7f9178409c90>
+				float : float %13<@ 0x7f9178409cf8>
+			Instruction <@ 0x7f9178409de8> : (112, 17) : fpext
+				float : float %14<@ 0x7f9178409d80>
+			Instruction <@ 0x7f9178409fb0> : (112, 17) : call
+				double : double %15<@ 0x7f9178409de8>
+				double (double)* : exp<@ 0x7f9178409e60>
+			Instruction <@ 0x7f917840a168> : (112, 17) : fptrunc
+				double : double %16<@ 0x7f9178409fb0>
+			Instruction <@ 0x7f9178409970> : (112, 17) : store
+				float : float %17<@ 0x7f917840a168>
+				float* : expValues<@ 0x7f9178406d58>
+			Instruction <@ 0x7f917840a1d8> : (113, 5) : load
+				float* : expValues<@ 0x7f9178406d58>
+			Instruction <@ 0x7f917840a270> : (113, 5) : store
+				float : float %18<@ 0x7f917840a1d8>
+				float* : xNPrimeofX<@ 0x7f9178406cc8>
+			Instruction <@ 0x7f917840a2e8> : (114, 5) : load
+				float* : xNPrimeofX<@ 0x7f9178406cc8>
+			Instruction <@ 0x7f917840a368> : (114, 5) : fpext
+				float : float %19<@ 0x7f917840a2e8>
+			Instruction <@ 0x7f917840a450> : (114, 5) : fmul
+				double : double %20<@ 0x7f917840a368>
+				double : double 0x3FD9884533D43651<@ 0x7f917840a3d0>
+			Instruction <@ 0x7f917840a4c8> : (114, 5) : fptrunc
+				double : double %21<@ 0x7f917840a450>
+			Instruction <@ 0x7f917840a560> : (114, 5) : store
+				float : float %22<@ 0x7f917840a4c8>
+				float* : xNPrimeofX<@ 0x7f9178406cc8>
+			Instruction <@ 0x7f917840a5d8> : (116, 5) : load
+				float* : xInput<@ 0x7f9178406c38>
+			Instruction <@ 0x7f917840a658> : (116, 5) : fpext
+				float : float %23<@ 0x7f917840a5d8>
+			Instruction <@ 0x7f917840a740> : (116, 5) : fmul
+				double : double 2.316419e-01<@ 0x7f917840a6c0>
+				double : double %24<@ 0x7f917840a658>
+			Instruction <@ 0x7f917840a7b8> : (116, 5) : fptrunc
+				double : double %25<@ 0x7f917840a740>
+			Instruction <@ 0x7f917840a850> : (116, 5) : store
+				float : float %26<@ 0x7f917840a7b8>
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840a8c8> : (117, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840a948> : (117, 5) : fpext
+				float : float %27<@ 0x7f917840a8c8>
+			Instruction <@ 0x7f917840aa30> : (117, 5) : fadd
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %28<@ 0x7f917840a948>
+			Instruction <@ 0x7f917840aaa8> : (117, 5) : fptrunc
+				double : double %29<@ 0x7f917840aa30>
+			Instruction <@ 0x7f917840ab40> : (117, 5) : store
+				float : float %30<@ 0x7f917840aaa8>
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840abb8> : (118, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840ac38> : (118, 5) : fpext
+				float : float %31<@ 0x7f917840abb8>
+			Instruction <@ 0x7f917840a080> : (118, 5) : fdiv
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %32<@ 0x7f917840ac38>
+			Instruction <@ 0x7f917840a0f8> : (118, 5) : fptrunc
+				double : double %33<@ 0x7f917840a080>
+			Instruction <@ 0x7f917840aee0> : (118, 5) : store
+				float : float %34<@ 0x7f917840a0f8>
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840af58> : (119, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840afd8> : (119, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840b070> : (119, 5) : fmul
+				float : float %35<@ 0x7f917840af58>
+				float : float %36<@ 0x7f917840afd8>
+			Instruction <@ 0x7f917840b100> : (119, 5) : store
+				float : float %37<@ 0x7f917840b070>
+				float* : xK2_2<@ 0x7f9178406e78>
+			Instruction <@ 0x7f917840b178> : (120, 5) : load
+				float* : xK2_2<@ 0x7f9178406e78>
+			Instruction <@ 0x7f917840b1f8> : (120, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840b290> : (120, 5) : fmul
+				float : float %38<@ 0x7f917840b178>
+				float : float %39<@ 0x7f917840b1f8>
+			Instruction <@ 0x7f917840b320> : (120, 5) : store
+				float : float %40<@ 0x7f917840b290>
+				float* : xK2_3<@ 0x7f9178406f08>
+			Instruction <@ 0x7f917840b398> : (121, 5) : load
+				float* : xK2_3<@ 0x7f9178406f08>
+			Instruction <@ 0x7f917840b418> : (121, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840b4b0> : (121, 5) : fmul
+				float : float %41<@ 0x7f917840b398>
+				float : float %42<@ 0x7f917840b418>
+			Instruction <@ 0x7f917840b540> : (121, 5) : store
+				float : float %43<@ 0x7f917840b4b0>
+				float* : xK2_4<@ 0x7f9178406f98>
+			Instruction <@ 0x7f917840b5b8> : (122, 5) : load
+				float* : xK2_4<@ 0x7f9178406f98>
+			Instruction <@ 0x7f917840b638> : (122, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840b6d0> : (122, 5) : fmul
+				float : float %44<@ 0x7f917840b5b8>
+				float : float %45<@ 0x7f917840b638>
+			Instruction <@ 0x7f917840b760> : (122, 5) : store
+				float : float %46<@ 0x7f917840b6d0>
+				float* : xK2_5<@ 0x7f9178407028>
+			Instruction <@ 0x7f917840b7d8> : (124, 5) : load
+				float* : xK2<@ 0x7f9178406de8>
+			Instruction <@ 0x7f917840b858> : (124, 5) : fpext
+				float : float %47<@ 0x7f917840b7d8>
+			Instruction <@ 0x7f917840b940> : (124, 5) : fmul
+				double : double %48<@ 0x7f917840b858>
+				double : double 0x3FD470BF3A92F8EC<@ 0x7f917840b8c0>
+			Instruction <@ 0x7f917840b9b8> : (124, 5) : fptrunc
+				double : double %49<@ 0x7f917840b940>
+			Instruction <@ 0x7f917840ba50> : (124, 5) : store
+				float : float %50<@ 0x7f917840b9b8>
+				float* : xLocal_1<@ 0x7f9178407148>
+			Instruction <@ 0x7f917840bac8> : (125, 5) : load
+				float* : xK2_2<@ 0x7f9178406e78>
+			Instruction <@ 0x7f917840bb48> : (125, 5) : fpext
+				float : float %51<@ 0x7f917840bac8>
+			Instruction <@ 0x7f917840bc30> : (125, 5) : fmul
+				double : double %52<@ 0x7f917840bb48>
+				double : double 0xBFD6D1F0E5A8325B<@ 0x7f917840bbb0>
+			Instruction <@ 0x7f917840bca8> : (125, 5) : fptrunc
+				double : double %53<@ 0x7f917840bc30>
+			Instruction <@ 0x7f917840bd40> : (125, 5) : store
+				float : float %54<@ 0x7f917840bca8>
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840bdb8> : (126, 5) : load
+				float* : xK2_3<@ 0x7f9178406f08>
+			Instruction <@ 0x7f917840be38> : (126, 5) : fpext
+				float : float %55<@ 0x7f917840bdb8>
+			Instruction <@ 0x7f917840bf20> : (126, 5) : fmul
+				double : double %56<@ 0x7f917840be38>
+				double : double 0x3FFC80EF025F5E68<@ 0x7f917840bea0>
+			Instruction <@ 0x7f917840bf98> : (126, 5) : fptrunc
+				double : double %57<@ 0x7f917840bf20>
+			Instruction <@ 0x7f917840c030> : (126, 5) : store
+				float : float %58<@ 0x7f917840bf98>
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840c0a8> : (127, 5) : load
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840c128> : (127, 5) : load
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840c1c0> : (127, 5) : fadd
+				float : float %59<@ 0x7f917840c0a8>
+				float : float %60<@ 0x7f917840c128>
+			Instruction <@ 0x7f917840c250> : (127, 5) : store
+				float : float %61<@ 0x7f917840c1c0>
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840c2c8> : (128, 5) : load
+				float* : xK2_4<@ 0x7f9178406f98>
+			Instruction <@ 0x7f917840c348> : (128, 5) : fpext
+				float : float %62<@ 0x7f917840c2c8>
+			Instruction <@ 0x7f917840c430> : (128, 5) : fmul
+				double : double %63<@ 0x7f917840c348>
+				double : double 0xBFFD23DD4EF278D0<@ 0x7f917840c3b0>
+			Instruction <@ 0x7f917840acb8> : (128, 5) : fptrunc
+				double : double %64<@ 0x7f917840c430>
+			Instruction <@ 0x7f917840ad50> : (128, 5) : store
+				float : float %65<@ 0x7f917840acb8>
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840adc8> : (129, 5) : load
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840ae48> : (129, 5) : load
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840c4d0> : (129, 5) : fadd
+				float : float %66<@ 0x7f917840adc8>
+				float : float %67<@ 0x7f917840ae48>
+			Instruction <@ 0x7f917840c560> : (129, 5) : store
+				float : float %68<@ 0x7f917840c4d0>
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840c5d8> : (130, 5) : load
+				float* : xK2_5<@ 0x7f9178407028>
+			Instruction <@ 0x7f917840c658> : (130, 5) : fpext
+				float : float %69<@ 0x7f917840c5d8>
+			Instruction <@ 0x7f917840c740> : (130, 5) : fmul
+				double : double %70<@ 0x7f917840c658>
+				double : double 0x3FF548CDD6F42943<@ 0x7f917840c6c0>
+			Instruction <@ 0x7f917840c7b8> : (130, 5) : fptrunc
+				double : double %71<@ 0x7f917840c740>
+			Instruction <@ 0x7f917840c850> : (130, 5) : store
+				float : float %72<@ 0x7f917840c7b8>
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840c8c8> : (131, 5) : load
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840c948> : (131, 5) : load
+				float* : xLocal_3<@ 0x7f91784073f8>
+			Instruction <@ 0x7f917840c9e0> : (131, 5) : fadd
+				float : float %73<@ 0x7f917840c8c8>
+				float : float %74<@ 0x7f917840c948>
+			Instruction <@ 0x7f917840ca70> : (131, 5) : store
+				float : float %75<@ 0x7f917840c9e0>
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840cae8> : (133, 5) : load
+				float* : xLocal_2<@ 0x7f9178407368>
+			Instruction <@ 0x7f917840cb68> : (133, 5) : load
+				float* : xLocal_1<@ 0x7f9178407148>
+			Instruction <@ 0x7f917840cc00> : (133, 5) : fadd
+				float : float %76<@ 0x7f917840cae8>
+				float : float %77<@ 0x7f917840cb68>
+			Instruction <@ 0x7f917840cc90> : (133, 5) : store
+				float : float %78<@ 0x7f917840cc00>
+				float* : xLocal_1<@ 0x7f9178407148>
+			Instruction <@ 0x7f917840cd08> : (134, 5) : load
+				float* : xLocal_1<@ 0x7f9178407148>
+			Instruction <@ 0x7f917840cd88> : (134, 5) : load
+				float* : xNPrimeofX<@ 0x7f9178406cc8>
+			Instruction <@ 0x7f917840ce20> : (134, 5) : fmul
+				float : float %79<@ 0x7f917840cd08>
+				float : float %80<@ 0x7f917840cd88>
+			Instruction <@ 0x7f917840ceb0> : (134, 5) : store
+				float : float %81<@ 0x7f917840ce20>
+				float* : xLocal<@ 0x7f91784070b8>
+			Instruction <@ 0x7f917840cf28> : (135, 5) : load
+				float* : xLocal<@ 0x7f91784070b8>
+			Instruction <@ 0x7f917840cfa8> : (135, 5) : fpext
+				float : float %82<@ 0x7f917840cf28>
+			Instruction <@ 0x7f917840d040> : (135, 5) : fsub
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %83<@ 0x7f917840cfa8>
+			Instruction <@ 0x7f917840d0b8> : (135, 5) : fptrunc
+				double : double %84<@ 0x7f917840d040>
+			Instruction <@ 0x7f917840d150> : (135, 5) : store
+				float : float %85<@ 0x7f917840d0b8>
+				float* : xLocal<@ 0x7f91784070b8>
+			Instruction <@ 0x7f917840d1c8> : (137, 5) : load
+				float* : xLocal<@ 0x7f91784070b8>
+			Instruction <@ 0x7f917840d260> : (137, 5) : store
+				float : float %86<@ 0x7f917840d1c8>
+				float* : OutputX<@ 0x7f9178406ba8>
+			Instruction <@ 0x7f917840d2d8> : (139, 9) : load
+				i32* : sign<@ 0x7f9178406b18>
+			Instruction <@ 0x7f917840d370> : (139, 9) : icmp
+				i32 : i32 %87<@ 0x7f917840d2d8>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f917840d538> : (139, 9) : br
+				i1 : i1 %88<@ 0x7f917840d370>
+				label : label %94<@ 0x7f917840d460>
+				label : label %89<@ 0x7f917840d3d0>
+
+		BasicBlock <@ 0x7f917840d3d0> : label %89
+			Instruction <@ 0x7f917840d5b8> : (140, 9) : load
+				float* : OutputX<@ 0x7f9178406ba8>
+			Instruction <@ 0x7f917840d638> : (140, 9) : fpext
+				float : float %90<@ 0x7f917840d5b8>
+			Instruction <@ 0x7f917840d6d0> : (140, 9) : fsub
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %91<@ 0x7f917840d638>
+			Instruction <@ 0x7f917840d748> : (140, 9) : fptrunc
+				double : double %92<@ 0x7f917840d6d0>
+			Instruction <@ 0x7f917840d7e0> : (140, 9) : store
+				float : float %93<@ 0x7f917840d748>
+				float* : OutputX<@ 0x7f9178406ba8>
+			Instruction <@ 0x7f917840d858> : (141, 5) : br
+				label : label %94<@ 0x7f917840d460>
+
+		BasicBlock <@ 0x7f917840d460> : label %94
+			Instruction <@ 0x7f917840d8d8> : (143, 5) : load
+				float* : OutputX<@ 0x7f9178406ba8>
+			Instruction <@ 0x7f917840d948> : (143, 5) : ret
+				float : float %95<@ 0x7f917840d8d8>
+
+	Function <@ 0x7f9178404f30> : llvm.dbg.declare : Declaration : Intrinsic
+		ArgList :
+			metadata %0<@ 0x7f917840d9b0>
+			metadata %1<@ 0x7f917840d9f0>
+
+	Function <@ 0x7f9178409e60> : exp : Declaration : NonIntrinsic
+		ArgList :
+			double %0<@ 0x7f917840da30>
+
+	Function <@ 0x7f917840dab0> : BlkSchlsEqEuroNoDiv : Definition : NonIntrinsic
+		ArgList :
+			sptprice<@ 0x7f917840dbf0>
+			strike<@ 0x7f917840dc30>
+			rate<@ 0x7f917840dc70>
+			volatility<@ 0x7f917840dcb0>
+			time<@ 0x7f917840dcf0>
+			otype<@ 0x7f917840dd30>
+			timet<@ 0x7f917840dd70>
+
+		BasicBlock <@ 0x7f917840df20> : label %0
+			Instruction <@ 0x7f917840df88> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840dff8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e068> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e0d8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e188> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e1f8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e268> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e2d8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e348> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e3b8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e448> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e4d8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e568> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e788> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e818> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e8a8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e938> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e9c8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840ea58> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840eae8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840eb78> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840ec08> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840ec98> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840ed28> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840edb8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e5f8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840e688> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917840f170> : (0, 0) : store
+				float : sptprice<@ 0x7f917840dbf0>
+				float* : float* %1<@ 0x7f917840df88>
+			Instruction <@ 0x7f917840ddf8> : (150, 36) : call
+				metadata : metadata !{float* %1}<@ 0x7f917840e700>
+				metadata : metadata <badref><@ 0x7f9178438a90>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840f2c0> : (0, 0) : store
+				float : strike<@ 0x7f917840dc30>
+				float* : float* %2<@ 0x7f917840dff8>
+			Instruction <@ 0x7f917840f448> : (151, 36) : call
+				metadata : metadata !{float* %2}<@ 0x7f917840f310>
+				metadata : metadata <badref><@ 0x7f9178438c90>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840f510> : (0, 0) : store
+				float : rate<@ 0x7f917840dc70>
+				float* : float* %3<@ 0x7f917840e068>
+			Instruction <@ 0x7f917840f698> : (151, 51) : call
+				metadata : metadata !{float* %3}<@ 0x7f917840f560>
+				metadata : metadata <badref><@ 0x7f9178438e90>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840f760> : (0, 0) : store
+				float : volatility<@ 0x7f917840dcb0>
+				float* : float* %4<@ 0x7f917840e0d8>
+			Instruction <@ 0x7f917840f8e8> : (151, 64) : call
+				metadata : metadata !{float* %4}<@ 0x7f917840f7b0>
+				metadata : metadata <badref><@ 0x7f9178439090>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840f9b0> : (0, 0) : store
+				float : time<@ 0x7f917840dcf0>
+				float* : float* %5<@ 0x7f917840e188>
+			Instruction <@ 0x7f917840fb38> : (152, 36) : call
+				metadata : metadata !{float* %5}<@ 0x7f917840fa00>
+				metadata : metadata <badref><@ 0x7f9178439290>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840fc00> : (0, 0) : store
+				i32 : otype<@ 0x7f917840dd30>
+				i32* : i32* %6<@ 0x7f917840e1f8>
+			Instruction <@ 0x7f917840fd98> : (152, 46) : call
+				metadata : metadata !{i32* %6}<@ 0x7f917840fc50>
+				metadata : metadata <badref><@ 0x7f9178439490>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917840fe60> : (0, 0) : store
+				float : timet<@ 0x7f917840dd70>
+				float* : float* %7<@ 0x7f917840e268>
+			Instruction <@ 0x7f917840fff8> : (152, 59) : call
+				metadata : metadata !{float* %7}<@ 0x7f917840feb0>
+				metadata : metadata <badref><@ 0x7f9178439690>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784101d8> : (154, 12) : call
+				metadata : metadata !{float* %OptionPrice}<@ 0x7f9178410090>
+				metadata : metadata <badref><@ 0x7f91784398d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784103b8> : (157, 12) : call
+				metadata : metadata !{float* %xStockPrice}<@ 0x7f9178410270>
+				metadata : metadata <badref><@ 0x7f9178439ad0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410598> : (158, 12) : call
+				metadata : metadata !{float* %xStrikePrice}<@ 0x7f9178410450>
+				metadata : metadata <badref><@ 0x7f9178439cd0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410778> : (159, 12) : call
+				metadata : metadata !{float* %xRiskFreeRate}<@ 0x7f9178410630>
+				metadata : metadata <badref><@ 0x7f9178439ed0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410958> : (160, 12) : call
+				metadata : metadata !{float* %xVolatility}<@ 0x7f9178410810>
+				metadata : metadata <badref><@ 0x7f917843a0d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410b38> : (161, 12) : call
+				metadata : metadata !{float* %xTime}<@ 0x7f91784109f0>
+				metadata : metadata <badref><@ 0x7f917843a2d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410d18> : (162, 12) : call
+				metadata : metadata !{float* %xSqrtTime}<@ 0x7f9178410bd0>
+				metadata : metadata <badref><@ 0x7f917843a4d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178410ef8> : (164, 12) : call
+				metadata : metadata !{float* %logValues}<@ 0x7f9178410db0>
+				metadata : metadata <badref><@ 0x7f917843a6d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784110d8> : (165, 12) : call
+				metadata : metadata !{float* %xLogTerm}<@ 0x7f9178410f90>
+				metadata : metadata <badref><@ 0x7f917843a8d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784112b8> : (166, 12) : call
+				metadata : metadata !{float* %xD1}<@ 0x7f9178411170>
+				metadata : metadata <badref><@ 0x7f917843aad0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411498> : (167, 12) : call
+				metadata : metadata !{float* %xD2}<@ 0x7f9178411350>
+				metadata : metadata <badref><@ 0x7f917843acd0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411678> : (168, 12) : call
+				metadata : metadata !{float* %xPowerTerm}<@ 0x7f9178411530>
+				metadata : metadata <badref><@ 0x7f917843aed0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411858> : (169, 12) : call
+				metadata : metadata !{float* %xDen}<@ 0x7f9178411710>
+				metadata : metadata <badref><@ 0x7f917843b0d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411a38> : (170, 12) : call
+				metadata : metadata !{float* %d1}<@ 0x7f91784118f0>
+				metadata : metadata <badref><@ 0x7f917843b2d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411c18> : (171, 12) : call
+				metadata : metadata !{float* %d2}<@ 0x7f9178411ad0>
+				metadata : metadata <badref><@ 0x7f917843b4d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411df8> : (172, 12) : call
+				metadata : metadata !{float* %FutureValueX}<@ 0x7f9178411cb0>
+				metadata : metadata <badref><@ 0x7f917843b6d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178411fd8> : (173, 12) : call
+				metadata : metadata !{float* %NofXd1}<@ 0x7f9178411e90>
+				metadata : metadata <badref><@ 0x7f917843b8d0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784121b8> : (174, 12) : call
+				metadata : metadata !{float* %NofXd2}<@ 0x7f9178412070>
+				metadata : metadata <badref><@ 0x7f917843bad0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178412398> : (175, 12) : call
+				metadata : metadata !{float* %NegNofXd1}<@ 0x7f9178412250>
+				metadata : metadata <badref><@ 0x7f917843bcd0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178412578> : (176, 12) : call
+				metadata : metadata !{float* %NegNofXd2}<@ 0x7f9178412430>
+				metadata : metadata <badref><@ 0x7f917843bed0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178412628> : (178, 5) : load
+				float* : float* %1<@ 0x7f917840df88>
+			Instruction <@ 0x7f9178412730> : (178, 5) : store
+				float : float %8<@ 0x7f9178412628>
+				float* : xStockPrice<@ 0x7f917840e348>
+			Instruction <@ 0x7f91784127a8> : (179, 5) : load
+				float* : float* %2<@ 0x7f917840dff8>
+			Instruction <@ 0x7f9178412840> : (179, 5) : store
+				float : float %9<@ 0x7f91784127a8>
+				float* : xStrikePrice<@ 0x7f917840e3b8>
+			Instruction <@ 0x7f91784128b8> : (180, 5) : load
+				float* : float* %3<@ 0x7f917840e068>
+			Instruction <@ 0x7f9178412950> : (180, 5) : store
+				float : float %10<@ 0x7f91784128b8>
+				float* : xRiskFreeRate<@ 0x7f917840e448>
+			Instruction <@ 0x7f91784129c8> : (181, 5) : load
+				float* : float* %4<@ 0x7f917840e0d8>
+			Instruction <@ 0x7f9178412a60> : (181, 5) : store
+				float : float %11<@ 0x7f91784129c8>
+				float* : xVolatility<@ 0x7f917840e4d8>
+			Instruction <@ 0x7f9178412ad8> : (183, 5) : load
+				float* : float* %5<@ 0x7f917840e188>
+			Instruction <@ 0x7f9178412b70> : (183, 5) : store
+				float : float %12<@ 0x7f9178412ad8>
+				float* : xTime<@ 0x7f917840e568>
+			Instruction <@ 0x7f9178412be8> : (184, 17) : load
+				float* : xTime<@ 0x7f917840e568>
+			Instruction <@ 0x7f9178412c68> : (184, 17) : fpext
+				float : float %13<@ 0x7f9178412be8>
+			Instruction <@ 0x7f9178412e40> : (184, 17) : call
+				double : double %14<@ 0x7f9178412c68>
+				double (double)* : sqrt<@ 0x7f9178412cf0>
+			Instruction <@ 0x7f9178412ef8> : (184, 17) : fptrunc
+				double : double %15<@ 0x7f9178412e40>
+			Instruction <@ 0x7f91784126b0> : (184, 17) : store
+				float : float %16<@ 0x7f9178412ef8>
+				float* : xSqrtTime<@ 0x7f917840e788>
+			Instruction <@ 0x7f9178413068> : (186, 17) : load
+				float* : float* %1<@ 0x7f917840df88>
+			Instruction <@ 0x7f91784130e8> : (186, 17) : load
+				float* : float* %2<@ 0x7f917840dff8>
+			Instruction <@ 0x7f9178413180> : (186, 17) : fdiv
+				float : float %17<@ 0x7f9178413068>
+				float : float %18<@ 0x7f91784130e8>
+			Instruction <@ 0x7f91784131f8> : (186, 17) : fpext
+				float : float %19<@ 0x7f9178413180>
+			Instruction <@ 0x7f91784133f0> : (186, 17) : call
+				double : double %20<@ 0x7f91784131f8>
+				double (double)* : log<@ 0x7f9178413280>
+			Instruction <@ 0x7f91784134a8> : (186, 17) : fptrunc
+				double : double %21<@ 0x7f91784133f0>
+			Instruction <@ 0x7f9178413540> : (186, 17) : store
+				float : float %22<@ 0x7f91784134a8>
+				float* : logValues<@ 0x7f917840e818>
+			Instruction <@ 0x7f91784135b8> : (188, 5) : load
+				float* : logValues<@ 0x7f917840e818>
+			Instruction <@ 0x7f9178413650> : (188, 5) : store
+				float : float %23<@ 0x7f91784135b8>
+				float* : xLogTerm<@ 0x7f917840e8a8>
+			Instruction <@ 0x7f91784136c8> : (191, 5) : load
+				float* : xVolatility<@ 0x7f917840e4d8>
+			Instruction <@ 0x7f9178413748> : (191, 5) : load
+				float* : xVolatility<@ 0x7f917840e4d8>
+			Instruction <@ 0x7f91784137e0> : (191, 5) : fmul
+				float : float %24<@ 0x7f91784136c8>
+				float : float %25<@ 0x7f9178413748>
+			Instruction <@ 0x7f9178413870> : (191, 5) : store
+				float : float %26<@ 0x7f91784137e0>
+				float* : xPowerTerm<@ 0x7f917840ea58>
+			Instruction <@ 0x7f91784138e8> : (192, 5) : load
+				float* : xPowerTerm<@ 0x7f917840ea58>
+			Instruction <@ 0x7f9178413968> : (192, 5) : fpext
+				float : float %27<@ 0x7f91784138e8>
+			Instruction <@ 0x7f9178413a50> : (192, 5) : fmul
+				double : double %28<@ 0x7f9178413968>
+				double : double 5.000000e-01<@ 0x7f91784139d0>
+			Instruction <@ 0x7f9178413ac8> : (192, 5) : fptrunc
+				double : double %29<@ 0x7f9178413a50>
+			Instruction <@ 0x7f9178413b60> : (192, 5) : store
+				float : float %30<@ 0x7f9178413ac8>
+				float* : xPowerTerm<@ 0x7f917840ea58>
+			Instruction <@ 0x7f9178413bd8> : (194, 5) : load
+				float* : xRiskFreeRate<@ 0x7f917840e448>
+			Instruction <@ 0x7f9178413c58> : (194, 5) : load
+				float* : xPowerTerm<@ 0x7f917840ea58>
+			Instruction <@ 0x7f9178412f80> : (194, 5) : fadd
+				float : float %31<@ 0x7f9178413bd8>
+				float : float %32<@ 0x7f9178413c58>
+			Instruction <@ 0x7f9178413ef0> : (194, 5) : store
+				float : float %33<@ 0x7f9178412f80>
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178413f58> : (195, 5) : load
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178413fc8> : (195, 5) : load
+				float* : xTime<@ 0x7f917840e568>
+			Instruction <@ 0x7f9178414050> : (195, 5) : fmul
+				float : float %34<@ 0x7f9178413f58>
+				float : float %35<@ 0x7f9178413fc8>
+			Instruction <@ 0x7f91784140d0> : (195, 5) : store
+				float : float %36<@ 0x7f9178414050>
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178414138> : (196, 5) : load
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f91784141a8> : (196, 5) : load
+				float* : xLogTerm<@ 0x7f917840e8a8>
+			Instruction <@ 0x7f9178414230> : (196, 5) : fadd
+				float : float %37<@ 0x7f9178414138>
+				float : float %38<@ 0x7f91784141a8>
+			Instruction <@ 0x7f91784142c0> : (196, 5) : store
+				float : float %39<@ 0x7f9178414230>
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178414338> : (198, 5) : load
+				float* : xVolatility<@ 0x7f917840e4d8>
+			Instruction <@ 0x7f91784143b8> : (198, 5) : load
+				float* : xSqrtTime<@ 0x7f917840e788>
+			Instruction <@ 0x7f9178414450> : (198, 5) : fmul
+				float : float %40<@ 0x7f9178414338>
+				float : float %41<@ 0x7f91784143b8>
+			Instruction <@ 0x7f91784144e0> : (198, 5) : store
+				float : float %42<@ 0x7f9178414450>
+				float* : xDen<@ 0x7f917840eae8>
+			Instruction <@ 0x7f9178414558> : (199, 5) : load
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f91784145d8> : (199, 5) : load
+				float* : xDen<@ 0x7f917840eae8>
+			Instruction <@ 0x7f9178414670> : (199, 5) : fdiv
+				float : float %43<@ 0x7f9178414558>
+				float : float %44<@ 0x7f91784145d8>
+			Instruction <@ 0x7f9178414700> : (199, 5) : store
+				float : float %45<@ 0x7f9178414670>
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178414778> : (200, 5) : load
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f91784147f8> : (200, 5) : load
+				float* : xDen<@ 0x7f917840eae8>
+			Instruction <@ 0x7f9178414890> : (200, 5) : fsub
+				float : float %46<@ 0x7f9178414778>
+				float : float %47<@ 0x7f91784147f8>
+			Instruction <@ 0x7f9178414920> : (200, 5) : store
+				float : float %48<@ 0x7f9178414890>
+				float* : xD2<@ 0x7f917840e9c8>
+			Instruction <@ 0x7f9178414998> : (202, 5) : load
+				float* : xD1<@ 0x7f917840e938>
+			Instruction <@ 0x7f9178414a30> : (202, 5) : store
+				float : float %49<@ 0x7f9178414998>
+				float* : d1<@ 0x7f917840eb78>
+			Instruction <@ 0x7f9178414aa8> : (203, 5) : load
+				float* : xD2<@ 0x7f917840e9c8>
+			Instruction <@ 0x7f9178414b40> : (203, 5) : store
+				float : float %50<@ 0x7f9178414aa8>
+				float* : d2<@ 0x7f917840ec08>
+			Instruction <@ 0x7f9178414bb8> : (205, 14) : load
+				float* : d1<@ 0x7f917840eb78>
+			Instruction <@ 0x7f9178414c60> : (205, 14) : call
+				float : float %51<@ 0x7f9178414bb8>
+				float (float)* : CNDF<@ 0x7f9178406870>
+			Instruction <@ 0x7f9178414d30> : (205, 14) : store
+				float : float %52<@ 0x7f9178414c60>
+				float* : NofXd1<@ 0x7f917840ed28>
+			Instruction <@ 0x7f9178414da8> : (206, 14) : load
+				float* : d2<@ 0x7f917840ec08>
+			Instruction <@ 0x7f9178414e50> : (206, 14) : call
+				float : float %53<@ 0x7f9178414da8>
+				float (float)* : CNDF<@ 0x7f9178406870>
+			Instruction <@ 0x7f9178414f20> : (206, 14) : store
+				float : float %54<@ 0x7f9178414e50>
+				float* : NofXd2<@ 0x7f917840edb8>
+			Instruction <@ 0x7f9178414f98> : (208, 5) : load
+				float* : float* %2<@ 0x7f917840dff8>
+			Instruction <@ 0x7f9178415018> : (208, 5) : fpext
+				float : float %55<@ 0x7f9178414f98>
+			Instruction <@ 0x7f9178415098> : (208, 31) : load
+				float* : float* %3<@ 0x7f917840e068>
+			Instruction <@ 0x7f9178415130> : (208, 31) : fsub
+				float : float -0.000000e+00<@ 0x7f9178409680>
+				float : float %57<@ 0x7f9178415098>
+			Instruction <@ 0x7f91784151a8> : (208, 31) : load
+				float* : float* %5<@ 0x7f917840e188>
+			Instruction <@ 0x7f9178415240> : (208, 31) : fmul
+				float : float %58<@ 0x7f9178415130>
+				float : float %59<@ 0x7f91784151a8>
+			Instruction <@ 0x7f91784152b8> : (208, 31) : fpext
+				float : float %60<@ 0x7f9178415240>
+			Instruction <@ 0x7f9178415370> : (208, 31) : call
+				double : double %61<@ 0x7f91784152b8>
+				double (double)* : exp<@ 0x7f9178409e60>
+			Instruction <@ 0x7f9178415440> : (208, 31) : fmul
+				double : double %56<@ 0x7f9178415018>
+				double : double %62<@ 0x7f9178415370>
+			Instruction <@ 0x7f91784154b8> : (208, 31) : fptrunc
+				double : double %63<@ 0x7f9178415440>
+			Instruction <@ 0x7f9178413cf0> : (208, 31) : store
+				float : float %64<@ 0x7f91784154b8>
+				float* : FutureValueX<@ 0x7f917840ec98>
+			Instruction <@ 0x7f9178413d68> : (209, 9) : load
+				i32* : i32* %6<@ 0x7f917840e1f8>
+			Instruction <@ 0x7f9178413e00> : (209, 9) : icmp
+				i32 : i32 %65<@ 0x7f9178413d68>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f9178415638> : (209, 9) : br
+				i1 : i1 %66<@ 0x7f9178413e00>
+				label : label %75<@ 0x7f9178415560>
+				label : label %67<@ 0x7f9178413e60>
+
+		BasicBlock <@ 0x7f9178413e60> : label %67
+			Instruction <@ 0x7f91784156a8> : (210, 9) : load
+				float* : float* %1<@ 0x7f917840df88>
+			Instruction <@ 0x7f9178415728> : (210, 9) : load
+				float* : NofXd1<@ 0x7f917840ed28>
+			Instruction <@ 0x7f91784157c0> : (210, 9) : fmul
+				float : float %68<@ 0x7f91784156a8>
+				float : float %69<@ 0x7f9178415728>
+			Instruction <@ 0x7f9178415838> : (210, 9) : load
+				float* : FutureValueX<@ 0x7f917840ec98>
+			Instruction <@ 0x7f91784158b8> : (210, 9) : load
+				float* : NofXd2<@ 0x7f917840edb8>
+			Instruction <@ 0x7f9178415950> : (210, 9) : fmul
+				float : float %71<@ 0x7f9178415838>
+				float : float %72<@ 0x7f91784158b8>
+			Instruction <@ 0x7f91784159e0> : (210, 9) : fsub
+				float : float %70<@ 0x7f91784157c0>
+				float : float %73<@ 0x7f9178415950>
+			Instruction <@ 0x7f9178415a70> : (210, 9) : store
+				float : float %74<@ 0x7f91784159e0>
+				float* : OptionPrice<@ 0x7f917840e2d8>
+			Instruction <@ 0x7f9178415b38> : (211, 5) : br
+				label : label %91<@ 0x7f9178415ad0>
+
+		BasicBlock <@ 0x7f9178415560> : label %75
+			Instruction <@ 0x7f9178415bb8> : (212, 9) : load
+				float* : NofXd1<@ 0x7f917840ed28>
+			Instruction <@ 0x7f9178415c38> : (212, 9) : fpext
+				float : float %76<@ 0x7f9178415bb8>
+			Instruction <@ 0x7f9178415cd0> : (212, 9) : fsub
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %77<@ 0x7f9178415c38>
+			Instruction <@ 0x7f9178415d48> : (212, 9) : fptrunc
+				double : double %78<@ 0x7f9178415cd0>
+			Instruction <@ 0x7f9178415de0> : (212, 9) : store
+				float : float %79<@ 0x7f9178415d48>
+				float* : NegNofXd1<@ 0x7f917840e5f8>
+			Instruction <@ 0x7f9178415e58> : (213, 9) : load
+				float* : NofXd2<@ 0x7f917840edb8>
+			Instruction <@ 0x7f9178415ed8> : (213, 9) : fpext
+				float : float %80<@ 0x7f9178415e58>
+			Instruction <@ 0x7f9178415f70> : (213, 9) : fsub
+				double : double 1.000000e+00<@ 0x7f917840a9b0>
+				double : double %81<@ 0x7f9178415ed8>
+			Instruction <@ 0x7f9178415fe8> : (213, 9) : fptrunc
+				double : double %82<@ 0x7f9178415f70>
+			Instruction <@ 0x7f9178416080> : (213, 9) : store
+				float : float %83<@ 0x7f9178415fe8>
+				float* : NegNofXd2<@ 0x7f917840e688>
+			Instruction <@ 0x7f91784160f8> : (214, 9) : load
+				float* : FutureValueX<@ 0x7f917840ec98>
+			Instruction <@ 0x7f9178416178> : (214, 9) : load
+				float* : NegNofXd2<@ 0x7f917840e688>
+			Instruction <@ 0x7f9178416210> : (214, 9) : fmul
+				float : float %84<@ 0x7f91784160f8>
+				float : float %85<@ 0x7f9178416178>
+			Instruction <@ 0x7f9178416288> : (214, 9) : load
+				float* : float* %1<@ 0x7f917840df88>
+			Instruction <@ 0x7f9178416308> : (214, 9) : load
+				float* : NegNofXd1<@ 0x7f917840e5f8>
+			Instruction <@ 0x7f91784163a0> : (214, 9) : fmul
+				float : float %87<@ 0x7f9178416288>
+				float : float %88<@ 0x7f9178416308>
+			Instruction <@ 0x7f9178416430> : (214, 9) : fsub
+				float : float %86<@ 0x7f9178416210>
+				float : float %89<@ 0x7f91784163a0>
+			Instruction <@ 0x7f91784164c0> : (214, 9) : store
+				float : float %90<@ 0x7f9178416430>
+				float* : OptionPrice<@ 0x7f917840e2d8>
+			Instruction <@ 0x7f9178416538> : (0, 0) : br
+				label : label %91<@ 0x7f9178415ad0>
+
+		BasicBlock <@ 0x7f9178415ad0> : label %91
+			Instruction <@ 0x7f91784165a8> : (217, 5) : load
+				float* : OptionPrice<@ 0x7f917840e2d8>
+			Instruction <@ 0x7f9178416618> : (217, 5) : ret
+				float : float %92<@ 0x7f91784165a8>
+
+	Function <@ 0x7f9178412cf0> : sqrt : Declaration : NonIntrinsic
+		ArgList :
+			double %0<@ 0x7f9178416680>
+
+	Function <@ 0x7f9178413280> : log : Declaration : NonIntrinsic
+		ArgList :
+			double %0<@ 0x7f91784166c0>
+
+	Function <@ 0x7f9178416700> : bs_thread : Definition : NonIntrinsic
+		ArgList :
+			tid_ptr<@ 0x7f91784167f0>
+
+		BasicBlock <@ 0x7f9178416920> : label %0
+			Instruction <@ 0x7f91784169c8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416a38> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416aa8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416b18> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416ba8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416c38> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416cc8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416d58> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178416e00> : (0, 0) : store
+				i8* : tid_ptr<@ 0x7f91784167f0>
+				i8** : i8** %1<@ 0x7f91784169c8>
+			Instruction <@ 0x7f9178416f98> : (276, 21) : call
+				metadata : metadata !{i8** %1}<@ 0x7f9178416e50>
+				metadata : metadata <badref><@ 0x7f917843e1a0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178417178> : (278, 9) : call
+				metadata : metadata !{i32* %i}<@ 0x7f9178417030>
+				metadata : metadata <badref><@ 0x7f917843e3a0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178417358> : (278, 12) : call
+				metadata : metadata !{i32* %j}<@ 0x7f9178417210>
+				metadata : metadata <badref><@ 0x7f917843e5a0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178417538> : (279, 12) : call
+				metadata : metadata !{float* %price}<@ 0x7f91784173f0>
+				metadata : metadata <badref><@ 0x7f917843e7a0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178417718> : (280, 12) : call
+				metadata : metadata !{float* %priceDelta}<@ 0x7f91784175d0>
+				metadata : metadata <badref><@ 0x7f917843e9a0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784178f8> : (281, 9) : call
+				metadata : metadata !{i32* %tid}<@ 0x7f91784177b0>
+				metadata : metadata <badref><@ 0x7f917843eba0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784179a8> : (281, 5) : load
+				i8** : i8** %1<@ 0x7f91784169c8>
+			Instruction <@ 0x7f9178417a38> : (281, 5) : bitcast
+				i8* : i8* %2<@ 0x7f91784179a8>
+			Instruction <@ 0x7f9178417aa8> : (281, 5) : load
+				i32* : i32* %3<@ 0x7f9178417a38>
+			Instruction <@ 0x7f9178417b80> : (281, 5) : store
+				i32 : i32 %4<@ 0x7f9178417aa8>
+				i32* : tid<@ 0x7f9178416c38>
+			Instruction <@ 0x7f9178417d38> : (282, 9) : call
+				metadata : metadata !{i32* %start}<@ 0x7f9178417be0>
+				metadata : metadata <badref><@ 0x7f917843ee60>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178417de8> : (282, 5) : load
+				i32* : tid<@ 0x7f9178416c38>
+			Instruction <@ 0x7f9178417e58> : (282, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178417ec8> : (282, 5) : load
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f9178417f50> : (282, 5) : sdiv
+				i32 : i32 %6<@ 0x7f9178417e58>
+				i32 : i32 %7<@ 0x7f9178417ec8>
+			Instruction <@ 0x7f9178418060> : (282, 5) : mul
+				i32 : i32 %5<@ 0x7f9178417de8>
+				i32 : i32 %8<@ 0x7f9178417f50>
+			Instruction <@ 0x7f91784180f0> : (282, 5) : store
+				i32 : i32 %9<@ 0x7f9178418060>
+				i32* : start<@ 0x7f9178416cc8>
+			Instruction <@ 0x7f9178418268> : (283, 9) : call
+				metadata : metadata !{i32* %end}<@ 0x7f9178418150>
+				metadata : metadata <badref><@ 0x7f917843f120>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f9178418318> : (283, 5) : load
+				i32* : start<@ 0x7f9178416cc8>
+			Instruction <@ 0x7f9178418388> : (283, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178418408> : (283, 5) : load
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f91784184a0> : (283, 5) : sdiv
+				i32 : i32 %11<@ 0x7f9178418388>
+				i32 : i32 %12<@ 0x7f9178418408>
+			Instruction <@ 0x7f9178418530> : (283, 5) : add
+				i32 : i32 %10<@ 0x7f9178418318>
+				i32 : i32 %13<@ 0x7f91784184a0>
+			Instruction <@ 0x7f91784185c0> : (283, 5) : store
+				i32 : i32 %14<@ 0x7f9178418530>
+				i32* : end<@ 0x7f9178416d58>
+			Instruction <@ 0x7f9178418650> : (285, 10) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : j<@ 0x7f9178416aa8>
+			Instruction <@ 0x7f9178418758> : (285, 10) : br
+				label : label %15<@ 0x7f91784186b0>
+
+		BasicBlock <@ 0x7f91784186b0> : label %15
+			Instruction <@ 0x7f91784187d8> : (285, 10) : load
+				i32* : j<@ 0x7f9178416aa8>
+			Instruction <@ 0x7f9178417fe0> : (285, 10) : icmp
+				i32 : i32 %16<@ 0x7f91784187d8>
+				i32 : i32 100<@ 0x7f9178418700>
+			Instruction <@ 0x7f9178418ab8> : (285, 10) : br
+				i1 : i1 %17<@ 0x7f9178417fe0>
+				label : label %68<@ 0x7f91784189e0>
+				label : label %18<@ 0x7f9178418950>
+
+		BasicBlock <@ 0x7f9178418950> : label %18
+			Instruction <@ 0x7f9178418b38> : (290, 14) : load
+				i32* : start<@ 0x7f9178416cc8>
+			Instruction <@ 0x7f9178418bd0> : (290, 14) : store
+				i32 : i32 %19<@ 0x7f9178418b38>
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178418c98> : (290, 14) : br
+				label : label %20<@ 0x7f9178418c30>
+
+		BasicBlock <@ 0x7f9178418c30> : label %20
+			Instruction <@ 0x7f9178418d18> : (290, 14) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178418d98> : (290, 14) : load
+				i32* : end<@ 0x7f9178416d58>
+			Instruction <@ 0x7f9178418e30> : (290, 14) : icmp
+				i32 : i32 %21<@ 0x7f9178418d18>
+				i32 : i32 %22<@ 0x7f9178418d98>
+			Instruction <@ 0x7f9178418fb8> : (290, 14) : br
+				i1 : i1 %23<@ 0x7f9178418e30>
+				label : label %64<@ 0x7f9178418ee0>
+				label : label %24<@ 0x7f9178418e90>
+
+		BasicBlock <@ 0x7f9178418e90> : label %24
+			Instruction <@ 0x7f9178419038> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f91784190b8> : (295, 21) : sext
+				i32 : i32 %25<@ 0x7f9178419038>
+			Instruction <@ 0x7f9178419138> : (295, 21) : load
+				float** : sptprice<@ 0x7f9178404a48>
+			Instruction <@ 0x7f91784191d0> : (295, 21) : getelementptr
+				float* : float* %27<@ 0x7f9178419138>
+				i64 : i64 %26<@ 0x7f91784190b8>
+			Instruction <@ 0x7f9178419248> : (295, 21) : load
+				float* : float* %28<@ 0x7f91784191d0>
+			Instruction <@ 0x7f91784192c8> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178419348> : (295, 21) : sext
+				i32 : i32 %30<@ 0x7f91784192c8>
+			Instruction <@ 0x7f91784193c8> : (295, 21) : load
+				float** : strike<@ 0x7f9178404af8>
+			Instruction <@ 0x7f9178418870> : (295, 21) : getelementptr
+				float* : float* %32<@ 0x7f91784193c8>
+				i64 : i64 %31<@ 0x7f9178419348>
+			Instruction <@ 0x7f91784188e8> : (295, 21) : load
+				float* : float* %33<@ 0x7f9178418870>
+			Instruction <@ 0x7f9178419658> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f91784196d8> : (295, 21) : sext
+				i32 : i32 %35<@ 0x7f9178419658>
+			Instruction <@ 0x7f9178419758> : (295, 21) : load
+				float** : rate<@ 0x7f9178404ba8>
+			Instruction <@ 0x7f91784197f0> : (295, 21) : getelementptr
+				float* : float* %37<@ 0x7f9178419758>
+				i64 : i64 %36<@ 0x7f91784196d8>
+			Instruction <@ 0x7f9178419868> : (295, 21) : load
+				float* : float* %38<@ 0x7f91784197f0>
+			Instruction <@ 0x7f91784198e8> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178419968> : (295, 21) : sext
+				i32 : i32 %40<@ 0x7f91784198e8>
+			Instruction <@ 0x7f91784199e8> : (295, 21) : load
+				float** : volatility<@ 0x7f9178404c58>
+			Instruction <@ 0x7f9178419a80> : (295, 21) : getelementptr
+				float* : float* %42<@ 0x7f91784199e8>
+				i64 : i64 %41<@ 0x7f9178419968>
+			Instruction <@ 0x7f9178419af8> : (295, 21) : load
+				float* : float* %43<@ 0x7f9178419a80>
+			Instruction <@ 0x7f9178419b78> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178419bf8> : (295, 21) : sext
+				i32 : i32 %45<@ 0x7f9178419b78>
+			Instruction <@ 0x7f9178419c78> : (295, 21) : load
+				float** : otime<@ 0x7f9178404d08>
+			Instruction <@ 0x7f9178419d10> : (295, 21) : getelementptr
+				float* : float* %47<@ 0x7f9178419c78>
+				i64 : i64 %46<@ 0x7f9178419bf8>
+			Instruction <@ 0x7f9178419d88> : (295, 21) : load
+				float* : float* %48<@ 0x7f9178419d10>
+			Instruction <@ 0x7f9178419e08> : (295, 21) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f9178419e88> : (295, 21) : sext
+				i32 : i32 %50<@ 0x7f9178419e08>
+			Instruction <@ 0x7f9178419f08> : (295, 21) : load
+				i32** : otype<@ 0x7f9178404de8>
+			Instruction <@ 0x7f9178419fa0> : (295, 21) : getelementptr
+				i32* : i32* %52<@ 0x7f9178419f08>
+				i64 : i64 %51<@ 0x7f9178419e88>
+			Instruction <@ 0x7f917841a018> : (295, 21) : load
+				i32* : i32* %53<@ 0x7f9178419fa0>
+			Instruction <@ 0x7f917841a1f0> : (295, 21) : call
+				float : float %29<@ 0x7f9178419248>
+				float : float %34<@ 0x7f91784188e8>
+				float : float %39<@ 0x7f9178419868>
+				float : float %44<@ 0x7f9178419af8>
+				float : float %49<@ 0x7f9178419d88>
+				i32 : i32 %54<@ 0x7f917841a018>
+				float : float 0.000000e+00<@ 0x7f917841a080>
+				float (float, float, float, float, float, i32, float)* : BlkSchlsEqEuroNoDiv<@ 0x7f917840dab0>
+			Instruction <@ 0x7f917841a280> : (295, 21) : store
+				float : float %55<@ 0x7f917841a1f0>
+				float* : price<@ 0x7f9178416b18>
+			Instruction <@ 0x7f917841a2e8> : (298, 13) : load
+				float* : price<@ 0x7f9178416b18>
+			Instruction <@ 0x7f917841a358> : (298, 13) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f917841a3c8> : (298, 13) : sext
+				i32 : i32 %57<@ 0x7f917841a358>
+			Instruction <@ 0x7f917841a438> : (298, 13) : load
+				float** : prices<@ 0x7f9178404e98>
+			Instruction <@ 0x7f917841a4c0> : (298, 13) : getelementptr
+				float* : float* %59<@ 0x7f917841a438>
+				i64 : i64 %58<@ 0x7f917841a3c8>
+			Instruction <@ 0x7f917841a550> : (298, 13) : store
+				float : float %56<@ 0x7f917841a2e8>
+				float* : float* %60<@ 0x7f917841a4c0>
+			Instruction <@ 0x7f917841a658> : (308, 9) : br
+				label : label %61<@ 0x7f917841a5b0>
+
+		BasicBlock <@ 0x7f917841a5b0> : label %61
+			Instruction <@ 0x7f917841a6d8> : (290, 30) : load
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f917841a770> : (290, 30) : add
+				i32 : i32 %62<@ 0x7f917841a6d8>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841a800> : (290, 30) : store
+				i32 : i32 %63<@ 0x7f917841a770>
+				i32* : i<@ 0x7f9178416a38>
+			Instruction <@ 0x7f917841a878> : (290, 30) : br
+				label : label %20<@ 0x7f9178418c30>
+
+		BasicBlock <@ 0x7f9178418ee0> : label %64
+			Instruction <@ 0x7f9178419498> : (309, 5) : br
+				label : label %65<@ 0x7f9178419430>
+
+		BasicBlock <@ 0x7f9178419430> : label %65
+			Instruction <@ 0x7f9178419508> : (285, 27) : load
+				i32* : j<@ 0x7f9178416aa8>
+			Instruction <@ 0x7f9178419590> : (285, 27) : add
+				i32 : i32 %66<@ 0x7f9178419508>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841a910> : (285, 27) : store
+				i32 : i32 %67<@ 0x7f9178419590>
+				i32* : j<@ 0x7f9178416aa8>
+			Instruction <@ 0x7f917841a978> : (285, 27) : br
+				label : label %15<@ 0x7f91784186b0>
+
+		BasicBlock <@ 0x7f91784189e0> : label %68
+			Instruction <@ 0x7f917841a9e8> : (311, 5) : ret
+				i32 : i32 0<@ 0x7f9178404760>
+
+	Function <@ 0x7f917841aa40> : main : Definition : NonIntrinsic
+		ArgList :
+			argc<@ 0x7f917841ab20>
+			argv<@ 0x7f917841ab60>
+
+		BasicBlock <@ 0x7f917841ac90> : label %0
+			Instruction <@ 0x7f917841ad38> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841ada8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841ae18> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841ae88> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841aef8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841af88> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b018> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b0a8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b138> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b1c8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b258> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b2e8> : (0, 0) : alloca
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841b390> : (0, 0) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : i32* %1<@ 0x7f917841ad38>
+			Instruction <@ 0x7f917841b410> : (0, 0) : store
+				i32 : argc<@ 0x7f917841ab20>
+				i32* : i32* %2<@ 0x7f917841ada8>
+			Instruction <@ 0x7f917841b598> : (315, 15) : call
+				metadata : metadata !{i32* %2}<@ 0x7f917841b460>
+				metadata : metadata <badref><@ 0x7f9178440260>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841b660> : (0, 0) : store
+				i8** : argv<@ 0x7f917841ab60>
+				i8*** : i8*** %3<@ 0x7f917841ae18>
+			Instruction <@ 0x7f917841b7e8> : (315, 28) : call
+				metadata : metadata !{i8*** %3}<@ 0x7f917841b6b0>
+				metadata : metadata <badref><@ 0x7f9178440460>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841b9c8> : (317, 11) : call
+				metadata : metadata !{%struct.__sFILE** %file}<@ 0x7f917841b880>
+				metadata : metadata <badref><@ 0x7f91784406e0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841bba8> : (318, 9) : call
+				metadata : metadata !{i32* %i}<@ 0x7f917841ba60>
+				metadata : metadata <badref><@ 0x7f9178446ed0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841bd88> : (319, 9) : call
+				metadata : metadata !{i32* %loopnum}<@ 0x7f917841bc40>
+				metadata : metadata <badref><@ 0x7f9178447050>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841bf68> : (320, 14) : call
+				metadata : metadata !{float** %buffer}<@ 0x7f917841be20>
+				metadata : metadata <badref><@ 0x7f9178447290>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841c148> : (321, 11) : call
+				metadata : metadata !{i32** %buffer2}<@ 0x7f917841c000>
+				metadata : metadata <badref><@ 0x7f9178447490>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841c328> : (322, 9) : call
+				metadata : metadata !{i32* %rv}<@ 0x7f917841c1e0>
+				metadata : metadata <badref><@ 0x7f9178447690>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841c660> : (330, 9) : call
+				i8* : i8* getelementptr inbounds ([24 x i8]* @.str, i32 0, i32 0)<@ 0x7f917841c468>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917841c8c0> : (331, 2) : call
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7f917841c740>
+				i32 (%struct.__sFILE*)* : fflush<@ 0x7f917841c770>
+			Instruction <@ 0x7f917841c978> : (337, 8) : load
+				i32* : i32* %2<@ 0x7f917841ada8>
+			Instruction <@ 0x7f917841ca50> : (337, 8) : icmp
+				i32 : i32 %6<@ 0x7f917841c978>
+				i32 : i32 4<@ 0x7f917841c9e0>
+			Instruction <@ 0x7f917841cc18> : (337, 8) : br
+				i1 : i1 %7<@ 0x7f917841ca50>
+				label : label %13<@ 0x7f917841cb40>
+				label : label %8<@ 0x7f917841cab0>
+
+		BasicBlock <@ 0x7f917841cab0> : label %8
+			Instruction <@ 0x7f917841cd18> : (339, 17) : load
+				i8*** : i8*** %3<@ 0x7f917841ae18>
+			Instruction <@ 0x7f917841cda0> : (339, 17) : getelementptr
+				i8** : i8** %9<@ 0x7f917841cd18>
+				i64 : i64 0<@ 0x7f917841c700>
+			Instruction <@ 0x7f917841ce08> : (339, 17) : load
+				i8** : i8** %10<@ 0x7f917841cda0>
+			Instruction <@ 0x7f917841d028> : (339, 17) : call
+				i8* : i8* getelementptr inbounds ([48 x i8]* @.str1, i32 0, i32 0)<@ 0x7f917841cf08>
+				i8* : i8* %11<@ 0x7f917841ce08>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917841d1f0> : (340, 17) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917841d290> : (340, 17) : unreachable
+
+		BasicBlock <@ 0x7f917841cb40> : label %13
+			Instruction <@ 0x7f917841d308> : (342, 16) : load
+				i8*** : i8*** %3<@ 0x7f917841ae18>
+			Instruction <@ 0x7f917841d3a0> : (342, 16) : getelementptr
+				i8** : i8** %14<@ 0x7f917841d308>
+				i64 : i64 1<@ 0x7f917841cb90>
+			Instruction <@ 0x7f917841d418> : (342, 16) : load
+				i8** : i8** %15<@ 0x7f917841d3a0>
+			Instruction <@ 0x7f917841d6b0> : (342, 16) : call
+				i8* : i8* %16<@ 0x7f917841d418>
+				i32 (i8*)* : atoi<@ 0x7f917841d590>
+			Instruction <@ 0x7f917841d780> : (342, 16) : store
+				i32 : i32 %17<@ 0x7f917841d6b0>
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f917841d908> : (343, 11) : call
+				metadata : metadata !{i8** %inputFile}<@ 0x7f917841d7d0>
+				metadata : metadata <badref><@ 0x7f9178448140>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841d9b8> : (343, 5) : load
+				i8*** : i8*** %3<@ 0x7f917841ae18>
+			Instruction <@ 0x7f917841da80> : (343, 5) : getelementptr
+				i8** : i8** %18<@ 0x7f917841d9b8>
+				i64 : i64 2<@ 0x7f917841da10>
+			Instruction <@ 0x7f917841daf8> : (343, 5) : load
+				i8** : i8** %19<@ 0x7f917841da80>
+			Instruction <@ 0x7f917841db90> : (343, 5) : store
+				i8* : i8* %20<@ 0x7f917841daf8>
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f917841dd48> : (344, 11) : call
+				metadata : metadata !{i8** %outputFile}<@ 0x7f917841dbf0>
+				metadata : metadata <badref><@ 0x7f9178448400>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f917841ddf8> : (344, 5) : load
+				i8*** : i8*** %3<@ 0x7f917841ae18>
+			Instruction <@ 0x7f917841dec0> : (344, 5) : getelementptr
+				i8** : i8** %21<@ 0x7f917841ddf8>
+				i64 : i64 3<@ 0x7f917841de50>
+			Instruction <@ 0x7f917841df38> : (344, 5) : load
+				i8** : i8** %22<@ 0x7f917841dec0>
+			Instruction <@ 0x7f917841dfd0> : (344, 5) : store
+				i8* : i8* %23<@ 0x7f917841df38>
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f917841e048> : (347, 12) : load
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f917841e378> : (347, 12) : call
+				i8* : i8* %24<@ 0x7f917841e048>
+				i8* : i8* getelementptr inbounds ([2 x i8]* @.str2, i32 0, i32 0)<@ 0x7f917841e168>
+				%struct.__sFILE* (i8*, i8*)* : _fopen<@ 0x7f917841e240>
+			Instruction <@ 0x7f917841e440> : (347, 12) : store
+				%struct.__sFILE* : %struct.__sFILE* %25<@ 0x7f917841e378>
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917841e4a8> : (348, 8) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917841e540> : (348, 8) : icmp
+				%struct.__sFILE* : %struct.__sFILE* %26<@ 0x7f917841e4a8>
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7f917841c740>
+			Instruction <@ 0x7f917841e708> : (348, 8) : br
+				i1 : i1 %27<@ 0x7f917841e540>
+				label : label %31<@ 0x7f917841e630>
+				label : label %28<@ 0x7f917841e5a0>
+
+		BasicBlock <@ 0x7f917841e5a0> : label %28
+			Instruction <@ 0x7f917841e788> : (349, 7) : load
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f917841e9a8> : (349, 7) : call
+				i8* : i8* getelementptr inbounds ([34 x i8]* @.str3, i32 0, i32 0)<@ 0x7f917841e8a8>
+				i8* : i8* %29<@ 0x7f917841e788>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917841ea30> : (350, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917841ead0> : (350, 7) : unreachable
+
+		BasicBlock <@ 0x7f917841e630> : label %31
+			Instruction <@ 0x7f917841eb38> : (352, 10) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917841ef60> : (352, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %32<@ 0x7f917841eb38>
+				i8* : i8* getelementptr inbounds ([3 x i8]* @.str4, i32 0, i32 0)<@ 0x7f917841d538>
+				i32* : numOptions<@ 0x7f91784047d8>
+				i32 (%struct.__sFILE*, i8*, ...)* : fscanf<@ 0x7f917841ee10>
+			Instruction <@ 0x7f917841f030> : (352, 10) : store
+				i32 : i32 %33<@ 0x7f917841ef60>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917841f098> : (353, 8) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917841f120> : (353, 8) : icmp
+				i32 : i32 %34<@ 0x7f917841f098>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917841f2d8> : (353, 8) : br
+				i1 : i1 %35<@ 0x7f917841f120>
+				label : label %41<@ 0x7f917841f200>
+				label : label %36<@ 0x7f917841f170>
+
+		BasicBlock <@ 0x7f917841f170> : label %36
+			Instruction <@ 0x7f917841f348> : (354, 7) : load
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f917841f568> : (354, 7) : call
+				i8* : i8* getelementptr inbounds ([39 x i8]* @.str5, i32 0, i32 0)<@ 0x7f917841f468>
+				i8* : i8* %37<@ 0x7f917841f348>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917841f5d8> : (355, 7) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917841f780> : (355, 7) : call
+				%struct.__sFILE* : %struct.__sFILE* %39<@ 0x7f917841f5d8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f917841f870> : (356, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917841f910> : (356, 7) : unreachable
+
+		BasicBlock <@ 0x7f917841f200> : label %41
+			Instruction <@ 0x7f917841f988> : (358, 8) : load
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f917841fa08> : (358, 8) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f917841faa0> : (358, 8) : icmp
+				i32 : i32 %42<@ 0x7f917841f988>
+				i32 : i32 %43<@ 0x7f917841fa08>
+			Instruction <@ 0x7f917841fc28> : (358, 8) : br
+				i1 : i1 %44<@ 0x7f917841faa0>
+				label : label %48<@ 0x7f917841fb50>
+				label : label %45<@ 0x7f917841fb00>
+
+		BasicBlock <@ 0x7f917841fb00> : label %45
+			Instruction <@ 0x7f917841fe30> : (359, 7) : call
+				i8* : i8* getelementptr inbounds ([82 x i8]* @.str6, i32 0, i32 0)<@ 0x7f917841fd48>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917841fea8> : (360, 7) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f917841ff30> : (360, 7) : store
+				i32 : i32 %47<@ 0x7f917841fea8>
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f917841ff98> : (361, 5) : br
+				label : label %48<@ 0x7f917841fb50>
+
+		BasicBlock <@ 0x7f917841fb50> : label %48
+			Instruction <@ 0x7f9178420018> : (364, 8) : load
+				i32* : nThreads<@ 0x7f9178404968>
+			Instruction <@ 0x7f91784200a0> : (364, 8) : icmp
+				i32 : i32 %49<@ 0x7f9178420018>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178420218> : (364, 8) : br
+				i1 : i1 %50<@ 0x7f91784200a0>
+				label : label %53<@ 0x7f9178420140>
+				label : label %51<@ 0x7f91784200f0>
+
+		BasicBlock <@ 0x7f91784200f0> : label %51
+			Instruction <@ 0x7f9178420420> : (365, 9) : call
+				i8* : i8* getelementptr inbounds ([46 x i8]* @.str7, i32 0, i32 0)<@ 0x7f9178420338>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f91784204b0> : (366, 9) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f9178420550> : (366, 9) : unreachable
+
+		BasicBlock <@ 0x7f9178420140> : label %53
+			Instruction <@ 0x7f91784205b8> : (371, 25) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178420628> : (371, 25) : sext
+				i32 : i32 %54<@ 0x7f91784205b8>
+			Instruction <@ 0x7f91784206c0> : (371, 25) : mul
+				i64 : i64 %55<@ 0x7f9178420628>
+				i64 : i64 36<@ 0x7f9178420190>
+			Instruction <@ 0x7f91784208a0> : (371, 25) : call
+				i64 : i64 %56<@ 0x7f91784206c0>
+				i8* (i64)* : malloc<@ 0x7f9178420730>
+			Instruction <@ 0x7f9178420958> : (371, 25) : bitcast
+				i8* : i8* %57<@ 0x7f91784208a0>
+			Instruction <@ 0x7f91784209f0> : (371, 25) : store
+				%struct.OptionData_* : %struct.OptionData_* %58<@ 0x7f9178420958>
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178420a68> : (372, 23) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178420ae8> : (372, 23) : sext
+				i32 : i32 %59<@ 0x7f9178420a68>
+			Instruction <@ 0x7f9178420bc0> : (372, 23) : mul
+				i64 : i64 %60<@ 0x7f9178420ae8>
+				i64 : i64 4<@ 0x7f9178420b50>
+			Instruction <@ 0x7f9178420c60> : (372, 23) : call
+				i64 : i64 %61<@ 0x7f9178420bc0>
+				i8* (i64)* : malloc<@ 0x7f9178420730>
+			Instruction <@ 0x7f9178420d18> : (372, 23) : bitcast
+				i8* : i8* %62<@ 0x7f9178420c60>
+			Instruction <@ 0x7f9178420db0> : (372, 23) : store
+				float* : float* %63<@ 0x7f9178420d18>
+				float** : prices<@ 0x7f9178404e98>
+			Instruction <@ 0x7f9178420e40> : (373, 11) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178420f48> : (373, 11) : br
+				label : label %64<@ 0x7f9178420ea0>
+
+		BasicBlock <@ 0x7f9178420ea0> : label %64
+			Instruction <@ 0x7f917841eba8> : (373, 11) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f917841ec28> : (373, 11) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f917841ecc0> : (373, 11) : icmp
+				i32 : i32 %65<@ 0x7f917841eba8>
+				i32 : i32 %66<@ 0x7f917841ec28>
+			Instruction <@ 0x7f9178421088> : (373, 11) : br
+				i1 : i1 %67<@ 0x7f917841ecc0>
+				label : label %127<@ 0x7f9178420fb0>
+				label : label %68<@ 0x7f917841ed20>
+
+		BasicBlock <@ 0x7f917841ed20> : label %68
+			Instruction <@ 0x7f91784210f8> : (375, 14) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f9178421168> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f91784211e8> : (375, 14) : sext
+				i32 : i32 %70<@ 0x7f9178421168>
+			Instruction <@ 0x7f9178421268> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178421300> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %72<@ 0x7f9178421268>
+				i64 : i64 %71<@ 0x7f91784211e8>
+			Instruction <@ 0x7f91784213a8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %73<@ 0x7f9178421300>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f9178421428> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f91784214a8> : (375, 14) : sext
+				i32 : i32 %75<@ 0x7f9178421428>
+			Instruction <@ 0x7f9178421528> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f91784215c0> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %77<@ 0x7f9178421528>
+				i64 : i64 %76<@ 0x7f91784214a8>
+			Instruction <@ 0x7f9178421668> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %78<@ 0x7f91784215c0>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f91784216e8> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178421768> : (375, 14) : sext
+				i32 : i32 %80<@ 0x7f91784216e8>
+			Instruction <@ 0x7f91784217e8> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178421880> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %82<@ 0x7f91784217e8>
+				i64 : i64 %81<@ 0x7f9178421768>
+			Instruction <@ 0x7f9178421928> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %83<@ 0x7f9178421880>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 2<@ 0x7f9178420ef0>
+			Instruction <@ 0x7f91784219a8> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178421a28> : (375, 14) : sext
+				i32 : i32 %85<@ 0x7f91784219a8>
+			Instruction <@ 0x7f9178421aa8> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178421b40> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %87<@ 0x7f9178421aa8>
+				i64 : i64 %86<@ 0x7f9178421a28>
+			Instruction <@ 0x7f9178421c28> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %88<@ 0x7f9178421b40>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 3<@ 0x7f9178421ba0>
+			Instruction <@ 0x7f9178421ca8> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178421d28> : (375, 14) : sext
+				i32 : i32 %90<@ 0x7f9178421ca8>
+			Instruction <@ 0x7f9178421da8> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178421e40> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %92<@ 0x7f9178421da8>
+				i64 : i64 %91<@ 0x7f9178421d28>
+			Instruction <@ 0x7f9178421ee8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %93<@ 0x7f9178421e40>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 4<@ 0x7f917841c9e0>
+			Instruction <@ 0x7f9178421f68> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178421fe8> : (375, 14) : sext
+				i32 : i32 %95<@ 0x7f9178421f68>
+			Instruction <@ 0x7f9178422068> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178422100> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %97<@ 0x7f9178422068>
+				i64 : i64 %96<@ 0x7f9178421fe8>
+			Instruction <@ 0x7f91784221e8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %98<@ 0x7f9178422100>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 5<@ 0x7f9178422160>
+			Instruction <@ 0x7f9178422268> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f91784222e8> : (375, 14) : sext
+				i32 : i32 %100<@ 0x7f9178422268>
+			Instruction <@ 0x7f9178422368> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178422400> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %102<@ 0x7f9178422368>
+				i64 : i64 %101<@ 0x7f91784222e8>
+			Instruction <@ 0x7f91784224e8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %103<@ 0x7f9178422400>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 6<@ 0x7f9178422460>
+			Instruction <@ 0x7f9178422568> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f91784225e8> : (375, 14) : sext
+				i32 : i32 %105<@ 0x7f9178422568>
+			Instruction <@ 0x7f9178422668> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178422700> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %107<@ 0x7f9178422668>
+				i64 : i64 %106<@ 0x7f91784225e8>
+			Instruction <@ 0x7f91784227e8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %108<@ 0x7f9178422700>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 7<@ 0x7f9178422760>
+			Instruction <@ 0x7f9178422868> : (375, 14) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f91784228e8> : (375, 14) : sext
+				i32 : i32 %110<@ 0x7f9178422868>
+			Instruction <@ 0x7f9178422968> : (375, 14) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178422a00> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %112<@ 0x7f9178422968>
+				i64 : i64 %111<@ 0x7f91784228e8>
+			Instruction <@ 0x7f9178422ae8> : (375, 14) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %113<@ 0x7f9178422a00>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 8<@ 0x7f9178422a60>
+			Instruction <@ 0x7f9178422e90> : (375, 14) : call
+				%struct.__sFILE* : %struct.__sFILE* %69<@ 0x7f91784210f8>
+				i8* : i8* getelementptr inbounds ([27 x i8]* @.str8, i32 0, i32 0)<@ 0x7f9178422c08>
+				float* : float* %74<@ 0x7f91784213a8>
+				float* : float* %79<@ 0x7f9178421668>
+				float* : float* %84<@ 0x7f9178421928>
+				float* : float* %89<@ 0x7f9178421c28>
+				float* : float* %94<@ 0x7f9178421ee8>
+				float* : float* %99<@ 0x7f91784221e8>
+				i8* : i8* %104<@ 0x7f91784224e8>
+				float* : float* %109<@ 0x7f91784227e8>
+				float* : float* %114<@ 0x7f9178422ae8>
+				i32 (%struct.__sFILE*, i8*, ...)* : fscanf<@ 0x7f917841ee10>
+			Instruction <@ 0x7f9178422f20> : (375, 14) : store
+				i32 : i32 %115<@ 0x7f9178422e90>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f9178422f88> : (376, 12) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f9178423050> : (376, 12) : icmp
+				i32 : i32 %116<@ 0x7f9178422f88>
+				i32 : i32 9<@ 0x7f9178422fe0>
+			Instruction <@ 0x7f9178423218> : (376, 12) : br
+				i1 : i1 %117<@ 0x7f9178423050>
+				label : label %123<@ 0x7f9178423140>
+				label : label %118<@ 0x7f91784230b0>
+
+		BasicBlock <@ 0x7f91784230b0> : label %118
+			Instruction <@ 0x7f9178422cf8> : (377, 11) : load
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f9178423328> : (377, 11) : call
+				i8* : i8* getelementptr inbounds ([39 x i8]* @.str5, i32 0, i32 0)<@ 0x7f917841f468>
+				i8* : i8* %119<@ 0x7f9178422cf8>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f9178423398> : (378, 11) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f9178423420> : (378, 11) : call
+				%struct.__sFILE* : %struct.__sFILE* %121<@ 0x7f9178423398>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f91784234f0> : (379, 11) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f9178423590> : (379, 11) : unreachable
+
+		BasicBlock <@ 0x7f9178423140> : label %123
+			Instruction <@ 0x7f9178423648> : (381, 5) : br
+				label : label %124<@ 0x7f91784235e0>
+
+		BasicBlock <@ 0x7f91784235e0> : label %124
+			Instruction <@ 0x7f91784236b8> : (373, 46) : load
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178423750> : (373, 46) : add
+				i32 : i32 %125<@ 0x7f91784236b8>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f91784237e0> : (373, 46) : store
+				i32 : i32 %126<@ 0x7f9178423750>
+				i32* : loopnum<@ 0x7f917841af88>
+			Instruction <@ 0x7f9178423858> : (373, 46) : br
+				label : label %64<@ 0x7f9178420ea0>
+
+		BasicBlock <@ 0x7f9178420fb0> : label %127
+			Instruction <@ 0x7f91784238d8> : (382, 10) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f9178423960> : (382, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %128<@ 0x7f91784238d8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f91784239f0> : (382, 10) : store
+				i32 : i32 %129<@ 0x7f9178423960>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f9178423a58> : (383, 8) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f9178423ae0> : (383, 8) : icmp
+				i32 : i32 %130<@ 0x7f9178423a58>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f9178423ca8> : (383, 8) : br
+				i1 : i1 %131<@ 0x7f9178423ae0>
+				label : label %135<@ 0x7f9178423bd0>
+				label : label %132<@ 0x7f9178423b40>
+
+		BasicBlock <@ 0x7f9178423b40> : label %132
+			Instruction <@ 0x7f9178423d28> : (384, 7) : load
+				i8** : inputFile<@ 0x7f917841b1c8>
+			Instruction <@ 0x7f9178423f48> : (384, 7) : call
+				i8* : i8* getelementptr inbounds ([35 x i8]* @.str9, i32 0, i32 0)<@ 0x7f9178423e48>
+				i8* : i8* %133<@ 0x7f9178423d28>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f9178423fd0> : (385, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f9178424070> : (385, 7) : unreachable
+
+		BasicBlock <@ 0x7f9178423bd0> : label %135
+			Instruction <@ 0x7f91784240d8> : (391, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f91784242e8> : (391, 5) : call
+				i8* : i8* getelementptr inbounds ([20 x i8]* @.str10, i32 0, i32 0)<@ 0x7f91784241e8>
+				i32 : i32 %136<@ 0x7f91784240d8>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f91784244d8> : (392, 5) : call
+				i8* : i8* getelementptr inbounds ([17 x i8]* @.str11, i32 0, i32 0)<@ 0x7f91784243b8>
+				i32 : i32 100<@ 0x7f9178418700>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f9178424588> : (397, 25) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178424610> : (397, 25) : mul
+				i32 : i32 5<@ 0x7f9178422160>
+				i32 : i32 %139<@ 0x7f9178424588>
+			Instruction <@ 0x7f9178424678> : (397, 25) : sext
+				i32 : i32 %140<@ 0x7f9178424610>
+			Instruction <@ 0x7f9178424700> : (397, 25) : mul
+				i64 : i64 %141<@ 0x7f9178424678>
+				i64 : i64 4<@ 0x7f9178420b50>
+			Instruction <@ 0x7f91784247c0> : (397, 25) : add
+				i64 : i64 %142<@ 0x7f9178424700>
+				i64 : i64 256<@ 0x7f9178424750>
+			Instruction <@ 0x7f9178424860> : (397, 25) : call
+				i64 : i64 %143<@ 0x7f91784247c0>
+				i8* (i64)* : malloc<@ 0x7f9178420730>
+			Instruction <@ 0x7f9178424918> : (397, 25) : bitcast
+				i8* : i8* %144<@ 0x7f9178424860>
+			Instruction <@ 0x7f91784249a0> : (397, 25) : store
+				float* : float* %145<@ 0x7f9178424918>
+				float** : buffer<@ 0x7f917841b018>
+			Instruction <@ 0x7f9178424a08> : (398, 5) : load
+				float** : buffer<@ 0x7f917841b018>
+			Instruction <@ 0x7f9178424a88> : (398, 5) : ptrtoint
+				float* : float* %146<@ 0x7f9178424a08>
+			Instruction <@ 0x7f9178424b20> : (398, 5) : add
+				i64 : i64 %147<@ 0x7f9178424a88>
+				i64 : i64 256<@ 0x7f9178424750>
+			Instruction <@ 0x7f9178424bf0> : (398, 5) : and
+				i64 : i64 %148<@ 0x7f9178424b20>
+				i64 : i64 -64<@ 0x7f9178424b80>
+			Instruction <@ 0x7f9178424c68> : (398, 5) : inttoptr
+				i64 : i64 %149<@ 0x7f9178424bf0>
+			Instruction <@ 0x7f9178424d00> : (398, 5) : store
+				float* : float* %150<@ 0x7f9178424c68>
+				float** : sptprice<@ 0x7f9178404a48>
+			Instruction <@ 0x7f9178424d78> : (399, 5) : load
+				float** : sptprice<@ 0x7f9178404a48>
+			Instruction <@ 0x7f9178424df8> : (399, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178424e78> : (399, 5) : sext
+				i32 : i32 %152<@ 0x7f9178424df8>
+			Instruction <@ 0x7f9178424f10> : (399, 5) : getelementptr
+				float* : float* %151<@ 0x7f9178424d78>
+				i64 : i64 %153<@ 0x7f9178424e78>
+			Instruction <@ 0x7f9178424fa0> : (399, 5) : store
+				float* : float* %154<@ 0x7f9178424f10>
+				float** : strike<@ 0x7f9178404af8>
+			Instruction <@ 0x7f9178425018> : (400, 5) : load
+				float** : strike<@ 0x7f9178404af8>
+			Instruction <@ 0x7f9178425098> : (400, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178425118> : (400, 5) : sext
+				i32 : i32 %156<@ 0x7f9178425098>
+			Instruction <@ 0x7f91784251b0> : (400, 5) : getelementptr
+				float* : float* %155<@ 0x7f9178425018>
+				i64 : i64 %157<@ 0x7f9178425118>
+			Instruction <@ 0x7f9178425240> : (400, 5) : store
+				float* : float* %158<@ 0x7f91784251b0>
+				float** : rate<@ 0x7f9178404ba8>
+			Instruction <@ 0x7f91784252b8> : (401, 5) : load
+				float** : rate<@ 0x7f9178404ba8>
+			Instruction <@ 0x7f9178425338> : (401, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f91784253b8> : (401, 5) : sext
+				i32 : i32 %160<@ 0x7f9178425338>
+			Instruction <@ 0x7f9178425450> : (401, 5) : getelementptr
+				float* : float* %159<@ 0x7f91784252b8>
+				i64 : i64 %161<@ 0x7f91784253b8>
+			Instruction <@ 0x7f91784254e0> : (401, 5) : store
+				float* : float* %162<@ 0x7f9178425450>
+				float** : volatility<@ 0x7f9178404c58>
+			Instruction <@ 0x7f9178425558> : (402, 5) : load
+				float** : volatility<@ 0x7f9178404c58>
+			Instruction <@ 0x7f91784255d8> : (402, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178425658> : (402, 5) : sext
+				i32 : i32 %164<@ 0x7f91784255d8>
+			Instruction <@ 0x7f91784256f0> : (402, 5) : getelementptr
+				float* : float* %163<@ 0x7f9178425558>
+				i64 : i64 %165<@ 0x7f9178425658>
+			Instruction <@ 0x7f9178425780> : (402, 5) : store
+				float* : float* %166<@ 0x7f91784256f0>
+				float** : otime<@ 0x7f9178404d08>
+			Instruction <@ 0x7f91784257f8> : (404, 23) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178425878> : (404, 23) : sext
+				i32 : i32 %167<@ 0x7f91784257f8>
+			Instruction <@ 0x7f9178425910> : (404, 23) : mul
+				i64 : i64 %168<@ 0x7f9178425878>
+				i64 : i64 4<@ 0x7f9178420b50>
+			Instruction <@ 0x7f91784259a0> : (404, 23) : add
+				i64 : i64 %169<@ 0x7f9178425910>
+				i64 : i64 256<@ 0x7f9178424750>
+			Instruction <@ 0x7f9178425a40> : (404, 23) : call
+				i64 : i64 %170<@ 0x7f91784259a0>
+				i8* (i64)* : malloc<@ 0x7f9178420730>
+			Instruction <@ 0x7f9178425af8> : (404, 23) : bitcast
+				i8* : i8* %171<@ 0x7f9178425a40>
+			Instruction <@ 0x7f9178425b90> : (404, 23) : store
+				i32* : i32* %172<@ 0x7f9178425af8>
+				i32** : buffer2<@ 0x7f917841b0a8>
+			Instruction <@ 0x7f9178425c08> : (405, 5) : load
+				i32** : buffer2<@ 0x7f917841b0a8>
+			Instruction <@ 0x7f9178425c88> : (405, 5) : ptrtoint
+				i32* : i32* %173<@ 0x7f9178425c08>
+			Instruction <@ 0x7f9178425d20> : (405, 5) : add
+				i64 : i64 %174<@ 0x7f9178425c88>
+				i64 : i64 256<@ 0x7f9178424750>
+			Instruction <@ 0x7f9178425db0> : (405, 5) : and
+				i64 : i64 %175<@ 0x7f9178425d20>
+				i64 : i64 -64<@ 0x7f9178424b80>
+			Instruction <@ 0x7f9178425e28> : (405, 5) : inttoptr
+				i64 : i64 %176<@ 0x7f9178425db0>
+			Instruction <@ 0x7f9178425ec0> : (405, 5) : store
+				i32* : i32* %177<@ 0x7f9178425e28>
+				i32** : otype<@ 0x7f9178404de8>
+			Instruction <@ 0x7f9178425f50> : (407, 10) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426058> : (407, 10) : br
+				label : label %178<@ 0x7f9178425fb0>
+
+		BasicBlock <@ 0x7f9178425fb0> : label %178
+			Instruction <@ 0x7f91784260d8> : (407, 10) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426158> : (407, 10) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f91784261f0> : (407, 10) : icmp
+				i32 : i32 %179<@ 0x7f91784260d8>
+				i32 : i32 %180<@ 0x7f9178426158>
+			Instruction <@ 0x7f9178426378> : (407, 10) : br
+				i1 : i1 %181<@ 0x7f91784261f0>
+				label : label %249<@ 0x7f91784262a0>
+				label : label %182<@ 0x7f9178426250>
+
+		BasicBlock <@ 0x7f9178426250> : label %182
+			Instruction <@ 0x7f91784263f8> : (408, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426478> : (408, 9) : sext
+				i32 : i32 %183<@ 0x7f91784263f8>
+			Instruction <@ 0x7f91784264f8> : (408, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178426590> : (408, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %185<@ 0x7f91784264f8>
+				i64 : i64 %184<@ 0x7f9178426478>
+			Instruction <@ 0x7f9178426638> : (408, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %186<@ 0x7f9178426590>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 6<@ 0x7f9178422460>
+			Instruction <@ 0x7f91784266b8> : (408, 9) : load
+				i8* : i8* %187<@ 0x7f9178426638>
+			Instruction <@ 0x7f9178426738> : (408, 9) : sext
+				i8 : i8 %188<@ 0x7f91784266b8>
+			Instruction <@ 0x7f91784267d0> : (408, 9) : icmp
+				i32 : i32 %189<@ 0x7f9178426738>
+				i32 : i32 80<@ 0x7f9178426000>
+			Instruction <@ 0x7f9178426878> : (408, 9) : select
+				i1 : i1 %190<@ 0x7f91784267d0>
+				i32 : i32 1<@ 0x7f9178406a50>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f91784268f8> : (408, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426978> : (408, 9) : sext
+				i32 : i32 %192<@ 0x7f91784268f8>
+			Instruction <@ 0x7f91784269f8> : (408, 9) : load
+				i32** : otype<@ 0x7f9178404de8>
+			Instruction <@ 0x7f9178426a90> : (408, 9) : getelementptr
+				i32* : i32* %194<@ 0x7f91784269f8>
+				i64 : i64 %193<@ 0x7f9178426978>
+			Instruction <@ 0x7f9178426b20> : (408, 9) : store
+				i32 : i32 %191<@ 0x7f9178426878>
+				i32* : i32* %195<@ 0x7f9178426a90>
+			Instruction <@ 0x7f9178426b98> : (409, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426c18> : (409, 9) : sext
+				i32 : i32 %196<@ 0x7f9178426b98>
+			Instruction <@ 0x7f9178426c98> : (409, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178426d30> : (409, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %198<@ 0x7f9178426c98>
+				i64 : i64 %197<@ 0x7f9178426c18>
+			Instruction <@ 0x7f9178426dd8> : (409, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %199<@ 0x7f9178426d30>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f9178426e58> : (409, 9) : load
+				float* : float* %200<@ 0x7f9178426dd8>
+			Instruction <@ 0x7f9178426ed8> : (409, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178426f58> : (409, 9) : sext
+				i32 : i32 %202<@ 0x7f9178426ed8>
+			Instruction <@ 0x7f9178426fd8> : (409, 9) : load
+				float** : sptprice<@ 0x7f9178404a48>
+			Instruction <@ 0x7f9178427070> : (409, 9) : getelementptr
+				float* : float* %204<@ 0x7f9178426fd8>
+				i64 : i64 %203<@ 0x7f9178426f58>
+			Instruction <@ 0x7f9178427100> : (409, 9) : store
+				float : float %201<@ 0x7f9178426e58>
+				float* : float* %205<@ 0x7f9178427070>
+			Instruction <@ 0x7f9178427178> : (410, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f91784271f8> : (410, 9) : sext
+				i32 : i32 %206<@ 0x7f9178427178>
+			Instruction <@ 0x7f9178427278> : (410, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178427310> : (410, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %208<@ 0x7f9178427278>
+				i64 : i64 %207<@ 0x7f91784271f8>
+			Instruction <@ 0x7f91784273b8> : (410, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %209<@ 0x7f9178427310>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178427438> : (410, 9) : load
+				float* : float* %210<@ 0x7f91784273b8>
+			Instruction <@ 0x7f91784274b8> : (410, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178427538> : (410, 9) : sext
+				i32 : i32 %212<@ 0x7f91784274b8>
+			Instruction <@ 0x7f91784275b8> : (410, 9) : load
+				float** : strike<@ 0x7f9178404af8>
+			Instruction <@ 0x7f9178427650> : (410, 9) : getelementptr
+				float* : float* %214<@ 0x7f91784275b8>
+				i64 : i64 %213<@ 0x7f9178427538>
+			Instruction <@ 0x7f91784276e0> : (410, 9) : store
+				float : float %211<@ 0x7f9178427438>
+				float* : float* %215<@ 0x7f9178427650>
+			Instruction <@ 0x7f9178427758> : (411, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f91784277d8> : (411, 9) : sext
+				i32 : i32 %216<@ 0x7f9178427758>
+			Instruction <@ 0x7f9178427858> : (411, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f91784278f0> : (411, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %218<@ 0x7f9178427858>
+				i64 : i64 %217<@ 0x7f91784277d8>
+			Instruction <@ 0x7f9178427998> : (411, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %219<@ 0x7f91784278f0>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 2<@ 0x7f9178420ef0>
+			Instruction <@ 0x7f9178427a18> : (411, 9) : load
+				float* : float* %220<@ 0x7f9178427998>
+			Instruction <@ 0x7f9178427a98> : (411, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178427b18> : (411, 9) : sext
+				i32 : i32 %222<@ 0x7f9178427a98>
+			Instruction <@ 0x7f9178427b98> : (411, 9) : load
+				float** : rate<@ 0x7f9178404ba8>
+			Instruction <@ 0x7f9178427c30> : (411, 9) : getelementptr
+				float* : float* %224<@ 0x7f9178427b98>
+				i64 : i64 %223<@ 0x7f9178427b18>
+			Instruction <@ 0x7f9178427cc0> : (411, 9) : store
+				float : float %221<@ 0x7f9178427a18>
+				float* : float* %225<@ 0x7f9178427c30>
+			Instruction <@ 0x7f9178427d38> : (412, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178427db8> : (412, 9) : sext
+				i32 : i32 %226<@ 0x7f9178427d38>
+			Instruction <@ 0x7f9178427e38> : (412, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f9178427ed0> : (412, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %228<@ 0x7f9178427e38>
+				i64 : i64 %227<@ 0x7f9178427db8>
+			Instruction <@ 0x7f9178427f78> : (412, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %229<@ 0x7f9178427ed0>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 4<@ 0x7f917841c9e0>
+			Instruction <@ 0x7f9178427ff8> : (412, 9) : load
+				float* : float* %230<@ 0x7f9178427f78>
+			Instruction <@ 0x7f9178428078> : (412, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f91784280f8> : (412, 9) : sext
+				i32 : i32 %232<@ 0x7f9178428078>
+			Instruction <@ 0x7f9178428178> : (412, 9) : load
+				float** : volatility<@ 0x7f9178404c58>
+			Instruction <@ 0x7f9178428210> : (412, 9) : getelementptr
+				float* : float* %234<@ 0x7f9178428178>
+				i64 : i64 %233<@ 0x7f91784280f8>
+			Instruction <@ 0x7f91784282a0> : (412, 9) : store
+				float : float %231<@ 0x7f9178427ff8>
+				float* : float* %235<@ 0x7f9178428210>
+			Instruction <@ 0x7f9178428318> : (413, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178428398> : (413, 9) : sext
+				i32 : i32 %236<@ 0x7f9178428318>
+			Instruction <@ 0x7f9178428418> : (413, 9) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f91784284b0> : (413, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %238<@ 0x7f9178428418>
+				i64 : i64 %237<@ 0x7f9178428398>
+			Instruction <@ 0x7f9178428558> : (413, 9) : getelementptr
+				%struct.OptionData_* : %struct.OptionData_* %239<@ 0x7f91784284b0>
+				i32 : i32 0<@ 0x7f9178404760>
+				i32 : i32 5<@ 0x7f9178422160>
+			Instruction <@ 0x7f91784285d8> : (413, 9) : load
+				float* : float* %240<@ 0x7f9178428558>
+			Instruction <@ 0x7f9178428658> : (413, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f91784286d8> : (413, 9) : sext
+				i32 : i32 %242<@ 0x7f9178428658>
+			Instruction <@ 0x7f9178428758> : (413, 9) : load
+				float** : otime<@ 0x7f9178404d08>
+			Instruction <@ 0x7f91784287f0> : (413, 9) : getelementptr
+				float* : float* %244<@ 0x7f9178428758>
+				i64 : i64 %243<@ 0x7f91784286d8>
+			Instruction <@ 0x7f9178428880> : (413, 9) : store
+				float : float %241<@ 0x7f91784285d8>
+				float* : float* %245<@ 0x7f91784287f0>
+			Instruction <@ 0x7f9178428988> : (414, 5) : br
+				label : label %246<@ 0x7f91784288e0>
+
+		BasicBlock <@ 0x7f91784288e0> : label %246
+			Instruction <@ 0x7f9178428a08> : (407, 29) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178428aa0> : (407, 29) : add
+				i32 : i32 %247<@ 0x7f9178428a08>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f9178428b30> : (407, 29) : store
+				i32 : i32 %248<@ 0x7f9178428aa0>
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f9178428ba8> : (407, 29) : br
+				label : label %178<@ 0x7f9178425fb0>
+
+		BasicBlock <@ 0x7f91784262a0> : label %249
+			Instruction <@ 0x7f9178428c28> : (416, 5) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178428c98> : (416, 5) : sext
+				i32 : i32 %250<@ 0x7f9178428c28>
+			Instruction <@ 0x7f9178428d20> : (416, 5) : mul
+				i64 : i64 %251<@ 0x7f9178428c98>
+				i64 : i64 40<@ 0x7f91784262f0>
+			Instruction <@ 0x7f9178428f38> : (416, 5) : call
+				i8* : i8* getelementptr inbounds ([19 x i8]* @.str12, i32 0, i32 0)<@ 0x7f9178428e18>
+				i64 : i64 %252<@ 0x7f9178428d20>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f91784290e8> : (462, 9) : call
+				metadata : metadata !{i32* %tid}<@ 0x7f9178428f90>
+				metadata : metadata <badref><@ 0x7f917844cbc0>
+				void (metadata, metadata)* : llvm.dbg.declare<@ 0x7f9178404f30>
+			Instruction <@ 0x7f91784291b0> : (462, 5) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : tid<@ 0x7f917841b2e8>
+			Instruction <@ 0x7f9178429218> : (463, 5) : bitcast
+				i32* : tid<@ 0x7f917841b2e8>
+			Instruction <@ 0x7f91784292a0> : (463, 5) : call
+				i8* : i8* %254<@ 0x7f9178429218>
+				i32 (i8*)* : bs_thread<@ 0x7f9178416700>
+			Instruction <@ 0x7f9178429358> : (473, 12) : load
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f9178429598> : (473, 12) : call
+				i8* : i8* %256<@ 0x7f9178429358>
+				i8* : i8* getelementptr inbounds ([2 x i8]* @.str13, i32 0, i32 0)<@ 0x7f9178429478>
+				%struct.__sFILE* (i8*, i8*)* : _fopen<@ 0x7f917841e240>
+			Instruction <@ 0x7f9178429660> : (473, 12) : store
+				%struct.__sFILE* : %struct.__sFILE* %257<@ 0x7f9178429598>
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f91784296c8> : (474, 8) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f9178429750> : (474, 8) : icmp
+				%struct.__sFILE* : %struct.__sFILE* %258<@ 0x7f91784296c8>
+				%struct.__sFILE* : %struct.__sFILE* null<@ 0x7f917841c740>
+			Instruction <@ 0x7f9178429908> : (474, 8) : br
+				i1 : i1 %259<@ 0x7f9178429750>
+				label : label %263<@ 0x7f9178429830>
+				label : label %260<@ 0x7f91784297a0>
+
+		BasicBlock <@ 0x7f91784297a0> : label %260
+			Instruction <@ 0x7f9178429978> : (475, 7) : load
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f9178429a78> : (475, 7) : call
+				i8* : i8* getelementptr inbounds ([34 x i8]* @.str3, i32 0, i32 0)<@ 0x7f917841e8a8>
+				i8* : i8* %261<@ 0x7f9178429978>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f9178429b00> : (476, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f9178429ba0> : (476, 7) : unreachable
+
+		BasicBlock <@ 0x7f9178429830> : label %263
+			Instruction <@ 0x7f9178429c08> : (478, 10) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f9178429c78> : (478, 10) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f9178429f80> : (478, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %264<@ 0x7f9178429c08>
+				i8* : i8* getelementptr inbounds ([4 x i8]* @.str14, i32 0, i32 0)<@ 0x7f9178429d78>
+				i32 : i32 %265<@ 0x7f9178429c78>
+				i32 (%struct.__sFILE*, i8*, ...)* : fprintf<@ 0x7f9178429e30>
+			Instruction <@ 0x7f917842a050> : (478, 10) : store
+				i32 : i32 %266<@ 0x7f9178429f80>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842a0b8> : (479, 8) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842a140> : (479, 8) : icmp
+				i32 : i32 %267<@ 0x7f917842a0b8>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f917842a2f8> : (479, 8) : br
+				i1 : i1 %268<@ 0x7f917842a140>
+				label : label %274<@ 0x7f917842a220>
+				label : label %269<@ 0x7f917842a190>
+
+		BasicBlock <@ 0x7f917842a190> : label %269
+			Instruction <@ 0x7f917842a378> : (480, 7) : load
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f917842a598> : (480, 7) : call
+				i8* : i8* getelementptr inbounds ([38 x i8]* @.str15, i32 0, i32 0)<@ 0x7f917842a498>
+				i8* : i8* %270<@ 0x7f917842a378>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917842a608> : (481, 7) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917842a690> : (481, 7) : call
+				%struct.__sFILE* : %struct.__sFILE* %272<@ 0x7f917842a608>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f917842a760> : (482, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917842a800> : (482, 7) : unreachable
+
+		BasicBlock <@ 0x7f917842a220> : label %274
+			Instruction <@ 0x7f917842a890> : (484, 9) : store
+				i32 : i32 0<@ 0x7f9178404760>
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f917842a958> : (484, 9) : br
+				label : label %275<@ 0x7f917842a8f0>
+
+		BasicBlock <@ 0x7f917842a8f0> : label %275
+			Instruction <@ 0x7f917842a9d8> : (484, 9) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f917842aa58> : (484, 9) : load
+				i32* : numOptions<@ 0x7f91784047d8>
+			Instruction <@ 0x7f917842aaf0> : (484, 9) : icmp
+				i32 : i32 %276<@ 0x7f917842a9d8>
+				i32 : i32 %277<@ 0x7f917842aa58>
+			Instruction <@ 0x7f917842ac78> : (484, 9) : br
+				i1 : i1 %278<@ 0x7f917842aaf0>
+				label : label %299<@ 0x7f917842aba0>
+				label : label %279<@ 0x7f917842ab50>
+
+		BasicBlock <@ 0x7f917842ab50> : label %279
+			Instruction <@ 0x7f917842acf8> : (485, 12) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917842ad78> : (485, 12) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f917842adf8> : (485, 12) : sext
+				i32 : i32 %281<@ 0x7f917842ad78>
+			Instruction <@ 0x7f917842ae78> : (485, 12) : load
+				float** : prices<@ 0x7f9178404e98>
+			Instruction <@ 0x7f917842af10> : (485, 12) : getelementptr
+				float* : float* %283<@ 0x7f917842ae78>
+				i64 : i64 %282<@ 0x7f917842adf8>
+			Instruction <@ 0x7f917842af88> : (485, 12) : load
+				float* : float* %284<@ 0x7f917842af10>
+			Instruction <@ 0x7f917842b008> : (485, 12) : fpext
+				float : float %285<@ 0x7f917842af88>
+			Instruction <@ 0x7f917842b240> : (485, 12) : call
+				%struct.__sFILE* : %struct.__sFILE* %280<@ 0x7f917842acf8>
+				i8* : i8* getelementptr inbounds ([7 x i8]* @.str16, i32 0, i32 0)<@ 0x7f917842b128>
+				double : double %286<@ 0x7f917842b008>
+				i32 (%struct.__sFILE*, i8*, ...)* : fprintf<@ 0x7f9178429e30>
+			Instruction <@ 0x7f917842b2d0> : (485, 12) : store
+				i32 : i32 %287<@ 0x7f917842b240>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842b338> : (486, 10) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842b3c0> : (486, 10) : icmp
+				i32 : i32 %288<@ 0x7f917842b338>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f917842b588> : (486, 10) : br
+				i1 : i1 %289<@ 0x7f917842b3c0>
+				label : label %295<@ 0x7f917842b4b0>
+				label : label %290<@ 0x7f917842b420>
+
+		BasicBlock <@ 0x7f917842b420> : label %290
+			Instruction <@ 0x7f917842b608> : (487, 9) : load
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f917842b708> : (487, 9) : call
+				i8* : i8* getelementptr inbounds ([38 x i8]* @.str15, i32 0, i32 0)<@ 0x7f917842a498>
+				i8* : i8* %291<@ 0x7f917842b608>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917842b778> : (488, 9) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917842b800> : (488, 9) : call
+				%struct.__sFILE* : %struct.__sFILE* %293<@ 0x7f917842b778>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f917842b8d0> : (489, 9) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917842b970> : (489, 9) : unreachable
+
+		BasicBlock <@ 0x7f917842b4b0> : label %295
+			Instruction <@ 0x7f917842ba28> : (491, 5) : br
+				label : label %296<@ 0x7f917842b9c0>
+
+		BasicBlock <@ 0x7f917842b9c0> : label %296
+			Instruction <@ 0x7f917842ba98> : (484, 28) : load
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f917842bb30> : (484, 28) : add
+				i32 : i32 %297<@ 0x7f917842ba98>
+				i32 : i32 1<@ 0x7f9178406a50>
+			Instruction <@ 0x7f917842bbc0> : (484, 28) : store
+				i32 : i32 %298<@ 0x7f917842bb30>
+				i32* : i<@ 0x7f917841aef8>
+			Instruction <@ 0x7f917842bc38> : (484, 28) : br
+				label : label %275<@ 0x7f917842a8f0>
+
+		BasicBlock <@ 0x7f917842aba0> : label %299
+			Instruction <@ 0x7f917842bcb8> : (492, 10) : load
+				%struct.__sFILE** : file<@ 0x7f917841ae88>
+			Instruction <@ 0x7f917842bd40> : (492, 10) : call
+				%struct.__sFILE* : %struct.__sFILE* %300<@ 0x7f917842bcb8>
+				i32 (%struct.__sFILE*)* : fclose<@ 0x7f917841f630>
+			Instruction <@ 0x7f917842bdd0> : (492, 10) : store
+				i32 : i32 %301<@ 0x7f917842bd40>
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842be38> : (493, 8) : load
+				i32* : rv<@ 0x7f917841b138>
+			Instruction <@ 0x7f917842bec0> : (493, 8) : icmp
+				i32 : i32 %302<@ 0x7f917842be38>
+				i32 : i32 0<@ 0x7f9178404760>
+			Instruction <@ 0x7f917842c088> : (493, 8) : br
+				i1 : i1 %303<@ 0x7f917842bec0>
+				label : label %307<@ 0x7f917842bfb0>
+				label : label %304<@ 0x7f917842bf20>
+
+		BasicBlock <@ 0x7f917842bf20> : label %304
+			Instruction <@ 0x7f917842c108> : (494, 7) : load
+				i8** : outputFile<@ 0x7f917841b258>
+			Instruction <@ 0x7f917842c218> : (494, 7) : call
+				i8* : i8* getelementptr inbounds ([35 x i8]* @.str9, i32 0, i32 0)<@ 0x7f9178423e48>
+				i8* : i8* %305<@ 0x7f917842c108>
+				i32 (i8*, ...)* : printf<@ 0x7f917841c540>
+			Instruction <@ 0x7f917842c2a0> : (495, 7) : call
+				i32 : i32 1<@ 0x7f9178406a50>
+				void (i32)* : exit<@ 0x7f917841d0a0>
+			Instruction <@ 0x7f917842c340> : (495, 7) : unreachable
+
+		BasicBlock <@ 0x7f917842bfb0> : label %307
+			Instruction <@ 0x7f917842c3a8> : (501, 5) : load
+				%struct.OptionData_** : data<@ 0x7f9178405b88>
+			Instruction <@ 0x7f917842c418> : (501, 5) : bitcast
+				%struct.OptionData_* : %struct.OptionData_* %308<@ 0x7f917842c3a8>
+			Instruction <@ 0x7f917842c5d0> : (501, 5) : call
+				i8* : i8* %309<@ 0x7f917842c418>
+				void (i8*)* : free<@ 0x7f917842c480>
+			Instruction <@ 0x7f917842c688> : (502, 5) : load
+				float** : prices<@ 0x7f9178404e98>
+			Instruction <@ 0x7f917842c6f8> : (502, 5) : bitcast
+				float* : float* %310<@ 0x7f917842c688>
+			Instruction <@ 0x7f917842c790> : (502, 5) : call
+				i8* : i8* %311<@ 0x7f917842c6f8>
+				void (i8*)* : free<@ 0x7f917842c480>
+			Instruction <@ 0x7f917842c848> : (508, 5) : ret
+				i32 : i32 0<@ 0x7f9178404760>
+
+	Function <@ 0x7f917841c540> : printf : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7f917842c920>
+
+	Function <@ 0x7f917841c770> : fflush : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7f917842c960>
+
+	Function <@ 0x7f917841d0a0> : exit : Declaration : NonIntrinsic
+		ArgList :
+			i32 %0<@ 0x7f917842c9a0>
+
+	Function <@ 0x7f917841d590> : atoi : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7f917842c9e0>
+
+	Function <@ 0x7f917841e240> : _fopen : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7f917842ca20>
+			i8* %1<@ 0x7f917842ca60>
+
+	Function <@ 0x7f917841ee10> : fscanf : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7f917842caa0>
+			i8* %1<@ 0x7f917842cae0>
+
+	Function <@ 0x7f917841f630> : fclose : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7f917842cb20>
+
+	Function <@ 0x7f9178420730> : malloc : Declaration : NonIntrinsic
+		ArgList :
+			i64 %0<@ 0x7f917842cb60>
+
+	Function <@ 0x7f9178429e30> : fprintf : Declaration : NonIntrinsic
+		ArgList :
+			%struct.__sFILE* %0<@ 0x7f917842cba0>
+			i8* %1<@ 0x7f917842cbe0>
+
+	Function <@ 0x7f917842c480> : free : Declaration : NonIntrinsic
+		ArgList :
+			i8* %0<@ 0x7f917842cc20>

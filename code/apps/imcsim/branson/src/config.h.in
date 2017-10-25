@@ -1,0 +1,23 @@
+//----------------------------------*-C++-*-----------------------------------//
+/*!
+ * \file   config.h.in
+ * \author Alex Long
+ * \date   July 25 2016
+ * \brief  Config file that CMake uses to generate config.h given available 
+ *  libraries
+ * \note   ***COPYRIGHT_GOES_HERE****
+ */
+//----------------------------------------------------------------------------//
+
+#ifndef config_h_
+#define config_h_
+
+#cmakedefine VIZ_LIBRARIES_FOUND
+#cmakedefine MOONLIGHT_NODE
+#cmakedefine TRINITITE_NODE
+#cmakedefine CCS_NODE
+
+#endif // def config_h_
+//----------------------------------------------------------------------------//
+// end of config.h
+//----------------------------------------------------------------------------//

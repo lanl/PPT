@@ -1,0 +1,26 @@
+Author: Nandakishore Santhi
+
+How to run:
+
+With mpich (latest version installed), do:
+
+(A) Python:
+ln -s /path/to/libmpich.so(dylib) .
+PYTHONPATH=. mpirun -np 2 python2.7 SimianPie/Examples/hello.py
+
+(B) PyPy:
+ln -s /path/to/libmpich.so(dylib) .
+PYTHONPATH=. mpirun -np 2 pypy SimianPie/Examples/hello.py
+
+(C) Luajit 2.1.0-beta3:
+ln -s /path/to/libmpich.so(dylib) .
+NOTE: Luajit version also works with OpenMPI and IntelMPI with appropriate (minor) changes in "require" modules
+mpirun -np 2 luajit-2.1 SimianLua/Examples/hello.lua
+
+(D) Javascript:
+Compile in the SimianJS/MasalaChai directory after installing mozjs, mpich etc and then modifying the compile script. Now do:
+cd SimianJS; mpirun -np 2 MasalaChai/chai.50a1 Examples/hello.js
+
+(E) GPU:
+Install pyCUDA
+TODO

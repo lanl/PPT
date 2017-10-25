@@ -4,6 +4,19 @@
 
 from intercon import *
 
+# block decomposition for both hosts and the big switch
+def crossbar_partition(entname, entid, nranks, crossbar):
+    if entname == 'Switch': r = 0
+    else:
+        # the user may specify that we partition up to a given number
+        # of hosts (that really run the user application)
+        nh = crossbar.hpcsim_dict.get('partition_hosts', crossbar.nhosts)
+        if nh < nranks: chunk = 1.0
+        else: chunk = 1.0*nh/nranks
+        r = int(entid/chunk)%nranks
+    print("entity %s[%d] mapped to rank %d/%d" % (entname, entid, r, nranks))
+    return r
+
 class CrossbarSwitch(Switch):
     """A switch node for the crossbar interconnect."""
 
@@ -42,7 +55,7 @@ class CrossbarSwitch(Switch):
 class Crossbar(Interconnect):
     """A crossbar is made of one switch connecting all hosts."""
 
-    # local variables: (class derived from Switch)
+    # local variables: (class derived from Interconnect)
     #   link_delay: link delay, for calculating the network diameter 
 
     def __init__(self, hpcsim, hpcsim_dict):
@@ -54,9 +67,10 @@ class Crossbar(Interconnect):
         if "nhosts" not in hpcsim_dict["crossbar"]:
             raise Exception("'nhosts' must be specified for crossbar config") 
         self.nhosts = hpcsim_dict["crossbar"]["nhosts"]
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "crossbar" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "crossbar" in hpcsim_dict["debug_options"]):
             print("crossbar: %d hosts" % self.nhosts)
 
         # pick out config parameters
@@ -75,9 +89,10 @@ class Crossbar(Interconnect):
         mem_delay = hpcsim_dict["crossbar"].get("mem_delay", \
             hpcsim_dict["default_configs"]["mem_delay"])
 
-        if "hpcsim" in hpcsim_dict["debug_options"] or \
-           "intercon" in hpcsim_dict["debug_options"] or \
-           "crossbar" in hpcsim_dict["debug_options"]:
+        if hpcsim_dict['simian'].rank == 0 and \
+           ("hpcsim" in hpcsim_dict["debug_options"] or \
+            "intercon" in hpcsim_dict["debug_options"] or \
+            "crossbar" in hpcsim_dict["debug_options"]):
             print("crossbar: bdw=%f (bits per second)" % bdw)
             print("crossbar: bufsz=%d (bytes)" % bufsz)
             print("crossbar: link_delay=%f (seconds)" % self.link_delay)
@@ -89,12 +104,15 @@ class Crossbar(Interconnect):
         # add switch and hosts as entities
         simian = hpcsim_dict["simian"]
         simian.addEntity("Switch", CrossbarSwitch, 0, hpcsim_dict, proc_delay, 
-                         self, bdw, bufsz, self.link_delay)
+                         self, bdw, bufsz, self.link_delay,
+                         partition=crossbar_partition, partition_arg=self)
+
         for h in xrange(self.nhosts):
             simian.addEntity("Host", hpcsim.get_host_typename(hpcsim_dict), h,
                              hpcsim_dict, self, 0, 'h%d'%h, 0,
                              bdw, bufsz, self.link_delay,
-                             mem_bandwidth, mem_bufsz, mem_delay)
+                             mem_bandwidth, mem_bufsz, mem_delay,
+                             partition=crossbar_partition, partition_arg=self)
 
     # the network diameter (override the same in Interconnect)
     def network_diameter(self):
