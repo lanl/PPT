@@ -39,6 +39,7 @@ In the _code_ directory PPT is organized in three main layers:
 For example, we run SNAP simulator in serial with one of the PPT hardware models as follows:
 
 > cd ~/PPT/code/apps/snapsim
+
 > python snapsim-orig.py in >> out
 
 where, _in_ and _out_ in the above command are input and output files of SNAPsim.
