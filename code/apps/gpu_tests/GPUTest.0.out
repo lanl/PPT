@@ -1,0 +1,32 @@
+Node[0]: Running on rank 0
+TTN node generated at time 0.0
+16 TTN cores generated at time 0.0
+1 TTN Pascal     accelerator(s) generated at time 0.0
+Node[1]: Running on rank 0
+TTN node generated at time 0.0
+16 TTN cores generated at time 0.0
+1 TTN Pascal     accelerator(s) generated at time 0.0
+Node[2]: Running on rank 0
+TTN node generated at time 0.0
+16 TTN cores generated at time 0.0
+1 TTN Pascal     accelerator(s) generated at time 0.0
+Node[3]: Running on rank 0
+TTN node generated at time 0.0
+16 TTN cores generated at time 0.0
+1 TTN Pascal     accelerator(s) generated at time 0.0
+Node[4]: Running on rank 0
+TTN node generated at time 0.0
+16 TTN cores generated at time 0.0
+1 TTN Pascal     accelerator(s) generated at time 0.0
+Allocated 2 simultaneous blocks per SM for a total of 48 warps.
+BLOCK AVERAGE = 2.05666666667e-06
+GPU computations for a single workload took 1876.0 cycles.
+GPU computations for a single workload took 2.08444444444e-06 s.
+Total number of workloads 284258.
+Total number of instructions issued for a single workload: 2224.0.
+Potential workload overlap: 1.33262260128%.
+Overall IPC 1.1855010661.
+Actual workload time: 2.05666823019e-06 s.
+Total GPU computations took 0.0365445777776 s.
+Maximum number of concurrent transfers: 120
+Time: 36.5446177776:	 Node 0 computations completed on core id 0; execution time: 36.5445777776; Thread Efficiency: 1.0

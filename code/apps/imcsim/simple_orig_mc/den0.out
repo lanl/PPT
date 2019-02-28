@@ -1,0 +1,100 @@
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+
+Problem Specifications: Method = piecewise constant IMC
+Constants -- c: 299.792 (cm/sh) , a: 0.01372
+Run Parameters-- Photons: 40000, time finish: 0.1 (sh), time step: 0.0001 (sh) ,
+ timestep size multiplier: 1 , max dt:1 (sh), Random number seed: 14706 , output frequency: 0
+material temperature: 0.01 (keV), radiation temperature: 0.01 (keV)
+Sampling -- Emission Position: source tilting (x only), Verbose printing mode enabled
+Spatial Information -- elements: 20 , x_start: 0 , x_end: 0.1 , dx: 0.005
+Material Information -- heat capacity: 0.1 opacity constants: 0 + 100^-3
+Boundary Information -- Left: -1 Right: -1
+

@@ -99,3 +99,8 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# out and tar and etc
+*.o
+*.gz
+*.DS_Store
