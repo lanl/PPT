@@ -1,0 +1,8 @@
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: OFF
+
+Switch[0]: Running on rank 0
+Host[0]: Running on rank 0
+Host[1]: Running on rank 0

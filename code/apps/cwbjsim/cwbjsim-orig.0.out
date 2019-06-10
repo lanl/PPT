@@ -1,0 +1,186 @@
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: OFF
+
+Node[0]: Running on rank 0
+Node[1]: Running on rank 0
+Node[2]: Running on rank 0
+Node[3]: Running on rank 0
+Node[4]: Running on rank 0
+Node[5]: Running on rank 0
+Node[6]: Running on rank 0
+Node[7]: Running on rank 0
+Node[8]: Running on rank 0
+Node[9]: Running on rank 0
+Node[10]: Running on rank 0
+Node[11]: Running on rank 0
+Node[12]: Running on rank 0
+Node[13]: Running on rank 0
+Node[14]: Running on rank 0
+Node[15]: Running on rank 0
+Node[16]: Running on rank 0
+Node[17]: Running on rank 0
+Node[18]: Running on rank 0
+Node[19]: Running on rank 0
+Node[20]: Running on rank 0
+Node[21]: Running on rank 0
+Node[22]: Running on rank 0
+Node[23]: Running on rank 0
+Node[24]: Running on rank 0
+Node[25]: Running on rank 0
+Node[26]: Running on rank 0
+Node[27]: Running on rank 0
+Node[28]: Running on rank 0
+Node[29]: Running on rank 0
+Node[30]: Running on rank 0
+Node[31]: Running on rank 0
+Node[32]: Running on rank 0
+Node[33]: Running on rank 0
+Node[34]: Running on rank 0
+Node[35]: Running on rank 0
+Node[36]: Running on rank 0
+Node[37]: Running on rank 0
+Node[38]: Running on rank 0
+Node[39]: Running on rank 0
+Node[40]: Running on rank 0
+Node[41]: Running on rank 0
+Node[42]: Running on rank 0
+Node[43]: Running on rank 0
+Node[44]: Running on rank 0
+Node[45]: Running on rank 0
+Node[46]: Running on rank 0
+Node[47]: Running on rank 0
+Node[48]: Running on rank 0
+Node[49]: Running on rank 0
+Master[1]: Running on rank 0
+CWBJSim Master at Initialization
+Version = orig-2016.06.06.1
+
+Time: 2e-09:  Master 1 CWBJSim: number of waiting chunk processes after init: 1
+Reminder re chunk_id:	 (z_i, y_i, x_i)  
+Time: 2e-09:	 Master 1 CWBJSim: Starting chunk process 	 (0, 0, 0) on (node, core)=((0, 0))
+Time: 3.38461538462e-09:	 Node 0 ChunkProcess: Stats from single interior cell call: 
+L1_int_misses 	= 30579940.6154
+L2_float_hits 	= 2582765
+L1_float_misses 	= 2582765.38462
+L1_int_hits 	= 18847506
+VECTOR ops 	= 0
+intranode comm time 	= 0
+L2_int_hits 	= 30579939
+RAM accesses 	= 0.00470402642648
+L2 cycles 	= 371752877.6
+L1 cycles 	= 17184340.68
+Thread Efficiency 	= 1.0
+INTVEC cycles 	= 0.0
+L2_int_misses 	= 1.61538460851
+iALU cycles 	= 259200000.0
+INTVEC ops 	= 0
+internode comm time 	= 0
+fDIV cycles 	= 540000.0
+CPU cycles 	= 0
+VECTOR cycles 	= 0.0
+fALU cycles 	= 21600000.0
+L1_float_hits 	= 1591850
+L2_float_misses 	= 0.384615384042
+RAM cycles 	= 0.611523435442
+Time: 7.52160511887:	 Master 1 CWBJSim: received msg 		['chunk_done', (0, 0, 0), {'L1_int_misses': 1957116199.384615, 'L2_float_hits': 150995008, 'L1_float_misses': 150995032.61538458, 'L1_int_hits': 1206240384, 'VECTOR ops': 0, 'intranode comm time': 0, 'L2_int_hits': 1957116096, 'RAM accesses': 0.3010576912946999, 'L2 cycles': 23494703564.8, 'L1 cycles': 1086046640.64, 'Thread Efficiency': 1.0, 'INTVEC cycles': 0.0, 'L2_int_misses': 103.38461494445801, 'iALU cycles': 16588800000.0, 'INTVEC ops': 0, 'internode comm time': 0, 'VECTOR cycles': 0.0, 'CPU cycles': 0, 'fDIV cycles': 0.0, 'fALU cycles': 1382400000.0, 'L1_float_hits': 93063552, 'L2_float_misses': 24.615384578704834, 'RAM cycles': 39.13749986831099}]
+Time: 7.52160543037:	 Master 1 CWBJSim: received msg 		['chunk_done_intranode_send', (0, 0, 0), 25600]
+Time: 7.52160867787:	 Master 1 CWBJSim: received msg 		['chunk_done_internode_send', (0, 0, 0), 25600]
+Time: 7.52160867787:	 Master 1 CWBJSim: End of inner loop 0
+Time: 7.52160867787:  Master 1 CWBJSim: number of waiting chunk processes after init: 1
+Reminder re chunk_id:	 (z_i, y_i, x_i)  
+Time: 7.52160867787:	 Master 1 CWBJSim: Starting chunk process 	 (0, 0, 0) on (node, core)=((0, 0))
+Time: 7.52160867925:	 Node 0 ChunkProcess: Stats from single interior cell call: 
+L1_int_misses 	= 30579940.6154
+L2_float_hits 	= 2582765
+L1_float_misses 	= 2582765.38462
+L1_int_hits 	= 18847506
+VECTOR ops 	= 0
+intranode comm time 	= 0
+L2_int_hits 	= 30579939
+RAM accesses 	= 0.00470402642648
+L2 cycles 	= 371752877.6
+L1 cycles 	= 17184340.68
+Thread Efficiency 	= 1.0
+INTVEC cycles 	= 0.0
+L2_int_misses 	= 1.61538460851
+iALU cycles 	= 259200000.0
+INTVEC ops 	= 0
+internode comm time 	= 0
+fDIV cycles 	= 540000.0
+CPU cycles 	= 0
+VECTOR cycles 	= 0.0
+fALU cycles 	= 21600000.0
+L1_float_hits 	= 1591850
+L2_float_misses 	= 0.384615384042
+RAM cycles 	= 0.611523435442
+Time: 15.0432137947:	 Master 1 CWBJSim: received msg 		['chunk_done', (0, 0, 0), {'L1_int_misses': 1957116199.384615, 'L2_float_hits': 150995008, 'L1_float_misses': 150995032.61538458, 'L1_int_hits': 1206240384, 'VECTOR ops': 0, 'intranode comm time': 0, 'L2_int_hits': 1957116096, 'RAM accesses': 0.3010576912946999, 'L2 cycles': 23494703564.8, 'L1 cycles': 1086046640.64, 'Thread Efficiency': 1.0, 'INTVEC cycles': 0.0, 'L2_int_misses': 103.38461494445801, 'iALU cycles': 16588800000.0, 'INTVEC ops': 0, 'internode comm time': 0, 'VECTOR cycles': 0.0, 'CPU cycles': 0, 'fDIV cycles': 0.0, 'fALU cycles': 1382400000.0, 'L1_float_hits': 93063552, 'L2_float_misses': 24.615384578704834, 'RAM cycles': 39.13749986831099}]
+Time: 15.0432141062:	 Master 1 CWBJSim: received msg 		['chunk_done_intranode_send', (0, 0, 0), 25600]
+Time: 15.0432173537:	 Master 1 CWBJSim: received msg 		['chunk_done_internode_send', (0, 0, 0), 25600]
+Time: 15.0432173537:	 Master 1 CWBJSim: End of inner loop 1
+Time: 15.0432173537:  Master 1 CWBJSim: number of waiting chunk processes after init: 1
+Reminder re chunk_id:	 (z_i, y_i, x_i)  
+Time: 15.0432173537:	 Master 1 CWBJSim: Starting chunk process 	 (0, 0, 0) on (node, core)=((0, 0))
+Time: 15.0432173551:	 Node 0 ChunkProcess: Stats from single interior cell call: 
+L1_int_misses 	= 30579940.6154
+L2_float_hits 	= 2582765
+L1_float_misses 	= 2582765.38462
+L1_int_hits 	= 18847506
+VECTOR ops 	= 0
+intranode comm time 	= 0
+L2_int_hits 	= 30579939
+RAM accesses 	= 0.00470402642648
+L2 cycles 	= 371752877.6
+L1 cycles 	= 17184340.68
+Thread Efficiency 	= 1.0
+INTVEC cycles 	= 0.0
+L2_int_misses 	= 1.61538460851
+iALU cycles 	= 259200000.0
+INTVEC ops 	= 0
+internode comm time 	= 0
+fDIV cycles 	= 540000.0
+CPU cycles 	= 0
+VECTOR cycles 	= 0.0
+fALU cycles 	= 21600000.0
+L1_float_hits 	= 1591850
+L2_float_misses 	= 0.384615384042
+RAM cycles 	= 0.611523435442
+Time: 22.5648224706:	 Master 1 CWBJSim: received msg 		['chunk_done', (0, 0, 0), {'L1_int_misses': 1957116199.384615, 'L2_float_hits': 150995008, 'L1_float_misses': 150995032.61538458, 'L1_int_hits': 1206240384, 'VECTOR ops': 0, 'intranode comm time': 0, 'L2_int_hits': 1957116096, 'RAM accesses': 0.3010576912946999, 'L2 cycles': 23494703564.8, 'L1 cycles': 1086046640.64, 'Thread Efficiency': 1.0, 'INTVEC cycles': 0.0, 'L2_int_misses': 103.38461494445801, 'iALU cycles': 16588800000.0, 'INTVEC ops': 0, 'internode comm time': 0, 'VECTOR cycles': 0.0, 'CPU cycles': 0, 'fDIV cycles': 0.0, 'fALU cycles': 1382400000.0, 'L1_float_hits': 93063552, 'L2_float_misses': 24.615384578704834, 'RAM cycles': 39.13749986831099}]
+Time: 22.5648227821:	 Master 1 CWBJSim: received msg 		['chunk_done_intranode_send', (0, 0, 0), 25600]
+Time: 22.5648260296:	 Master 1 CWBJSim: received msg 		['chunk_done_internode_send', (0, 0, 0), 25600]
+Time: 22.5648260296:	 Master 1 CWBJSim: End of inner loop 2
+Time: 22.5648260296:  Master 1 CWBJSim: number of waiting chunk processes after init: 1
+Reminder re chunk_id:	 (z_i, y_i, x_i)  
+Time: 22.5648260296:	 Master 1 CWBJSim: Starting chunk process 	 (0, 0, 0) on (node, core)=((0, 0))
+Time: 22.564826031:	 Node 0 ChunkProcess: Stats from single interior cell call: 
+L1_int_misses 	= 30579940.6154
+L2_float_hits 	= 2582765
+L1_float_misses 	= 2582765.38462
+L1_int_hits 	= 18847506
+VECTOR ops 	= 0
+intranode comm time 	= 0
+L2_int_hits 	= 30579939
+RAM accesses 	= 0.00470402642648
+L2 cycles 	= 371752877.6
+L1 cycles 	= 17184340.68
+Thread Efficiency 	= 1.0
+INTVEC cycles 	= 0.0
+L2_int_misses 	= 1.61538460851
+iALU cycles 	= 259200000.0
+INTVEC ops 	= 0
+internode comm time 	= 0
+fDIV cycles 	= 540000.0
+CPU cycles 	= 0
+VECTOR cycles 	= 0.0
+fALU cycles 	= 21600000.0
+L1_float_hits 	= 1591850
+L2_float_misses 	= 0.384615384042
+RAM cycles 	= 0.611523435442
+Time: 30.0864311465:	 Master 1 CWBJSim: received msg 		['chunk_done', (0, 0, 0), {'L1_int_misses': 1957116199.384615, 'L2_float_hits': 150995008, 'L1_float_misses': 150995032.61538458, 'L1_int_hits': 1206240384, 'VECTOR ops': 0, 'intranode comm time': 0, 'L2_int_hits': 1957116096, 'RAM accesses': 0.3010576912946999, 'L2 cycles': 23494703564.8, 'L1 cycles': 1086046640.64, 'Thread Efficiency': 1.0, 'INTVEC cycles': 0.0, 'L2_int_misses': 103.38461494445801, 'iALU cycles': 16588800000.0, 'INTVEC ops': 0, 'internode comm time': 0, 'VECTOR cycles': 0.0, 'CPU cycles': 0, 'fDIV cycles': 0.0, 'fALU cycles': 1382400000.0, 'L1_float_hits': 93063552, 'L2_float_misses': 24.615384578704834, 'RAM cycles': 39.13749986831099}]
+Time: 30.086431458:	 Master 1 CWBJSim: received msg 		['chunk_done_intranode_send', (0, 0, 0), 25600]
+Time: 30.0864347055:	 Master 1 CWBJSim: received msg 		['chunk_done_internode_send', (0, 0, 0), 25600]
+Time: 30.0864347055:	 Master 1 CWBJSim: End of inner loop 3
+Time: 30.0864347055:	 Master 1 CWBJSim: End of outer loop 0
+Time: 30.0864347055:	 Master 1 CWBJSim: End of timestep 0
+End of computation, now waiting for potential late arrival wake_up notifications to ignore 
