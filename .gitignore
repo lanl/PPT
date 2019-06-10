@@ -104,3 +104,4 @@ ENV/
 *.o
 *.gz
 *.DS_Store
+*.out
