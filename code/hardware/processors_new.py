@@ -33,6 +33,7 @@ Comments:
   5. TTNCore (Titan)
   6. MLIntelPlusGPUCore
   7. MustangCore
+  6. GPUCore
 """
 
 import math
@@ -1581,7 +1582,7 @@ class TTNCore(GenericProcessor):
  					# Compute the number of *CPU* cycles during which the device will be busy
  					# This number will be added to the total number of cycles when synchronizing with the GPU
  					# under the condition that it is higher than the current number of cycles (concurrency between CPU and device)
- 					self.end_device_comps[item[1]] = cycles+self.node.accelerators[item[1]].kernel_call(item[2], item[3], item[4], item[5], start+cycles*1/self.clockspeed)*self.clockspeed
+ 					self.end_device_comps[item[1]] = cycles+self.node.accelerators[item[1]].kernel_call(item[2], item[3], item[4], item[5], item[6], item[7], start+cycles*1/self.clockspeed)*self.clockspeed
  			elif item[0] == 'DEVICE_SYNC':
  				if item[1] >= self.node.num_accelerators:
  					print "Warning: TTNCore", id(self), " on TTNNode ", id(self.node), \
@@ -1666,7 +1667,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
     Computes the cycles that the items in the tasklist (CPU ops, data access,
     vector ops, memory alloc, GPU ops) take.
     """
-
+    
     # Initialize
     cycles = 0.0
     time = 0.0
@@ -1700,7 +1701,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
 
       # TASK: Cycles associated with moving data through memory and cache
       if item[0] == 'MEM_ACCESS':
-
+       
         num_index_vars = item[1]
         num_float_vars = item[2]
         avg_dist = item[3]
@@ -1978,7 +1979,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
 
       # TASK: Direct input of L1 accesses
       elif item[0] == 'L1':
-
+        
         num_accesses = item[1]
         cycles += num_accesses * self.cache_cycles[0]
         #X#print ("l1 ", cycles)
@@ -2007,7 +2008,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
 
       # TASK: Integer operations
       elif item[0] == 'iALU':
-
+        
         num_ops = item[1]
         cycles += num_ops * self.cycles_per_iALU
         stats['iALU cycles'] += num_ops * self.cycles_per_iALU
@@ -2015,7 +2016,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
 
       # TASK: Floating point operations
       elif item[0] == 'fALU':
-
+        
         num_ops = item[1]
         cycles += num_ops * self.cycles_per_fALU
         stats['fALU cycles'] += num_ops * self.cycles_per_fALU
@@ -2106,21 +2107,21 @@ class MLIntelPlusGPUCore(GenericProcessor):
 
       # TASK: memory management on GPU
       elif item[0] == 'DEVICE_ALLOC':
-
+      
         if item[1] >= self.node.num_accelerators:
           print "Warning: MLIntelPlusGPUCore", id(self), " on MLIntelPlusGPUNode ", id(self.node), \
                   " attempted to communicate with a non-existing device numbered ", str(item[1]),"."
         else:
-          self.node.accelerators[item[1]].mem_alloc(item[2])
+          self.node.accelerators[item[1]].allocate_device_mem(item[2])
 
       # TASK: data transfer with GPU
       elif item[0] == 'DEVICE_TRANSFER':
-
+        
         if item[1] >= self.node.num_accelerators:
           print "Warning: MLIntelPlusGPUCore", id(self), " on MLIntelPlusGPUNode ", id(self.node), \
                   " attempted to communicate with a non-existing device numbered ", str(item[1]),"."
         else:
-          cycles += self.node.accelerators[item[1]].transfer(item[2])*self.clockspeed
+          cycles += self.node.accelerators[item[1]].transfer_to_device(item[2])*self.clockspeed
 
       # TASK: kernel launch on GPU
       elif item[0] == 'KERNEL_CALL':
@@ -2132,7 +2133,7 @@ class MLIntelPlusGPUCore(GenericProcessor):
           # Compute the number of *CPU* cycles during which the device will be busy
           # This number will be added to the total number of cycles when synchronizing with the GPU
           # under the condition that it is higher than the current number of cycles (concurrency between CPU and device)
-          self.end_device_comps[item[1]] = cycles+self.node.accelerators[item[1]].kernel_call(item[2], item[3], item[4], item[5], start+cycles*1/self.clockspeed)*self.clockspeed
+          self.end_device_comps[item[1]] = cycles+self.node.accelerators[item[1]].kernel_call(item[2], item[3], item[4], item[5], item[6], item[7], start+cycles*1/self.clockspeed)*self.clockspeed
 
       # TASK: synchronization of GPU
       elif item[0] == 'DEVICE_SYNC':
@@ -2151,7 +2152,6 @@ class MLIntelPlusGPUCore(GenericProcessor):
     # Divide cumulative cycles by clockspeed to get time; apply thread eff
     time += cycles / self.clockspeed * self.thread_efficiency()
     stats['Thread Efficiency'] = self.thread_efficiency()
-
     if statsFlag:
       return time, stats
     else:
@@ -2418,3 +2418,65 @@ class GrizzlyCore(GenericProcessor):
     #self.ram_latency = 36.0 / self.clockspeed + 57 * self.ns #from 7-cpu.com -- (36 cycles + 57 ns)
     #self.ram_latency = 60 * self.ns #from Intel forums
     self.ram_cycles = self.ram_latency * self.clockspeed
+
+###########################################################
+class GPUCore(GenericProcessor):
+  """
+  A Simian resource that represents dummy host which has GPU accelrator(s). It has
+  3 cache levels and vector units and a GPU accelerator.
+  """
+
+  def __init__(self, node):
+    """
+    Initialize machine-specific values.
+    """
+    super(GPUCore, self).__init__(node)
+
+    # Units
+    self.ns = 1.0 * 10 ** (-9)  # nanoseconds
+    self.kb = 1024.0  # Kilobytes
+    self.mb = 1024.0 ** 2  # Megabytes
+    self.isize = 4.0  # bytes per word
+    self.fsize = 8.0  # bytes per word
+
+    # Threads and vectors
+    self.maxthreads = 32  # upper bound on number active threads
+    self.clockspeed = 2.60 * 10 ** 9  # Hertz
+    self.hwthreads = 32  # number of hardware threads
+    self.vector_width = 32  # width of vector unit in bytes, 256 bit?
+
+    # Registers
+    self.num_registers = 16.0  # number of registers [bytes]
+    self.register_cycles = 1.0  # cycles per register access
+
+    # Cache details
+    self.cache_levels = 3
+    self.cache_sizes = [32.0 * self.kb, 256.0 * self.kb, 2.5 * self.mb]  # bytes
+    self.cache_line_sizes = [64.0, 64.0, 64.0]  # bytes
+    self.cache_latency = [0.3 * self.ns, 4.0 * self.ns, 16.0 * self.ns]  # seconds
+    self.cache_cycles = [self.cache_latency[0] * self.clockspeed,
+                         self.cache_latency[1] * self.clockspeed,
+                         self.cache_latency[2] * self.clockspeed]
+
+    # Main memory
+    self.ram_page_size = 4096.0  # bytes
+    self.ram_latency = 50.0 * self.ns  # seconds
+    self.ram_cycles = self.ram_latency * self.clockspeed
+    self.cycles_per_CPU_ops = 1.0
+    self.cycles_per_iALU = 0.3
+    self.cycles_per_int_vec = 0.075
+    self.cycles_per_fALU = 0.3
+    self.cycles_per_vector_ops = 0.075
+    self.cycles_per_division = 3.0
+
+  def time_compute(self, tasklist, start, statsFlag=False):
+    
+    for item in tasklist:
+      # TASK: kernel launch on GPU
+      if item[0] == 'KERNEL_CALL':
+        if item[1] >= self.node.num_accelerators:
+          print "Warning: GPU Accelrator ", id(self), " on GPUNode ", id(self.node), " attempted to communicate with a non-existing device numbered ", str(item[1]),"."
+        else:
+          self.node.accelerators[item[1]].kernel_call(item[2], item[3], item[4], item[5], item[6], item[7], start)
+      else:
+        print ('Warning: task list item', item, ' cannot be parsed, ignoring it')

@@ -14,6 +14,7 @@ Predict the performance of physics codes
 9. Jason Liu (luix@cis.fiu.edu)
 10. Kishwar Ahmed
 11. Mohammad Abu Obaida
+12. Yehia Arafa (yarafa@nmsu.edu)
 
 ## Installation
 

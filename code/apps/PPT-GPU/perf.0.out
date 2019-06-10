@@ -1,0 +1,18 @@
+===========================================
+----------SIMIAN-PIE PDES ENGINE-----------
+===========================================
+MPI: OFF
+
+Node[0]: Running on rank 0
+GPU node generated at time 0.0
+1 K40m accelerator from Kepler architecture generated at time 0
+Allocated 24 simultaneous blocks per SM for a total of 24 warps.
+BLOCK AVERAGE = 2.50736700615e-15
+GPU computations for a single workload took 1152.0 cycles.
+GPU computations for a single workload took 1.72713643178e-06 s.
+Total number of workloads 2731.
+Total number of instructions issued for a single workload: 846.0.
+Potential workload overlap: 3.16840277778%.
+Overall IPC 0.734375.
+Overall MIPS: 4898.28125.
+Maximum number of concurrent transfers: 71

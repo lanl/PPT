@@ -28,8 +28,9 @@ Comments:
         vi.             MBPNode (MacPro)
         vii.            TTNNode (Titan)
         viii.           MLIntelPlusGPUNode
-        ix.             i7Node
-        x.              GrizzlyNode
+        ix.             GPUNode
+        x.              i7Node
+        xi.             GrizzlyNode
 """
 
 
@@ -127,8 +128,8 @@ class CieloNode(Host):
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(CieloNode, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -239,8 +240,8 @@ class MLIntelNode(Host):
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(MLIntelNode, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -339,8 +340,8 @@ class MustangNode(Host):
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(MustangNode, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -384,14 +385,15 @@ class MustangNode(Host):
                 print ("Warning: MustangNode", node, " has recovered from swap mode ", simx.get_now())
             return True
 
+
 class GenericCoreNode(Host):
     """
     Class that represents a Mustang compute node
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(GenericCoreNode, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -435,14 +437,15 @@ class GenericCoreNode(Host):
                 print ("Warning: MustangNode", node, " has recovered from swap mode ", simx.get_now())
             return True
 
+
 class I7Node(Host):
     """
     Class that represents a Mustang compute node
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(I7Node, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -475,8 +478,8 @@ class GrizzlyNode(Host):
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
         super(GrizzlyNode, self).__init__(baseInfo, hpcsim_dict, *arg)
-#    def __init__(self, baseInfo, *args):
-#        super(CieloNode, self).__init__(baseInfo)
+ #    def __init__(self, baseInfo, *args):
+ #        super(CieloNode, self).__init__(baseInfo)
         self.memory_footprint =  0       # Number of bytes allocated in memory
 
         #
@@ -602,8 +605,8 @@ class TTNNode(Host):
 
         self.accelerators = []
         for i in range(self.num_accelerators):
-             self.accelerators.append(accelerators.K20X(self, i)) # Change back to k20x
-        self.out.write(str(self.num_accelerators)+" TTN K20X accelerator(s) generated at time "+str(self.engine.now)+"\n") #MR: K20X
+             self.accelerators.append(accelerators.TitanX(self, i)) 
+        self.out.write(str(self.num_accelerators)+ " "+ self.accelerators[0].getAccelatorName()+" accelerator(s) generated at time "+str(self.engine.now)+"\n") #MR: K20X
 
     def mem_alloc(self, size):
         """
@@ -623,15 +626,17 @@ class TTNNode(Host):
                 print ("Warning: TTNNode", node, " has recovered from swap mode ", simx.get_now())
             return True
 
+
 class MLIntelPlusGPUNode(Host):
     """
     Class that represents a complete Moonlight compute node (host + accelerator)
     """
     def __init__(self, baseInfo, hpcsim_dict, *arg):
+        
         super(MLIntelPlusGPUNode, self).__init__(baseInfo, hpcsim_dict, *arg)
         import accelerators
         self.memory_footprint =  0                      # Number of bytes allocated in memory
-
+        
         #
         #  PARAMETERS
         #
@@ -656,12 +661,13 @@ class MLIntelPlusGPUNode(Host):
         self.cores = []
         for i in range(self.num_cores):
              self.cores.append(processors_new.MLIntelPlusGPUCore(self))
+        
         self.out.write(str(self.num_cores)+" ML Intel cores generated at time "+str(self.engine.now)+"\n")
         # let's generate the accelerators
         self.accelerators = []
         for i in range(self.num_accelerators):
-             self.accelerators.append(accelerators.M2090(self, i))
-        self.out.write(str(self.num_accelerators)+" ML M2090 accelerator(s) generated at time "+str(self.engine.now)+"\n")
+             self.accelerators.append(accelerators.K40m(self, i))
+        self.out.write(str(self.num_accelerators)+ " "+ self.accelerators[0].getAccelatorName()+" accelerator(s) generated at time "+str(self.engine.now)+"\n") #MR: K20X
 
     def mem_alloc(self, size):
         """
@@ -680,3 +686,50 @@ class MLIntelPlusGPUNode(Host):
                 # We are back to normal memory use
                 print ("Warning: MLIntelPlusGPUNode", node, " has recovered from swap mode ", simx.get_now())
             return True
+
+
+class GPUNode(Host):
+    """
+    Class that represents a node that has compute node (host + accelerator)
+    """
+    def __init__(self, baseInfo, hpcsim_dict, *arg):
+        
+        super(GPUNode, self).__init__(baseInfo, hpcsim_dict, *arg)
+        import accelerators
+        self.memory_footprint =  0                      # Number of bytes allocated in memory
+        
+        #
+        #  PARAMETERS
+        #
+
+        self.num_cores  = 1                              # Number of cores on the node
+        self.memorysize = 32768                          # Total memory on node  in MB
+
+        self.filesystem_access_time =  1.0               # Filesystem access time in seconds
+
+        self.interconnect_bandwidth = 1.0 * 10**10       # Speed of interconnect in bits/sec
+        self.interconnect_latency   = 1.0 * 10**-6       # Delay in getting packet ready in sec
+        self.interconnect_latency_mpi = 1.5 * 10**-6     # Delay in getting MPI packet ready in sec
+        self.PCIe_bandwidth = 100*10**9    
+        self.PCIe_latency = 10*10**-6 
+
+        self.num_accelerators = 1                        # We are only modeling a node that has 1 GPU for now
+
+        self.out.write("GPU node generated at time "+str(self.engine.now)+"\n")
+        # let's generate the cores
+        self.cores = []
+        for i in range(self.num_cores):
+             self.cores.append(processors_new.GPUCore(self))
+        
+        # let's generate the accelerators
+        self.accelerators = []
+
+    # Generates the target accelerator with the configs
+    def generate_target_accelerator(self, gpu_config):
+        import accelerators
+        for i in range(self.num_accelerators):
+            self.accelerators.append(accelerators.GPU(self, i, gpu_config))
+        self.out.write(str(self.num_accelerators)+" "+gpu_config["gpu_name"]+" accelerator from "+gpu_config["gpu_arch"] +" architecture generated at time "+str(self.engine.now)+"\n")
+
+
+
