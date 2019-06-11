@@ -1,7 +1,7 @@
 """
 *********** Performance Prediction Toolkit PPT *********
 
-File: arch_latencies_config.py
+File: arch_atencies.config
 Description: Has the latencies for various ALU and memory operations for the target architecture/generation
 Author: Yehia Arafa 
 comments: 
@@ -65,6 +65,7 @@ class Kepler():
         latencies["sub.cc"]   = 9
         latencies["subc"]     = 18  
         latencies["mad.cc"]   = 9
+        latencies["madc"]     = 9
         latencies["rcp"]      = 377   
         latencies["sqrt"]     = 432
         latencies["fasqrt"]   = 49
@@ -77,7 +78,7 @@ class Kepler():
         latencies["mul24"]    = 22
         latencies["mad24"]    = 22
         latencies["mulhi"]    = 9
-        latencies["mul64hi"]  = 226
+        latencies["dmulhi"]   = 226
         latencies["sad"]      = 9
         latencies["popc"]     = 9
         latencies["clz"]      = 20
@@ -89,8 +90,8 @@ class Kepler():
         latencies["shfl"]     = 9
         latencies["cvta"]     = 9
         latencies["cvt"]      = 9
-        latencies["setp"]     = 9
         latencies["selp"]     = 9
+        latencies["setp"]     = 9
         return latencies
 
     def populate_mem_latencies(self):
@@ -100,10 +101,11 @@ class Kepler():
         latencies["global_mem_latency"]     = 331
         latencies["local_mem_latency"]      = 331
         latencies["constant_mem_latency"]   = 16
-        latencies["texture_mem_latency"]    = 317
+        latencies["texture_mem_latency"]    = 347
         latencies["texture_cache_latency"]  = 112
         latencies["shared_mem_latency"]     = 26
         return latencies 
+
 
 class Maxwell():
     
@@ -146,6 +148,7 @@ class Maxwell():
         latencies["sub.cc"]   = 6
         latencies["subc"]     = 12  
         latencies["mad.cc"]   = 13
+        latencies["madc"]     = 13
         latencies["rcp"]      = 347   
         latencies["sqrt"]     = 360
         latencies["fasqrt"]   = 47
@@ -158,7 +161,7 @@ class Maxwell():
         latencies["mul24"]    = 21
         latencies["mad24"]    = 18
         latencies["mulhi"]    = 18
-        latencies["mul64hi"]  = 106
+        latencies["dmulhi"]   = 106
         latencies["sad"]      = 6
         latencies["popc"]     = 13
         latencies["clz"]      = 19
@@ -169,21 +172,23 @@ class Maxwell():
         latencies["mov"]      = 6
         latencies["shfl"]     = 6
         latencies["cvta"]     = 6
-        latencies["setp"]     = 6
+        latencies["cvt"]      = 6
         latencies["selp"]     = 6
+        latencies["setp"]     = 6
         return latencies
 
     def populate_mem_latencies(self):
         latencies = {}
         latencies["l1_cache_access"]        = 82
         latencies["l2_cache_access"]        = 225
-        latencies["global_mem_latency"]     = 375
-        latencies["local_mem_latency"]      = 375
+        latencies["global_mem_latency"]     = 379
+        latencies["local_mem_latency"]      = 379
         latencies["constant_mem_latency"]   = 20
         latencies["texture_mem_latency"]    = 357
         latencies["texture_cache_latency"]  = 95
         latencies["shared_mem_latency"]     = 24
         return latencies 
+
 
 class Pascal():
     
@@ -230,6 +235,7 @@ class Pascal():
         latencies["sub.cc"]   = 6
         latencies["subc"]     = 12  
         latencies["mad.cc"]   = 13
+        latencies["madc"]     = 13
         latencies["rcp"]      = 266   
         latencies["sqrt"]     = 282
         latencies["fasqrt"]   = 35
@@ -242,7 +248,7 @@ class Pascal():
         latencies["mul24"]    = 21
         latencies["mad24"]    = 18
         latencies["mulhi"]    = 18
-        latencies["mul64hi"]  = 118
+        latencies["dmulhi"]   = 118
         latencies["sad"]      = 6
         latencies["popc"]     = 13
         latencies["clz"]      = 18
@@ -253,6 +259,8 @@ class Pascal():
         latencies["mov"]      = 6
         latencies["shfl"]     = 6
         latencies["cvta"]     = 6
+        latencies["cvt"]      = 6
+        latencies["selp"]     = 6
         latencies["setp"]     = 6
         return latencies
 
@@ -260,8 +268,8 @@ class Pascal():
         latencies = {}
         latencies["l1_cache_access"]        = 81
         latencies["l2_cache_access"]        = 252
-        latencies["global_mem_latency"]     = 486
-        latencies["local_mem_latency"]      = 486
+        latencies["global_mem_latency"]     = 482
+        latencies["local_mem_latency"]      = 482
         latencies["constant_mem_latency"]   = 12
         latencies["texture_mem_latency"]    = 470
         latencies["texture_cache_latency"]  = 87
@@ -269,3 +277,175 @@ class Pascal():
         return latencies 
         
 
+class Volta():
+    
+    def populate_alu_latencies(self):
+        latencies = {}
+        latencies["add"]      = 4
+        latencies["sub"]      = 4
+        latencies["min"]      = 4
+        latencies["max"]      = 4
+        latencies["mul"]      = 4
+        latencies["mad"]      = 4
+        latencies["sdiv"]     = 127
+        latencies["srem"]     = 125
+        latencies["abs"]      = 8
+        latencies["udiv"]     = 122
+        latencies["urem"]     = 117
+        latencies["and"]      = 4
+        latencies["or"]       = 4 
+        latencies["not"]      = 4 
+        latencies["xor"]      = 4
+        latencies["cnot"]     = 8 
+        latencies["shl"]      = 4
+        latencies["shr"]      = 4
+        latencies["fadd"]     = 4 
+        latencies["fsub"]     = 4
+        latencies["fmul"]     = 4
+        latencies["fmad"]     = 4
+        latencies["fma"]      = 4
+        latencies["fdiv"]     = 201 
+        latencies["dadd"]     = 8
+        latencies["dsub"]     = 8
+        latencies["dmin"]     = 8
+        latencies["dmax"]     = 8
+        latencies["dmul"]     = 8
+        latencies["dmad"]     = 8
+        latencies["dfma"]     = 8
+        latencies["ddiv"]     = 159 
+        latencies["hfadd"]    = 6
+        latencies["hfsub"]    = 6  
+        latencies["hfmul"]    = 6
+        latencies["hffma"]    = 6  
+        latencies["add.cc"]   = 4
+        latencies["addc"]     = 4  
+        latencies["sub.cc"]   = 4
+        latencies["subc"]     = 8  
+        latencies["mad.cc"]   = 4
+        latencies["madc"]     = 4
+        latencies["rcp"]      = 60   
+        latencies["sqrt"]     = 60
+        latencies["fasqrt"]   = 31
+        latencies["rsqrt"]    = 31
+        latencies["sin"]      = 11
+        latencies["cos"]      = 11
+        latencies["lg2"]      = 31
+        latencies["ex2"]      = 22
+        latencies["copysign"] = 8
+        latencies["mul24"]    = 12
+        latencies["mad24"]    = 12
+        latencies["mulhi"]    = 12
+        latencies["dmulhi"]   = 123
+        latencies["sad"]      = 4
+        latencies["popc"]     = 15
+        latencies["clz"]      = 5
+        latencies["bfe"]      = 4
+        latencies["bfi"]      = 4
+        latencies["bfind"]    = 15
+        latencies["bbrev"]    = 15
+        latencies["mov"]      = 4
+        latencies["shfl"]     = 4
+        latencies["cvta"]     = 4
+        latencies["cvt"]      = 4
+        latencies["selp"]     = 4
+        latencies["setp"]     = 4
+        return latencies
+
+    def populate_mem_latencies(self):
+        latencies = {}
+        latencies["l1_cache_access"]        = 26
+        latencies["l2_cache_access"]        = 198
+        latencies["global_mem_latency"]     = 362
+        latencies["local_mem_latency"]      = 362
+        latencies["constant_mem_latency"]   = 8
+        latencies["texture_mem_latency"]    = 436
+        latencies["texture_cache_latency"]  = 86
+        latencies["shared_mem_latency"]     = 18
+        return latencies  
+
+
+class RTX():
+    
+    def populate_alu_latencies(self):
+        latencies = {}
+        latencies["add"]      = 4
+        latencies["sub"]      = 4
+        latencies["min"]      = 4
+        latencies["max"]      = 4
+        latencies["mul"]      = 4
+        latencies["mad"]      = 4
+        latencies["sdiv"]     = 119
+        latencies["srem"]     = 114
+        latencies["abs"]      = 8
+        latencies["udiv"]     = 114
+        latencies["urem"]     = 109
+        latencies["and"]      = 4
+        latencies["or"]       = 4 
+        latencies["not"]      = 4 
+        latencies["xor"]      = 4
+        latencies["cnot"]     = 8 
+        latencies["shl"]      = 4
+        latencies["shr"]      = 4
+        latencies["fadd"]     = 4 
+        latencies["fsub"]     = 4
+        latencies["fmul"]     = 4
+        latencies["fmad"]     = 4
+        latencies["fma"]      = 4
+        latencies["fdiv"]     = 227 
+        latencies["dadd"]     = 40
+        latencies["dsub"]     = 40
+        latencies["dmin"]     = 40
+        latencies["dmax"]     = 40
+        latencies["dmul"]     = 40
+        latencies["dmad"]     = 40
+        latencies["dfma"]     = 40
+        latencies["ddiv"]     = 540 
+        latencies["hfadd"]    = 6
+        latencies["hfsub"]    = 6  
+        latencies["hfmul"]    = 6
+        latencies["hffma"]    = 6  
+        latencies["add.cc"]   = 4
+        latencies["addc"]     = 4  
+        latencies["sub.cc"]   = 4
+        latencies["subc"]     = 8  
+        latencies["mad.cc"]   = 4
+        latencies["madc"]     = 4
+        latencies["rcp"]      = 92  
+        latencies["sqrt"]     = 96
+        latencies["fasqrt"]   = 31
+        latencies["rsqrt"]    = 31
+        latencies["sin"]      = 13
+        latencies["cos"]      = 13
+        latencies["lg2"]      = 31
+        latencies["ex2"]      = 32
+        latencies["copysign"] = 7
+        latencies["mul24"]    = 12
+        latencies["mad24"]    = 12
+        latencies["mulhi"]    = 8
+        latencies["dmulhi"]   = 123
+        latencies["sad"]      = 4
+        latencies["popc"]     = 15
+        latencies["clz"]      = 21
+        latencies["bfe"]      = 4
+        latencies["bfi"]      = 4
+        latencies["bfind"]    = 15
+        latencies["bbrev"]    = 15
+        latencies["mov"]      = 4
+        latencies["shfl"]     = 4
+        latencies["cvta"]     = 4
+        latencies["cvt"]      = 4
+        latencies["selp"]     = 4
+        latencies["setp"]     = 4
+        return latencies
+
+    def populate_mem_latencies(self):
+        latencies = {}
+        latencies["l1_cache_access"]        = 27
+        latencies["l2_cache_access"]        = 234
+        latencies["global_mem_latency"]     = 424
+        latencies["local_mem_latency"]      = 424
+        latencies["constant_mem_latency"]   = 8
+        latencies["texture_mem_latency"]    = 410
+        latencies["texture_cache_latency"]  = 92
+        latencies["shared_mem_latency"]     = 21
+        return latencies 

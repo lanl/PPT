@@ -203,9 +203,9 @@ def get_subtasklist(insts, alu_latencies):
             for i in xrange(len(args)):
                 args[i] = clean_up(args[i])
             task = process_inst(inst, args, alu_latencies)
-        if task:
-            sub_tl.append(task)
-            out_inst_ctr+=1
+            if task:
+                sub_tl.append(task)
+                out_inst_ctr+=1
     return sub_tl
 
 
@@ -279,10 +279,14 @@ def generate_alu_access(opcode, types, args, alu_latencies, isSFU):
         task.append(latency)
     else:
         type = types[len(types)-1]
+        offset = types[len(types)-2]
         task = [""]
         if type[-2:] == "64": 
             task[0] = "dALU"
-            opcode_new = "d"+opcode
+            if opcode == "mul" and offset == "hi":
+                opcode_new= "dmulhi" 
+            else:
+                opcode_new = "d"+opcode
             if opcode_new in alu_latencies.keys():
                 latency = alu_latencies[opcode_new]
             elif opcode in alu_latencies.keys():
@@ -310,7 +314,9 @@ def generate_alu_access(opcode, types, args, alu_latencies, isSFU):
             else:
                 task[0]+="iALU"
                 if opcode=="div" or opcode =="rem":
-                        opcode = str(type[0])+opcode
+                    opcode = str(type[0])+opcode
+                elif opcode == "mul" and offset == "hi":
+                    opcode = "mulhi" 
                 if opcode in alu_latencies.keys():
                     latency = alu_latencies[opcode]
                 else:
@@ -391,6 +397,5 @@ if __name__ == "__main__":
         Error(4)
     blocks = get_basic_blocks(kernel_instructions)
     structure = extract_loops(blocks, loop_iterations_counts)
-   
     tasklist = get_tasklist(structure, alu_latencies)
     print tasklist

@@ -12,7 +12,7 @@ Scalable GPU Performance Modeling
 
 * **_gpu_app.py:_** This contains the main application to run on the modeled GPU
 
-* **_hardware-->accelerators.py:_** This contain the main algorithm for computing the runtime and performance
+* **_hardware-->accelerator.py:_** This contain the main algorithm for computing the runtime and performance
 
 ### The steps of getting any application's performance:
 
@@ -44,7 +44,7 @@ Scalable GPU Performance Modeling
     
     > python gpu_app.py
     
-    - The output of the prediction can be seen in a file named **perf.0.out** 
+    - The output performance will added to a file named **perf.0.out** 
  
 ### Notes: 
 
