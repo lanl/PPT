@@ -74,7 +74,7 @@ class Titanx():
        
         config["num_SM"]                     = 24           # Number of Streaming Multiprocessors 
         config["num_SP_per_SM"]              = 128          # Number of Single Precision cores per multiprocessor  
-        config["num_SF_per_SM"]              = 32           # Number of Special Function usints per multiprocessor 
+        config["num_SF_per_SM"]              = 32           # Number of Special Function units per multiprocessor 
         config["num_DP_per_SM"]              = 32           # Number of Double Precision cores per multiprocessor 
         config["num_load_store_units"]       = 32           # Number of Load & Store units per multiprocessor
         config["num_warp_schedulers"]        = 4            # Number of warp schedulers available (Max number of warps that can be executed concurrently)
@@ -98,13 +98,13 @@ class Titanx():
         config["shared_mem_latency"]         = mem_latencies["shared_mem_latency"]
         
         config["warp_size"]                  = 32		    # Number of threads in a warp
-        config["max_num_warps_per_SM "]      = 64		    # Max number of warps resident on a single SM
+        config["max_num_warps_per_SM"]       = 64		    # Max number of warps resident on a single SM
         config["max_num_block_per_SM"]       = 32		    # Max number of blocks queued on a single SM 
         config["max_num_threads_per_block"]  = 1024		    # Max number of (software) threads in a block 
         config["max_num_threads_per_SM"]     = 2048		    # Max number of threads queued or active on a single SM
         
         config["global_mem_return_queue"]    = 128		    # Number of memory concurrent transfer from the memory queue
-        config["num_memory_ports "]          = 1
+        config["num_memory_ports"]          = 1
 
         return config
 
@@ -144,13 +144,13 @@ class P100():
         config["shared_mem_latency"]         = mem_latencies["shared_mem_latency"]
         
         config["warp_size"]                  = 32		    # Number of threads in a warp
-        config["max_num_warps_per_SM "]      = 64		    # Max number of warps resident on a single SM
+        config["max_num_warps_per_SM"]       = 64		    # Max number of warps resident on a single SM
         config["max_num_block_per_SM"]       = 32		    # Max number of blocks queued on a single SM 
         config["max_num_threads_per_block"]  = 1024		    # Max number of (software) threads in a block 
         config["max_num_threads_per_SM"]     = 2048		    # Max number of threads queued or active on a single SM
         
         config["global_mem_return_queue"]    = 128		    # Number of memory concurrent transfer from the memory queue
-        config["num_memory_ports "]          = 1
+        config["num_memory_ports"]           = 1
 
         return config
 
@@ -190,14 +190,12 @@ class V100():
         config["shared_mem_latency"]         = mem_latencies["shared_mem_latency"]
         
         config["warp_size"]                  = 32		    # Number of threads in a warp
-        config["max_num_warps_per_SM "]      = 64		    # Max number of warps resident on a single SM
+        config["max_num_warps_per_SM"]       = 64		    # Max number of warps resident on a single SM
         config["max_num_block_per_SM"]       = 32		    # Max number of blocks queued on a single SM 
         config["max_num_threads_per_block"]  = 1024		    # Max number of (software) threads in a block 
         config["max_num_threads_per_SM"]     = 2048		    # Max number of threads queued or active on a single SM
         
         config["global_mem_return_queue"]    = 128		    # Number of memory concurrent transfer from the memory queue
-        config["num_memory_ports "]          = 1
+        config["num_memory_ports"]           = 1
 
         return config
-
-

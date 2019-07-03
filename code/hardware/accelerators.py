@@ -149,7 +149,7 @@ class Accelerator(object):
 
 		actual_workload_time /= nb_work_loads
 
-		#self.node.out.write("Actual workload time: "+str(actual_workload_time)+" s.\n")
+		self.node.out.write("Actual workload time: "+str(actual_workload_time)+" s.\n")
 
 		rounded_nb_workloads = int(nb_work_loads/self.num_SM)*self.num_SM
 		remainder = nb_work_loads-rounded_nb_workloads
@@ -170,7 +170,7 @@ class Accelerator(object):
 
 		time = last_job_end-start+mem_write_delay*1/self.clockspeed
 
-		#self.node.out.write("Total GPU computations took "+str(time)+" s.\n")
+		self.node.out.write("Total GPU computations took "+str(time)+" s.\n")
 		self.node.out.write("Maximum number of concurrent transfers: "+str(self.max_transfers)+"\n")
 
 		return time
@@ -424,46 +424,46 @@ class GPU(Accelerator):
 		#
 		#  Target GPU Configurations
 		#
-		self.num_SM						= gpu_config["num_SM"] 
-		self.num_SP_per_SM				= gpu_config["num_SP_per_SM"]  
-		self.num_SF_per_SM				= gpu_config["num_SF_per_SM"] 
-		self.num_DP_per_SM				= gpu_config["num_DP_per_SM"]
-		self.num_load_store_units  		= gpu_config["num_load_store_units"]
-		self.num_warp_schedulers    	= gpu_config["num_warp_schedulers"]
-		self.num_inst_per_warp	   		= gpu_config["num_inst_per_warp"]
-		self.clockspeed            		= gpu_config["clockspeed"]
+		self.num_SM = gpu_config["num_SM"] 
+		self.num_SP_per_SM = gpu_config["num_SP_per_SM"]  
+		self.num_SF_per_SM = gpu_config["num_SF_per_SM"] 
+		self.num_DP_per_SM = gpu_config["num_DP_per_SM"]
+		self.num_load_store_units = gpu_config["num_load_store_units"]
+		self.num_warp_schedulers = gpu_config["num_warp_schedulers"]
+		self.num_inst_per_warp = gpu_config["num_inst_per_warp"]
+		self.clockspeed = gpu_config["clockspeed"]
 
-		self.num_registers  	   		= gpu_config["num_registers"]
+		self.num_registers = gpu_config["num_registers"]
 
-		self.l1_cache_size	      	 	= gpu_config["l1_cache_size"]
-		self.l2_cache_size	       		= gpu_config["l2_cache_size"]
-		self.global_mem_size       		= gpu_config["global_mem_size"]
-		self.shared_mem_size       		= gpu_config["shared_mem_size"]
+		self.l1_cache_size = gpu_config["l1_cache_size"]
+		self.l2_cache_size = gpu_config["l2_cache_size"]
+		self.global_mem_size = gpu_config["global_mem_size"]
+		self.shared_mem_size = gpu_config["shared_mem_size"]
 		
-		self.l1_mem_latency            	= gpu_config["l1_mem_latency"]
-		self.l2_mem_latency 		    = gpu_config["l2_mem_latency"]
-		self.l2_to_global_mem_latency   = gpu_config["l2_to_global_mem_latency"]
-		self.local_mem_latency 		    = gpu_config["local_mem_latency"]
-		self.const_mem_latency 		    = gpu_config["const_mem_latency"]
-		self.tex_mem_latency 		    = gpu_config["tex_mem_latency"]
-		self.shared_mem_latency 	    = gpu_config["shared_mem_latency"]
-		self.average_memory_latency     = 0  # Average Number of cycles after applying AMT, it will be upated later
+		self.l1_mem_latency = gpu_config["l1_mem_latency"]
+		self.l2_mem_latency = gpu_config["l2_mem_latency"]
+		self.l2_to_global_mem_latency = gpu_config["l2_to_global_mem_latency"]
+		self.local_mem_latency = gpu_config["local_mem_latency"]
+		self.const_mem_latency = gpu_config["const_mem_latency"]
+		self.tex_mem_latency = gpu_config["tex_mem_latency"]
+		self.shared_mem_latency = gpu_config["shared_mem_latency"]
+		self.average_memory_latency	= 0  # Average Number of cycles after applying AMT, it will be upated later
 
-		self.warp_size		 			= gpu_config["warp_size"]
-		self.max_num_warps_per_SM       = gpu_config["max_num_warps_per_SM"]
-		self.max_num_block_per_SM 		= gpu_config["max_num_block_per_SM"] 
-		self.max_num_threads_per_block 	= gpu_config["max_num_threads_per_block"]
-		self.max_num_threads_per_SM		= gpu_config["max_num_threads_per_SM"] 
+		self.warp_size = gpu_config["warp_size"]
+		self.max_num_warps_per_SM = gpu_config["max_num_warps_per_SM"]
+		self.max_num_block_per_SM = gpu_config["max_num_block_per_SM"] 
+		self.max_num_threads_per_block = gpu_config["max_num_threads_per_block"]
+		self.max_num_threads_per_SM	= gpu_config["max_num_threads_per_SM"] 
 													
-		self.memory_use  		      	= 0	 # Allocated memory, it will updated later
-		self.global_mem_return_queue 	= gpu_config["global_mem_return_queue"]
-		self.num_memory_ports 		  	= gpu_config["num_memory_ports"]
+		self.memory_use = 0  # Allocated memory, it will updated later
+		self.global_mem_return_queue = gpu_config["global_mem_return_queue"]
+		self.num_memory_ports = gpu_config["num_memory_ports"]
 		
-		self.kernel_launch_overhead  = 3.5*10**-6	# Overhead for launching a kernel on the GPU
+		self.kernel_launch_overhead = 3.5*10**-6	# Overhead for launching a kernel on the GPU
 		
-		self.SM_availability = []					# For each SM in the GPU contains the time at which the SM will be available for computations
+		self.SM_availability = []  # For each SM in the GPU contains the time at which the SM will be available for computations
 		for i in range(self.num_SM):
-			self.SM_availability.append(0.0)		# Initial value for SM_availability is 0, will be updated before use
+			self.SM_availability.append(0.0)  # Initial value for SM_availability is 0, will be updated before use
 
 		self.mem_ports = []
 		for i in range(self.num_memory_ports):
@@ -471,16 +471,19 @@ class GPU(Accelerator):
 		
 		self.SP_units = []
 		num_warps_SP_capabilities = int(self.num_SP_per_SM/self.warp_size)
+		num_warps_SP_capabilities = max(num_warps_SP_capabilities, 1)
 		for i in range(num_warps_SP_capabilities):
 			self.SP_units.append(0.)
 		
 		self.DP_units = []
 		num_warps_DP_capabilities = int(self.num_DP_per_SM/self.warp_size)
+		num_warps_DP_capabilities = max(num_warps_DP_capabilities, 1)
 		for i in range(num_warps_DP_capabilities):
 			self.DP_units.append(0.)
 		
 		self.SF_units = []
 		num_warps_SF_capabilities = int(self.num_SF_per_SM/self.warp_size)
+		num_warps_SF_capabilities = max(num_warps_SF_capabilities, 1)
 		for i in range(num_warps_SF_capabilities):
 			self.SF_units.append(0.)
 		num_warps_LS_capabilities = int(self.num_load_store_units)
