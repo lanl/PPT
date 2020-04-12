@@ -1,0 +1,1874 @@
+/*
+** Author(s)      :  Yehia Arafa (yarafa@nmsu.edu) 
+** 
+** File           :  opt_pipeline_temp.ptx  
+** 
+** Description    :  Instructions Microbenchmarks written in PTX 
+** 
+** Paper          :  Y. Arafa et al., "Verified Instruction-Level Energy Consumption 
+**                                      Measurement for NVIDIA GPUs," CF'20 
+** 
+** Notes          :  This function is used with the optimized (-O3) nvcc compiler flag              
+*/
+
+
+.version 6.4
+.target sm_30
+.address_size 64
+
+
+//--------------------------Ovhd--------------------------//
+
+	// .globl	_Z4OvhdPi
+.visible .entry _Z4OvhdPi(
+	.param .u64 _Z4OvhdPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z4OvhdPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Add--------------------------//
+
+	// .globl	_Z3AddPi
+.visible .entry _Z3AddPi(
+	.param .u64 _Z3AddPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z3AddPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    add.u32         %r9, %r3, %r7;
+    add.u32         %r10, %r7, %r9;
+    add.u32         %r11, %r9, %r10;
+    add.u32         %r12, %r10, %r11;
+    add.u32         %r13, %r11, %r12;
+    add.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Mul--------------------------//
+
+	// .globl	_Z3MulPi
+.visible .entry _Z3MulPi(
+	.param .u64 _Z3MulPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3MulPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    mul.lo.u32      %r9,  %r7,  %r3;
+    mul.lo.u32      %r10, %r3,  %r9;
+    mul.lo.u32      %r11, %r9,  %r10;
+    mul.lo.u32      %r12, %r10, %r11;
+    mul.lo.u32      %r13, %r11, %r12;
+    mul.lo.u32      %r14, %r12, %r13;
+    //=======================================
+    
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    sub.s32         %r6, %r2, %r1;
+    add.s32 	    %r80, %r80, %r6;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Div--------------------------//
+
+	// .globl	_Z3DivPi
+.visible .entry _Z3DivPi(
+	.param .u64 _Z3DivPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3DivPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    div.s32         %r9, %r7, %r3;
+    div.s32         %r10, %r3, %r9;
+    div.s32         %r11, %r9, %r10;
+    div.s32         %r12, %r10, %r11;
+    div.s32         %r13, %r11, %r12;
+    div.s32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    sub.s32         %r6, %r2, %r1;
+    add.s32 	    %r80, %r80, %r6;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+ 
+    ret;
+}
+
+
+//--------------------------Rem--------------------------//
+
+	// .globl	_Z3RemPi
+.visible .entry _Z3RemPi(
+	.param .u64 _Z3RemPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3RemPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    rem.s32         %r9, %r7, %r3;
+    rem.s32         %r10, %r3, %r9;
+    rem.s32         %r11, %r9, %r10;
+    rem.s32         %r12, %r10, %r11;
+    rem.s32         %r13, %r11, %r12;
+    rem.s32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Abs--------------------------//
+
+	// .globl	_Z3AbsPi
+.visible .entry _Z3AbsPi(
+	.param .u64 _Z3AbsPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3AbsPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    abs.s32         %r9, %r7;
+    abs.s32         %r10, %r9;
+    abs.s32         %r11, %r10;
+    abs.s32         %r12, %r11;
+    abs.s32         %r13, %r12;
+    abs.s32         %r14, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------DivU--------------------------//
+
+	// .globl	_Z4DivUPi
+.visible .entry _Z4DivUPi(
+	.param .u64 _Z4DivUPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z4DivUPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    div.u32         %r9, %r7, %r3;
+    div.u32         %r10, %r3, %r9;
+    div.u32         %r11, %r9, %r10;
+    div.u32         %r12, %r10, %r11;
+    div.u32         %r13, %r11, %r12;
+    div.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+  
+    ret;
+}
+
+
+//--------------------------RemU--------------------------//
+
+	// .globl	_Z4RemUPi
+.visible .entry _Z4RemUPi(
+	.param .u64 _Z4RemUPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z4RemUPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    rem.u32         %r9, %r7, %r3;
+    rem.u32         %r10, %r3, %r9;
+    rem.u32         %r11, %r9, %r10;
+    rem.u32         %r12, %r10, %r11;
+    rem.u32         %r13, %r11, %r12;
+    rem.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+//--------------------------And--------------------------//
+
+    // .globl   _Z3AndPi
+.visible .entry _Z3AndPi(
+    .param .u64 _Z3AndPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3AndPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    and.b32         %r9, %r7, %r3;
+    and.b32         %r10, %r3, %r9;
+    and.b32         %r11, %r9, %r10;
+    and.b32         %r12, %r10, %r11;
+    and.b32         %r13, %r11, %r12;
+    and.b32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Cnot--------------------------//
+
+    // .globl   _Z4CnotPi
+.visible .entry _Z4CnotPi(
+    .param .u64 _Z4CnotPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z4CnotPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    cnot.b32         %r9, %r7;
+    cnot.b32         %r10, %r9;
+    cnot.b32         %r11, %r10;
+    cnot.b32         %r12, %r11;
+    cnot.b32         %r13, %r12;
+    cnot.b32         %r14, %r13;
+    //=======================================
+    
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+//--------------------------Shl--------------------------//
+
+    // .globl   _Z3ShlPi
+.visible .entry _Z3ShlPiS_S_(
+        .param .u64 _Z3ShlPi_param_0
+)
+{
+
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64    %rd1, [_Z3ShlPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    shl.b32         %r9, %r7, %r3;
+    shl.b32         %r10, %r3, %r9;
+    shl.b32         %r11, %r9, %r10;
+    shl.b32         %r12, %r10, %r11;
+    shl.b32         %r13, %r11, %r12;
+    shl.b32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+//--------------------------FAdd--------------------------//
+
+	// .globl	_Z4FAddPi
+.visible .entry _Z4FAddPi(
+	.param .u64 _Z4FAddPi_param_0
+)
+
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z4FAddPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    add.f32         %f9, %f7, %f3;
+    add.f32         %f10, %f3, %f9;
+    add.f32         %f11, %f9, %f10;
+    add.f32         %f12, %f10, %f11;
+    add.f32         %f13, %f11, %f12;
+    add.f32         %f14, %f12, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f13;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------FMul--------------------------//
+
+	// .globl	_Z4FMulPi
+.visible .entry _Z4FMulPi(
+	.param .u64 _Z4FMulPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z4FMulPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+    mov.u32 	      %r80, 0;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    mul.f32         %f9, %f7, %f3;
+    mul.f32         %f10, %f3, %f9;
+    mul.f32         %f11, %f9, %f10;
+    mul.f32         %f12, %f10, %f11;
+    mul.f32         %f13, %f11, %f12;
+    mul.f32         %f14, %f12, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f13;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------FDiv--------------------------//
+
+	// .globl	_Z4FDivPi
+.visible .entry _Z4FDivPi(
+	.param .u64 _Z4FDivPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z4FDivPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+ 
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    div.rn.f32         %f9, %f7, %f3;
+    div.rn.f32         %f10, %f3, %f9;
+    div.rn.f32         %f11, %f9, %f10;
+    div.rn.f32         %f12, %f10, %f11;
+    div.rn.f32         %f13, %f11, %f12;
+    div.rn.f32         %f14, %f12, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------DFAdd--------------------------//
+ 
+	// .globl	_Z5DFAddPi
+.visible .entry _Z5DFAddPi(
+	.param .u64 _Z5DFAddPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+    .reg .f64   %fd<100>;
+
+    ld.param.u64    %rd1, [_Z5DFAddPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f64 	      %fd3, 3.0;
+    mov.f64 	      %fd4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f64         %fd5, %fd4, %fd3;
+    add.f64         %fd7, %fd5, 11.0;
+    
+BB0_1:
+
+    add.f64         %fd7, %fd7, 1.0; 
+    add.f64         %fd3, %fd3, 1.0; 
+
+    //=======================================
+    add.f64         %fd9, %fd7, %fd3;
+    add.f64         %fd10, %fd3, %fd9;
+    add.f64         %fd11, %fd9, %fd10;
+    add.f64         %fd12, %fd10, %fd11;
+    add.f64         %fd13, %fd11, %fd12;
+    add.f64         %fd14, %fd12, %fd13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    cvt.f64.f32  %fd9, %f9;
+    add.f64         %fd10, %fd9, %fd14;
+    cvt.rz.f32.f64  %f10, %fd10;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------DFMul--------------------------//
+ 
+	// .globl	_Z5DFMulPi
+.visible .entry _Z5DFMulPi(
+	.param .u64 _Z5DFMulPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+    .reg .f64   %fd<100>;
+
+    ld.param.u64    %rd1, [_Z5DFMulPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f64 	      %fd3, 3.0;
+    mov.f64 	      %fd4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+   
+    add.f64         %fd5, %fd4, %fd3;
+    add.f64         %fd7, %fd5, 11.0;
+    
+BB0_1:
+
+    add.f64         %fd7, %fd7, 1.0; 
+    add.f64         %fd3, %fd3, 1.0; 
+
+    //=======================================
+    mul.f64         %fd9, %fd7, %fd3;
+    mul.f64         %fd10, %fd3, %fd9;
+    mul.f64         %fd11, %fd9, %fd10;
+    mul.f64         %fd12, %fd10, %fd11;
+    mul.f64         %fd13, %fd11, %fd12;
+    mul.f64         %fd14, %fd12, %fd13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    cvt.f64.f32  %fd9, %f9;
+    add.f64         %fd10, %fd9, %fd14;
+    cvt.rz.f32.f64  %f10, %fd10;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+
+//--------------------------DFDiv--------------------------//
+ 
+	// .globl	_Z5DFDivPi
+.visible .entry _Z5DFDivPi(
+	.param .u64 _Z5DFDivPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+    .reg .f64   %fd<100>;
+
+    ld.param.u64    %rd1, [_Z5DFDivPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f64 	      %fd3, 3.0;
+    mov.f64 	      %fd4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f64         %fd5, %fd4, %fd3;
+    add.f64         %fd7, %fd5, 11.0;
+    
+
+BB0_1:
+
+    add.f64         %fd7, %fd7, 1.0; 
+    add.f64         %fd3, %fd3, 1.0; 
+
+    //=======================================
+    div.f64         %fd9, %fd7, %fd3;
+    div.f64         %fd10, %fd3, %fd9;
+    div.f64         %fd11, %fd9, %fd10;
+    div.f64         %fd12, %fd10, %fd11;
+    div.f64         %fd13, %fd11, %fd12;
+    div.f64         %fd14, %fd12, %fd13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    cvt.f64.f32  %fd9, %f9;
+    add.f64         %fd10, %fd9, %fd14;
+    cvt.rz.f32.f64  %f10, %fd10;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+    
+    ret;
+}
+
+
+//--------------------------MAdd_cc--------------------------//
+   
+	// .globl	_Z7MAdd_ccPi
+.visible .entry _Z7MAdd_ccPi(
+	.param .u64 _Z7MAdd_ccPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z7MAdd_ccPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    addc.u32         %r9, %r3, %r7;
+    addc.u32         %r10, %r7, %r9;
+    addc.u32         %r11, %r9, %r10;
+    addc.u32         %r12, %r10, %r11;
+    addc.u32         %r13, %r11, %r12;
+    addc.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------MSubc--------------------------//
+ 
+	// .globl	_Z5MSubcPi
+.visible .entry _Z5MSubcPi(
+	.param .u64 _Z5MSubcPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z5MSubcPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    subc.u32         %r9, %r3, %r7;
+    subc.u32         %r10, %r7, %r9;
+    subc.u32         %r11, %r9, %r10;
+    subc.u32         %r12, %r10, %r11;
+    subc.u32         %r13, %r11, %r12;
+    subc.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+//--------------------------MMad_cc--------------------------//
+
+	// .globl	_Z7MMad_ccPi
+.visible .entry _Z7MMad_ccPi(
+	.param .u64 _Z7MMad_ccPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z7MMad_ccPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+ 
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    madc.lo.s32         %r9,  %r3,  %r7,  %r4;
+    madc.lo.s32         %r10, %r7,  %r9,  %r3;
+    madc.lo.s32         %r11, %r9,  %r10, %r4;
+    madc.lo.s32         %r12, %r10, %r11, %r3;
+    madc.lo.s32         %r13, %r11, %r12, %r4;
+    madc.lo.s32         %r14, %r12, %r13, %r3;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Mul24--------------------------//
+
+	// .globl	_Z5Mul24Pi
+.visible .entry _Z5Mul24Pi(
+	.param .u64 _Z5Mul24Pi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z5Mul24Pi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    mul24.lo.u32         %r9,  %r7,  %r3;
+    mul24.lo.u32         %r10, %r3,  %r9;
+    mul24.lo.u32         %r11, %r9,  %r10;
+    mul24.lo.u32         %r12, %r10, %r11;
+    mul24.lo.u32         %r13, %r11, %r12;
+    mul24.lo.u32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+  
+    ret;
+}
+
+
+//--------------------------MulHi--------------------------//
+
+	// .globl	_Z5MulHiPi
+.visible .entry _Z5MulHiPi(
+	.param .u64 _Z5MulHiPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z5MulHiPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    mul.hi.s32         %r9,  %r7,  %r3;
+    mul.hi.s32         %r10, %r3,  %r9;
+    mul.hi.s32         %r11, %r9,  %r10;
+    mul.hi.s32         %r12, %r10, %r11;
+    mul.hi.s32         %r13, %r11, %r12;
+    mul.hi.s32         %r14, %r12, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Mul64Hi--------------------------//
+
+	// .globl	_Z7Mul64HiPi
+.visible .entry _Z7Mul64HiPi(
+	.param .u64 _Z7Mul64HiPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<100>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z7Mul64HiPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.u64 	      %rd3, 3;
+    mov.u64 	      %rd4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.u64         %rd5, %rd4, %rd3;
+    add.u64         %rd7, %rd5, 11;
+    
+BB0_1:
+
+    add.u64         %rd7, %rd7, 1; 
+    add.u64         %rd3, %rd3, 1; 
+
+    //=======================================
+    mul.hi.s64       %rd9,  %rd7,  %rd3;
+    mul.hi.s64       %rd10, %rd3,  %rd9;
+    mul.hi.s64       %rd11, %rd9,  %rd10;
+    mul.hi.s64       %rd12, %rd10, %rd11;
+    mul.hi.s64       %rd13, %rd11, %rd12;
+    mul.hi.s64       %rd14, %rd12, %rd13;
+    //=======================================
+
+    ld.global.f32   %r9, [%rd4 + 12];
+    cvt.u64.u32     %rd9, %r9;
+    add.u64         %rd10, %rd9, %rd14;
+    cvt.rz.f32.u64  %f10, %rd10;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Sad--------------------------//
+
+	// .globl	_Z3SadPi
+.visible .entry _Z3SadPi(
+	.param .u64 _Z3SadPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z3SadPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    sad.s32          %r9,  %r3,  %r7,  %r4;
+    sad.s32          %r10, %r7,  %r9,  %r3;
+    sad.s32          %r11, %r9,  %r10, %r4;
+    sad.s32          %r12, %r10, %r11, %r3;
+    sad.s32          %r13, %r11, %r12, %r4;
+    sad.s32          %r14, %r12, %r13, %r3;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+  
+    ret;
+}
+
+
+//--------------------------Popc--------------------------//
+
+	// .globl	_Z4PopcPi
+.visible .entry _Z4PopcPi(
+	.param .u64 _Z4PopcPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z4PopcPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    popc.b32         %r9, %r7;
+    popc.b32         %r10, %r9;
+    popc.b32         %r11, %r10;
+    popc.b32         %r12, %r11;
+    popc.b32         %r13, %r12;
+    popc.b32         %r14, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+  
+    ret;
+}
+
+
+//--------------------------Clz--------------------------//
+
+	// .globl	_Z3ClzPi
+.visible .entry _Z3ClzPi(
+	.param .u64 _Z3ClzPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z3ClzPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    clz.b32         %r9, %r7;
+    clz.b32         %r10, %r9;
+    clz.b32         %r11, %r10;
+    clz.b32         %r12, %r11;
+    clz.b32         %r13, %r12;
+    clz.b32         %r14, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r14; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Bfind--------------------------//
+
+	// .globl	_Z5BfindPi
+.visible .entry _Z5BfindPi(
+	.param .u64 _Z5BfindPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+
+    ld.param.u64 	%rd1, [_Z5BfindPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+
+    mov.u32 	      %r3, 3;
+    mov.u32 	      %r4, 4;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+ 
+    add.s32         %r5, %r4, %r3;
+    add.s32         %r7, %r5, 2;
+
+BB0_1:
+
+    add.u32         %r7, %r7, 1; 
+    add.u32         %r3, %r3, 1; 
+
+    //=======================================
+    bfind.s32         %r9, %r7;
+    bfind.s32         %r10, %r9;
+    bfind.s32         %r11, %r10;
+    bfind.s32         %r12, %r11;
+    bfind.s32         %r13, %r12;
+    bfind.s32         %r14, %r13;
+    //=======================================
+
+    ld.global.u32   %r9, [%rd4 + 12];
+    add.u32         %r10, %r9, %r13; 
+    st.global.u32   [%rd4 + 12], %r10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Rcp--------------------------//
+
+	// .globl	_Z3RcpPi
+.visible .entry _Z3RcpPi(
+	.param .u64 _Z3RcpPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z3RcpPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    rcp.rn.f32          %f9, %f7;
+    rcp.rn.f32          %f10, %f9;
+    rcp.rn.f32          %f11, %f10;
+    rcp.rn.f32          %f12, %f11;
+    rcp.rn.f32          %f13, %f12;
+    rcp.rn.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Sqrt--------------------------//
+
+	// .globl	_Z4SqrtPi
+.visible .entry _Z4SqrtPi(
+	.param .u64 _Z4SqrtPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z4SqrtPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+  
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    sqrt.rn.f32          %f9, %f7;
+    sqrt.rn.f32          %f10, %f9;
+    sqrt.rn.f32          %f11, %f10;
+    sqrt.rn.f32          %f12, %f11;
+    sqrt.rn.f32          %f13, %f12;
+    sqrt.rn.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------FastSqrt--------------------------//
+
+	// .globl	_Z8FastSqrtPi
+.visible .entry _Z8FastSqrtPi(
+	.param .u64 _Z8FastSqrtPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z8FastSqrtPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    sqrt.approx.f32          %f9, %f7;
+    sqrt.approx.f32          %f10, %f9;
+    sqrt.approx.f32          %f11, %f10;
+    sqrt.approx.f32          %f12, %f11;
+    sqrt.approx.f32          %f13, %f12;
+    sqrt.approx.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Rsqrt--------------------------//
+
+	// .globl	_Z5RsqrtPi
+.visible .entry _Z5RsqrtPi(
+	.param .u64 _Z5RsqrtPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z5RsqrtPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    rsqrt.approx.f32          %f9, %f7;
+    rsqrt.approx.f32          %f10, %f9;
+    rsqrt.approx.f32          %f11, %f10;
+    rsqrt.approx.f32          %f12, %f11;
+    rsqrt.approx.f32          %f13, %f12;
+    rsqrt.approx.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Sin--------------------------//
+
+	// .globl	_Z3SinPi
+.visible .entry _Z3SinPi(
+	.param .u64 _Z3SinPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z3SinPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    sin.approx.f32          %f9, %f7;
+    sin.approx.f32          %f10, %f9;
+    sin.approx.f32          %f11, %f10;
+    sin.approx.f32          %f12, %f11;
+    sin.approx.f32          %f13, %f12;
+    sin.approx.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+   
+    ret;
+}
+
+
+//--------------------------Lg2--------------------------//
+
+	// .globl	_Z3Lg2Pi
+.visible .entry _Z3Lg2Pi(
+	.param .u64 _Z3Lg2Pi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z3Lg2Pi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;  
+
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    lg2.approx.f32          %f9, %f7;
+    lg2.approx.f32          %f10, %f9;
+    lg2.approx.f32          %f11, %f10;
+    lg2.approx.f32          %f12, %f11;
+    lg2.approx.f32          %f13, %f12;
+    lg2.approx.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Ex2--------------------------//
+
+	// .globl	_Z3Ex2Pi
+.visible .entry _Z3Ex2Pi(
+	.param .u64 _Z3Ex2Pi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z3Ex2Pi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    ex2.approx.f32          %f9, %f7;
+    ex2.approx.f32          %f10, %f9;
+    ex2.approx.f32          %f11, %f10;
+    ex2.approx.f32          %f12, %f11;
+    ex2.approx.f32          %f13, %f12;
+    ex2.approx.f32          %f14, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
+
+
+//--------------------------Copysign--------------------------//
+
+	// .globl	_Z8CopysignPi
+.visible .entry _Z8CopysignPi(
+	.param .u64 _Z8CopysignPi_param_0
+)
+{
+    .reg .b32   %r<100>;
+    .reg .b64   %rd<27>;
+    .reg .pred 	%p<2>;
+    .reg .f32   %f<100>;
+
+    ld.param.u64    %rd1, [_Z8CopysignPi_param_0];
+    cvta.to.global.u64  %rd4, %rd1;
+    
+    mov.f32 	      %f3, 3.0;
+    mov.f32 	      %f4, 4.0;
+
+    st.global.u32   [%rd4 + 12], 0;
+    
+    mov.u32 	      %r79, -1000000;
+
+    add.f32         %f5, %f4, %f3;
+    add.f32         %f7, %f5, 11.0;
+    
+
+BB0_1:
+
+    add.f32         %f7, %f7, 1.0; 
+    add.f32         %f3, %f3, 1.0; 
+
+    //=======================================
+    copysign.f32         %f9, %f7, %f3;
+    copysign.f32         %f10, %f3, %f9;
+    copysign.f32         %f11, %f9, %f10;
+    copysign.f32         %f12, %f10, %f11;
+    copysign.f32         %f13, %f11, %f12;
+    copysign.f32         %f14, %f12, %f13;
+    //=======================================
+
+    ld.global.f32   %f9, [%rd4 + 12];
+    add.f32         %f10, %f9, %f14;
+    st.global.f32   [%rd4 + 12], %f10;
+
+    add.s32 	    %r79, %r79, 1;
+	setp.ne.s32	    %p1, %r79, 0;
+	@%p1 bra 	    BB0_1;
+
+    st.global.u32   [%rd4], %r79;
+
+    ret;
+}
