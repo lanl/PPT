@@ -1,8 +1,10 @@
-## PTX Instructions Microbenchmarks
+## PAPI
 
-The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark while using Multi-Threaded Synchronized Monitoring (*MTSM*) technique to compute its energy consumption. MTSM is implemented inside the host code where the start and the end of profiling is called when the kernel launches and finishes execution respectively. 
+The CPU host file (*pipeline.cu*) launches each GPU instruction's microbenchmark while using PAPI API - NVML technique to compute its energy consumption. The instructions microbenchmarks are provided in ***Instructions_Microbenchmarks*** directory. 
 
 ### Usage
+
+* PAPI with nvml component have to be pre-installed in a GPU server. Instructions on how to install PAPI can be found at http://icl.cs.utk.edu/papi/software
 
 * Configure the path of  Cuda toolkit (*nvcc*) in the Makefile
 

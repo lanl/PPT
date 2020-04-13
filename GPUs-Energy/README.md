@@ -6,7 +6,7 @@
 
 ## Hardware Dependencies
 
-* A GPU device with cc=30+ (Kepler architecture)
+* A GPU device with compute capabilty = 3.5 or later (Kepler architecture)
 
 ## Software Dependencies
 
@@ -25,7 +25,7 @@
 
 ## Paper
 
-* [CF'20] Verified Instruction-Level Energy Consumption Measurement for NVIDIA GPUs
+* [CF ’20] Verified Instruction-Level Energy Consumption Measurement for NVIDIA GPUs
 
 * If you find this code useful in your research, please consider citing as:
 
@@ -36,7 +36,7 @@
   title = {Verified Instruction-Level Energy Consumption Measurement for NVIDIA GPUs},
   year = {2020},
   booktitle = {Proceedings of the 17th ACM International Conference on Computing Frontiers},
-  series = {CF ’20},
+  series = {CF’20},
   url = {https://doi.org/10.1145/3387902.3392613},
   doi = {10.1145/3387902.3392613},
   publisher = {Association for Computing Machinery},
