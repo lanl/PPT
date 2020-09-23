@@ -1,6 +1,10 @@
 # Performance Prediction Toolkit (PPT)
 Predict the performance of physics codes
 
+## Latest  
+
+We are releasing a new lighter version of PPT, called as [ppt_lite](./ppt_lite).
+
 ## Authors
 1. Gopinath (Nath) Chennupati (gchennupati@lanl.gov)
 2. Nanadakishore Santhi (nsanthi@lanl.gov)
@@ -15,10 +19,6 @@ Predict the performance of physics codes
 10. Kishwar Ahmed
 11. Mohammad Abu Obaida
 12. Yehia Arafa (yarafa@nmsu.edu)
-
-## Recent News 
-
-We are releasing a new version of PPT, called as [ppt_lite](./ppt_lite).
 
 ## Installation
 
