@@ -1,0 +1,263 @@
+https://arxiv.org/pdf/quant-ph/0608197.pdf
+
+https://journals.aps.org/prb/pdf/10.1103/PhysRevB.80.165117?casa_token=YHxbqgEoQecAAAAA%3ALg2dNxiivMCfwneF1H1RavouE4eyzyuLk233cXLvbTD0aokk0MCXR-1uq7ALCuN0m3cZHlYjU1v6Nys
+
+https://journals.aps.org/prb/pdf/10.1103/PhysRevB.91.165112?casa_token=1AGZ4qQUKKcAAAAA%3AkCkofyaASoFzRc-8C83eDRvZ3JxxWru8FFLk8L3VgjtGe7rAGm-lvFS0MJmR1rTkkZ1A1pokyNCbuB4
+
+Runtime Prediction Results (1 input parameter combinations on 7 hw platforms):
+
+
+========================================================================================
+App                   HW              Predicted Time [seconds]       Input           
+========================================================================================
+SNAP_in               AMDjaguar       1.8834752219e+03 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0110     -0.9892 
+cache_sizes[0]                  0.0009     0.0009 
+cache_sizes[1]                  0.0009     0.0009 
+cache_cycles[0]                 -3.0634     0.0009 
+cache_cycles[1]                 0.0009     0.0009 
+cache_bandwidth_cycles[0]       -0.2149     -2.8803 
+cache_bandwidth_cycles[1]       0.0009     0.0000 
+cache_bandwidth_cycles[2]       0.0009     0.0009 
+associativity[0]                0.0009     0.0009 
+associativity[1]                0.0009     0.0009 
+pipelinecounts[fadd]            0.0009     0.0009 
+pipelinecounts[fdiv]            0.0009     0.0009 
+pipelinecounts[fmul]            0.0009     0.3073 
+pipelinecounts[iadd]            0.0009     0.0009 
+pipelinecounts[idiv]            0.0009     0.0009 
+pipelinecounts[imul]            0.0009     0.0009 
+pipelinelatencies[fadd]         3.7820     0.0009 
+pipelinelatencies[fdiv]         0.0009     0.0009 
+pipelinelatencies[fmul]         0.0009     0.0009 
+pipelinelatencies[iadd]         0.0009     0.0009 
+pipelinelatencies[idiv]         0.0009     0.0009 
+pipelinelatencies[imul]         0.0009     0.0009 
+pipelinethroughputs[fadd]       0.1522     3.6686 
+pipelinethroughputs[fdiv]       0.0009     0.0009 
+pipelinethroughputs[fmul]       -0.0473     0.0492 
+pipelinethroughputs[iadd]       0.0009     0.0009 
+pipelinethroughputs[idiv]       0.0009     0.0009 
+pipelinethroughputs[imul]       0.0009     0.0009 
+========================================================================================
+SNAP_in               AMDpiledriver   5.6777853388e+02 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0101     -0.9901 
+cache_sizes[0]                  0.0000     -0.0000 
+cache_sizes[1]                  -0.0000     -0.0000 
+cache_sizes[2]                  -0.0000     -0.0000 
+cache_cycles[0]                 -5.7986     -0.0000 
+cache_cycles[1]                 -0.0000     -0.0000 
+cache_cycles[2]                 -0.0000     -0.0000 
+cache_bandwidth_cycles[0]       3.9856     -5.5117 
+cache_bandwidth_cycles[1]       -0.0002     0.0002 
+cache_bandwidth_cycles[2]       -0.0000     -0.0000 
+associativity[0]                0.0082     0.0000 
+associativity[1]                -0.0000     -0.0000 
+associativity[2]                -0.0000     -0.0000 
+pipelinecounts[fadd]            -0.0000     -0.0000 
+pipelinecounts[fdiv]            -0.0000     -0.0000 
+pipelinecounts[fmul]            -0.0000     0.2595 
+pipelinecounts[iadd]            -0.0000     -0.0000 
+pipelinecounts[idiv]            -0.0000     -0.0000 
+pipelinecounts[imul]            -0.0000     -0.0000 
+pipelinelatencies[fadd]         -0.0000     -0.0000 
+pipelinelatencies[fdiv]         -0.0000     -0.0000 
+pipelinelatencies[fmul]         -0.0000     -0.0000 
+pipelinelatencies[iadd]         -0.0000     -0.0000 
+pipelinelatencies[idiv]         -0.0000     -0.0000 
+pipelinelatencies[imul]         -0.0000     -0.0000 
+pipelinethroughputs[fadd]       0.3843     -0.3843 
+pipelinethroughputs[fdiv]       -0.0000     -0.0000 
+pipelinethroughputs[fmul]       -0.0817     0.0817 
+pipelinethroughputs[iadd]       -0.0000     -0.0000 
+pipelinethroughputs[idiv]       -0.0000     -0.0000 
+pipelinethroughputs[imul]       -0.0000     -0.0000 
+========================================================================================
+SNAP_in               AMDryzen        1.1331953811e+03 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0101     -0.9901 
+cache_sizes[0]                  0.0000     -0.0000 
+cache_sizes[1]                  0.0000     0.0000 
+cache_sizes[2]                  0.0000     0.0000 
+cache_cycles[0]                 -3.2169     0.0000 
+cache_cycles[1]                 0.0000     0.0000 
+cache_cycles[2]                 0.0000     0.0000 
+cache_bandwidth_cycles[0]       -0.2899     -2.9593 
+cache_bandwidth_cycles[1]       -0.0000     0.0000 
+cache_bandwidth_cycles[2]       0.0000     0.0000 
+associativity[0]                0.0000     0.0000 
+associativity[1]                0.0000     0.0000 
+associativity[2]                0.0000     0.0000 
+pipelinecounts[fadd]            0.0000     0.0000 
+pipelinecounts[fdiv]            0.0000     0.0000 
+pipelinecounts[fmul]            0.0000     0.0000 
+pipelinecounts[iadd]            0.0000     0.0000 
+pipelinecounts[idiv]            0.0000     0.0000 
+pipelinecounts[imul]            0.0000     0.0000 
+pipelinelatencies[fadd]         3.9692     0.0000 
+pipelinelatencies[fdiv]         0.0000     0.0000 
+pipelinelatencies[fmul]         -0.8441     0.0000 
+pipelinelatencies[iadd]         0.0000     0.0000 
+pipelinelatencies[idiv]         0.0000     0.0000 
+pipelinelatencies[imul]         0.0000     0.0000 
+pipelinethroughputs[fadd]       0.2382     3.7707 
+pipelinethroughputs[fdiv]       3.9692     3.9692 
+pipelinethroughputs[fmul]       3.9185     2.8456 
+pipelinethroughputs[iadd]       3.1250     3.1250 
+pipelinethroughputs[idiv]       3.1250     3.1250 
+pipelinethroughputs[imul]       3.1250     3.1250 
+========================================================================================
+SNAP_in               AMDsteamroller  8.9907670410e+02 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0101     -0.9901 
+cache_sizes[0]                  0.0000     -0.0000 
+cache_sizes[1]                  0.0000     0.0000 
+cache_cycles[0]                 -3.7502     0.0000 
+cache_cycles[1]                 0.0000     0.0000 
+cache_bandwidth_cycles[0]       -0.3000     -3.4877 
+cache_bandwidth_cycles[1]       -0.0002     0.0002 
+cache_bandwidth_cycles[2]       0.0000     0.0000 
+associativity[0]                0.0071     0.0000 
+associativity[1]                0.0000     0.0000 
+pipelinecounts[fadd]            0.0000     0.0000 
+pipelinecounts[fdiv]            0.0000     0.0000 
+pipelinecounts[fmul]            0.0000     0.0000 
+pipelinecounts[iadd]            0.0000     0.0000 
+pipelinecounts[idiv]            0.0000     0.0000 
+pipelinecounts[imul]            0.0000     0.0000 
+pipelinelatencies[fadd]         4.6367     0.0000 
+pipelinelatencies[fdiv]         0.0000     0.0000 
+pipelinelatencies[fmul]         -0.9861     0.0000 
+pipelinelatencies[iadd]         0.0000     0.0000 
+pipelinelatencies[idiv]         0.0000     0.0000 
+pipelinelatencies[imul]         0.0000     0.0000 
+pipelinethroughputs[fadd]       0.2782     4.4049 
+pipelinethroughputs[fdiv]       -0.0000     0.0000 
+pipelinethroughputs[fmul]       -0.0592     -1.3125 
+pipelinethroughputs[iadd]       0.0000     0.0000 
+pipelinethroughputs[idiv]       0.0000     0.0000 
+pipelinethroughputs[imul]       0.0000     0.0000 
+========================================================================================
+SNAP_in               broadwell       1.1090148112e+03 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      -0.0245     -2.0042 
+cache_sizes[0]                  -1.0243     -1.0243 
+cache_sizes[1]                  -1.0243     -1.0243 
+cache_sizes[2]                  -1.0243     -1.0243 
+cache_cycles[0]                 -4.9275     -1.0243 
+cache_cycles[1]                 -1.0243     -1.0243 
+cache_cycles[2]                 -1.0243     -1.0243 
+cache_bandwidth_cycles[0]       -1.3752     -4.6149 
+cache_bandwidth_cycles[1]       -1.0243     -1.0243 
+cache_bandwidth_cycles[2]       -1.0243     -1.0243 
+associativity[0]                -1.0243     -1.0243 
+associativity[1]                -1.0243     -1.0243 
+associativity[2]                -1.0243     -1.0243 
+pipelinecounts[fadd]            -1.0243     -1.0243 
+pipelinecounts[fdiv]            -1.0243     -1.0243 
+pipelinecounts[fmul]            -1.0243     -1.0243 
+pipelinecounts[iadd]            -1.0243     -1.0243 
+pipelinecounts[idiv]            -1.0243     -1.0243 
+pipelinecounts[imul]            -1.0243     -1.0243 
+pipelinelatencies[fadd]         -1.0243     -5.8404 
+pipelinelatencies[fdiv]         -1.0243     -1.0243 
+pipelinelatencies[fmul]         -1.0243     0.0000 
+pipelinelatencies[iadd]         -1.0243     -1.0243 
+pipelinelatencies[idiv]         -1.0243     -1.0243 
+pipelinelatencies[imul]         -1.0243     -1.0243 
+pipelinethroughputs[fadd]       -5.6478     -1.1687 
+pipelinethroughputs[fdiv]       -1.0243     -1.0243 
+pipelinethroughputs[fmul]       -0.0615     -1.3633 
+pipelinethroughputs[iadd]       -1.0243     -1.0243 
+pipelinethroughputs[idiv]       -1.0243     -1.0243 
+pipelinethroughputs[imul]       -1.0243     -1.0243 
+========================================================================================
+SNAP_in               goldmont        1.5756599035e+03 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0101     -0.9901 
+cache_sizes[0]                  0.0000     -0.0000 
+cache_sizes[1]                  0.0000     0.0000 
+cache_cycles[0]                 -4.6644     0.0000 
+cache_cycles[1]                 0.0000     0.0000 
+cache_bandwidth_cycles[0]       -0.2286     -4.4120 
+cache_bandwidth_cycles[1]       -0.0000     0.0000 
+cache_bandwidth_cycles[2]       0.0000     0.0000 
+associativity[0]                0.0000     0.0000 
+associativity[1]                0.0000     0.0000 
+pipelinecounts[fadd]            0.0000     0.0000 
+pipelinecounts[fdiv]            0.0000     0.0000 
+pipelinecounts[fmul]            0.0000     0.1381 
+pipelinecounts[iadd]            0.0000     0.0000 
+pipelinecounts[idiv]            0.0000     0.0000 
+pipelinecounts[imul]            0.0000     0.0000 
+pipelinelatencies[fadd]         7.7481     0.0000 
+pipelinelatencies[fdiv]         0.0000     0.0000 
+pipelinelatencies[fmul]         0.0000     0.0000 
+pipelinelatencies[iadd]         0.0000     0.0000 
+pipelinelatencies[idiv]         0.0000     0.0000 
+pipelinelatencies[imul]         0.0000     0.0000 
+pipelinethroughputs[fadd]       0.2324     7.5932 
+pipelinethroughputs[fdiv]       -0.0000     0.0000 
+pipelinethroughputs[fmul]       -0.0659     0.0659 
+pipelinethroughputs[iadd]       0.0000     0.0000 
+pipelinethroughputs[idiv]       0.0000     0.0000 
+pipelinethroughputs[imul]       0.0000     0.0000 
+========================================================================================
+SNAP_in               haswell         1.3746350888e+03 (10, 10000, 10, 2, 2, 12, 20, 100, 1) 
+-----------------------------------------------------------------------------------
+Runtime sensitivities to (decrease/increase) in parameter values with delta= 0.01 :
+(Interpretation: negative values = GOOD, 0 = no effect, +-1 = direct effect)
+-----------------------------------------------------------------------------------
+clockspeed                      1.0101     -0.9901 
+cache_sizes[0]                  0.0000     -0.0000 
+cache_sizes[1]                  0.0000     0.0000 
+cache_sizes[2]                  0.0000     0.0000 
+cache_cycles[0]                 -2.8791     0.0000 
+cache_cycles[1]                 0.0000     0.0000 
+cache_cycles[2]                 0.0000     0.0000 
+cache_bandwidth_cycles[0]       -0.2593     -2.6485 
+cache_bandwidth_cycles[1]       -0.0000     0.0000 
+cache_bandwidth_cycles[2]       0.0000     0.0000 
+associativity[0]                0.0000     0.0000 
+associativity[1]                0.0000     0.0000 
+associativity[2]                0.0000     0.0000 
+pipelinecounts[fadd]            0.0000     0.0000 
+pipelinecounts[fdiv]            0.0000     0.0000 
+pipelinecounts[fmul]            0.0000     0.0000 
+pipelinecounts[iadd]            0.0000     0.0000 
+pipelinecounts[idiv]            0.0000     0.0000 
+pipelinecounts[imul]            0.0000     0.0000 
+pipelinelatencies[fadd]         3.5525     0.0000 
+pipelinelatencies[fdiv]         0.0000     0.0000 
+pipelinelatencies[fmul]         -0.7555     0.0000 
+pipelinelatencies[iadd]         0.0000     0.0000 
+pipelinelatencies[idiv]         0.0000     0.0000 
+pipelinelatencies[imul]         0.0000     0.0000 
+pipelinethroughputs[fadd]       0.1421     3.4459 
+pipelinethroughputs[fdiv]       3.5525     3.5525 
+pipelinethroughputs[fmul]       3.5072     2.5469 
+pipelinethroughputs[iadd]       2.7970     2.7970 
+pipelinethroughputs[idiv]       2.7970     2.7970 
+pipelinethroughputs[imul]       2.7970     2.7970 
+========================================================================================
+========================================================================================

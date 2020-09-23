@@ -16,6 +16,10 @@ Predict the performance of physics codes
 11. Mohammad Abu Obaida
 12. Yehia Arafa (yarafa@nmsu.edu)
 
+## Recent News 
+
+We are releasing a new version of PPT, called as [ppt_lite](./ppt_lite).
+
 ## Installation
 
 ###### Dependencies
