@@ -19,6 +19,7 @@ We are releasing a new lighter version of PPT, called as [ppt_lite](./ppt_lite).
 10. Kishwar Ahmed
 11. Mohammad Abu Obaida
 12. Yehia Arafa (yarafa@nmsu.edu)
+13. Atanu Barai (atanu@nmsu.edu)
 
 ## Installation
 
