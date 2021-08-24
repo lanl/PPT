@@ -1,4 +1,4 @@
-CLANG ?= $(HOME)/Work/HWSW/LLVM-Tracer/x86-64/bin/clang
+#CLANG ?= $(HOME)/Work/HWSW/LLVM-Tracer/x86-64/bin/clang
 #DBG ?= -g -gcolumn-info
 DBG =
 

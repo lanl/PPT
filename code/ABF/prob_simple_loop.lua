@@ -1,8 +1,9 @@
 local BranchingProbs = { --TODO: Fill in static values for the various branching probbabilities for your instance
-    T_13_9 = 250/251, -- loop:2:[vector.body]
-    T_14_9 = 125/126, -- loop:4:[vector.body12]
+    T_10_9 = 1/1001, -- sum:7:[label %54]
 
-    T_9_11 = 0, -- main:2:[vector.body]
+    T_20_5 = 1/1001, -- main:5:[label %12]
+
+    T_7_5 = 1/1001, -- sum:9:[label %58]
 }
 
 return BranchingProbs
