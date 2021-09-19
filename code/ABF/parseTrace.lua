@@ -187,11 +187,29 @@ local function idSuccPred(trace)
                     elseif terminator.name == "indirectbr" then
                         error("Terminator instruction " .. terminator.name .. " not yet implemented")
                     elseif terminator.name == "switch" then
+                        local ops = terminator.Operands
+                        --print("switch", inspect(ops))
+                        sucs["default"] = fun.BasicBlockTable[ops[2]:split("<@")[1]:split(":")[2]:strip()]
+                        for i=3,#ops,2 do
+                            local valTable = ops[i]:split("<@")[1]:split(" ")
+                            local val = valTable[#valTable]:strip()
+                            --print(ops[i], val)
+                            sucs[val] = fun.BasicBlockTable[ops[i+1]:split("<@")[1]:split(":")[2]:strip()]
+                            --print(ops[i+1], sucs[val])
+                        end
+                        --error("Terminator instruction " .. terminator.name .. " not yet implemented")
+                    elseif terminator.name == "catchswitch" then
                         error("Terminator instruction " .. terminator.name .. " not yet implemented")
                     elseif terminator.name == "invoke" then
-                        error("Terminator instruction " .. terminator.name .. " not yet implemented")
+                        local ops = terminator.Operands
+                        --print("invoke", inspect(ops))
+                        sucs["normal"] = fun.BasicBlockTable[ops[2]:split("<@")[1]:split(":")[2]:strip()]
+                        sucs["except"] = fun.BasicBlockTable[ops[3]:split("<@")[1]:split(":")[2]:strip()] --unwind
+                        --error("Terminator instruction " .. terminator.name .. " not yet implemented")
                     elseif terminator.name == "resume" then
-                        error("Terminator instruction " .. terminator.name .. " not yet implemented")
+                        --print("resume", inspect(ops))
+                        sucs["resume"] = fun.name
+                        --error("Terminator instruction " .. terminator.name .. " not yet implemented")
                     else
                         error("Unknown terminator instruction " .. terminator.name .. " for the basic-block " .. bb.name .. " in function " .. fun.name .. " in module " .. mod.name)
                     end
@@ -289,15 +307,15 @@ local function getFunctionEntries(trace, C)
             if fun.definition then
                 for bbNum,bb in ipairs(fun.BasicBlocks) do --Examine all basic-blocks; 1 equation for each BB
                     for instNum,inst in ipairs(bb.Instructions) do --Examine all instructions for 'call's
-                        if inst.name == "call" then
+                        if inst.name == "call" or inst.name == "invoke" then
                             local operands = inst.Operands
                             local targetFunString = operands[#operands]
-                            local targetFunName = targetFunString:split("<@")[1]:split(":")[2]:strip()
+                            local targetFunName = targetFunString:split("<@")[1]:split(" : ")[2]:strip()
                             local targetFunNum = mod["-FunctionTable"][targetFunName]
                             local target = mod.Functions[targetFunNum]
 
                             --print("Calling: " .. targetFunName .. " (" .. (target.definition and "Defined" or "Declared") .. ", " .. (target.intrinsic and "Intrinsic" or "Extrinsic") .. ")")
-                            if (target.definition and not target.intrinsic) then
+                            if (target and target.definition and not target.intrinsic) then
                                 --print(modNum .. "_" .. funNum .. "_" .. bbNum .. ": Call[" .. targetFunName .. "]")
                                 if not modC[targetFunName]["-Entry"] then modC[targetFunName]["-Entry"] = {} end
                                 local E = modC[targetFunName]["-Entry"]
@@ -633,18 +651,23 @@ local function countBasicBlockOps(trace)
                             name = inst.name .. ":" .. vectorWidth .. ":" .. typeName
                         end
 
-                        if inst.name == "call" then
+                        if inst.name == "call" or inst.name == "invoke" then
                             local operands = inst.Operands
                             local targetFunString = operands[#operands]
-                            --print(inspect(operands), targetFunString)
-                            local targetFunName = targetFunString:split("<@")[1]:split(":")[2]:strip()
+                            --print(inspect(operands), "\n", targetFunString, "\n")
+                            local targetFunName = targetFunString:split("<@")[1]:split(" : ")[2]:strip()
+                            --print(targetFunName)
                             local targetFunNum = mod["-FunctionTable"][targetFunName]
                             local target = mod.Functions[targetFunNum]
 
-                            --print("Calling: " .. targetFunName .. " (" .. (target.definition and "Defined" or "Declared") .. ", " .. (target.intrinsic and "Intrinsic" or "Extrinsic") .. ")")
-                            if (target.definition and not target.intrinsic) then
-                                bbOpCount["call"] = (bbOpCount["call"] or 0) + 1
-                                bbOpCount["TOTAL"] = bbOpCount["TOTAL"] + 1
+                            if (target) then
+                                print("Calling: " .. targetFunName .. " (" .. (target.definition and "Defined" or "Declared") .. ", " .. (target.intrinsic and "Intrinsic" or "Extrinsic") .. ")")
+                                if (target.definition and not target.intrinsic) then
+                                    bbOpCount[inst.name] = (bbOpCount[inst.name] or 0) + 1
+                                    bbOpCount["TOTAL"] = bbOpCount["TOTAL"] + 1
+                                end
+                            else
+                                print("Calling: " .. targetFunName .. " which is undefined in the trace file")
                             end
                         elseif inst.name == "br" then
                             local ops = inst.Operands
@@ -675,7 +698,7 @@ local pureMode = true
 local trace = parseTrace(arg[1])
 
 local opCount = countBasicBlockOps(trace)
-print(inspect(opCount, false, 10))
+--print(inspect(opCount, false, 10))
 
 idSuccPred(trace)
 --print(inspect(trace, false, 10))
