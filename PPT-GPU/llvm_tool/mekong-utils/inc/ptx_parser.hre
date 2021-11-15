@@ -1,0 +1,445 @@
+#ifndef PTX_PARSER_H
+#define PTX_PARSER_H
+
+#include "PTXFunction.h"
+
+#include <fstream>
+#include <iostream>
+#include <istream>
+#include <map>
+#include <regex>
+#include <string>
+#include <vector>
+
+namespace mekong {
+
+/*!max:re2c*/
+
+struct input_t {
+  size_t len;
+  char *str;
+
+  input_t(const char *s) : len(strlen(s)), str(new char[len + YYMAXFILL]) {
+    memcpy(str, s, len);
+    memset(str + len, ' ', YYMAXFILL);
+  }
+  ~input_t() { delete[] str; }
+};
+
+enum TokenClass {
+  None,
+  Comment,
+  Directive,
+  Identifier,
+  Integer,
+  Float,
+  lBracket,
+  rBracket,
+  lcBracket,
+  rcBracket,
+  leBracket,
+  reBracket,
+  Register,
+  Comma,
+  Semicolon,
+  Guard,
+  Instruction,
+  Label,
+  AddressOp,
+  EqualSign,
+  String,
+  Separator
+};
+
+const char *TokenClassName[] = {
+    "None",      "Comment",     "Directive", "Identifier", "Integer",
+    "Float",     "lBracket",    "rBracket",  "lcBracket",  "rcBracket",
+    "leBracket", "reBracket",   "Register",  "Comma",      "Semicolon",
+    "Guard",     "Instruction", "Label",     "AddressOp",  "EqualSign",
+    "String",	 "Separator"};
+
+struct Token {
+  TokenClass ty = None;
+  std::string str;
+
+  Token(TokenClass tc, std::string str) : ty(tc), str(str){};
+};
+
+std::vector<Token> lexicalAnalysis(std::string filename) {
+  std::vector<Token> tokenVec;
+  std::ifstream file(filename, std::ios::binary | std::ios::ate);
+  auto size = file.tellg();
+  file.seekg(0, std::ios::beg);
+
+  std::string buffer(size, '\0');
+  if (!file.read(&buffer[0], size))
+    return tokenVec;
+
+  auto addToken = [&tokenVec](TokenClass ty, const char *const begin = nullptr,
+                              const char *const end = nullptr) {
+    if (begin == nullptr or end == nullptr)
+      tokenVec.push_back({ty, ""});
+    tokenVec.push_back({ty, std::string(begin, end - begin)});
+  };
+
+  input_t input(buffer.c_str());
+  const char *YYCURSOR = input.str;
+  const char *const YYLIMIT = input.str + input.len + YYMAXFILL;
+  const char *YYMARKER = YYLIMIT;
+
+  for (;;) {
+    const char *token = YYCURSOR;
+    /*!re2c
+      re2c:define:YYCTYPE = char;
+      re2c:define:YYFILL = "break;";
+      re2c:define:YYFILL:naked = 1;
+
+      // No Match
+      * { std::cerr << "no match:\t" << std::string(token, YYCURSOR-token) <<
+      "\n"; continue;}
+
+      // whitespaces
+      mcm = "/*" ([^*] | ("*" [^/]))* "*""/";
+      wsp = ([ \t\v\n\r] | mcm)+;
+      wsp { continue; }
+      comment = "//" [^\n]* "\n";
+      comment { addToken(Comment, token, YYCURSOR); continue;}
+
+      // Attributes
+      ".version" { addToken(Directive, token, YYCURSOR); continue;}
+      ".target" { addToken(Directive, token, YYCURSOR); continue;}
+      ".address_size" { addToken(Directive, token, YYCURSOR); continue;}
+      ".visible" { addToken(Directive, token, YYCURSOR); continue;}
+      ".entry" { addToken(Directive, token, YYCURSOR); continue;}
+      ".param" { addToken(Directive, token, YYCURSOR); continue;}
+      ".reg" { addToken(Directive, token, YYCURSOR); continue;}
+      ".pred" { addToken(Directive, token, YYCURSOR); continue;}
+      ".global" { addToken(Directive, token, YYCURSOR); continue;}
+      ".loc" { addToken(Directive, token, YYCURSOR); continue;}
+      "." [a-zA-Z]* { addToken(Directive, token, YYCURSOR); continue;}
+      "\." [usfb] ("32"|"64") { addToken(Directive, token, YYCURSOR); continue;}
+
+      // Brackets
+      "(" { addToken(lBracket, token, YYCURSOR); continue;}
+      ")" { addToken(rBracket, token, YYCURSOR); continue;}
+      "[" { addToken(leBracket, token, YYCURSOR); continue;}
+      "]" { addToken(reBracket, token, YYCURSOR); continue;}
+      "{" { addToken(lcBracket, token, YYCURSOR); continue;}
+      "}" { addToken(rcBracket, token, YYCURSOR); continue;}
+
+      // Comma
+      "," { addToken(Comma, token, YYCURSOR); continue;}
+      // Semicolon
+      ";" { addToken(Semicolon, token, YYCURSOR); continue;}
+
+      // =
+      "=" { addToken(EqualSign, token, YYCURSOR); continue;}
+
+      // Address Operators
+      "+" { addToken(AddressOp, token, YYCURSOR); continue;}
+      "-" { addToken(AddressOp, token, YYCURSOR); continue;}
+
+      // Strings
+
+      //"\""[a-zA-Z0-9]+"\"" { addToken(String, token, YYCURSOR); continue;}
+      sstr = "'"  [^']* "'";
+      dstr = "\"" [^"]* "\"";
+      (sstr | dstr) { addToken(String, token, YYCURSOR); continue;}
+
+      // Register
+      "%"[a-z]+"<"?[0-9]+">"? { addToken(Register, token, YYCURSOR); continue;}
+      // Special Register
+      "%"("nctaid"|"ctaid"|"ntid"|"tid")"."[xyz] { addToken(Register, token,
+      YYCURSOR); continue;}
+      // Separator
+      "|" { addToken(Separator, token, YYCURSOR); continue;}
+
+      // Guard Predicate
+      "@""!"? { addToken(Guard, token, YYCURSOR); continue;}
+
+      // Instruction
+      [a-z]+[a-z0-9]*("."[a-z0-9]+)* { addToken(Instruction, token, YYCURSOR);
+      continue;}
+
+      // Identifier
+      followsym = [a-zA-Z0-9_$];
+      id = [a-zA-Z](followsym)* | [_$%](followsym)+;
+      id { addToken(Identifier, token, YYCURSOR); continue;}
+
+      // Label
+      (id)":" { addToken(Label, token, YYCURSOR); continue;}
+
+      // Integer
+      [0-9]+ { addToken(Integer, token, YYCURSOR); continue;}
+
+      // Floating Point
+      frc = [0-9]* "." [0-9]+ | [0-9]+ ".";
+      exp = 'e' [+-]? [0-9]+;
+      flt = (frc exp? | [0-9]+ exp) [fFlL]?;
+      flt { addToken(Float, token, YYCURSOR); continue;}
+
+    */
+    if (YYCURSOR >= YYLIMIT)
+      break;
+  }
+
+  // for (auto token : tokenVec){
+  //  std::cout << TokenClassName[token.ty] << ": " << token.str << '\n';
+  //}
+
+  return tokenVec;
+}
+
+// Parsing
+// * .entry .* _kernel_name_ [(parameter+)] { statement+ }
+// statement: .directive+ operand+;
+//            instruction operand+;
+// operand: register  | string | int | float | address
+
+enum TokenQuantizer { TQ_None, One, LeastOne, Any };
+
+bool parseFunction(std::vector<Token>::iterator iter,
+                   std::vector<Token>::iterator end, PTXFunction &func) {
+
+  Token next = *(iter);
+  // Get FunctionName
+  do {
+    next = *(iter++);
+    switch (next.ty) {
+    case lBracket:
+      do { // Skip all tokens until bracket is closed
+        next = *(iter++);
+      } while (next.ty != rBracket);
+      break;
+    case Identifier:
+      func.name = next.str; // Found Function Name
+      break;
+    default:
+      break; // Skip Token
+    }
+  } while (next.ty != Identifier);
+
+  // Check for Parameterlist
+  if (next.ty == lBracket) {
+    do {
+      next = *(iter++);
+    } while (next.ty != rBracket);
+    next = *(iter++);
+  }
+
+  // Check for Function Body
+  bool forever = true;
+  do {
+    switch (next.ty) {
+    case lcBracket:
+      forever = false;
+      break; // Found function body
+    case Semicolon:
+      return true; // Found function decleration
+    default:
+      next = *(iter++);
+    }
+  } while (forever);
+
+  if (next.ty == lcBracket) {
+    std::string currentBB = "";
+    int bbIdx = -1;
+    int cBracketLevel = 0;
+
+    do {
+      next = *(iter++);
+
+      // Directive?
+      if (next.ty == Directive) {
+        // If .loc directive, skip the next 3 integers
+        if (next.str == ".loc") {
+          for (int i = 0; i < 3; ++i) {
+            next = *(iter++);
+            if (next.ty != Integer)
+              std::cerr << "ERROR: Expected Integer, got "
+                        << TokenClassName[next.ty] << " instead\n";
+          }
+        } else {
+          // Skip until Semicolon
+          do {
+            next = *(iter++);
+          } while (next.ty != Semicolon);
+        }
+      }
+      // Instruction
+      else if (next.ty == Instruction) {
+        if (currentBB.empty() or bbIdx < 0) {
+          std::cerr << "No BB to assign instruction!\n";
+          std::cerr << "Instruction: " << next.str << "\n";
+          return false;
+        }
+
+	int flag = 0;
+	std::string temp = next.str;
+        //func.bb[bbIdx].inst.push_back(next.str);
+        // Skip until Semicolon
+        do {
+          next = *(iter++);
+	  if(next.ty != Comma && next.ty != Semicolon){
+		if(next.ty == reBracket || next.ty == AddressOp || flag==1){
+                        if(next.ty == Register){
+				temp = temp + ".." + next.str + "..";
+			} else {
+				temp = temp + next.str;
+			}
+                } else {
+                        temp = temp + " " + next.str;
+                }	
+		if(next.ty == leBracket){
+			flag = 1;
+		}
+		if(next.ty == reBracket){
+                	flag = 0;
+             	}
+	  }
+        } while (next.ty != Semicolon);
+	func.bb[bbIdx].inst.push_back(temp);
+      }
+      // Comment
+      else if (next.ty == Comment) {
+        // Check for BB Label
+        size_t pos = next.str.rfind("// %");
+        if (pos != std::string::npos) {
+          size_t bbPos = pos + 4;
+          // Check for whitespace and colon after name
+          // use this as end of the bb label
+          size_t wpos1 = next.str.find(" ", bbPos);
+          size_t wpos2 = next.str.find("\t", bbPos);
+          size_t wpos3 = next.str.find(":", bbPos);
+          size_t wpos = wpos1 < wpos2 ? wpos1 : wpos2;
+          wpos = wpos < wpos3 ? wpos : wpos3;
+          size_t len;
+          if (wpos != std::string::npos)
+            len = wpos - (bbPos);
+          else
+            len = next.str.rfind("\n") - (bbPos);
+
+          currentBB = next.str.substr(bbPos, len);
+          func.bb.push_back({currentBB, {}});
+          ++bbIdx;
+          // std::cout << "Found BB: " << currentBB << '\n';
+        }
+      }
+      // Label
+      else if (next.ty == Label) {
+        // Skip
+      }
+      // Guard
+      else if (next.ty == Guard) {
+        // Skip
+        next = *(iter++);
+	std::string p ("p");
+	if(next.str.compare(p) == 0){
+	  // Skip
+	//do {
+		// Skip
+		next = *(iter++);
+		break;
+	}
+	//} while (next.ty != Semicolon);
+	/*
+	if ((*(iter)).ty == Instruction){
+	  next = *(iter);
+	  if (currentBB.empty() or bbIdx < 0) {
+            std::cerr << "No BB to assign instruction!\n";
+            std::cerr << "Instruction: " << next.str << "\n";
+            return false;
+          }
+
+          int flag = 0;
+          std::string temp = next.str;
+          // Skip until Semicolon
+          do {
+            next = *(iter++);
+            if(next.ty != Comma && next.ty != Semicolon){
+                if(next.ty == reBracket || next.ty == AddressOp || flag==1){
+                        if(next.ty == Register){
+                                temp = temp + ".." + next.str + "..";
+                        } else {
+                                temp = temp + next.str;
+                        }
+                } else {
+                        temp = temp + " " + next.str;
+                }    
+                if(next.ty == leBracket){
+                        flag = 1;
+                }
+                if(next.ty == reBracket){
+                        flag = 0;
+                }
+            }
+          } while (next.ty != Semicolon);
+          func.bb[bbIdx].inst.push_back(temp);
+        }
+	
+	} else*/ if (next.ty != Register) {
+	  std::cout << "Error with: " << " " << (*(iter-4)).str << " " << (*(iter-3)).str << " " << (*(iter-2)).str << " ..RG.. " << (*(iter-1)).str << " " << next.str << " ..RG.. " << (*(iter)).str << " " << (*(iter+1)).str << " " << (*(iter+2)).str << "\n";
+          std::cerr << "Expected Register after Guard token not found!\n";
+          return false; 
+        }
+      }
+      // LC Bracket of inline asm
+      else if (next.ty == lcBracket) {
+	//do {
+	  // Skip
+	  //next = *(iter++);
+	//} while (next.ty == rcBracket);
+	//if(*(iter).ty == Guard && *(iter+1).ty == Instruction){
+		
+	//} else {
+        	++cBracketLevel;
+	//}
+        // Skip
+      }
+      // rcBracket aka End of Function
+      else if (next.ty == rcBracket) {
+        if (cBracketLevel <= 0){
+          //std::cout << "Extra bracket detected\n";
+	  break;
+	}
+        else {
+          --cBracketLevel;
+	}
+      }
+      // Error Otherwise
+      else {
+        std::cerr << "Unexpected token: " << TokenClassName[next.ty] << "\t"
+                  << next.str << '\n';
+        return false;
+      }
+    } while (true);
+
+    // Success
+    return true;
+  } else {
+    return false;
+  }
+}
+
+std::vector<PTXFunction> parse(std::vector<Token> tokenVec) {
+  std::vector<PTXFunction> funcVec;
+
+  auto tokenIter = tokenVec.begin();
+
+  while (tokenIter != tokenVec.end()) {
+    // TODO Valitade Stuff outside of kernel functions
+    Token current = *(tokenIter++);
+    if (current.ty == Directive and
+        (current.str == ".entry" or current.str == ".func")) {
+      PTXFunction func;
+      parseFunction(tokenIter, tokenVec.end(), func);
+      funcVec.push_back(func);
+    }
+  }
+
+  return funcVec;
+}
+
+} // namespace mekong
+
+#endif

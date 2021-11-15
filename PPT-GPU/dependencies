@@ -1,0 +1,13 @@
+
+This a list of the packages versions tested for this project: 
+- GCC 7.3.0
+- LLVM 11.1
+- CUDA NVCC 10.2
+- MPICH 3.3.2
+- Python 3.8.10
+    * scipy 1.6.2
+    * greenlet 1.1.0
+    * joblib 1.0.1
+- glibc 2.3.4
+- CMake 3.20
+- re2c 0.14.3

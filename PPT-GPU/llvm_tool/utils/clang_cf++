@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+set -x
+clang++ -Xclang -load -Xclang @CMAKE_INSTALL_PREFIX@/lib/@CMAKE_SHARED_LIBRARY_PREFIX@cuda_flux_pass@CMAKE_SHARED_LIBRARY_SUFFIX@ -finline-functions $@
