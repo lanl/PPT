@@ -9,18 +9,17 @@ We are releasing a new lighter version of PPT, called as [ppt_lite](./ppt_lite).
 1. Gopinath (Nath) Chennupati (gchennupati@lanl.gov)
 2. Nanadakishore Santhi (nsanthi@lanl.gov)
 3. Stephen Eidenbenz (eidenben@lanl.gov)
-4. Robert Joseph (Joe) Zerr (rzerr@lanl.gov)
-5. Massimiliano (Max) Rosa (maxrosa@lanl.gov)
-6. Richard James Zamora (rjzamora@lanl.gov)
-7. Eun Jung (EJ) Park (ejpark@lanl.gov)
-8. Balasubramanya T (Balu) Nadiga (balu@lanl.gov)
+4. Atanu Barai (abarai@lanl.gov)
+5. Robert Joseph (Joe) Zerr (rzerr@lanl.gov)
+6. Massimiliano (Max) Rosa (maxrosa@lanl.gov)
+7. Richard James Zamora (rjzamora@lanl.gov)
+8. Eun Jung (EJ) Park (ejpark@lanl.gov)
+9. Balasubramanya T (Balu) Nadiga (balu@lanl.gov)
 ###### Non-LANL Authors
-9. Jason Liu (luix@cis.fiu.edu)
-10. Kishwar Ahmed
-11. Mohammad Abu Obaida
-12. Yehia Arafa (yarafa@nmsu.edu)
-13. Atanu Barai (atanu@nmsu.edu)
-
+10. Jason Liu (luix@cis.fiu.edu)
+11. Kishwar Ahmed
+12. Mohammad Abu Obaida
+13. Yehia Arafa (yarafa@nmsu.edu)
 ## Installation
 
 ###### Dependencies
